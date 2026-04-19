@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html data-theme="theme-ocean" lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+
+    <title>{{ $title ?? config('app.name') }}</title>
+
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    @livewireStyles
+</head>
+
+<body class=" bg-white text-black dark:bg-neutral-900 dark:text-white">
+    @include('components.header.public-header')
+    <main class="">
+        <div class="min-h-screen flex flex-col bg-white border border-gray-200 shadow-xs rounded-lg dark:bg-neutral-800 dark:border-neutral-700">
+            <!-- Body -->
+            <div class="flex-1 flex flex-col overflow-y-auto">
+                {{ $slot }}
+            </div>
+        </div>
+          
+    </main>
+    @include('components.footer.public-footer')
+
+    @livewireScripts
+    
+</body>
+    <script src="https://cdn.jsdelivr.net/npm/preline/dist/preline.js"></script>
+</html>
