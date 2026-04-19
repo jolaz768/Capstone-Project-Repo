@@ -15,11 +15,11 @@
         <div class="mb-4 sm:mb-8">
           <label for="hs-feedback-measurement-template-name-1" class="block mb-2 text-sm font-medium text-foreground">Garment</label>
           <select type="text" id="hs-feedback-measurement-template-name-1" class="py-2.5 sm:py-3 px-4 block w-full bg-layer border-layer-line rounded-lg sm:text-sm text-foreground placeholder:text-muted-foreground-1 focus:border-primary-focus focus:ring-primary-focus disabled:opacity-50 disabled:pointer-events-none" placeholder="Garment">
-            <option value="1">Select-Measurement-Template</option>
-            <option value="2">Garment T-shirt</option>
-            <option value="3">Garment Pants</option>
-            <option value="4">Garment Suit</option>
-            <option value="5">Garment blazer</option>
+            <option value="1">Select-Garment</option>
+            <option value="2">T-shirt</option>
+            <option value="3">Pants</option>
+            <option value="4">Suit</option>
+            <option value="5">blazer</option>
           </select>
 
         </div>
@@ -29,12 +29,12 @@
           <input type="checkbox" id="hs-feedback-measurement-template-template-measurement-field-1" class="border border-layer-line focus:border-primary-focus focus:ring-primary-focus disabled:opacity-50 disabled:pointer-events-none  "> chest 
         </div>
 
-        <div>
+        {{-- <div>
           <label for="hs-feedback-measurement-template-input-1" class="block mb-2 text-sm font-medium text-foreground">Name</label>
           <div class="mt-1">
             <input  type ="text" id="hs-feedback-measurement-template-input-1" name="hs-feedback-measurement-template-input-1" class="py-2.5 sm:py-3 px-4 block w-full bg-layer border-layer-line rounded-lg sm:text-sm text-foreground placeholder:text-muted-foreground-1 focus:border-primary-focus focus:ring-primary-focus disabled:opacity-50 disabled:pointer-events-none" placeholder="Masurement-Template-Name">
           </div>
-        </div>
+        </div> --}}
 
         <div class="mt-6 grid">
           <button type="submit" class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg bg-primary border border-primary-line text-primary-foreground hover:bg-primary-hover focus:outline-hidden focus:bg-primary-focus disabled:opacity-50 disabled:pointer-events-none">Submit</button>

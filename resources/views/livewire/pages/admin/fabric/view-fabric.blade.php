@@ -37,17 +37,22 @@
           <table class="min-w-full divide-y divide-table-line">
             <thead class="bg-muted">
               <tr>
-                {{-- <th scope="col" class="ps-6 py-3 text-start">
-                  <label for="hs-at-with-checkboxes-main" class="flex">
-                    <input type="checkbox" class="shrink-0 size-4 bg-transparent border-line-3 rounded-sm shadow-2xs text-primary focus:ring-0 focus:ring-offset-0 checked:bg-primary-checked checked:border-primary-checked disabled:opacity-50 disabled:pointer-events-none" id="hs-at-with-checkboxes-main">
-                    <span class="sr-only">Checkbox</span>
-                  </label>
-                </th> --}}
+                <th scope="col" class="ps-6 py-3 text-start">
+                  
+                </th>
 
                 <th scope="col" class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3 text-start">
                   <div class="flex items-center gap-x-2">
                     <span class="text-xs font-semibold uppercase text-foreground">
                       Name
+                    </span>
+                  </div>
+                </th>
+
+                <th scope="col" class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3 text-start">
+                  <div class="flex items-center gap-x-2">
+                    <span class="text-xs font-semibold uppercase text-foreground">
+                      Colors
                     </span>
                   </div>
                 </th>
@@ -84,14 +89,11 @@
 
             <tbody class="divide-y divide-table-line">
               <tr>
-                {{-- <td class="size-px whitespace-nowrap">
+                <td class="size-px whitespace-nowrap">
                   <div class="ps-6 py-3">
-                    <label for="hs-at-with-checkboxes-1" class="flex">
-                      <input type="checkbox" class="shrink-0 size-4 bg-transparent border-line-3 rounded-sm shadow-2xs text-primary focus:ring-0 focus:ring-offset-0 checked:bg-primary-checked checked:border-primary-checked disabled:opacity-50 disabled:pointer-events-none" id="hs-at-with-checkboxes-1">
-                      <span class="sr-only">Checkbox</span>
-                    </label>
+                    
                   </div>
-                </td> --}}
+                </td>
                 <td class="size-px whitespace-nowrap">
                   <div class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3">
                     <div class="flex items-center gap-x-3">
@@ -101,6 +103,17 @@
                     </div>
                   </div>
                 </td>
+
+                <td class="size-px whitespace-nowrap">
+                  <div class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3">
+                    <div class="flex items-center gap-x-3">
+                      <div class="grow">
+                        <span class="block text-sm font-semibold text-foreground">Brown,Yellow,White..</span>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+
                 <td class="h-px w-72 whitespace-nowrap">
                   <div class="px-6 py-3">
                     <img class="object-cover w-20 h-20" src="https://images.pexels.com/photos/6843240/pexels-photo-6843240.jpeg" alt="Product Image">

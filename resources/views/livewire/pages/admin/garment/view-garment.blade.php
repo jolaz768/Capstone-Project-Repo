@@ -3,7 +3,7 @@
     <div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
   <!-- Card -->
   <div class="flex flex-col">
-    <div class="overflow-x-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-none [&::-webkit-scrollbar-track]:bg-scrollbar-track [&::-webkit-scrollbar-thumb]:bg-scrollbar-thumb">
+    <div class="overflow-x-auto  [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-none [&::-webkit-scrollbar-track]:bg-scrollbar-track [&::-webkit-scrollbar-thumb]:bg-scrollbar-thumb">
       <div class="min-w-full inline-block align-middle">
         <div class="bg-layer border border-layer-line rounded-xl shadow-2xs overflow-hidden">
           <!-- Header -->
@@ -36,12 +36,12 @@
           <table class="min-w-full divide-y divide-table-line">
             <thead class="bg-muted">
               <tr>
-                {{-- <th scope="col" class="ps-6 py-3 text-start">
-                  <label for="hs-at-with-checkboxes-main" class="flex">
+                <th scope="col" class="ps-6 py-3 text-start">
+                  {{-- <label for="hs-at-with-checkboxes-main" class="flex">
                     <input type="checkbox" class="shrink-0 size-4 bg-transparent border-line-3 rounded-sm shadow-2xs text-primary focus:ring-0 focus:ring-offset-0 checked:bg-primary-checked checked:border-primary-checked disabled:opacity-50 disabled:pointer-events-none" id="hs-at-with-checkboxes-main">
                     <span class="sr-only">Checkbox</span>
-                  </label>
-                </th> --}}
+                  </label> --}}
+                </th>
 
                 <th scope="col" class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3 text-start">
                   <div class="flex items-center gap-x-2">
@@ -121,14 +121,14 @@
 
             <tbody class="divide-y divide-table-line">
               <tr>
-                {{-- <td class="size-px whitespace-nowrap">
+                <td class="size-px whitespace-nowrap">
                   <div class="ps-6 py-3">
-                    <label for="hs-at-with-checkboxes-1" class="flex">
+                    {{-- <label for="hs-at-with-checkboxes-1" class="flex">
                       <input type="checkbox" class="shrink-0 size-4 bg-transparent border-line-3 rounded-sm shadow-2xs text-primary focus:ring-0 focus:ring-offset-0 checked:bg-primary-checked checked:border-primary-checked disabled:opacity-50 disabled:pointer-events-none" id="hs-at-with-checkboxes-1">
                       <span class="sr-only">Checkbox</span>
-                    </label>
+                    </label> --}}
                   </div>
-                </td> --}}
+                </td>
 
                 <td class="size-px whitespace-nowrap">
                   <div class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3">

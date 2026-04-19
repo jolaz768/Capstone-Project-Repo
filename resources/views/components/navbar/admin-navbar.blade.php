@@ -45,7 +45,7 @@ lg:block lg:-translate-x-full lg:end-auto lg:bottom-0" role="dialog" tabindex="-
         <!-- List -->
         <ul class="flex flex-col gap-y-1">
           <li>
-            <a class="w-full flex items-center gap-x-2 py-2 px-2.5 text-sm text-sidebar-2-nav-foreground rounded-lg hover:bg-sidebar-2-nav-hover focus:outline-hidden focus:bg-sidebar-2-nav-focus "  href="{{ route('vendor.dashboard') }}">
+            <a class="w-full flex items-center gap-x-2 py-2 px-2.5 text-sm text-sidebar-2-nav-foreground rounded-lg hover:bg-sidebar-2-nav-hover focus:outline-hidden focus:bg-sidebar-2-nav-focus "  href="{{ route('admin.dashboard') }}">
               Dashboard
             </a>
           </li>
@@ -60,13 +60,9 @@ lg:block lg:-translate-x-full lg:end-auto lg:bottom-0" role="dialog" tabindex="-
 
         <!-- List -->
         <ul class="flex flex-col gap-y-1">
+         
           <li>
-            <a class="w-full flex items-center gap-x-2 py-2 px-2.5 text-sm text-sidebar-2-nav-foreground rounded-lg hover:bg-sidebar-2-nav-hover focus:outline-hidden focus:bg-sidebar-2-nav-focus "  href="{{ route('vendor.shop.create') }}">
-              Create Shop
-            </a>
-          </li>
-          <li>
-            <a class="w-full flex items-center gap-x-2 py-2 px-2.5 text-sm text-sidebar-2-nav-foreground rounded-lg hover:bg-sidebar-2-nav-hover focus:outline-hidden focus:bg-sidebar-2-nav-focus "  href="{{ route('vendor.shop.view') }}">
+            <a class="w-full flex items-center gap-x-2 py-2 px-2.5 text-sm text-sidebar-2-nav-foreground rounded-lg hover:bg-sidebar-2-nav-hover focus:outline-hidden focus:bg-sidebar-2-nav-focus "  href="{{ route('admin.shop.view') }}">
               View Shop
             </a>
           </li>
@@ -81,14 +77,16 @@ lg:block lg:-translate-x-full lg:end-auto lg:bottom-0" role="dialog" tabindex="-
 
         <!-- List -->
         <ul class="flex flex-col gap-y-1">
+          
           <li>
-            <a class="w-full flex items-center gap-x-2 py-2 px-2.5 text-sm text-sidebar-2-nav-foreground rounded-lg hover:bg-sidebar-2-nav-hover focus:outline-hidden focus:bg-sidebar-2-nav-focus "  href="#">
-              Create Garment
+            <a class="w-full flex items-center gap-x-2 py-2 px-2.5 text-sm text-sidebar-2-nav-foreground rounded-lg hover:bg-sidebar-2-nav-hover focus:outline-hidden focus:bg-sidebar-2-nav-focus "  href="{{ route('admin.garment.view') }}">
+              View Garment
             </a>
           </li>
+
           <li>
-            <a class="w-full flex items-center gap-x-2 py-2 px-2.5 text-sm text-sidebar-2-nav-foreground rounded-lg hover:bg-sidebar-2-nav-hover focus:outline-hidden focus:bg-sidebar-2-nav-focus "  href="#">
-              View Garment
+            <a class="w-full flex items-center gap-x-2 py-2 px-2.5 text-sm text-sidebar-2-nav-foreground rounded-lg hover:bg-sidebar-2-nav-hover focus:outline-hidden focus:bg-sidebar-2-nav-focus "  href="{{ route('admin.measurementtemplate.view') }}">
+              Measurement Template
             </a>
           </li>
           
@@ -104,14 +102,28 @@ lg:block lg:-translate-x-full lg:end-auto lg:bottom-0" role="dialog" tabindex="-
 
         <!-- List -->
         <ul class="flex flex-col gap-y-1">
-          <li>
-            <a class="w-full flex items-center gap-x-2 py-2 px-2.5 text-sm text-sidebar-2-nav-foreground rounded-lg hover:bg-sidebar-2-nav-hover focus:outline-hidden focus:bg-sidebar-2-nav-focus "  href="#">
-              Add Service
-            </a>
-          </li>
+          
           <li>
             <a class="w-full flex items-center gap-x-2 py-2 px-2.5 text-sm text-sidebar-2-nav-foreground rounded-lg hover:bg-sidebar-2-nav-hover focus:outline-hidden focus:bg-sidebar-2-nav-focus "  href="#">
               View Service
+            </a>
+          </li>
+          
+        </ul>
+        <!-- End List -->
+      </div>
+
+      <div class="pt-3 mt-3 flex flex-col border-t border-sidebar-2-divider first:border-t-0 first:pt-0 first:mt-0">
+        <span class="block ps-2.5 mb-2 font-medium text-xs uppercase text-muted-foreground-1">
+          Fabric Management
+        </span>
+
+        <!-- List -->
+        <ul class="flex flex-col gap-y-1">
+          
+          <li>
+            <a class="w-full flex items-center gap-x-2 py-2 px-2.5 text-sm text-sidebar-2-nav-foreground rounded-lg hover:bg-sidebar-2-nav-hover focus:outline-hidden focus:bg-sidebar-2-nav-focus "  href="{{ route('admin.fabric.view') }}">
+              View Fabric
             </a>
           </li>
           

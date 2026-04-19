@@ -1,6 +1,7 @@
 <?php
 
 use App\Livewire\Pages\Admin\Booking\ViewBooking;
+use App\Livewire\Pages\Admin\Dashboard as OwnerDashboard;
 use App\Livewire\Pages\Admin\Fabric\CreateFabric;
 use App\Livewire\Pages\Admin\Fabric\EditFabric;
 use App\Livewire\Pages\Admin\Fabric\ViewFabric;
@@ -10,6 +11,7 @@ use App\Livewire\Pages\Admin\Garment\ViewGarment;
 use App\Livewire\Pages\Admin\MeasurementTemplate\CreateMeasurementTemplate;
 use App\Livewire\Pages\Admin\MeasurementTemplate\EditMeasurementTemplate;
 use App\Livewire\Pages\Admin\MeasurementTemplate\ViewMeasurementTemplate;
+use App\Livewire\Pages\Admin\Review\ViewReview;
 use App\Livewire\Pages\Admin\Shop\CreateShop;
 use App\Livewire\Pages\Admin\Shop\EditShop;
 use App\Livewire\Pages\Admin\Shop\ViewShop;
@@ -101,7 +103,7 @@ Route::prefix('/admin') //shop owner
 ->group(function () {
 
     //dashboard admin or shop owner
-    Route::get('/dashboard',Dashboard::class)->name('admin.dashboard');
+    Route::get('/dashboard',OwnerDashboard::class)->name('admin.dashboard');
 
     //booking
     Route::get('/booking/view',ViewBooking::class)->name('admin.booking.view');
@@ -127,5 +129,8 @@ Route::prefix('/admin') //shop owner
     Route::get('/measurementtemplate/view',ViewMeasurementTemplate::class)->name('admin.measurementtemplate.view');
     Route::get('/measurementtemplate/create',CreateMeasurementTemplate::class)->name('admin.measurementtemplate.create');
     Route::get('/measurementtemplate/edit/{measurementtemplate}',EditMeasurementTemplate::class)->name('admin.measurementtemplate.edit');
+
+    //Reviews
+    Route::get('/review/view',ViewReview::class)->name('admin.review.view');
 
 });
