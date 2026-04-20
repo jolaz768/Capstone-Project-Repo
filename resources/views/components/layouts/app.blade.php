@@ -11,6 +11,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     @livewireStyles
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 </head>
 
 <body class=" bg-white text-black dark:bg-neutral-900 dark:text-white">
@@ -29,5 +30,5 @@
     @livewireScripts
     
 </body>
-    <script src="https://cdn.jsdelivr.net/npm/preline/dist/preline.js"></script>
+   
 </html>

@@ -19,6 +19,7 @@
 /* Your theme overrides (copied from theme.css or another premade theme) */
 @import "./themes/my-theme.css";
 @import "./themes/ocean.css";
+@import "./preline/datepicker.css";
 
 
 /* Adds pointer cursor to buttons */

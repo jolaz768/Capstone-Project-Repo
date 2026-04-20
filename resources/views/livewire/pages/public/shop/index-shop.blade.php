@@ -37,13 +37,13 @@
             aria-controls="bar-with-underline-2" role="tab">
             Reviews
         </a>
-        <button type="button"
+            <a type="button" href="{{ route('booking.create') }}"
             class="hs-tab-active:border-b-primary-active hs-tab-active:text-foreground relative min-w-0 flex-1 bg-layer first:border-s-0 border-s border-b-2 border-layer-line py-4 px-4 text-muted-foreground-1 hover:text-foreground text-sm font-medium text-center overflow-hidden hover:bg-layer-hover focus:z-10 focus:outline-hidden focus:text-foreground focus:bg-layer-focus disabled:opacity-50 disabled:pointer-events-none"
             id="bar-with-underline-item-3" aria-selected="false" data-hs-tab="#bar-with-underline-3"
             aria-controls="bar-with-underline-3" role="tab">
             Book Apointment
-        </button>
-                <button type="button"
+            </a>
+            <button type="button"
             class="hs-tab-active:border-b-primary-active hs-tab-active:text-foreground relative min-w-0 flex-1 bg-layer first:border-s-0 border-s border-b-2 border-layer-line py-4 px-4 text-muted-foreground-1 hover:text-foreground text-sm font-medium text-center overflow-hidden hover:bg-layer-hover focus:z-10 focus:outline-hidden focus:text-foreground focus:bg-layer-focus disabled:opacity-50 disabled:pointer-events-none"
             id="bar-with-underline-item-3" aria-selected="false" data-hs-tab="#bar-with-underline-4"
             aria-controls="bar-with-underline-4" role="tab">
@@ -203,6 +203,39 @@
                 </div>
             </div>
             <!-- End Card -->
+
+                        <!-- Card -->
+            <div
+                class="flex flex-col bg-card border border-card-line shadow-2xs rounded-xl">
+                <div class="p-4 md:p-5">
+                    <div class="flex items-center gap-x-4 mb-3">
+                        <div
+                            class="inline-flex justify-center items-center size-15.5 rounded-full border-4 border-primary-100 dark:border-primary-900 overflow-hidden shrink-0">
+                            <img class="w-20 h-20 object-cover rounded-full"
+                                src="https://images.pexels.com/photos/28238144/pexels-photo-28238144.jpeg" alt="Logo">
+                        </div>
+                        <div class="shrink-0">
+                            <h3 class="block text-sm font-semibold text-foreground-1">John doe</h3>
+                              <div class="grow">
+                        <p class="text-xs uppercase font-medium text-foreground-1">
+                            Rating: <span class="font-semibold text-xl text-yellow-500">★★★★★</span>
+                        </p>
+                        <p class="mt-1 text-xl sm:text-xs font-semibold text-foreground-1">
+                            Sevices: <span class="font-xs text-foreground-1"> Sewing </span>
+                        </p>
+                    </div>
+                        </div>
+                        
+                    </div>
+                    <img src="https://plus.unsplash.com/premium_photo-1675186049366-64a655f8f537?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class=" mt-4 rounded-lg
+                        object-cover w-20 h-20">
+                    <p class="mt-2 text-sm text-foreground-1">
+                        quality as shit!!
+                    </p>
+                   
+                </div>
+            </div>
+            <!-- End Card -->
             
         </div>
 
@@ -210,7 +243,7 @@
         <div class="lg:col-span-">
             <h2 class="text-xl font-semibold mb-4">Book Appointment</h2>
 
-            <div class="bg-card border border-card-line rounded-xl shadow-2xs">
+            <div class="bg-card border border-card-line rounded-xl shadow-2xs ">
                 <!-- Sign In -->
                 <div class="p-4 sm:p-7">
                     <div class="text-center">
@@ -239,18 +272,22 @@
                         </div>
                     </form>
                     <!-- End Form -->
+                    
+                    
                 </div>
             </div>
             <!-- End Sign In -->
         </div>
     </div>
 
-{{-- pricing section --}}
+    {{-- pricing section --}}
 
 
 <div class="p-4 sm:p-7">
     <div class="text-center">
-        <h1 id="hs-modal-signin-label" class="block text-2xl font-bold text-foreground">Pricing</h1>
+        <h1 id="hs-modal-signin-label" class="block text-2xl font-bold text-foreground">Garment Pricing
+</h1>
+    <span class="block text-sm text-muted-foreground-1">Pick the style that you wish to create.</span>
     </div>
 </div>
 <!-- Card Group -->
