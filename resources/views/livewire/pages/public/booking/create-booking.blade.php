@@ -13,8 +13,8 @@
     <div class="mt-5 p-4 relative z-10 bg-card border border-card-line rounded-xl sm:mt-10 md:p-10">
       <form>
         <div class="mb-4 sm:mb-8">
-          <label for="hs-feedback-post-comment-name-1" class="block mb-2 text-sm font-medium text-foreground">Date</label>
-          <input type="date" id="hs-feedback-post-comment-name-1" class="py-2.5 sm:py-3 px-4 block w-full bg-layer border-layer-line rounded-lg sm:text-sm text-foreground placeholder:text-muted-foreground-1 focus:border-primary-focus focus:ring-primary-focus disabled:opacity-50 disabled:pointer-events-none" placeholder="Date"  value="{{ request('date') }}">
+          <label for="date" class="block mb-2 text-sm font-medium text-foreground">Date</label>
+          <input type="date" id="date" name="date" class="py-2.5 sm:py-3 px-4 block w-full bg-layer border-layer-line rounded-lg sm:text-sm text-foreground placeholder:text-muted-foreground-1 focus:border-primary-focus focus:ring-primary-focus disabled:opacity-50 disabled:pointer-events-none" placeholder="Date"  value="{{ request('date') }}">
         </div>
 
         <div class="mb-4 sm:mb-8">

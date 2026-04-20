@@ -22,6 +22,9 @@ use App\Livewire\Pages\Public\Booking\EditBooking;
 use App\Livewire\Pages\Public\Booking\ViewBooking as publicbooking;
 use App\Livewire\Pages\Public\Index;
 use App\Livewire\Pages\Public\Shop\IndexShop;
+use App\Livewire\Pages\Public\Shop\Pricing;
+use App\Livewire\Pages\Public\Shop\Review;
+use App\Livewire\Pages\Public\Shop\ShopService;
 use App\Livewire\Pages\SuperAdmin\Dashboard;
 use App\Livewire\Pages\SuperAdmin\Permission\CreatePermission;
 use App\Livewire\Pages\SuperAdmin\Permission\EditPermission;
@@ -69,6 +72,16 @@ Route::get('/edit-booking/{booking}',EditBooking::class)->name('booking.edit');
 
 //shop
 Route::get('/Shop-view',IndexShop::class)->name('shop.view');
+
+//Shop  Pricing
+Route::get('/shop/pricing',Pricing::class)->name('shop.pricing');
+
+//Shop  Review
+ Route::get('/shop/review',Review::class)->name('shop.review');
+
+//
+Route::get('/shop/service',ShopService::class)->name('shop.service');
+    
 
     
 });
@@ -132,5 +145,6 @@ Route::prefix('/admin') //shop owner
 
     //Reviews
     Route::get('/review/view',ViewReview::class)->name('admin.review.view');
+
 
 });

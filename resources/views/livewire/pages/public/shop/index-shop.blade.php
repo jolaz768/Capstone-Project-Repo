@@ -25,18 +25,18 @@
     <!-- Tab Nav -->
     <nav class="relative z-0 flex border border-line-2 rounded-xl overflow-hidden" aria-label="Tabs" role="tablist"
         aria-orientation="horizontal">
-        <button type="button"
+        {{-- <a type="button" href="{{ route('shop.service') }}"
             class="hs-tab-active:border-b-primary-active hs-tab-active:text-foreground relative min-w-0 flex-1 bg-layer first:border-s-0 border-s border-b-2 border-layer-line py-4 px-4 text-muted-foreground-1 hover:text-foreground text-sm font-medium text-center overflow-hidden hover:bg-layer-hover focus:z-10 focus:outline-hidden focus:text-foreground focus:bg-layer-focus disabled:opacity-50 disabled:pointer-events-none active"
             id="bar-with-underline-item-1" aria-selected="true" data-hs-tab="#bar-with-underline-1"
             aria-controls="bar-with-underline-1" role="tab">
             Services
-        </button>
-        <button type="button"
+        </a> --}}
+        <a type="button" href="{{ route('shop.review') }}"
             class="hs-tab-active:border-b-primary-active hs-tab-active:text-foreground relative min-w-0 flex-1 bg-layer first:border-s-0 border-s border-b-2 border-layer-line py-4 px-4 text-muted-foreground-1 hover:text-foreground text-sm font-medium text-center overflow-hidden hover:bg-layer-hover focus:z-10 focus:outline-hidden focus:text-foreground focus:bg-layer-focus disabled:opacity-50 disabled:pointer-events-none"
             id="bar-with-underline-item-2" aria-selected="false" data-hs-tab="#bar-with-underline-2"
             aria-controls="bar-with-underline-2" role="tab">
             Reviews
-        </button>
+        </a>
         <button type="button"
             class="hs-tab-active:border-b-primary-active hs-tab-active:text-foreground relative min-w-0 flex-1 bg-layer first:border-s-0 border-s border-b-2 border-layer-line py-4 px-4 text-muted-foreground-1 hover:text-foreground text-sm font-medium text-center overflow-hidden hover:bg-layer-hover focus:z-10 focus:outline-hidden focus:text-foreground focus:bg-layer-focus disabled:opacity-50 disabled:pointer-events-none"
             id="bar-with-underline-item-3" aria-selected="false" data-hs-tab="#bar-with-underline-3"
@@ -54,11 +54,11 @@
 
     <!-- Tab Content -->
     <div class="mt-3">
-        <div id="bar-with-underline-1" role="tabpanel" aria-labelledby="bar-with-underline-item-1">
+        {{-- <div id="bar-with-underline-1" role="tabpanel" aria-labelledby="bar-with-underline-item-1">
             <p class="text-muted-foreground-1">
                 This is the <em class="font-semibold text-foreground">Services</em>
             </p>
-        </div>
+        </div> --}}
         <div id="bar-with-underline-2" class="hidden" role="tabpanel" aria-labelledby="bar-with-underline-item-2">
             <p class="text-muted-foreground-1">
                 This is the <em class="font-semibold text-foreground">Reviews</em>
@@ -219,15 +219,13 @@
                     </div>
 
                     <!-- Form -->
-                    <form>
+                    <form method="GET" action="{{ route('booking.create') }}">
                         <div class="grid gap-y-4">
                             <!-- Form Group -->
                             <div>
-                                <label for="date" class="block text-sm mb-2 text-foreground">Date</label>
+                                <label for="bookingDate" class="block text-sm mb-2 text-foreground">Date</label>
                                 <div class="relative">
-                                    <input type="date" id="date" name="date"
-                                        class="py-2.5 sm:py-3 px-4 block w-full bg-layer border-layer-line rounded-lg sm:text-sm text-foreground placeholder:text-muted-foreground-1 focus:border-primary-focus focus:ring-primary-focus disabled:opacity-50 disabled:pointer-events-none"
-                                        required aria-describedby="date-error">
+                                    <input type="date" id="bookingDate" name="date" class="py-2 px-4 w-full border rounded-lg">
                                     <div class="hidden absolute inset-y-0 end-0 pointer-events-none pe-3">
 
                                     </div>
@@ -320,7 +318,6 @@
 <!-- End Card Group -->
 
 </div>
-
 
 
 

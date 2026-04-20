@@ -40,11 +40,9 @@
     <div id="hs-pro-hcail" class="hs-collapse hidden overflow-hidden transition-all duration-300 basis-full grow lg:block lg:w-auto lg:basis-auto lg:order-2 lg:col-span-6" aria-labelledby="hs-pro-hcail-collapse" role="region">
       <div class="flex flex-col gap-y-4 gap-x-0 mt-5 lg:flex-row lg:justify-center lg:items-center lg:gap-y-0 lg:gap-x-7 lg:mt-0">
         <div>
-          <a class="relative inline-block text-white hover:text-primary-400 text-underline focus:outline-hidden before:absolute before:bottom-0.5 before:start-0 before:w-full before:h-1 before:bg-primary"  href="{{route('index.page') }}" aria-current="page">Home</a>
+          <a class="relative inline-block text-white hover:text-primary-400 "  href="{{route('index.page') }}" aria-current="page">Home</a>
         </div>
-        <div>
-          <a class="relative inline-block text-white hover:text-primary-400 text-underline focus:outline-hidden "  href="#">Services</a>
-        </div>
+        
         <div>
           <a class="relative inline-block text-white hover:text-primary-400 text-underline focus:outline-hidden "  href="#">About</a>
         </div>
