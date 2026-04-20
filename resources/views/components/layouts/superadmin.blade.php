@@ -12,6 +12,7 @@
     @livewireStyles
 </head>
 
+
 <body data-theme="theme-ocean" class="bg-background-2 bg-white text-black dark:bg-neutral-900 dark:text-white">
     @include('components.header.super-admin-header')
     @include('components.navbar.super-admin-navbar')
@@ -27,5 +28,6 @@
 
     @livewireScripts
 </body>
+<script src="https://cdn.jsdelivr.net/npm/apexcharts@3.46.0/dist/apexcharts.min.js"></script>
 
 </html>

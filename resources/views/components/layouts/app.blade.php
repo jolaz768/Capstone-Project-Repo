@@ -30,5 +30,6 @@
     @livewireScripts
     
 </body>
-   
+    <script src="https://cdn.jsdelivr.net/npm/preline/dist/preline.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 </html>

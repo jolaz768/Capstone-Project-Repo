@@ -1,127 +1,118 @@
 <div>
-    {{-- Close your eyes. Count to one. That is how long forever feels. --}}
-    <!-- Card Section -->
+<!-- Card Section -->
 <div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
   <!-- Grid -->
-  <div class="grid md:grid-cols-4 bg-layer border border-layer-line shadow-2xs rounded-xl overflow-hidden">
+  <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
     <!-- Card -->
-    <a class="block p-4 md:p-5 relative bg-layer hover:bg-layer-hover focus:outline-hidden focus:bg-layer-focus before:absolute before:top-0 before:start-0 before:w-full before:h-px md:before:h-full before:border-s before:border-layer-line first:before:bg-transparent" href="#">
-      <div class="flex md:flex flex-col lg:flex-row gap-y-3 gap-x-5">
-        <svg class="shrink-0 size-5 text-muted-foreground" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-
-        <div class="grow">
-          <p class="text-xs uppercase font-medium text-foreground">
-            Total users
+    <div class="flex flex-col bg-amber-600 border border-card-line shadow-2xs rounded-xl">
+      <div class="p-4 md:p-5 flex justify-between gap-x-3">
+        <div>
+          <p class="text-xs uppercase text-white">
+            New Order
           </p>
-          <h3 class="mt-1 text-xl sm:text-2xl font-semibold text-primary">
-            72,540
-          </h3>
-          <div class="mt-1 flex justify-between items-center">
-            <p class="text-sm text-muted-foreground-1">
-              from <span class="font-semibold text-foreground">70,104</span>
-            </p>
-            <span class="ms-1 inline-flex items-center gap-1.5 py-1 px-2 rounded-md text-xs font-medium bg-surface-1 text-surface-foreground">
-              <svg class="inline-block size-3 self-center" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                <path d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"/>
-              </svg>
-              <span class="inline-block">
-                12.5%
-              </span>
-            </span>
-          </div>
-        </div>
-      </div>
-    </a>
-    <!-- End Card -->
-
-    <!-- Card -->
-    <a class="block p-4 md:p-5 relative bg-layer hover:bg-layer-hover focus:outline-hidden focus:bg-layer-focus before:absolute before:top-0 before:start-0 before:w-full before:h-px md:before:h-full before:border-s before:border-layer-line first:before:bg-transparent" href="#">
-      <div class="flex md:flex flex-col lg:flex-row gap-y-3 gap-x-5">
-        <svg class="shrink-0 size-5 text-muted-foreground" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 22h14"/><path d="M5 2h14"/><path d="M17 22v-4.172a2 2 0 0 0-.586-1.414L12 12l-4.414 4.414A2 2 0 0 0 7 17.828V22"/><path d="M7 2v4.172a2 2 0 0 0 .586 1.414L12 12l4.414-4.414A2 2 0 0 0 17 6.172V2"/></svg>
-
-        <div class="grow">
-          <p class="text-xs uppercase font-medium text-foreground">
-            Total Shops
-          </p>
-          <h3 class="mt-1 text-xl sm:text-2xl font-semibold text-primary">
-            4,567
-          </h3>
-          <div class="mt-1 flex justify-between items-center">
-            <p class="text-sm text-muted-foreground-1">
-              from <span class="font-semibold text-foreground">29.1%</span>
-            </p>
-            <span class="ms-1 inline-flex items-center gap-1.5 py-1 px-2 rounded-md text-xs font-medium bg-surface-1 text-surface-foreground">
-              <svg class="inline-block size-3 self-center" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                <path d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"/>
-              </svg>
-              <span class="inline-block">
+          <div class="mt-1 flex items-center gap-x-2">
+            <h3 class="text-xl sm:text-2xl font-medium text-white">
+              72,540
+            </h3>
+            <span class="flex items-center gap-x-1 text-green-600">
+              <svg class="inline-block size-5 self-center" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+              <span class="inline-block text-lg">
                 1.7%
               </span>
             </span>
           </div>
         </div>
+        <div class="shrink-0 flex justify-center items-center size-11 bg-primary text-primary-foreground rounded-full">
+          <svg class="shrink-0 size-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
       </div>
-    </a>
+
+      <a class="py-3 px-4 md:px-5 inline-flex justify-between items-center text-sm text-white border-t border-card-footer hover:bg-amber-700 focus:outline-hidden focus:bg-layer-focus rounded-b-xl" href="#">
+        View reports
+        <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </a>
+    </div>
     <!-- End Card -->
 
     <!-- Card -->
-    <a class="block p-4 md:p-5 relative bg-layer hover:bg-layer-hover focus:outline-hidden focus:bg-layer-focus before:absolute before:top-0 before:start-0 before:w-full before:h-px md:before:h-full before:border-s before:border-layer-line first:before:bg-transparent" href="#">
-      <div class="flex md:flex flex-col lg:flex-row gap-y-3 gap-x-5">
-        <svg class="shrink-0 size-5 text-muted-foreground" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h6"/><path d="m12 12 4 10 1.7-4.3L22 16Z"/></svg>
-
-        <div class="grow">
-          <p class="text-xs uppercase font-medium text-foreground">
-            Visits
+    <div class="flex flex-col bg-green-600 border border-card-line shadow-2xs rounded-xl">
+      <div class="p-4 md:p-5 flex justify-between gap-x-3">
+        <div>
+          <p class="text-xs uppercase text-white">
+            In Process
           </p>
-          <h3 class="mt-1 text-xl sm:text-2xl font-semibold text-primary">
-            56.8%
-          </h3>
-          <div class="mt-1 flex justify-between items-center">
-            <p class="text-sm text-muted-foreground-1">
-              from <span class="font-semibold text-foreground">61.2%</span>
-            </p>
-            <span class="ms-1 inline-flex items-center gap-1.5 py-1 px-2 rounded-md text-xs font-medium bg-surface-1 text-surface-foreground">
-              <svg class="inline-block size-3 self-center" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
-              </svg>
-              <span class="inline-block">
-                4.4%
+          <div class="mt-1 flex items-center gap-x-2">
+            <h3 class="mt-1 text-xl font-medium text-white">
+              29.4%
+            </h3>
+          </div>
+        </div>
+        <div class="shrink-0 flex justify-center items-center size-11 bg-primary text-primary-foreground rounded-full">
+          <svg class="shrink-0 size-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 22h14"/><path d="M5 2h14"/><path d="M17 22v-4.172a2 2 0 0 0-.586-1.414L12 12l-4.414 4.414A2 2 0 0 0 7 17.828V22"/><path d="M7 2v4.172a2 2 0 0 0 .586 1.414L12 12l4.414-4.414A2 2 0 0 0 17 6.172V2"/></svg>
+        </div>
+      </div>
+
+      <a class="py-3 px-4 md:px-5 inline-flex justify-between items-center text-sm text-white border-t border-card-footer hover:bg-green-700 focus:outline-hidden focus:bg-layer-focus rounded-b-xl" href="#">
+        View reports
+        <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </a>
+    </div>
+    <!-- End Card -->
+
+    <!-- Card -->
+    <div class="flex flex-col bg-blue-600 border border-card-line shadow-2xs rounded-xl">
+      <div class="p-4 md:p-5 flex justify-between gap-x-3">
+        <div>
+          <p class="text-xs uppercase text-white">
+            Completed
+          </p>
+          <div class="mt-1 flex items-center gap-x-2">
+            <h3 class="text-xl sm:text-2xl font-medium text-white">
+              56.8%
+            </h3>
+            <span class="flex items-center gap-x-1 text-red-600">
+              <svg class="inline-block size-4 self-center" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 17 13.5 8.5 8.5 13.5 2 7"/><polyline points="16 17 22 17 22 11"/></svg>
+              <span class="inline-block text-lg">
+                1.7%
               </span>
             </span>
           </div>
         </div>
+        <div class="shrink-0 flex justify-center items-center size-11 bg-primary text-primary-foreground rounded-full">
+          <svg class="shrink-0 size-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h6"/><path d="m12 12 4 10 1.7-4.3L22 16Z"/></svg>
+        </div>
       </div>
-    </a>
+
+      <a class="py-3 px-4 md:px-5 inline-flex justify-between items-center text-sm text-white border-t border-card-footer focus:outline-hidden hover:bg-blue-700 rounded-b-xl" href="#">
+        View reports
+        <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </a>
+    </div>
     <!-- End Card -->
 
     <!-- Card -->
-    <a class="block p-4 md:p-5 relative bg-layer hover:bg-layer-hover focus:outline-hidden focus:bg-layer-focus before:absolute before:top-0 before:start-0 before:w-full before:h-px md:before:h-full before:border-s before:border-layer-line first:before:bg-transparent" href="#">
-      <div class="flex md:flex flex-col lg:flex-row gap-y-3 gap-x-5">
-        <svg class="shrink-0 size-5 text-muted-foreground" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12s2.545-5 7-5c4.454 0 7 5 7 5s-2.546 5-7 5c-4.455 0-7-5-7-5z"/><path d="M12 13a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/><path d="M21 17v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-2"/><path d="M21 7V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v2"/></svg>
-
-        <div class="grow">
-          <p class="text-xs uppercase font-medium text-foreground">
-            Pageviews
+    <div class="flex flex-col bg-pink-700 border border-card-line shadow-2xs rounded-xl">
+      <div class="p-4 md:p-5 flex justify-between gap-x-3">
+        <div>
+          <p class="text-xs uppercase text-white">
+            Total Earnings
           </p>
-          <h3 class="mt-1 text-xl sm:text-2xl font-semibold text-primary">
-            92,913
-          </h3>
-          <div class="mt-1 flex justify-between items-center">
-            <p class="text-sm text-muted-foreground-1">
-              from <span class="font-semibold text-foreground">94,012</span>
-            </p>
-            <span class="ms-1 inline-flex items-center gap-1.5 py-1 px-2 rounded-md text-xs font-medium bg-surface-1 text-surface-foreground">
-              <svg class="inline-block size-3 self-center" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
-              </svg>
-              <span class="inline-block">
-                0.1%
-              </span>
-            </span>
+          <div class="mt-1 flex items-center gap-x-2">
+            <h3 class="mt-1 text-xl font-medium text-white">
+              92,913
+            </h3>
           </div>
         </div>
+        <div class="shrink-0 flex justify-center items-center size-11 bg-primary text-primary-foreground rounded-full">
+          <svg class="shrink-0 size-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12s2.545-5 7-5c4.454 0 7 5 7 5s-2.546 5-7 5c-4.455 0-7-5-7-5z"/><path d="M12 13a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/><path d="M21 17v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-2"/><path d="M21 7V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v2"/></svg>
+        </div>
       </div>
-    </a>
+
+      <a class="py-3 px-4 md:px-5 inline-flex justify-between items-center text-sm text-white border-t border-card-footer hover:bg-pink-800 focus:outline-hidden focus:bg-layer-focus rounded-b-xl" href="#">
+        View reports
+        <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </a>
+    </div>
     <!-- End Card -->
   </div>
   <!-- End Grid -->

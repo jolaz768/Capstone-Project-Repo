@@ -980,31 +980,31 @@
 </div>
 <!-- End Table Section -->
 
-<link rel="stylesheet" href="../assets/vendor/apexcharts/dist/apexcharts.css">
-<style type="text/css">
-  .apexcharts-tooltip.apexcharts-theme-light {
-    background-color: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-  }
 
-  .apexcharts-xaxistooltip {
-    background: var(--color-primary-600) !important;
-    border-color: var(--color-primary-600) !important;
-  }
+<!-- Card -->
+<div class="p-4 md:p-5 min-h-102.5 flex flex-col bg-card border border-card-line shadow-2xs rounded-xl">
+  <!-- Header -->
+  <div class="flex flex-wrap justify-between items-center gap-2">
+    <div>
+      <h2 class="text-sm text-muted-foreground-1">
+        Visitors
+      </h2>
+      <p class="text-xl sm:text-2xl font-medium text-foreground">
+        80.3k
+      </p>
+    </div>
 
-  .apexcharts-xaxistooltip:after,
-  .apexcharts-xaxistooltip:before {
-    border-bottom-color: var(--color-primary-600) !important;
-  }
-</style>
+    <div>
+      <span class="py-[5px] px-1.5 inline-flex items-center gap-x-1 text-xs font-medium rounded-md bg-red-100 text-red-800 dark:bg-red-500/10 dark:text-red-500">
+        <svg class="inline-block size-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
+        2%
+      </span>
+    </div>
+  </div>
+  <!-- End Header -->
 
-<script src="../assets/vendor/lodash/lodash.min.js"></script>
-<script src="../assets/vendor/apexcharts/dist/apexcharts.min.js"></script>
-<script src="../assets/vendor/preline/dist/helper-shared.js"></script>
-<script src="../assets/vendor/preline/dist/helper-apexcharts.js"></script>
-
-<script>
+  <div id="hs-single-area-chart">
+    <script>
   window.addEventListener("load", () => {
     const tabpanel = document.querySelector('#hs-single-area-chart').closest('[role="tabpanel"]');
 
@@ -1201,30 +1201,8 @@
       );
     })();
   });
-</script>
-<!-- Card -->
-<div class="p-4 md:p-5 min-h-102.5 flex flex-col bg-card border border-card-line shadow-2xs rounded-xl">
-  <!-- Header -->
-  <div class="flex flex-wrap justify-between items-center gap-2">
-    <div>
-      <h2 class="text-sm text-muted-foreground-1">
-        Visitors
-      </h2>
-      <p class="text-xl sm:text-2xl font-medium text-foreground">
-        80.3k
-      </p>
-    </div>
-
-    <div>
-      <span class="py-[5px] px-1.5 inline-flex items-center gap-x-1 text-xs font-medium rounded-md bg-red-100 text-red-800 dark:bg-red-500/10 dark:text-red-500">
-        <svg class="inline-block size-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
-        2%
-      </span>
-    </div>
+  </script>
   </div>
-  <!-- End Header -->
-
-  <div id="hs-single-area-chart"></div>
 </div>
 <!-- End Card -->
 </div>

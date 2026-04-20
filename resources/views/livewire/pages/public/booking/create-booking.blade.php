@@ -93,8 +93,26 @@
         </label>
 
     </div>
-    <div class="grid grid-cols-2 gap-x-4 gap-y-2">
-      
+    
+    <div>
+          <label for="hs-feedback-post-comment-textarea-1"
+            class="block mb-2 text-sm font-medium text-foreground mt-5">Size</label>
+          <div class="mt-1">
+            <div class="mb-4 sm:mb-8">
+              <select type="text" id="hs-feedback-post-garment"
+                class="py-2.5 sm:py-3 px-4 block w-full bg-card-line border-layer-line rounded-lg sm:text-sm text-foreground placeholder:text-muted-foreground-1 focus:border-primary-focus focus:ring-primary-focus disabled:opacity-50 disabled:pointer-events-none"
+                placeholder="Full Name">
+                <option value="1">Select-Size</option>
+                <option value="2">Small: 8-10</option>
+                <option value="3">Medium: 10-12</option>
+                <option value="4">LARGE: 12-14</option>
+                <option value="5">XLARGE: 14-16</option>
+                <option value="6">XXLARGE: 16-18</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
     </div>  
     
 </div>
