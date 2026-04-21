@@ -59,7 +59,7 @@
                         </p>
                     </div>
 
-                    <a href="#"
+                    <a href="{{ route('shop.view') }}"
                         class="mt-auto inline-flex items-center gap-x-2 text-sm font-medium text-white hover:text-primary-focus">
                         <button class="border border-line-5 py-2.5 px-4 rounded-md ">Visit Shop</button>
 
@@ -104,7 +104,7 @@
                         </p>
                     </div>
 
-                    <a href="#"
+                    <a href="{{ route('shop.view') }}"
                         class="mt-auto inline-flex items-center gap-x-2 text-sm font-medium text-white hover:text-primary-focus">
                         <button class="border border-line-5 py-2.5 px-4 rounded-md ">Visit Shop</button>
 
@@ -148,7 +148,7 @@
                         </p>
                     </div>
 
-                    <a href="#"
+                    <a href="{{ route('shop.view') }}"
                         class="mt-auto inline-flex items-center gap-x-2 text-sm font-medium text-white hover:text-primary-focus">
                         <button class="border border-line-5 py-2.5 px-4 rounded-md ">Visit Shop</button>
 
@@ -192,7 +192,7 @@
                         </p>
                     </div>
 
-                    <a href="#"
+                    <a href="{{ route('shop.view') }}"
                         class="mt-auto inline-flex items-center gap-x-2 text-sm font-medium text-white hover:text-primary-focus">
                         <button class="border border-line-5 py-2.5 px-4 rounded-md ">Visit Shop</button>
 
@@ -236,7 +236,7 @@
                         </p>
                     </div>
 
-                    <a href="#"
+                    <a href="{{ route('shop.view') }}"
                         class="mt-auto inline-flex items-center gap-x-2 text-sm font-medium text-white hover:text-primary-focus">
                         <button class="border border-line-5 py-2.5 px-4 rounded-md ">Visit Shop</button>
 
@@ -281,7 +281,7 @@
                         </p>
                     </div>
 
-                    <a href="#"
+                    <a href="{{ route('shop.view') }}"
                         class="mt-auto inline-flex items-center gap-x-2 text-sm font-medium text-white hover:text-primary-focus">
                         <button class="border border-line-5 py-2.5 px-4 rounded-md ">Visit Shop</button>
 

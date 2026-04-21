@@ -81,7 +81,7 @@
     <div class="mt-8">
         <h1 class="text-2xl font-semibold mb-4 text-center">Our Services</h1>
 
-        <div class="grid md:grid-cols-3 gap-6">
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
 
             <!-- Card -->
             <div class="sm:flex bg-card border border-card-line rounded-xl shadow-2xs">
@@ -291,11 +291,10 @@
     </div>
 </div>
 <!-- Card Group -->
-<div
-    class="grid border border-card-line rounded-xl shadow-2xs divide-y overflow-hidden sm:flex sm:divide-y-0 sm:divide-x divide-card-divider mb-3">
+<div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4">
     <!-- Card -->
     <div class="flex flex-col flex-1 bg-card">
-        <img class="w-full h-40 rounded-t-xl sm:rounded-se-none sm:rounded-s-xl object-cover"
+        <img class="w-full h-40   object-cover"
             src="https://images.unsplash.com/photo-1633966887768-64f9a867bdba?q=80&w=803&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             alt="Card Image">
         <div class="p-4 flex-1 md:p-5">
@@ -334,7 +333,7 @@
 
     <!-- Card -->
     <div class="flex flex-col flex-1 bg-card">
-        <img class="w-full h-40 sm:rounded-se-xl object-cover rounded-t-xl sm:rounded-s-none sm:rounded-se-none"
+        <img class="w-full h-40  object-cover "
             src="https://images.unsplash.com/photo-1598915850252-fb07ad1e6768?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             alt="Card Image">
         <div class="p-4 flex-1 md:p-5">
@@ -351,9 +350,73 @@
         
     </div>
     <!-- End Group -->
+    <!-- Card -->
+    <div class="flex flex-col flex-1 bg-card">
+        <img class="w-full h-40  object-cover "
+            src="https://images.unsplash.com/photo-1598915850252-fb07ad1e6768?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="Card Image">
+        <div class="p-4 flex-1 md:p-5">
+            <h3 class="font-semibold text-foreground">
+                Suits & Blazers
+            </h3>
+            <p class="mt-1 text-muted-foreground-1">
+               Sewing: <span class="font-xs text-foreground-1"> $200 </span>
+            </p>
+            <p class="mt-1 text-muted-foreground-1">
+               Sewing & Fabric: <span class="font-xs text-foreground-1"> $400 </span>
+            </p>
+        </div>
+        
+ 
+         <!-- End Group -->
+    </div>
+
+     <div class="flex flex-col flex-1 bg-card">
+        <img class="w-full h-40  object-cover "
+            src="https://images.unsplash.com/photo-1598915850252-fb07ad1e6768?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="Card Image">
+        <div class="p-4 flex-1 md:p-5">
+            <h3 class="font-semibold text-foreground">
+                Suits & Blazers
+            </h3>
+            <p class="mt-1 text-muted-foreground-1">
+               Sewing: <span class="font-xs text-foreground-1"> $200 </span>
+            </p>
+            <p class="mt-1 text-muted-foreground-1">
+               Sewing & Fabric: <span class="font-xs text-foreground-1"> $400 </span>
+            </p>
+        </div>
+        
+ 
+         <!-- End Group -->
+    </div>
+
+     <div class="flex flex-col flex-1 bg-card">
+        <img class="w-full h-40  object-cover "
+            src="https://images.unsplash.com/photo-1598915850252-fb07ad1e6768?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="Card Image">
+        <div class="p-4 flex-1 md:p-5">
+            <h3 class="font-semibold text-foreground">
+                Suits & Blazers
+            </h3>
+            <p class="mt-1 text-muted-foreground-1">
+               Sewing: <span class="font-xs text-foreground-1"> $200 </span>
+            </p>
+            <p class="mt-1 text-muted-foreground-1">
+               Sewing & Fabric: <span class="font-xs text-foreground-1"> $400 </span>
+            </p>
+        </div>
+        
+ 
+         <!-- End Group -->
+    </div>
+    
+
+
+
+     </div>
 </div>
 <!-- End Card Group -->
-
 </div>
 
 
