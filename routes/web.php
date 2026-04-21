@@ -62,7 +62,7 @@ Route::post('/logout', function () {
 Route::get('/',Index::class)->name('index.page');
 
 Route::prefix('public')
-// ->middleware(['auth','role:User'])
+->middleware(['auth','role:customer'])
 ->group(function () {
 
 //booking
@@ -88,7 +88,7 @@ Route::get('/shop/service',ShopService::class)->name('shop.service');
 
 //super admin
 Route::prefix('/super-admin')
-// ->middleware(['auth','role:super-admin'])
+->middleware(['auth','role:super-admin'])
 ->group(function () {
 
     Route::get('/dashboard',Dashboard::class)->name('super-admin.dashboard');
@@ -112,7 +112,7 @@ Route::prefix('/super-admin')
 
 //admin
 Route::prefix('/admin') //shop owner
-// ->middleware(['auth','role:admin'])
+->middleware(['auth','role:admin'])
 ->group(function () {
 
     //dashboard admin or shop owner

@@ -5,6 +5,7 @@ namespace App\Livewire\Pages\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use Spatie\Permission\Models\Role;
 
 class Register extends Component
 {
@@ -13,6 +14,7 @@ class Register extends Component
     public string $email = '';
     public string $password = '';
     public string $password_confirmation = '';
+    public $roles = [];
 
 
   
@@ -37,6 +39,14 @@ class Register extends Component
             'password.confirmed' => 'Password does not match',
         ];
     }
+     public function mount()
+{
+    $roles = Role::select('id', 'name')
+        ->whereIn('name', ['admin', 'customer'])
+        ->get();
+
+    $this->roles = $roles;
+}
 
     public function register()
     {        
@@ -55,20 +65,21 @@ class Register extends Component
         
         $user->save();
 
-        $user->assignRole('user');
+        $user->assignRole($this->roles);
 
         Auth::login($user);
 
         if ($user->hasRole('super-admin')) {
-            return redirect()->route('admin.dashboard');
+            return redirect()->route('super-admin.dashboard');
         } elseif ($user->hasRole('admin')) {
             return redirect()->route('admin.dashboard');
-        } elseif ($user->hasRole('user')) {
+        } elseif ($user->hasRole('customer')) {
             return redirect()->route('index.page');
         } else {
             return redirect()->route('login.page');
         }
     }
+
 
     public function render()
     {

@@ -18,7 +18,7 @@ class RoleSeeder extends Seeder
     {
         $superadmin = Role::firstOrCreate(['name' => 'super-admin']);
         $admin = Role::firstOrCreate(['name' => 'admin']);
-        $user = Role::firstOrCreate(['name' => 'user']);
+        $customer= Role::firstOrCreate(['name' => 'customer']);
 
         // get all permissions
         $permissions = Permission::all();
@@ -34,7 +34,7 @@ class RoleSeeder extends Seeder
             'can-view',
         ]);
 
-        $user->syncPermissions([
+        $customer->syncPermissions([
             'can-view',
             'can-create',
             'can-update',
