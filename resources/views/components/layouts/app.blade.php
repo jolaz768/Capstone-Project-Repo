@@ -28,8 +28,7 @@
     @include('components.footer.public-footer')
 
     @livewireScripts
-    
+    <script src="./node_modules/preline/dist/preline.js"></script>
 </body>
-    <script src="https://cdn.jsdelivr.net/npm/preline/dist/preline.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  
 </html>

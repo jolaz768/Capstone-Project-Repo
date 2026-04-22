@@ -2,16 +2,25 @@
 
 use App\Livewire\Pages\Admin\Booking\ViewBooking;
 use App\Livewire\Pages\Admin\Dashboard as OwnerDashboard;
+use App\Livewire\Pages\Admin\Fabric\Color\CreateColor;
+use App\Livewire\Pages\Admin\Fabric\Color\EditColor;
+use App\Livewire\Pages\Admin\Fabric\Color\ViewColor;
 use App\Livewire\Pages\Admin\Fabric\CreateFabric;
 use App\Livewire\Pages\Admin\Fabric\EditFabric;
 use App\Livewire\Pages\Admin\Fabric\ViewFabric;
 use App\Livewire\Pages\Admin\Garment\CreateGarment;
 use App\Livewire\Pages\Admin\Garment\EditGarment;
 use App\Livewire\Pages\Admin\Garment\ViewGarment;
+use App\Livewire\Pages\Admin\MeasurementField\CreateMeasurementField;
+use App\Livewire\Pages\Admin\MeasurementField\EditMeasurementField;
+use App\Livewire\Pages\Admin\MeasurementField\ViewMeasurementField;
 use App\Livewire\Pages\Admin\MeasurementTemplate\CreateMeasurementTemplate;
 use App\Livewire\Pages\Admin\MeasurementTemplate\EditMeasurementTemplate;
 use App\Livewire\Pages\Admin\MeasurementTemplate\ViewMeasurementTemplate;
 use App\Livewire\Pages\Admin\Review\ViewReview;
+use App\Livewire\Pages\Admin\Service\CreateService;
+use App\Livewire\Pages\Admin\Service\EditService;
+use App\Livewire\Pages\Admin\Service\ViewService;
 use App\Livewire\Pages\Admin\Shop\CreateShop;
 use App\Livewire\Pages\Admin\Shop\EditShop;
 use App\Livewire\Pages\Admin\Shop\ViewShop;
@@ -123,10 +132,16 @@ Route::prefix('/admin') //shop owner
     Route::get('/booking/create',CreateBooking::class)->name('admin.booking.create');
     Route::get('/booking/edit/{booking}',EditBooking::class)->name('admin.booking.edit');
 
-    //fabric
+    //fabric and colors
     Route::get('/fabric/view',ViewFabric::class)->name('admin.fabric.view');
     Route::get('/fabric/create',CreateFabric::class)->name('admin.fabric.create');
     Route::get('/fabric/edit/{fabric}',EditFabric::class)->name('admin.fabric.edit');
+
+    Route::get('/color/view',ViewColor::class)->name('admin.color.view');
+    Route::get('/color/create',CreateColor::class)->name('admin.color.create');
+    Route::get('/color/edit/{color}',EditColor::class)->name('admin.color.edit');
+
+    
 
     //garment
     Route::get('/garment/view',ViewGarment::class)->name('admin.garment.view');
@@ -143,8 +158,18 @@ Route::prefix('/admin') //shop owner
     Route::get('/measurementtemplate/create',CreateMeasurementTemplate::class)->name('admin.measurementtemplate.create');
     Route::get('/measurementtemplate/edit/{measurementtemplate}',EditMeasurementTemplate::class)->name('admin.measurementtemplate.edit');
 
+    //MeasurementField
+    Route::get('/measurementfield/view',ViewMeasurementField::class)->name('admin.measurementfield.view');
+    Route::get('/measurementfield/create',CreateMeasurementField::class)->name('admin.measurementfield.create');
+    Route::get('/measurementfield/edit/{measurementfield}',EditMeasurementField::class)->name('admin.measurementfield.edit');
+
     //Reviews
     Route::get('/review/view',ViewReview::class)->name('admin.review.view');
+
+    //service
+    Route::get('/service/view',ViewService::class)->name('admin.service.view');
+    Route::get('/service/create',CreateService::class)->name('admin.service.create');
+    Route::get('/service/edit',EditService::class)->name('admin.service.edit');
 
 
 });
