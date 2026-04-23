@@ -8,7 +8,7 @@ class Color extends Model
 {
     //
     protected $fillable = [
-        'name',
+        'color_name',
         'color_code',
     ];
     public function fabricColors()

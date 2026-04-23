@@ -91,16 +91,17 @@ class Register extends Component
 
         $user->assignRole($this->roles);
 
-        Auth::login($user);
+        // Auth::login($user);
 
-        match(true){
-            !$user=> redirect()->route('login.page'),
+        return redirect()->route('login.page');
+        // match(true){
+        //     !$user=> redirect()->route('login.page'),
 
-            $user->hasRole('super-admin')=> redirect()->route('super-admin.dashboard'),
-            $user->hasRole('admin')=> redirect()->route('admin.dashboard'),
-            $user->hasRole('customer')=> redirect()->route('index.page'),
-            default=> redirect()->route('login.page'),
-        };
+        //     $user->hasRole('super-admin')=> redirect()->route('super-admin.dashboard'),
+        //     $user->hasRole('admin')=> redirect()->route('admin.dashboard'),
+        //     $user->hasRole('customer')=> redirect()->route('index.page'),
+        //     default=> redirect()->route('login.page'),
+        // };
         // if ($user->hasRole('super-admin')) {
         //     return redirect()->route('super-admin.dashboard');
         // } elseif ($user->hasRole('admin')) {

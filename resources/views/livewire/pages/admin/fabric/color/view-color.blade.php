@@ -71,6 +71,8 @@
             </thead>
 
             <tbody class="divide-y divide-table-line">
+              
+              @foreach ($this->colors as $key => $color)
               <tr>
                 <td class="size-px whitespace-nowrap">
                   <div class="ps-6 py-3">
@@ -81,7 +83,7 @@
                   <div class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3">
                     <div class="flex items-center gap-x-3">
                       <div class="grow">
-                        <span class="block text-sm font-semibold text-foreground">white</span>
+                        <span class="block text-sm font-semibold text-foreground">{{ $color->color_name }}</span>
                       </div>
                     </div>
                   </div>
@@ -91,7 +93,7 @@
                   <div class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3">
                     <div class="flex items-center gap-x-3">
                       <div class="grow">
-                        <span class="block text-sm font-semibold text-foreground">#ffffff</span>
+                        <span class="block text-sm font-semibold text-foreground">{{ $color->color_code }}</span>
                       </div>
                     </div>
                   </div>
@@ -100,12 +102,12 @@
 
                 <td class="size-px whitespace-nowrap">
                   <div class="px-6 py-3">
-                    <span class="text-sm text-muted-foreground-1">28 Dec, 12:12</span>
+                    <span class="text-sm text-muted-foreground-1">{{ $color->created_at->format('d M, H:i') }}</span>
                   </div>
                 </td>
                 <td class="size-px whitespace-nowrap">
                   <div class="px-6 py-1.5">
-                    <a class="inline-flex items-center gap-x-1 text-sm text-primary decoration-2 hover:underline focus:outline-hidden focus:underline font-medium" href="#">
+                    <a class="inline-flex items-center gap-x-1 text-sm text-primary decoration-2 hover:underline focus:outline-hidden focus:underline font-medium" href="{{ route('admin.color.edit', $color->id) }}">
                       Edit
                     </a>
                   </div>
@@ -113,12 +115,14 @@
 
                 <td class="size-px whitespace-nowrap">
                   <div class="px-6 py-1.5">
-                    <a class="inline-flex items-center gap-x-1 text-sm text-red-500 decoration-2 hover:underline focus:outline-hidden focus:underline font-medium" href="#">
+                    <button wire:click="deleteColor({{ $color->id }})" class="inline-flex items-center gap-x-1 text-sm text-red-500 decoration-2 hover:underline focus:outline-hidden focus:underline font-medium">
                       Delete
-                    </a>
+                    </button>
                   </div>
                 </td>
               </tr>
+              @endforeach
+
             </tbody>
           </table>
         </div>
