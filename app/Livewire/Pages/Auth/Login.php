@@ -14,6 +14,7 @@ class Login extends Component
     protected $rules = [
         'email' => 'required|email',
         'password' => 'required|min:8',
+        
     ];
 
     public function login()
@@ -21,20 +22,24 @@ class Login extends Component
         $this->validate();
 
         if (Auth::attempt(['email' => $this->email, 'password' => $this->password], $this->remember)) {
-            session()->regenerate();
-            if (Auth::user()->hasRole('super-admin')) {
-                return redirect()->intended(route('super-admin.dashboard'));
-            }elseif(Auth::user()->hasAnyRole(['admin'])){ {
-                return redirect()->intended(route('admin.dashboard'));
-            }}elseif(Auth::user()->hasRole('customer')){ {
-                return redirect()->intended(route('index.page'));
-            }}else{
-                return redirect()->intended(route('login.page'));
-            }
-                
-        }
 
-        $this->addError('email', 'The provided credentials do not match our records.');
+            session()->regenerate();
+
+            $user = Auth::user();
+
+            return match (true) {
+                $user->hasRole('super-admin') =>redirect()->intended(route('super-admin.dashboard')),
+
+                $user->hasAnyRole(['admin']) =>redirect()->intended(route('admin.dashboard')),
+
+                $user->hasRole('customer') =>redirect()->intended(route('index.page')),
+
+                default =>redirect()->intended(route('login.page')),
+            };
+}
+         $this->password = '';
+         $this->addError('email', 'The provided credentials do not match our records.');
+         $this->addError('password', 'The provided credentials do not match our records.');
     }
     public function render()
     {

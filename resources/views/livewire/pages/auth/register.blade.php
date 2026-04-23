@@ -42,7 +42,7 @@
             <div class="relative">
               <input wire:model.defer="password" type="password" id="password" name="password"
                 class="py-2.5 sm:py-3 px-4 block w-full bg-layer border-layer-line rounded-lg sm:text-sm text-foreground placeholder:text-muted-foreground-1 focus:border-primary-focus focus:ring-primary-focus disabled:opacity-50 disabled:pointer-events-none"
-                required aria-describedby="password-error">
+                required aria-describedby="password-error" placeholder="Password">
               <div class="hidden absolute inset-y-0 end-0 pointer-events-none pe-3">
                 <svg class="size-5 text-red-500" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"
                   aria-hidden="true">
@@ -68,29 +68,49 @@
             @enderror
           </div>
 
-          <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-2">
-                            @forelse ($this->roles as $rKey => $role)
+          <div class="mb-4 sm:mb-8">
+            <label for="phone" class="block mb-2 text-sm font-medium text-foreground">Phone</label>
+            <input wire:model.defer="phone" type="tel" id="phone" name="phone"
+              class="py-2.5 sm:py-3 px-4 block w-full bg-layer border-layer-line rounded-lg sm:text-sm text-foreground placeholder:text-muted-foreground-1 focus:border-primary-focus focus:ring-primary-focus disabled:opacity-50 disabled:pointer-events-none"
+              placeholder="Enter phone number" required>
+            @error('phone')
+              <p class="text-xs text-red-600 mt-1">{{ $message }}</p>
+            @enderror
+          </div>
 
-                                <label wire:key='{{ $rKey }}' for="hs-checkbox-in-form-{{ $rKey }}"
-                                    class="flex items-center p-3 w-full bg-layer border dark:border-neutral-700 border-layer-line rounded-lg text-sm focus:border-primary-focus focus:ring-primary-focus">
-                                    <input type="radio" name="selectedRole" id="hs-checkbox-in-form-{{ $rKey }}"
-                                        wire:model.defer="selectedRole" value="{{ $role->name }}"
-                                        class="h-4 w-4 border-gray-300 rounded text-blue-600 focus:ring-blue-500">
-                                    <span class="text-sm ms-3 text-muted-foreground-1 dark:text-amber-50">
-                                        {{ str_replace('_', ' ', $role->name) }}
-                                    </span>
-                                    
-                                </label>
-                            @empty
-                                <p>No Roles Found</p>
-                            @endforelse
-                            
-                            @error('selectedRole')
-                                        <div>
-                                            <span class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</span>
-                                        </div>
-                                    @enderror
-                        </div>
+           <div class="mb-4 sm:mb-8">
+            <label for="address" class="block mb-2 text-sm font-medium text-foreground">Address</label>
+            <input wire:model.defer="address" type="text" id="address" name="address"
+              class="py-2.5 sm:py-3 px-4 block w-full bg-layer border-layer-line rounded-lg sm:text-sm text-foreground placeholder:text-muted-foreground-1 focus:border-primary-focus focus:ring-primary-focus disabled:opacity-50 disabled:pointer-events-none"
+              placeholder="Enter address" required>
+            @error('address')
+              <p class="text-xs text-red-600 mt-1">{{ $message }}</p>
+            @enderror
+          </div>
+
+          <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-2">
+            @forelse ($this->roles as $rKey => $role)
+
+              <label wire:key='{{ $rKey }}' for="hs-checkbox-in-form-{{ $rKey }}"
+                class="flex items-center p-3 w-full bg-layer border dark:border-neutral-700 border-layer-line rounded-lg text-sm focus:border-primary-focus focus:ring-primary-focus">
+                <input type="radio" name="selectedRole" id="hs-checkbox-in-form-{{ $rKey }}"
+                  wire:model.defer="selectedRole" value="{{ $role->name }}"
+                  class="h-4 w-4 border-gray-300 rounded text-blue-600 focus:ring-blue-500">
+                <span class="text-sm ms-3 text-muted-foreground-1 dark:text-amber-50">
+                  {{ str_replace('_', ' ', $role->name) }}
+                </span>
+
+              </label>
+            @empty
+              <p>No Roles Found</p>
+            @endforelse
+
+            @error('selectedRole')
+              <div>
+                <span class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</span>
+              </div>
+            @enderror
+          </div>
 
           <div class="mt-6 grid">
             <button type="submit"
