@@ -5,27 +5,27 @@
   <div class="mx-auto max-w-2xl">
     <div class="text-center">
       <h2 class="text-xl text-foreground font-bold sm:text-3xl">
-        Add Fabric
+        Edit Fabric
       </h2>
     </div>
 
     <!-- Card -->
     <div class="mt-5 p-4 relative z-10 bg-card border border-card-line rounded-xl sm:mt-10 md:p-10">
-      <form>
+      <form wire:submit.prevent="save">
         <div class="mb-4 sm:mb-8">
           <label for="hs-feedback-create-fabric-name-1" class="block mb-2 text-sm font-medium text-foreground">Name</label>
-          <input type="text" id="hs-feedback-create-fabric-name-1" class="py-2.5 sm:py-3 px-4 block w-name bg-layer border-layer-line rounded-lg sm:text-sm text-foreground placeholder:text-muted-foreground-1 focus:border-primary-focus focus:ring-primary-focus disabled:opacity-50 disabled:pointer-events-none" placeholder="Fabric Name">
+          <input wire:model="name" type="text" id="hs-feedback-create-fabric-name-1" class="py-2.5 sm:py-3 px-4 block w-name bg-layer border-layer-line rounded-lg sm:text-sm text-foreground placeholder:text-muted-foreground-1 focus:border-primary-focus focus:ring-primary-focus disabled:opacity-50 disabled:pointer-events-none" placeholder="Fabric Name">
         </div>
 
         <div class="mb-4 sm:mb-8">
           <label for="hs-feedback-create-fabric-image-1" class="block mb-2 text-sm font-medium text-foreground">Image</label>
-          <input type="file" id="hs-feedback-create-fabric-image-1" class="py-2.5 sm:py-3 px-4 block w-name bg-layer border-layer-line rounded-lg sm:text-sm text-foreground placeholder:text-muted-foreground-1 focus:border-primary-focus focus:ring-primary-focus disabled:opacity-50 disabled:pointer-events-none" placeholder="image">
+          <input wire:model="image" type="file" id="hs-feedback-create-fabric-image-1" class="py-2.5 sm:py-3 px-4 block w-name bg-layer border-layer-line rounded-lg sm:text-sm text-foreground placeholder:text-muted-foreground-1 focus:border-primary-focus focus:ring-primary-focus disabled:opacity-50 disabled:pointer-events-none" placeholder="image">
         </div>
 
         <div>
           <label for="hs-feedback-create-fabric-textarea-1" class="block mb-2 text-sm font-medium text-foreground">Description</label>
           <div class="mt-1">
-            <textarea id="hs-feedback-create-fabric-textarea-1" name="hs-feedback-create-fabric-textarea-1" rows="3" class=" w-full py-2.5 sm:py-3 px-4 block w-name bg-layer border-layer-line rounded-lg sm:text-sm text-foreground placeholder:text-muted-foreground-1 focus:border-primary-focus focus:ring-primary-focus disabled:opacity-50 disabled:pointer-events-none" placeholder="Description here..."></textarea>
+            <textarea wire:model="description" id="hs-feedback-create-fabric-textarea-1" name="hs-feedback-create-fabric-textarea-1" rows="3" class=" w-full py-2.5 sm:py-3 px-4 block w-name bg-layer border-layer-line rounded-lg sm:text-sm text-foreground placeholder:text-muted-foreground-1 focus:border-primary-focus focus:ring-primary-focus disabled:opacity-50 disabled:pointer-events-none" placeholder="Description here..."></textarea>
           </div>
         </div>
 

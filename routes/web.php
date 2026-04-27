@@ -135,7 +135,7 @@ Route::prefix('/admin') //shop owner
     //fabric and colors
     Route::get('/fabric/view',ViewFabric::class)->name('admin.fabric.view');
     Route::get('/fabric/create',CreateFabric::class)->name('admin.fabric.create');
-    Route::get('/fabric/edit/{fabric}',EditFabric::class)->name('admin.fabric.edit');
+    Route::get('/fabric/edit/{id}',EditFabric::class)->name('admin.fabric.edit');
 
     Route::get('/color/view',ViewColor::class)->name('admin.color.view');
     Route::get('/color/create',CreateColor::class)->name('admin.color.create');

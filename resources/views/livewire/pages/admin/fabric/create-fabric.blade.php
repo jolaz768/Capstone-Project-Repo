@@ -18,6 +18,9 @@
               <input wire:model="name" type="text" id="hs-feedback-create-fabric-name-1"
                 class="py-2.5 sm:py-3 px-4 block w-name bg-layer border-layer-line rounded-lg sm:text-sm text-foreground placeholder:text-muted-foreground-1 focus:border-primary-focus focus:ring-primary-focus disabled:opacity-50 disabled:pointer-events-none"
                 placeholder="Fabric Name">
+                @error('name')
+                  <p class="mt-2 text-sm text-red-500">{{ $message }}</p>
+                @enderror
             </div>
 
             <div class="mb-4 sm:mb-8">
@@ -26,6 +29,9 @@
               <input wire:model="image" type="file" id="hs-feedback-create-fabric-image-1"
                 class="py-2.5 sm:py-3 px-4 block w-name bg-layer border-layer-line rounded-lg sm:text-sm text-foreground placeholder:text-muted-foreground-1 focus:border-primary-focus focus:ring-primary-focus disabled:opacity-50 disabled:pointer-events-none"
                 placeholder="image">
+                @error('image')
+                  <p class="mt-2 text-sm text-red-500">{{ $message }}</p>
+                @enderror
             </div>
 
 
@@ -38,6 +44,9 @@
                   class=" w-full py-2.5 sm:py-3 px-4 block w-name bg-layer border-layer-line rounded-lg sm:text-sm text-foreground placeholder:text-muted-foreground-1 focus:border-primary-focus focus:ring-primary-focus disabled:opacity-50 disabled:pointer-events-none"
                   placeholder="Description here..."></textarea>
               </div>
+              @error('description')
+                  <p class="mt-2 text-sm text-red-500">{{ $message }}</p>
+                @enderror
             </div>
 
             <div class="mt-6 grid">

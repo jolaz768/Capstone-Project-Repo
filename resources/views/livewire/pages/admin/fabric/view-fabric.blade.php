@@ -99,7 +99,7 @@
                 </td>
                 <td class="h-px w-72 whitespace-nowrap">
                   <div class="px-6 py-3">
-                    <img class="object-cover w-20 h-20" src="{{ $fabric->image }}" alt="Product Image">
+                    <img class="object-cover w-20 h-20" src="{{ $fabric->image ? Storage::url($fabric->image) : asset('images/default-fabric-image.png') }}" alt="Product Image">
                   </div>
                 </td>
                 <td class="size-px whitespace-nowrap">
@@ -116,7 +116,7 @@
                 </td>
                 <td class="size-px whitespace-nowrap">
                   <div class="px-6 py-1.5">
-                    <a class="inline-flex items-center gap-x-1 text-sm text-primary decoration-2 hover:underline focus:outline-hidden focus:underline font-medium" href="#">
+                    <a class="inline-flex items-center gap-x-1 text-sm text-primary decoration-2 hover:underline focus:outline-hidden focus:underline font-medium" href="{{route('admin.fabric.edit',$fabric->id) }}">
                       Edit
                     </a>          
                   </div>
