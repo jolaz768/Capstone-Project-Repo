@@ -7,19 +7,71 @@ use Livewire\Component;
 use App\Models\Color;
 
 class CreateColor extends Component
-{   
-   public $color_name = '';
+{
+    public $color_name = '';
     public $color_code = '#000000';
 
-    // Automatically called when $color_code is updated
+    public function updatedColorName($name)
+    {
+        $hex = $this->colorNameToHex($name);
+
+        if ($hex) {
+            $this->color_code = $hex;
+        }
+    }
+
     public function updatedColorCode($hex)
     {
         $this->color_name = $this->hexToColorName($hex);
     }
 
+    private function colorNameToHex($name)
+    {
+        $map = [
+            'black' => '#000000',
+            'white' => '#FFFFFF',
+            'red' => '#FF0000',
+            'green' => '#00FF00',
+            'blue' => '#0000FF',
+            'yellow' => '#FFFF00',
+            'magenta' => '#FF00FF',
+            'cyan' => '#00FFFF',
+            'maroon' => '#800000',
+            'olive' => '#808000',
+            'dark green' => '#008000',
+            'purple' => '#800080',
+            'teal' => '#008080',
+            'navy' => '#000080',
+            'orange' => '#FFA500',
+            'brown' => '#A52A2A',
+            'pink' => '#FFC0CB',
+            'gray' => '#808080',
+            'silver' => '#C0C0C0',
+            'gold' => '#FFD700',
+            'lavender' => '#E6E6FA',
+            'coral' => '#FF7F50',
+            'turquoise' => '#40E0D0',
+            'indigo' => '#4B0082',
+            'violet' => '#EE82EE',
+            'salmon' => '#FA8072',
+            'khaki' => '#F0E68C',
+            'plum' => '#DDA0DD',
+            'orchid' => '#DA70D6',
+            'hot pink' => '#FF69B4',
+            'deep pink' => '#FF1493',
+            'orange red' => '#FF4500',
+            'tomato' => '#FF6347',
+            'dark orange' => '#FF8C00',
+            'light pink' => '#FFB6C1',
+        ];
+
+        $key = strtolower(trim($name));
+
+        return $map[$key] ?? null;
+    }
+
     private function hexToColorName($hex)
     {
-        // Simple built‑in mapping for common colors
         $map = [
             '#000000' => 'Black',
             '#FFFFFF' => 'White',
@@ -39,28 +91,10 @@ class CreateColor extends Component
             '#A52A2A' => 'Brown',
             '#FFC0CB' => 'Pink',
             '#808080' => 'Gray',
-            '#C0C0C0' => 'Silver',
-            '#FFD700' => 'Gold',
-            '#E6E6FA' => 'Lavender',
-            '#FF7F50' => 'Coral',
-            '#40E0D0' => 'Turquoise',
-            '#4B0082' => 'Indigo',
-            '#EE82EE' => 'Violet',
-            '#FA8072' => 'Salmon',
-            '#F0E68C' => 'Khaki',
-            '#DDA0DD' => 'Plum',
-            '#DA70D6' => 'Orchid',
-            '#FFC0CB' => 'Pink',
-            '#FF69B4' => 'Hot Pink',
-            '#FF1493' => 'Deep Pink',
-            '#FF4500' => 'Orange Red',
-            '#FF6347' => 'Tomato',
-            '#FF8C00' => 'Dark Orange',
-            '#FFB6C1' => 'Light Pink',  
-            
         ];
 
-        $hex = strtoupper($hex);
+        $hex = strtoupper(trim($hex));
+
         return $map[$hex] ?? 'Custom Color';
     }
 
@@ -85,9 +119,9 @@ class CreateColor extends Component
         ];
     }
 
-    public function save(){
+    public function save()
+    {
         $this->validate();
-        
 
         Color::create([
             'color_name' => $this->color_name,
@@ -98,6 +132,7 @@ class CreateColor extends Component
 
         return redirect()->route('admin.color.view');
     }
+
     #[Layout('components.layouts.admin')]
     public function render()
     {

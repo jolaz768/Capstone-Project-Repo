@@ -88,7 +88,7 @@ class DatabaseSeeder extends Seeder
             PermissionSeeder::class,
             RoleSeeder::class,
             ColorSeeder::class,
-            FabricSeeder::class,
+            // FabricSeeder::class,
         ]);
     }
 }

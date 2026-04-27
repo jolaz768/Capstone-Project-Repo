@@ -3,12 +3,12 @@
 namespace App\Livewire\Pages\Admin\Fabric\Color;
 
 use App\Models\Color;
-use Livewire\Attributes\Computed;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 
 class EditColor extends Component
-{   public $color_name = '';
+{
+    public $color_name = '';
     public $color_code = '#000000';
     public $color;
 
@@ -19,15 +19,50 @@ class EditColor extends Component
         $this->color_code = $color->color_code;
     }
 
-    // Automatically called when $color_code is updated
+    public function updatedColorName($name)
+    {
+        $hex = $this->colorNameToHex($name);
+
+        if ($hex) {
+            $this->color_code = $hex;
+        }
+    }
+
     public function updatedColorCode($hex)
     {
         $this->color_name = $this->hexToColorName($hex);
     }
 
+    private function colorNameToHex($name)
+    {
+        $map = [
+            'black' => '#000000',
+            'white' => '#FFFFFF',
+            'red' => '#FF0000',
+            'green' => '#00FF00',
+            'blue' => '#0000FF',
+            'yellow' => '#FFFF00',
+            'magenta' => '#FF00FF',
+            'cyan' => '#00FFFF',
+            'maroon' => '#800000',
+            'olive' => '#808000',
+            'dark green' => '#008000',
+            'purple' => '#800080',
+            'teal' => '#008080',
+            'navy' => '#000080',
+            'orange' => '#FFA500',
+            'brown' => '#A52A2A',
+            'pink' => '#FFC0CB',
+            'gray' => '#808080',
+        ];
+
+        $key = strtolower(trim($name));
+
+        return $map[$key] ?? null;
+    }
+
     private function hexToColorName($hex)
     {
-        // Simple built‑in mapping for common colors
         $map = [
             '#000000' => 'Black',
             '#FFFFFF' => 'White',
@@ -49,7 +84,8 @@ class EditColor extends Component
             '#808080' => 'Gray',
         ];
 
-        $hex = strtoupper($hex);
+        $hex = strtoupper(trim($hex));
+
         return $map[$hex] ?? 'Custom Color';
     }
 
@@ -74,7 +110,8 @@ class EditColor extends Component
         ];
     }
 
-    public function save(){
+    public function save()
+    {
         $this->validate();
 
         $this->color->update([
@@ -86,6 +123,7 @@ class EditColor extends Component
 
         return redirect()->route('admin.color.view');
     }
+
     #[Layout('components.layouts.admin')]
     public function render()
     {

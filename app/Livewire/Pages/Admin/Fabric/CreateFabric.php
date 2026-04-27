@@ -21,11 +21,11 @@ class CreateFabric extends Component
     {
         return [
             'name' => 'required|string|max:255',
-            'description' => 'nullable|required|string',
-            'image' => 'nullable|required|image|max:2048', // Max 2MB
+            'description' => 'required|string|max:255|min:10',
+            'image' => 'required|image|max:2048', // Max 2MB
         ];
     }
-    public function message()
+    public function messages()
     {
         return [
             'name.required' => 'Fabric name is required',
@@ -34,7 +34,9 @@ class CreateFabric extends Component
 
             'description.string' => 'Description must be a string',
             'description.required' => 'Description is required',
-            
+            'description.max' => 'Description must not exceed 255 characters',
+            'description.min' => 'Description must be at least 10 characters',
+
             'image.required' => 'Image is required',
             'image.image' => 'The file must be an image',
             'image.max' => 'The image must not exceed 2MB in size',

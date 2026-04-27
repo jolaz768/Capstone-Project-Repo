@@ -1,5 +1,10 @@
 <div>
-    {{-- Be like water. --}}
+  @if(session()->has('message'))
+    <div class="alert alert-success text-green-500 text-center bg-green-100 border border-green-400 rounded-lg p-4 mb-4" role="alert">
+      {{ session()->get('message') }}
+    </div>
+  @endif
+  {{-- Be like water. --}}
     <!-- Table Section -->
 <div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
   <!-- Card -->
@@ -99,7 +104,7 @@
                 </td>
                 <td class="h-px w-72 whitespace-nowrap">
                   <div class="px-6 py-3">
-                    <img class="object-cover w-20 h-20" src="{{ $fabric->image ? Storage::url($fabric->image) : asset('images/default-fabric-image.png') }}" alt="Product Image">
+                    <img class="object-cover w-20 h-20" src="{{ asset('storage/' . $fabric->image) }}" alt="{{ $fabric->name }}">
                   </div>
                 </td>
                 <td class="size-px whitespace-nowrap">
@@ -124,7 +129,7 @@
 
                 <td class="size-px whitespace-nowrap">
                   <div class="px-6 py-1.5">
-                    <a class="inline-flex items-center gap-x-1 text-sm text-red-500 decoration-2 hover:underline focus:outline-hidden focus:underline font-medium" href="#">
+                    <a class="inline-flex items-center gap-x-1 text-sm text-red-500 decoration-2 hover:underline focus:outline-hidden focus:underline font-medium" href="#" wire:click="delete({{ $fabric->id }})">
                       Delete
                     </a>
                   </div>

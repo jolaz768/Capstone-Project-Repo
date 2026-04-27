@@ -32,6 +32,13 @@
                 @error('image')
                   <p class="mt-2 text-sm text-red-500">{{ $message }}</p>
                 @enderror
+
+                @if ($image)
+                  <div class="mt-4">
+                    <p class="mb-2 text-sm font-medium text-foreground">Image preview</p>
+                    <img src="{{ $image->temporaryUrl() }}" alt="Fabric preview" class="object-cover rounded-lg w-40 h-40" />
+                  </div>
+                @endif
             </div>
 
 

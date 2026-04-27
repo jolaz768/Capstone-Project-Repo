@@ -24,6 +24,12 @@ class ViewFabric extends Component
             ->select('id', 'name', 'description', 'image', 'created_at')
             ->get();
     }
+    public function delete($id)
+    {
+        $fabric = Fabric::findOrFail($id);
+        $fabric->delete();
+        session()->flash('message', 'Fabric deleted successfully.');
+    }
 
     public function render()
     {
