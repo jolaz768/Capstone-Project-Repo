@@ -49,14 +49,6 @@
                   </div>
                 </th>
 
-                <th scope="col" class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3 text-start">
-                  <div class="flex items-center gap-x-2">
-                    <span class="text-xs font-semibold uppercase text-foreground">
-                      Colors
-                    </span>
-                  </div>
-                </th>
-
                 <th scope="col" class="px-6 py-3 text-start">
                   <div class="flex items-center gap-x-2">
                     <span class="text-xs font-semibold uppercase text-foreground">
@@ -88,7 +80,9 @@
             </thead>
 
             <tbody class="divide-y divide-table-line">
-              <tr>
+              @foreach ($this->fabrics as $fkey => $fabric )
+              
+                <tr wire:key="fabric-{{ $fabric->id }}">
                 <td class="size-px whitespace-nowrap">
                   <div class="ps-6 py-3">
                     
@@ -98,44 +92,33 @@
                   <div class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3">
                     <div class="flex items-center gap-x-3">
                       <div class="grow">
-                        <span class="block text-sm font-semibold text-foreground">Cotton</span>
+                        <span class="block text-sm font-semibold text-foreground">{{ $fabric->name }}</span>
                       </div>
                     </div>
                   </div>
                 </td>
-
-                <td class="size-px whitespace-nowrap">
-                  <div class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3">
-                    <div class="flex items-center gap-x-3">
-                      <div class="grow">
-                        <span class="block text-sm font-semibold text-foreground">Brown,Yellow,White..</span>
-                      </div>
-                    </div>
-                  </div>
-                </td>
-
                 <td class="h-px w-72 whitespace-nowrap">
                   <div class="px-6 py-3">
-                    <img class="object-cover w-20 h-20" src="https://images.pexels.com/photos/6843240/pexels-photo-6843240.jpeg" alt="Product Image">
+                    <img class="object-cover w-20 h-20" src="{{ $fabric->image }}" alt="Product Image">
                   </div>
                 </td>
                 <td class="size-px whitespace-nowrap">
                   <div class="px-6 py-3">
-                    <span class="text-sm text-muted-foreground-1">Lorem ipsum dolor sit amet...</span>
+                    <span class="text-sm text-muted-foreground-1">{{ $fabric->description }}</span>
                   </div>
                 </td>
                 
 
                 <td class="size-px whitespace-nowrap">
                   <div class="px-6 py-3">
-                    <span class="text-sm text-muted-foreground-1">28 Dec, 12:12</span>
+                    <span class="text-sm text-muted-foreground-1">{{ $fabric->created_at->format('d M, H:i') }}</span>
                   </div>
                 </td>
                 <td class="size-px whitespace-nowrap">
                   <div class="px-6 py-1.5">
                     <a class="inline-flex items-center gap-x-1 text-sm text-primary decoration-2 hover:underline focus:outline-hidden focus:underline font-medium" href="#">
                       Edit
-                    </a>
+                    </a>          
                   </div>
                 </td>
 
@@ -147,6 +130,8 @@
                   </div>
                 </td>
               </tr>
+                
+              @endforeach
             </tbody>
           </table>
         </div>

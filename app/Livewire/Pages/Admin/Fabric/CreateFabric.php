@@ -3,18 +3,21 @@
 namespace App\Livewire\Pages\Admin\Fabric;
 
 use App\Models\Fabric;
+use Illuminate\Support\Str;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
-use Psy\Util\Str;
+use Livewire\WithFileUploads;
+
 
 class CreateFabric extends Component
 {
+    use WithFileUploads;
 
-    public $name = '';
-    public $description = '';
+    public $name ;
+    public $description ;
     public $image;
 
-    public function rule()
+    public function rules()
     {
         return [
             'name' => 'required|string|max:255',
@@ -28,17 +31,22 @@ class CreateFabric extends Component
             'name.required' => 'Fabric name is required',
             'name.string' => 'Fabric name must be a string',
             'name.max' => 'Fabric name must not exceed 255 characters',
+
             'description.string' => 'Description must be a string',
+
             'image.image' => 'The file must be an image',
             'image.max' => 'The image must not exceed 2MB in size',
         ];
     }
 
+
     public function save()
     {
         $this->validate();
-        $name = Str::of($this->name)->trim()->title()->lower();
-        $description = Str::of($this->description)->trim()->title()->lower();
+        
+
+        $name = Str::of($this->name)->trim()->title();
+        $description = Str::of($this->description)->trim();
         $imagePath = $this->image ? $this->image->store('fabrics', 'public') : null;
 
         Fabric::create([
@@ -46,6 +54,7 @@ class CreateFabric extends Component
             'image' => $imagePath,
             'description' => $description,
         ]);
+
         session()->flash('message', 'Fabric created successfully.');
         return redirect()->route('admin.fabric.view');
 }

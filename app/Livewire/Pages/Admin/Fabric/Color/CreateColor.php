@@ -39,6 +39,25 @@ class CreateColor extends Component
             '#A52A2A' => 'Brown',
             '#FFC0CB' => 'Pink',
             '#808080' => 'Gray',
+            '#C0C0C0' => 'Silver',
+            '#FFD700' => 'Gold',
+            '#E6E6FA' => 'Lavender',
+            '#FF7F50' => 'Coral',
+            '#40E0D0' => 'Turquoise',
+            '#4B0082' => 'Indigo',
+            '#EE82EE' => 'Violet',
+            '#FA8072' => 'Salmon',
+            '#F0E68C' => 'Khaki',
+            '#DDA0DD' => 'Plum',
+            '#DA70D6' => 'Orchid',
+            '#FFC0CB' => 'Pink',
+            '#FF69B4' => 'Hot Pink',
+            '#FF1493' => 'Deep Pink',
+            '#FF4500' => 'Orange Red',
+            '#FF6347' => 'Tomato',
+            '#FF8C00' => 'Dark Orange',
+            '#FFB6C1' => 'Light Pink',  
+            
         ];
 
         $hex = strtoupper($hex);

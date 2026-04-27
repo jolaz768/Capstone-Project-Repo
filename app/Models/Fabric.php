@@ -17,4 +17,5 @@ class Fabric extends Model
     {
         return $this->hasMany(FabricColor::class);
     }
+   
 }

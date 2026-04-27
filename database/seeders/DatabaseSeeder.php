@@ -86,7 +86,9 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             PermissionSeeder::class,
-            RoleSeeder::class
+            RoleSeeder::class,
+            ColorSeeder::class,
+            FabricSeeder::class,
         ]);
     }
 }
