@@ -24,7 +24,14 @@ class ViewCategory extends Component
         ->get();
     }
 
+
     public function delete($id)
+    {
+        $category = CategoryShop::findOrFail($id);
+        $category->delete();
+
+        session()->flash('message', 'Category deleted successfully.');
+    }
     
     public function render()
     {
