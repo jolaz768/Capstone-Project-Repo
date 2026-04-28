@@ -1,24 +1,23 @@
 <?php
 
-namespace App\Livewire\Pages\Admin\Shop\ShopCategory;
+namespace App\Livewire\Pages\Admin\Garment\Category;
 
-use App\Models\CategoryShop;
+use App\Models\Category;
 use Illuminate\Support\Str;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 
 class CreateCategory extends Component
 {
-    #[Layout('components.layouts.admin')]
-
-    public $cat_name='';
+     #[Layout('components.layouts.admin')]
+      public $cat_name='';
     public $cat_slug='';
     public $cat_desc='';
 
        public function updatedCatName($value): void
     {
         $this->cat_slug = Str::slug($value);
-    }
+    }   
 
     public function rules()
     {
@@ -53,7 +52,7 @@ class CreateCategory extends Component
         $this->cat_slug = Str::slug($this->cat_name);
         $this->cat_desc = ucfirst(trim(strip_tags($this->cat_desc)));
 
-        CategoryShop::create([
+        Category::create([
             // 'shop_id' => auth()->user()->shop->id,
             'cat_name' => $this->cat_name,
             'cat_slug' => $this->cat_slug,
@@ -65,6 +64,6 @@ class CreateCategory extends Component
     }
     public function render()
     {
-        return view('livewire.pages.admin.shop.shop-category.create-category');
+        return view('livewire.pages.admin.garment.category.create-category');
     }
 }

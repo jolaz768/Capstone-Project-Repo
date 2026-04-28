@@ -150,6 +150,10 @@ Route::prefix('/admin') //shop owner
     Route::get('/garment/view',ViewGarment::class)->name('admin.garment.view');
     Route::get('/garment/create',CreateGarment::class)->name('admin.garment.create');
     Route::get('/garment/edit/{garment}',EditGarment::class)->name('admin.garment.edit');
+    Route::get('/garment/category/create',App\Livewire\Pages\Admin\Garment\Category\CreateCategory::class)->name('admin.garment.category.create');
+    Route::get('/garment/category/edit/{category}',App\Livewire\Pages\Admin\Garment\Category\EditCategory::class)->name('admin.garment.category.edit');
+    Route::get('/garment/category/view',App\Livewire\Pages\Admin\Garment\Category\ViewCategory::class)->name('admin.garment.category.view');
+    
 
     //shop
     Route::get('/shop/view',ViewShop::class)->name('admin.shop.view');

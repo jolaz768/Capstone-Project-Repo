@@ -14,11 +14,11 @@
             Total users
           </p>
           <h3 class="mt-1 text-xl sm:text-2xl font-semibold text-primary">
-            72,540
+            {{ number_format($totalUsers) }}
           </h3>
           <div class="mt-1 flex justify-between items-center">
             <p class="text-sm text-muted-foreground-1">
-              from <span class="font-semibold text-foreground">70,104</span>
+              Registered customers
             </p>
             <span class="ms-1 inline-flex items-center gap-1.5 py-1 px-2 rounded-md text-xs font-medium bg-surface-1 text-surface-foreground">
               <svg class="inline-block size-3 self-center" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
@@ -44,11 +44,11 @@
             Total Shops
           </p>
           <h3 class="mt-1 text-xl sm:text-2xl font-semibold text-primary">
-            4,567
+            {{ number_format($totalShops) }}
           </h3>
           <div class="mt-1 flex justify-between items-center">
             <p class="text-sm text-muted-foreground-1">
-              from <span class="font-semibold text-foreground">29.1%</span>
+              Active shops: {{ number_format($activeShops) }}
             </p>
             <span class="ms-1 inline-flex items-center gap-1.5 py-1 px-2 rounded-md text-xs font-medium bg-surface-1 text-surface-foreground">
               <svg class="inline-block size-3 self-center" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
@@ -74,11 +74,11 @@
             Visits
           </p>
           <h3 class="mt-1 text-xl sm:text-2xl font-semibold text-primary">
-            56.8%
+            {{ number_format($totalVisitors) }}
           </h3>
           <div class="mt-1 flex justify-between items-center">
             <p class="text-sm text-muted-foreground-1">
-              from <span class="font-semibold text-foreground">61.2%</span>
+              Unique visitors
             </p>
             <span class="ms-1 inline-flex items-center gap-1.5 py-1 px-2 rounded-md text-xs font-medium bg-surface-1 text-surface-foreground">
               <svg class="inline-block size-3 self-center" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
@@ -104,11 +104,11 @@
             Pageviews
           </p>
           <h3 class="mt-1 text-xl sm:text-2xl font-semibold text-primary">
-            92,913
+            ₱{{ number_format($totalRevenue, 2) }}
           </h3>
           <div class="mt-1 flex justify-between items-center">
             <p class="text-sm text-muted-foreground-1">
-              from <span class="font-semibold text-foreground">94,012</span>
+              Platform revenue
             </p>
             <span class="ms-1 inline-flex items-center gap-1.5 py-1 px-2 rounded-md text-xs font-medium bg-surface-1 text-surface-foreground">
               <svg class="inline-block size-3 self-center" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
@@ -128,6 +128,161 @@
 </div>
 <!-- End Card Section -->
 
+<div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 mx-auto">
+  <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between mb-6">
+    <div>
+      <h2 class="text-xl font-semibold text-foreground">Platform analytics</h2>
+      <p class="mt-1 text-sm text-muted-foreground-2">Revenue, visitors, orders, and growth across the platform.</p>
+    </div>
+    <div class="inline-flex rounded-full border border-layer-line bg-surface p-1">
+      <button wire:click.prevent="setRange('daily')" class="rounded-full px-4 py-2 text-sm font-medium transition {{ $range === 'daily' ? 'bg-primary text-primary-foreground' : 'text-foreground hover:bg-layer-hover' }}">Daily</button>
+      <button wire:click.prevent="setRange('weekly')" class="rounded-full px-4 py-2 text-sm font-medium transition {{ $range === 'weekly' ? 'bg-primary text-primary-foreground' : 'text-foreground hover:bg-layer-hover' }}">Weekly</button>
+      <button wire:click.prevent="setRange('monthly')" class="rounded-full px-4 py-2 text-sm font-medium transition {{ $range === 'monthly' ? 'bg-primary text-primary-foreground' : 'text-foreground hover:bg-layer-hover' }}">Monthly</button>
+    </div>
+  </div>
+
+  <div class="grid gap-4 lg:grid-cols-2">
+    <div class="bg-layer border border-layer-line shadow-2xs rounded-xl p-5">
+      <div class="flex items-center justify-between mb-4">
+        <div>
+          <p class="text-sm font-semibold text-foreground">Revenue trend</p>
+          <p class="mt-1 text-sm text-muted-foreground-2">Total completed platform revenue.</p>
+        </div>
+        <span class="rounded-full bg-surface px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">{{ ucfirst($range) }}</span>
+      </div>
+      <div id="superadmin-revenue-chart" wire:ignore class="min-h-[320px]"></div>
+    </div>
+
+    <div class="bg-layer border border-layer-line shadow-2xs rounded-xl p-5">
+      <div class="flex items-center justify-between mb-4">
+        <div>
+          <p class="text-sm font-semibold text-foreground">Visitor trend</p>
+          <p class="mt-1 text-sm text-muted-foreground-2">Unique visitors across all shops.</p>
+        </div>
+        <span class="rounded-full bg-surface px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">Unique</span>
+      </div>
+      <div id="superadmin-visitors-chart" wire:ignore class="min-h-[320px]"></div>
+    </div>
+  </div>
+
+  <div class="mt-6 grid gap-4 lg:grid-cols-2">
+    <div class="bg-layer border border-layer-line shadow-2xs rounded-xl p-5">
+      <p class="text-sm font-semibold text-foreground">User growth</p>
+      <div id="superadmin-users-chart" wire:ignore class="mt-4 min-h-[280px]"></div>
+    </div>
+    <div class="bg-layer border border-layer-line shadow-2xs rounded-xl p-5">
+      <p class="text-sm font-semibold text-foreground">Orders trend</p>
+      <div id="superadmin-orders-chart" wire:ignore class="mt-4 min-h-[280px]"></div>
+    </div>
+  </div>
+
+  <script id="superadmin-dashboard-data" type="application/json">
+    {!! }json([
+      'revenueLabels' => $revenueChartLabels,
+      'revenueData' => array_values($revenueChartData),
+      'visitorLabels' => $visitorChartLabels,
+      'visitorData' => array_values($visitorChartData),
+      'userLabels' => $userChartLabels,
+      'userData' => array_values($userChartData),
+      'orderLabels' => $orderTrendLabels,
+      'orderSeries' => $orderTrendSeries,
+    ])}
+  </script>
+
+  <link rel="stylesheet" href="{{ asset('assets/vendor/apexcharts/dist/apexcharts.css') }}">
+  <script src="{{ asset('assets/vendor/apexcharts/dist/apexcharts.min.js') }}"></script>
+  <script>
+    document.addEventListener('livewire:load', function () {
+      const dataElement = document.getElementById('superadmin-dashboard-data');
+      const revenueEl = document.getElementById('superadmin-revenue-chart');
+      const visitorsEl = document.getElementById('superadmin-visitors-chart');
+      const usersEl = document.getElementById('superadmin-users-chart');
+      const ordersEl = document.getElementById('superadmin-orders-chart');
+
+      let revenueChart = null;
+      let visitorsChart = null;
+      let usersChart = null;
+      let ordersChart = null;
+
+      function getData() {
+        try {
+          return JSON.parse(dataElement.textContent || '{}');
+        } catch {
+          return {};
+        }
+      }
+
+      function buildAreaOptions(title, categories, series, color) {
+        return {
+          chart: { type: 'area', height: 320, toolbar: { show: false }, zoom: { enabled: false } },
+          series: [{ name: title, data: series }],
+          stroke: { curve: 'smooth', width: 3 },
+          fill: { type: 'gradient', gradient: { shade: 'light', opacityFrom: 0.55, opacityTo: 0.08, stops: [0, 80, 100] } },
+          grid: { borderColor: '#e5e7eb', strokeDashArray: 4 },
+          xaxis: { categories, labels: { style: { colors: '#6b7280', fontSize: '12px' } }, axisBorder: { show: false }, axisTicks: { show: false } },
+          yaxis: { labels: { style: { colors: '#6b7280', fontSize: '12px' }, formatter: (value) => value >= 1000 ? `${value / 1000}k` : value } },
+          tooltip: { theme: 'light', x: { show: true }, y: { formatter: (value) => `₱${value.toLocaleString()}` } },
+          colors: [color],
+          responsive: [{ breakpoint: 768, options: { chart: { height: 280 }, xaxis: { labels: { rotate: -45 } } } }],
+        };
+      }
+
+      function buildBarOptions(categories, series) {
+        return {
+          chart: { type: 'bar', height: 320, stacked: true, toolbar: { show: false } },
+          series,
+          plotOptions: { bar: { borderRadius: 6, columnWidth: '50%' } },
+          dataLabels: { enabled: false },
+          xaxis: { categories, labels: { style: { colors: '#6b7280', fontSize: '12px' } }, axisBorder: { show: false }, axisTicks: { show: false } },
+          yaxis: { labels: { style: { colors: '#6b7280', fontSize: '12px' } } },
+          grid: { borderColor: '#e5e7eb', strokeDashArray: 4 },
+          tooltip: { theme: 'light' },
+          colors: ['#2563eb', '#16a34a', '#ef4444', '#f59e0b'],
+          legend: { position: 'top', horizontalAlign: 'left' },
+        };
+      }
+
+      function renderCharts() {
+        const payload = getData();
+        if (!payload) return;
+
+        if (revenueChart) {
+          revenueChart.updateOptions(buildAreaOptions('Revenue', payload.revenueLabels, payload.revenueData, '#2563eb'));
+          revenueChart.updateSeries([{ name: 'Revenue', data: payload.revenueData }]);
+        } else {
+          revenueChart = new ApexCharts(revenueEl, buildAreaOptions('Revenue', payload.revenueLabels, payload.revenueData, '#2563eb'));
+          revenueChart.render();
+        }
+
+        if (visitorsChart) {
+          visitorsChart.updateOptions(buildAreaOptions('Visitors', payload.visitorLabels, payload.visitorData, '#14b8a6'));
+          visitorsChart.updateSeries([{ name: 'Visitors', data: payload.visitorData }]);
+        } else {
+          visitorsChart = new ApexCharts(visitorsEl, buildAreaOptions('Visitors', payload.visitorLabels, payload.visitorData, '#14b8a6'));
+          visitorsChart.render();
+        }
+
+        if (usersChart) {
+          usersChart.updateOptions(buildAreaOptions('Users', payload.userLabels, payload.userData, '#8b5cf6'));
+          usersChart.updateSeries([{ name: 'Users', data: payload.userData }]);
+        } else {
+          usersChart = new ApexCharts(usersEl, buildAreaOptions('Users', payload.userLabels, payload.userData, '#8b5cf6'));
+          usersChart.render();
+        }
+
+        if (ordersChart) {
+          ordersChart.updateOptions(buildBarOptions(payload.orderLabels, payload.orderSeries));
+          ordersChart.updateSeries(payload.orderSeries);
+        } else {
+          ordersChart = new ApexCharts(ordersEl, buildBarOptions(payload.orderLabels, payload.orderSeries));
+          ordersChart.render();
+        }
+      }
+
+      renderCharts();
+      Livewire.hook('message.processed', renderCharts);
+    });
+  </script>
 
 <!-- Table Section -->
 <div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
@@ -1001,6 +1156,7 @@
       </span>
     </div>
   </div>
+  
   <!-- End Header -->
 
   <div id="hs-single-area-chart">

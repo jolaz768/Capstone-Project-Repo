@@ -1,4 +1,6 @@
 <div>
+    {{-- The best athlete wants his opponent at his best. --}}
+    <div>
     @if(session()->has('message'))
     <div class="alert alert-success text-green-500 bg-green-100 border border-green-400 border-rounded px-4 py-3 mb-4 text-center max-w-xs w-auto mx-auto radius-2xl" role="alert">
         {{ session()->get('message') }}
@@ -51,4 +53,6 @@
   </div>
 </div>
 <!-- End Comment Form -->
+</div>
+
 </div>

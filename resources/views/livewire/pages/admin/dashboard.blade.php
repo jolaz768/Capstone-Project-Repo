@@ -1,977 +1,58 @@
-<div>
-<!-- Card Section -->
-<div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
-  <!-- Grid -->
-  <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-    <!-- Card -->
-    <div class="flex flex-col bg-amber-600 border border-card-line shadow-2xs rounded-xl">
-      <div class="p-4 md:p-5 flex justify-between gap-x-3">
-        <div>
-          <p class="text-xs uppercase text-white">
-            New Order
-          </p>
-          <div class="mt-1 flex items-center gap-x-2">
-            <h3 class="text-xl sm:text-2xl font-medium text-white">
-              72,540
-            </h3>
-            <span class="flex items-center gap-x-1 text-green-600">
-              <svg class="inline-block size-5 self-center" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
-              <span class="inline-block text-lg">
-                1.7%
-              </span>
-            </span>
-          </div>
+<div wire:poll.30s>
+  <div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+      <div class="bg-card border border-layer-line shadow-2xs rounded-xl overflow-hidden">
+        <div class="p-5">
+          <p class="text-xs uppercase tracking-widest text-muted-foreground">Total revenue</p>
+          <h3 class="mt-4 text-3xl font-semibold text-foreground">₱{{ number_format($totalRevenue, 2) }}</h3>
+          <p class="mt-2 text-sm text-muted-foreground-1">Completed revenue from approved orders.</p>
         </div>
-        <div class="shrink-0 flex justify-center items-center size-11 bg-primary text-primary-foreground rounded-full">
-          <svg class="shrink-0 size-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <div class="px-5 py-4 border-t border-layer-line bg-surface">
+          <p class="text-xs text-muted-foreground-1">Completed orders</p>
+          <p class="mt-1 text-lg font-semibold text-foreground">{{ number_format($completedOrders) }}</p>
         </div>
       </div>
 
-      <a class="py-3 px-4 md:px-5 inline-flex justify-between items-center text-sm text-white border-t border-card-footer hover:bg-amber-700 focus:outline-hidden focus:bg-layer-focus rounded-b-xl" href="#">
-        View reports
-        <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-      </a>
-    </div>
-    <!-- End Card -->
-
-    <!-- Card -->
-    <div class="flex flex-col bg-green-600 border border-card-line shadow-2xs rounded-xl">
-      <div class="p-4 md:p-5 flex justify-between gap-x-3">
-        <div>
-          <p class="text-xs uppercase text-white">
-            In Process
-          </p>
-          <div class="mt-1 flex items-center gap-x-2">
-            <h3 class="mt-1 text-xl font-medium text-white">
-              29.4%
-            </h3>
-          </div>
+      <div class="bg-card border border-layer-line shadow-2xs rounded-xl overflow-hidden">
+        <div class="p-5">
+          <p class="text-xs uppercase tracking-widest text-muted-foreground">Total orders</p>
+          <h3 class="mt-4 text-3xl font-semibold text-foreground">{{ number_format($totalOrders) }}</h3>
+          <p class="mt-2 text-sm text-muted-foreground-1">All bookings including pending and approved.</p>
         </div>
-        <div class="shrink-0 flex justify-center items-center size-11 bg-primary text-primary-foreground rounded-full">
-          <svg class="shrink-0 size-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 22h14"/><path d="M5 2h14"/><path d="M17 22v-4.172a2 2 0 0 0-.586-1.414L12 12l-4.414 4.414A2 2 0 0 0 7 17.828V22"/><path d="M7 2v4.172a2 2 0 0 0 .586 1.414L12 12l4.414-4.414A2 2 0 0 0 17 6.172V2"/></svg>
+        <div class="px-5 py-4 border-t border-layer-line bg-surface">
+          <p class="text-xs text-muted-foreground-1">Average order value</p>
+          <p class="mt-1 text-lg font-semibold text-foreground">₱{{ number_format($averageOrderValue, 2) }}</p>
         </div>
       </div>
 
-      <a class="py-3 px-4 md:px-5 inline-flex justify-between items-center text-sm text-white border-t border-card-footer hover:bg-green-700 focus:outline-hidden focus:bg-layer-focus rounded-b-xl" href="#">
-        View reports
-        <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-      </a>
-    </div>
-    <!-- End Card -->
-
-    <!-- Card -->
-    <div class="flex flex-col bg-blue-600 border border-card-line shadow-2xs rounded-xl">
-      <div class="p-4 md:p-5 flex justify-between gap-x-3">
-        <div>
-          <p class="text-xs uppercase text-white">
-            Completed
-          </p>
-          <div class="mt-1 flex items-center gap-x-2">
-            <h3 class="text-xl sm:text-2xl font-medium text-white">
-              56.8%
-            </h3>
-            <span class="flex items-center gap-x-1 text-red-600">
-              <svg class="inline-block size-4 self-center" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 17 13.5 8.5 8.5 13.5 2 7"/><polyline points="16 17 22 17 22 11"/></svg>
-              <span class="inline-block text-lg">
-                1.7%
-              </span>
-            </span>
-          </div>
+      <div class="bg-card border border-layer-line shadow-2xs rounded-xl overflow-hidden">
+        <div class="p-5">
+          <p class="text-xs uppercase tracking-widest text-muted-foreground">Unique visitors</p>
+          <h3 class="mt-4 text-3xl font-semibold text-foreground">{{ number_format($uniqueVisitors) }}</h3>
+          <p class="mt-2 text-sm text-muted-foreground-1">Unique visitors in the selected period.</p>
         </div>
-        <div class="shrink-0 flex justify-center items-center size-11 bg-primary text-primary-foreground rounded-full">
-          <svg class="shrink-0 size-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h6"/><path d="m12 12 4 10 1.7-4.3L22 16Z"/></svg>
+        <div class="px-5 py-4 border-t border-layer-line bg-surface">
+          <p class="text-xs text-muted-foreground-1">Visitor source</p>
+          <p class="mt-1 text-lg font-semibold text-foreground">{{ $visitorsTableExists ? 'visitor logs' : 'Booking activity' }}</p>
         </div>
       </div>
 
-      <a class="py-3 px-4 md:px-5 inline-flex justify-between items-center text-sm text-white border-t border-card-footer focus:outline-hidden hover:bg-blue-700 rounded-b-xl" href="#">
-        View reports
-        <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-      </a>
-    </div>
-    <!-- End Card -->
-
-    <!-- Card -->
-    <div class="flex flex-col bg-pink-700 border border-card-line shadow-2xs rounded-xl">
-      <div class="p-4 md:p-5 flex justify-between gap-x-3">
-        <div>
-          <p class="text-xs uppercase text-white">
-            Total Earnings
-          </p>
-          <div class="mt-1 flex items-center gap-x-2">
-            <h3 class="mt-1 text-xl font-medium text-white">
-              92,913
-            </h3>
-          </div>
+      <div class="bg-card border border-layer-line shadow-2xs rounded-xl overflow-hidden">
+        <div class="p-5">
+          <p class="text-xs uppercase tracking-widest text-muted-foreground">Analytics refresh</p>
+          <h3 class="mt-4 text-3xl font-semibold text-foreground">Live</h3>
+          <p class="mt-2 text-sm text-muted-foreground-1">Dashboard refreshes every 30 seconds.</p>
         </div>
-        <div class="shrink-0 flex justify-center items-center size-11 bg-primary text-primary-foreground rounded-full">
-          <svg class="shrink-0 size-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12s2.545-5 7-5c4.454 0 7 5 7 5s-2.546 5-7 5c-4.455 0-7-5-7-5z"/><path d="M12 13a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/><path d="M21 17v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-2"/><path d="M21 7V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v2"/></svg>
+        <div class="px-5 py-4 border-t border-layer-line bg-surface">
+          <p class="text-xs text-muted-foreground-1">Current period</p>
+          <p class="mt-1 text-lg font-semibold text-foreground">{{ ucfirst($range) }}</p>
         </div>
       </div>
-
-      <a class="py-3 px-4 md:px-5 inline-flex justify-between items-center text-sm text-white border-t border-card-footer hover:bg-pink-800 focus:outline-hidden focus:bg-layer-focus rounded-b-xl" href="#">
-        View reports
-        <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-      </a>
     </div>
-    <!-- End Card -->
   </div>
-  <!-- End Grid -->
-</div>
 <!-- End Card Section -->
-
-
-<!-- Table Section -->
-<div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
-  <!-- Card -->
-  <div class="flex flex-col">
-    <div class="overflow-x-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-none [&::-webkit-scrollbar-track]:bg-scrollbar-track [&::-webkit-scrollbar-thumb]:bg-scrollbar-thumb">
-      <div class="min-w-full inline-block align-middle">
-        <div class="bg-layer border border-layer-line rounded-xl shadow-2xs overflow-hidden">
-          <!-- Header -->
-          <div class="px-6 py-4 grid gap-3 md:flex md:justify-between md:items-center border-b border-table-line">
-            <div>
-              <h2 class="text-xl font-semibold text-foreground">
-                Customer Order Management
-              </h2>
-              <p class="text-sm text-muted-foreground-2">
-                Add orders, edit and more.
-              </p>
-            </div>
-
-            <div>
-              <div class="inline-flex gap-x-2">
-                <a class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg bg-layer border border-layer-line text-layer-foreground shadow-2xs hover:bg-layer-hover disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden focus:bg-layer-focus" href="#">
-                  View all
-                </a>
-
-                <a class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg bg-primary border border-primary-line text-primary-foreground hover:bg-primary-hover focus:outline-hidden focus:bg-primary-focus disabled:opacity-50 disabled:pointer-events-none" href="#">
-                  <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
-                  Add Booking
-                </a>
-              </div>
-            </div>
-          </div>
-          <!-- End Header -->
-
-          <!-- Table -->
-          <table class="min-w-full divide-y divide-table-line">
-            <thead class="bg-muted">
-              <tr>
-                <th scope="col" class="ps-6 py-3 text-start">
-                  <label for="hs-at-with-checkboxes-main" class="flex">
-                    <input type="checkbox" class="shrink-0 size-4 bg-transparent border-line-3 rounded-sm shadow-2xs text-primary focus:ring-0 focus:ring-offset-0 checked:bg-primary-checked checked:border-primary-checked disabled:opacity-50 disabled:pointer-events-none" id="hs-at-with-checkboxes-main">
-                    <span class="sr-only">Checkbox</span>
-                  </label>
-                </th>
-
-                <th scope="col" class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3 text-start">
-                  <div class="flex items-center gap-x-2">
-                    <span class="text-xs font-semibold uppercase text-foreground">
-                      Name
-                    </span>
-                  </div>
-                </th>
-
-                <th scope="col" class="px-6 py-3 text-start">
-                  <div class="flex items-center gap-x-2">
-                    <span class="text-xs font-semibold uppercase text-foreground">
-                      Position
-                    </span>
-                  </div>
-                </th>
-
-                <th scope="col" class="px-6 py-3 text-start">
-                  <div class="flex items-center gap-x-2">
-                    <span class="text-xs font-semibold uppercase text-foreground">
-                      Status
-                    </span>
-                  </div>
-                </th>
-
-                <th scope="col" class="px-6 py-3 text-start">
-                  <div class="flex items-center gap-x-2">
-                    <span class="text-xs font-semibold uppercase text-foreground">
-                      Portfolio
-                    </span>
-                  </div>
-                </th>
-
-                <th scope="col" class="px-6 py-3 text-start">
-                  <div class="flex items-center gap-x-2">
-                    <span class="text-xs font-semibold uppercase text-foreground">
-                      Created
-                    </span>
-                  </div>
-                </th>
-
-                <th scope="col" class="px-6 py-3 text-end"></th>
-              </tr>
-            </thead>
-
-            <tbody class="divide-y divide-table-line">
-              <tr>
-                <td class="size-px whitespace-nowrap">
-                  <div class="ps-6 py-3">
-                    <label for="hs-at-with-checkboxes-1" class="flex">
-                      <input type="checkbox" class="shrink-0 size-4 bg-transparent border-line-3 rounded-sm shadow-2xs text-primary focus:ring-0 focus:ring-offset-0 checked:bg-primary-checked checked:border-primary-checked disabled:opacity-50 disabled:pointer-events-none" id="hs-at-with-checkboxes-1">
-                      <span class="sr-only">Checkbox</span>
-                    </label>
-                  </div>
-                </td>
-                <td class="size-px whitespace-nowrap">
-                  <div class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3">
-                    <div class="flex items-center gap-x-3">
-                      <img class="inline-block size-9.5 rounded-full" src="https://images.unsplash.com/photo-1531927557220-a9e23c1e4794?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=320&h=320&q=80" alt="Avatar">
-                      <div class="grow">
-                        <span class="block text-sm font-semibold text-foreground">Christina Bersh</span>
-                        <span class="block text-sm text-muted-foreground-1">christina@site.com</span>
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td class="h-px w-72 whitespace-nowrap">
-                  <div class="px-6 py-3">
-                    <span class="block text-sm font-semibold text-foreground">Director</span>
-                    <span class="block text-sm text-muted-foreground-1">Human resources</span>
-                  </div>
-                </td>
-                <td class="size-px whitespace-nowrap">
-                  <div class="px-6 py-3">
-                    <span class="py-1 px-1.5 inline-flex items-center gap-x-1 text-xs font-medium bg-teal-100 text-teal-800 rounded-full dark:bg-teal-500/10 dark:text-teal-500">
-                      <svg class="size-2.5" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-                      </svg>
-                      Active
-                    </span>
-                  </div>
-                </td>
-                <td class="size-px whitespace-nowrap">
-                  <div class="px-6 py-3">
-                    <div class="flex items-center gap-x-3">
-                      <span class="text-xs text-muted-foreground-1">1/5</span>
-                      <div class="flex w-full h-1.5 bg-surface-1 rounded-full overflow-hidden">
-                        <div class="flex flex-col justify-center overflow-hidden bg-secondary" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td class="size-px whitespace-nowrap">
-                  <div class="px-6 py-3">
-                    <span class="text-sm text-muted-foreground-1">28 Dec, 12:12</span>
-                  </div>
-                </td>
-                <td class="size-px whitespace-nowrap">
-                  <div class="px-6 py-1.5">
-                    <a class="inline-flex items-center gap-x-1 text-sm text-primary decoration-2 hover:underline focus:outline-hidden focus:underline font-medium" href="#">
-                      Edit
-                    </a>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <td class="size-px whitespace-nowrap">
-                  <div class="ps-6 py-3">
-                    <label for="hs-at-with-checkboxes-2" class="flex">
-                      <input type="checkbox" class="shrink-0 size-4 bg-transparent border-line-3 rounded-sm shadow-2xs text-primary focus:ring-0 focus:ring-offset-0 checked:bg-primary-checked checked:border-primary-checked disabled:opacity-50 disabled:pointer-events-none" id="hs-at-with-checkboxes-2">
-                      <span class="sr-only">Checkbox</span>
-                    </label>
-                  </div>
-                </td>
-                <td class="size-px whitespace-nowrap">
-                  <div class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3">
-                    <div class="flex items-center gap-x-3">
-                      <img class="inline-block size-9.5 rounded-full" src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=320&h=320&q=80" alt="Avatar">
-                      <div class="grow">
-                        <span class="block text-sm font-semibold text-foreground">David Harrison</span>
-                        <span class="block text-sm text-muted-foreground-1">david@site.com</span>
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td class="h-px w-72 whitespace-nowrap">
-                  <div class="px-6 py-3">
-                    <span class="block text-sm font-semibold text-foreground">Seller</span>
-                    <span class="block text-sm text-muted-foreground-1">Branding products</span>
-                  </div>
-                </td>
-                <td class="size-px whitespace-nowrap">
-                  <div class="px-6 py-3">
-                    <span class="py-1 px-1.5 inline-flex items-center gap-x-1 text-xs font-medium bg-yellow-100 text-yellow-800 rounded-full dark:bg-yellow-500/10 dark:text-yellow-500">
-                      <svg class="size-2.5" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                        <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-                      </svg>
-                      Warning
-                    </span>
-                  </div>
-                </td>
-                <td class="size-px whitespace-nowrap">
-                  <div class="px-6 py-3">
-                    <div class="flex items-center gap-x-3">
-                      <span class="text-xs text-muted-foreground-1">3/5</span>
-                      <div class="flex w-full h-1.5 bg-surface-1 rounded-full overflow-hidden">
-                        <div class="flex flex-col justify-center overflow-hidden bg-secondary" role="progressbar" style="width: 78%" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td class="size-px whitespace-nowrap">
-                  <div class="px-6 py-3">
-                    <span class="text-sm text-muted-foreground-1">20 Dec, 09:27</span>
-                  </div>
-                </td>
-                <td class="size-px whitespace-nowrap">
-                  <div class="px-6 py-1.5">
-                    <a class="inline-flex items-center gap-x-1 text-sm text-primary decoration-2 hover:underline focus:outline-hidden focus:underline font-medium" href="#">
-                      Edit
-                    </a>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <td class="size-px whitespace-nowrap">
-                  <div class="ps-6 py-3">
-                    <label for="hs-at-with-checkboxes-3" class="flex">
-                      <input type="checkbox" class="shrink-0 size-4 bg-transparent border-line-3 rounded-sm shadow-2xs text-primary focus:ring-0 focus:ring-offset-0 checked:bg-primary-checked checked:border-primary-checked disabled:opacity-50 disabled:pointer-events-none" id="hs-at-with-checkboxes-3">
-                      <span class="sr-only">Checkbox</span>
-                    </label>
-                  </div>
-                </td>
-                <td class="size-px whitespace-nowrap">
-                  <div class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3">
-                    <div class="flex items-center gap-x-3">
-                      <span class="inline-flex items-center justify-center size-9.5 rounded-full bg-layer border border-layer-line">
-                        <span class="font-medium text-sm text-foreground">A</span>
-                      </span>
-                      <div class="grow">
-                        <span class="block text-sm font-semibold text-foreground">Anne Richard</span>
-                        <span class="block text-sm text-muted-foreground-1">anne@site.com</span>
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td class="h-px w-72 whitespace-nowrap">
-                  <div class="px-6 py-3">
-                    <span class="block text-sm font-semibold text-foreground">Designer</span>
-                    <span class="block text-sm text-muted-foreground-1">IT department</span>
-                  </div>
-                </td>
-                <td class="size-px whitespace-nowrap">
-                  <div class="px-6 py-3">
-                    <span class="py-1 px-1.5 inline-flex items-center gap-x-1 text-xs font-medium bg-teal-100 text-teal-800 rounded-full dark:bg-teal-500/10 dark:text-teal-500">
-                      <svg class="size-2.5" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-                      </svg>
-                      Active
-                    </span>
-                  </div>
-                </td>
-                <td class="size-px whitespace-nowrap">
-                  <div class="px-6 py-3">
-                    <div class="flex items-center gap-x-3">
-                      <span class="text-xs text-muted-foreground-1">5/5</span>
-                      <div class="flex w-full h-1.5 bg-surface-1 rounded-full overflow-hidden">
-                        <div class="flex flex-col justify-center overflow-hidden bg-secondary" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td class="size-px whitespace-nowrap">
-                  <div class="px-6 py-3">
-                    <span class="text-sm text-muted-foreground-1">18 Dec, 15:20</span>
-                  </div>
-                </td>
-                <td class="size-px whitespace-nowrap">
-                  <div class="px-6 py-1.5">
-                    <a class="inline-flex items-center gap-x-1 text-sm text-primary decoration-2 hover:underline focus:outline-hidden focus:underline font-medium" href="#">
-                      Edit
-                    </a>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <td class="size-px whitespace-nowrap">
-                  <div class="ps-6 py-3">
-                    <label for="hs-at-with-checkboxes-4" class="flex">
-                      <input type="checkbox" class="shrink-0 size-4 bg-transparent border-line-3 rounded-sm shadow-2xs text-primary focus:ring-0 focus:ring-offset-0 checked:bg-primary-checked checked:border-primary-checked disabled:opacity-50 disabled:pointer-events-none" id="hs-at-with-checkboxes-4">
-                      <span class="sr-only">Checkbox</span>
-                    </label>
-                  </div>
-                </td>
-                <td class="size-px whitespace-nowrap">
-                  <div class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3">
-                    <div class="flex items-center gap-x-3">
-                      <img class="inline-block size-9.5 rounded-full" src="https://images.unsplash.com/photo-1541101767792-f9b2b1c4f127?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&&auto=format&fit=facearea&facepad=3&w=320&h=320&q=80" alt="Avatar">
-                      <div class="grow">
-                        <span class="block text-sm font-semibold text-foreground">Samia Kartoon</span>
-                        <span class="block text-sm text-muted-foreground-1">samia@site.com</span>
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td class="h-px w-72 whitespace-nowrap">
-                  <div class="px-6 py-3">
-                    <span class="block text-sm font-semibold text-foreground">Executive director</span>
-                    <span class="block text-sm text-muted-foreground-1">Marketing</span>
-                  </div>
-                </td>
-                <td class="size-px whitespace-nowrap">
-                  <div class="px-6 py-3">
-                    <span class="py-1 px-1.5 inline-flex items-center gap-x-1 text-xs font-medium bg-teal-100 text-teal-800 rounded-full dark:bg-teal-500/10 dark:text-teal-500">
-                      <svg class="size-2.5" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-                      </svg>
-                      Active
-                    </span>
-                  </div>
-                </td>
-                <td class="size-px whitespace-nowrap">
-                  <div class="px-6 py-3">
-                    <div class="flex items-center gap-x-3">
-                      <span class="text-xs text-muted-foreground-1">0/5</span>
-                      <div class="flex w-full h-1.5 bg-surface-1 rounded-full overflow-hidden">
-                        <div class="flex flex-col justify-center overflow-hidden bg-secondary" role="progressbar" style="width: 1%" aria-valuenow="1" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td class="size-px whitespace-nowrap">
-                  <div class="px-6 py-3">
-                    <span class="text-sm text-muted-foreground-1">18 Dec, 15:20</span>
-                  </div>
-                </td>
-                <td class="size-px whitespace-nowrap">
-                  <div class="px-6 py-1.5">
-                    <a class="inline-flex items-center gap-x-1 text-sm text-primary decoration-2 hover:underline focus:outline-hidden focus:underline font-medium" href="#">
-                      Edit
-                    </a>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <td class="size-px whitespace-nowrap">
-                  <div class="ps-6 py-3">
-                    <label for="hs-at-with-checkboxes-5" class="flex">
-                      <input type="checkbox" class="shrink-0 size-4 bg-transparent border-line-3 rounded-sm shadow-2xs text-primary focus:ring-0 focus:ring-offset-0 checked:bg-primary-checked checked:border-primary-checked disabled:opacity-50 disabled:pointer-events-none" id="hs-at-with-checkboxes-5">
-                      <span class="sr-only">Checkbox</span>
-                    </label>
-                  </div>
-                </td>
-                <td class="size-px whitespace-nowrap">
-                  <div class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3">
-                    <div class="flex items-center gap-x-3">
-                      <span class="inline-flex items-center justify-center size-9.5 rounded-full bg-layer border border-layer-line">
-                        <span class="font-medium text-sm text-foreground">D</span>
-                      </span>
-                      <div class="grow">
-                        <span class="block text-sm font-semibold text-foreground">David Harrison</span>
-                        <span class="block text-sm text-muted-foreground-1">david@site.com</span>
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td class="h-px w-72 whitespace-nowrap">
-                  <div class="px-6 py-3">
-                    <span class="block text-sm font-semibold text-foreground">Developer</span>
-                    <span class="block text-sm text-muted-foreground-1">Mobile app</span>
-                  </div>
-                </td>
-                <td class="size-px whitespace-nowrap">
-                  <div class="px-6 py-3">
-                    <span class="py-1 px-1.5 inline-flex items-center gap-x-1 text-xs font-medium bg-red-100 text-red-800 rounded-full dark:bg-red-500/10 dark:text-red-500">
-                      <svg class="size-2.5" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                        <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-                      </svg>
-                      Danger
-                    </span>
-                  </div>
-                </td>
-                <td class="size-px whitespace-nowrap">
-                  <div class="px-6 py-3">
-                    <div class="flex items-center gap-x-3">
-                      <span class="text-xs text-muted-foreground-1">3/5</span>
-                      <div class="flex w-full h-1.5 bg-surface-1 rounded-full overflow-hidden">
-                        <div class="flex flex-col justify-center overflow-hidden bg-secondary" role="progressbar" style="width: 78%" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td class="size-px whitespace-nowrap">
-                  <div class="px-6 py-3">
-                    <span class="text-sm text-muted-foreground-1">15 Dec, 14:41</span>
-                  </div>
-                </td>
-                <td class="size-px whitespace-nowrap">
-                  <div class="px-6 py-1.5">
-                    <a class="inline-flex items-center gap-x-1 text-sm text-primary decoration-2 hover:underline focus:outline-hidden focus:underline font-medium" href="#">
-                      Edit
-                    </a>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <td class="size-px whitespace-nowrap">
-                  <div class="ps-6 py-3">
-                    <label for="hs-at-with-checkboxes-6" class="flex">
-                      <input type="checkbox" class="shrink-0 size-4 bg-transparent border-line-3 rounded-sm shadow-2xs text-primary focus:ring-0 focus:ring-offset-0 checked:bg-primary-checked checked:border-primary-checked disabled:opacity-50 disabled:pointer-events-none" id="hs-at-with-checkboxes-6">
-                      <span class="sr-only">Checkbox</span>
-                    </label>
-                  </div>
-                </td>
-                <td class="size-px whitespace-nowrap">
-                  <div class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3">
-                    <div class="flex items-center gap-x-3">
-                      <img class="inline-block size-9.5 rounded-full" src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=320&h=320&q=80" alt="Avatar">
-                      <div class="grow">
-                        <span class="block text-sm font-semibold text-foreground">Brian Halligan</span>
-                        <span class="block text-sm text-muted-foreground-1">brian@site.com</span>
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td class="h-px w-72 whitespace-nowrap">
-                  <div class="px-6 py-3">
-                    <span class="block text-sm font-semibold text-foreground">Accountant</span>
-                    <span class="block text-sm text-muted-foreground-1">Finance</span>
-                  </div>
-                </td>
-                <td class="size-px whitespace-nowrap">
-                  <div class="px-6 py-3">
-                    <span class="py-1 px-1.5 inline-flex items-center gap-x-1 text-xs font-medium bg-teal-100 text-teal-800 rounded-full dark:bg-teal-500/10 dark:text-teal-500">
-                      <svg class="size-2.5" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-                      </svg>
-                      Active
-                    </span>
-                  </div>
-                </td>
-                <td class="size-px whitespace-nowrap">
-                  <div class="px-6 py-3">
-                    <div class="flex items-center gap-x-3">
-                      <span class="text-xs text-muted-foreground-1">2/5</span>
-                      <div class="flex w-full h-1.5 bg-surface-1 rounded-full overflow-hidden">
-                        <div class="flex flex-col justify-center overflow-hidden bg-secondary" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td class="size-px whitespace-nowrap">
-                  <div class="px-6 py-3">
-                    <span class="text-sm text-muted-foreground-1">11 Dec, 18:51</span>
-                  </div>
-                </td>
-                <td class="size-px whitespace-nowrap">
-                  <div class="px-6 py-1.5">
-                    <a class="inline-flex items-center gap-x-1 text-sm text-primary decoration-2 hover:underline focus:outline-hidden focus:underline font-medium" href="#">
-                      Edit
-                    </a>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <td class="size-px whitespace-nowrap">
-                  <div class="ps-6 py-3">
-                    <label for="hs-at-with-checkboxes-7" class="flex">
-                      <input type="checkbox" class="shrink-0 size-4 bg-transparent border-line-3 rounded-sm shadow-2xs text-primary focus:ring-0 focus:ring-offset-0 checked:bg-primary-checked checked:border-primary-checked disabled:opacity-50 disabled:pointer-events-none" id="hs-at-with-checkboxes-7">
-                      <span class="sr-only">Checkbox</span>
-                    </label>
-                  </div>
-                </td>
-                <td class="size-px whitespace-nowrap">
-                  <div class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3">
-                    <div class="flex items-center gap-x-3">
-                      <img class="inline-block size-9.5 rounded-full" src="https://images.unsplash.com/photo-1659482634023-2c4fda99ac0c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2.5&w=320&h=320&q=80" alt="Avatar">
-                      <div class="grow">
-                        <span class="block text-sm font-semibold text-foreground">Andy Clerk</span>
-                        <span class="block text-sm text-muted-foreground-1">andy@site.com</span>
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td class="h-px w-72 whitespace-nowrap">
-                  <div class="px-6 py-3">
-                    <span class="block text-sm font-semibold text-foreground">Director</span>
-                    <span class="block text-sm text-muted-foreground-1">Human resources</span>
-                  </div>
-                </td>
-                <td class="size-px whitespace-nowrap">
-                  <div class="px-6 py-3">
-                    <span class="py-1 px-1.5 inline-flex items-center gap-x-1 text-xs font-medium bg-teal-100 text-teal-800 rounded-full dark:bg-teal-500/10 dark:text-teal-500">
-                      <svg class="size-2.5" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-                      </svg>
-                      Active
-                    </span>
-                  </div>
-                </td>
-                <td class="size-px whitespace-nowrap">
-                  <div class="px-6 py-3">
-                    <div class="flex items-center gap-x-3">
-                      <span class="text-xs text-muted-foreground-1">1/5</span>
-                      <div class="flex w-full h-1.5 bg-surface-1 rounded-full overflow-hidden">
-                        <div class="flex flex-col justify-center overflow-hidden bg-secondary" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td class="size-px whitespace-nowrap">
-                  <div class="px-6 py-3">
-                    <span class="text-sm text-muted-foreground-1">28 Dec, 12:12</span>
-                  </div>
-                </td>
-                <td class="size-px whitespace-nowrap">
-                  <div class="px-6 py-1.5">
-                    <a class="inline-flex items-center gap-x-1 text-sm text-primary decoration-2 hover:underline focus:outline-hidden focus:underline font-medium" href="#">
-                      Edit
-                    </a>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <td class="size-px whitespace-nowrap">
-                  <div class="ps-6 py-3">
-                    <label for="hs-at-with-checkboxes-8" class="flex">
-                      <input type="checkbox" class="shrink-0 size-4 bg-transparent border-line-3 rounded-sm shadow-2xs text-primary focus:ring-0 focus:ring-offset-0 checked:bg-primary-checked checked:border-primary-checked disabled:opacity-50 disabled:pointer-events-none" id="hs-at-with-checkboxes-8">
-                      <span class="sr-only">Checkbox</span>
-                    </label>
-                  </div>
-                </td>
-                <td class="size-px whitespace-nowrap">
-                  <div class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3">
-                    <div class="flex items-center gap-x-3">
-                      <img class="inline-block size-9.5 rounded-full" src="https://images.unsplash.com/photo-1601935111741-ae98b2b230b0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=320&h=320&q=80" alt="Avatar">
-                      <div class="grow">
-                        <span class="block text-sm font-semibold text-foreground">Bart Simpson</span>
-                        <span class="block text-sm text-muted-foreground-1">Bart@site.com</span>
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td class="h-px w-72 whitespace-nowrap">
-                  <div class="px-6 py-3">
-                    <span class="block text-sm font-semibold text-foreground">Seller</span>
-                    <span class="block text-sm text-muted-foreground-1">Branding products</span>
-                  </div>
-                </td>
-                <td class="size-px whitespace-nowrap">
-                  <div class="px-6 py-3">
-                    <span class="py-1 px-1.5 inline-flex items-center gap-x-1 text-xs font-medium bg-yellow-100 text-yellow-800 rounded-full dark:bg-yellow-500/10 dark:text-yellow-500">
-                      <svg class="size-2.5" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                        <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-                      </svg>
-                      Warning
-                    </span>
-                  </div>
-                </td>
-                <td class="size-px whitespace-nowrap">
-                  <div class="px-6 py-3">
-                    <div class="flex items-center gap-x-3">
-                      <span class="text-xs text-muted-foreground-1">3/5</span>
-                      <div class="flex w-full h-1.5 bg-surface-1 rounded-full overflow-hidden">
-                        <div class="flex flex-col justify-center overflow-hidden bg-secondary" role="progressbar" style="width: 78%" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td class="size-px whitespace-nowrap">
-                  <div class="px-6 py-3">
-                    <span class="text-sm text-muted-foreground-1">20 Dec, 09:27</span>
-                  </div>
-                </td>
-                <td class="size-px whitespace-nowrap">
-                  <div class="px-6 py-1.5">
-                    <a class="inline-flex items-center gap-x-1 text-sm text-primary decoration-2 hover:underline focus:outline-hidden focus:underline font-medium" href="#">
-                      Edit
-                    </a>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <td class="size-px whitespace-nowrap">
-                  <div class="ps-6 py-3">
-                    <label for="hs-at-with-checkboxes-9" class="flex">
-                      <input type="checkbox" class="shrink-0 size-4 bg-transparent border-line-3 rounded-sm shadow-2xs text-primary focus:ring-0 focus:ring-offset-0 checked:bg-primary-checked checked:border-primary-checked disabled:opacity-50 disabled:pointer-events-none" id="hs-at-with-checkboxes-9">
-                      <span class="sr-only">Checkbox</span>
-                    </label>
-                  </div>
-                </td>
-                <td class="size-px whitespace-nowrap">
-                  <div class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3">
-                    <div class="flex items-center gap-x-3">
-                      <span class="inline-flex items-center justify-center size-9.5 rounded-full bg-layer border border-layer-line">
-                        <span class="font-medium text-sm text-foreground">C</span>
-                      </span>
-                      <div class="grow">
-                        <span class="block text-sm font-semibold text-foreground">Camila Welters</span>
-                        <span class="block text-sm text-muted-foreground-1">cwelt@site.com</span>
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td class="h-px w-72 whitespace-nowrap">
-                  <div class="px-6 py-3">
-                    <span class="block text-sm font-semibold text-foreground">Designer</span>
-                    <span class="block text-sm text-muted-foreground-1">IT department</span>
-                  </div>
-                </td>
-                <td class="size-px whitespace-nowrap">
-                  <div class="px-6 py-3">
-                    <span class="py-1 px-1.5 inline-flex items-center gap-x-1 text-xs font-medium bg-teal-100 text-teal-800 rounded-full dark:bg-teal-500/10 dark:text-teal-500">
-                      <svg class="size-2.5" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-                      </svg>
-                      Active
-                    </span>
-                  </div>
-                </td>
-                <td class="size-px whitespace-nowrap">
-                  <div class="px-6 py-3">
-                    <div class="flex items-center gap-x-3">
-                      <span class="text-xs text-muted-foreground-1">5/5</span>
-                      <div class="flex w-full h-1.5 bg-surface-1 rounded-full overflow-hidden">
-                        <div class="flex flex-col justify-center overflow-hidden bg-secondary" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td class="size-px whitespace-nowrap">
-                  <div class="px-6 py-3">
-                    <span class="text-sm text-muted-foreground-1">18 Dec, 15:20</span>
-                  </div>
-                </td>
-                <td class="size-px whitespace-nowrap">
-                  <div class="px-6 py-1.5">
-                    <a class="inline-flex items-center gap-x-1 text-sm text-primary decoration-2 hover:underline focus:outline-hidden focus:underline font-medium" href="#">
-                      Edit
-                    </a>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <td class="size-px whitespace-nowrap">
-                  <div class="ps-6 py-3">
-                    <label for="hs-at-with-checkboxes-10" class="flex">
-                      <input type="checkbox" class="shrink-0 size-4 bg-transparent border-line-3 rounded-sm shadow-2xs text-primary focus:ring-0 focus:ring-offset-0 checked:bg-primary-checked checked:border-primary-checked disabled:opacity-50 disabled:pointer-events-none" id="hs-at-with-checkboxes-10">
-                      <span class="sr-only">Checkbox</span>
-                    </label>
-                  </div>
-                </td>
-                <td class="size-px whitespace-nowrap">
-                  <div class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3">
-                    <div class="flex items-center gap-x-3">
-                      <img class="inline-block size-9.5 rounded-full" src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=320&h=320&q=80" alt="Avatar">
-                      <div class="grow">
-                        <span class="block text-sm font-semibold text-foreground">Oliver Schevich</span>
-                        <span class="block text-sm text-muted-foreground-1">oliver@site.com</span>
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td class="h-px w-72 whitespace-nowrap">
-                  <div class="px-6 py-3">
-                    <span class="block text-sm font-semibold text-foreground">Seller</span>
-                    <span class="block text-sm text-muted-foreground-1">Branding products</span>
-                  </div>
-                </td>
-                <td class="size-px whitespace-nowrap">
-                  <div class="px-6 py-3">
-                    <span class="py-1 px-1.5 inline-flex items-center gap-x-1 text-xs font-medium bg-yellow-100 text-yellow-800 rounded-full dark:bg-yellow-500/10 dark:text-yellow-500">
-                      <svg class="size-2.5" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                        <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-                      </svg>
-                      Warning
-                    </span>
-                  </div>
-                </td>
-                <td class="size-px whitespace-nowrap">
-                  <div class="px-6 py-3">
-                    <div class="flex items-center gap-x-3">
-                      <span class="text-xs text-muted-foreground-1">3/5</span>
-                      <div class="flex w-full h-1.5 bg-surface-1 rounded-full overflow-hidden">
-                        <div class="flex flex-col justify-center overflow-hidden bg-secondary" role="progressbar" style="width: 78%" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td class="size-px whitespace-nowrap">
-                  <div class="px-6 py-3">
-                    <span class="text-sm text-muted-foreground-1">20 Dec, 09:27</span>
-                  </div>
-                </td>
-                <td class="size-px whitespace-nowrap">
-                  <div class="px-6 py-1.5">
-                    <a class="inline-flex items-center gap-x-1 text-sm text-primary decoration-2 hover:underline focus:outline-hidden focus:underline font-medium" href="#">
-                      Edit
-                    </a>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <td class="size-px whitespace-nowrap">
-                  <div class="ps-6 py-3">
-                    <label for="hs-at-with-checkboxes-11" class="flex">
-                      <input type="checkbox" class="shrink-0 size-4 bg-transparent border-line-3 rounded-sm shadow-2xs text-primary focus:ring-0 focus:ring-offset-0 checked:bg-primary-checked checked:border-primary-checked disabled:opacity-50 disabled:pointer-events-none" id="hs-at-with-checkboxes-11">
-                      <span class="sr-only">Checkbox</span>
-                    </label>
-                  </div>
-                </td>
-                <td class="size-px whitespace-nowrap">
-                  <div class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3">
-                    <div class="flex items-center gap-x-3">
-                      <span class="inline-flex items-center justify-center size-9.5 rounded-full bg-layer border border-layer-line">
-                        <span class="font-medium text-sm text-foreground">I</span>
-                      </span>
-                      <div class="grow">
-                        <span class="block text-sm font-semibold text-foreground">Inna Ivy</span>
-                        <span class="block text-sm text-muted-foreground-1">invy@site.com</span>
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td class="h-px w-72 whitespace-nowrap">
-                  <div class="px-6 py-3">
-                    <span class="block text-sm font-semibold text-foreground">Designer</span>
-                    <span class="block text-sm text-muted-foreground-1">IT department</span>
-                  </div>
-                </td>
-                <td class="size-px whitespace-nowrap">
-                  <div class="px-6 py-3">
-                    <span class="py-1 px-1.5 inline-flex items-center gap-x-1 text-xs font-medium bg-teal-100 text-teal-800 rounded-full dark:bg-teal-500/10 dark:text-teal-500">
-                      <svg class="size-2.5" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-                      </svg>
-                      Active
-                    </span>
-                  </div>
-                </td>
-                <td class="size-px whitespace-nowrap">
-                  <div class="px-6 py-3">
-                    <div class="flex items-center gap-x-3">
-                      <span class="text-xs text-muted-foreground-1">5/5</span>
-                      <div class="flex w-full h-1.5 bg-surface-1 rounded-full overflow-hidden">
-                        <div class="flex flex-col justify-center overflow-hidden bg-secondary" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td class="size-px whitespace-nowrap">
-                  <div class="px-6 py-3">
-                    <span class="text-sm text-muted-foreground-1">18 Dec, 15:20</span>
-                  </div>
-                </td>
-                <td class="size-px whitespace-nowrap">
-                  <div class="px-6 py-1.5">
-                    <a class="inline-flex items-center gap-x-1 text-sm text-primary decoration-2 hover:underline focus:outline-hidden focus:underline font-medium" href="#">
-                      Edit
-                    </a>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <td class="size-px whitespace-nowrap">
-                  <div class="ps-6 py-3">
-                    <label for="hs-at-with-checkboxes-12" class="flex">
-                      <input type="checkbox" class="shrink-0 size-4 bg-transparent border-line-3 rounded-sm shadow-2xs text-primary focus:ring-0 focus:ring-offset-0 checked:bg-primary-checked checked:border-primary-checked disabled:opacity-50 disabled:pointer-events-none" id="hs-at-with-checkboxes-12">
-                      <span class="sr-only">Checkbox</span>
-                    </label>
-                  </div>
-                </td>
-                <td class="size-px whitespace-nowrap">
-                  <div class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3">
-                    <div class="flex items-center gap-x-3">
-                      <img class="inline-block size-9.5 rounded-full" src="https://images.unsplash.com/photo-1670272505340-d906d8d77d03?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=320&h=320&q=80" alt="Avatar">
-                      <div class="grow">
-                        <span class="block text-sm font-semibold text-foreground">Jessica Williams</span>
-                        <span class="block text-sm text-muted-foreground-1">myhairisred@site.com</span>
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td class="h-px w-72 whitespace-nowrap">
-                  <div class="px-6 py-3">
-                    <span class="block text-sm font-semibold text-foreground">Executive director</span>
-                    <span class="block text-sm text-muted-foreground-1">Marketing</span>
-                  </div>
-                </td>
-                <td class="size-px whitespace-nowrap">
-                  <div class="px-6 py-3">
-                    <span class="py-1 px-1.5 inline-flex items-center gap-x-1 text-xs font-medium bg-teal-100 text-teal-800 rounded-full dark:bg-teal-500/10 dark:text-teal-500">
-                      <svg class="size-2.5" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-                      </svg>
-                      Active
-                    </span>
-                  </div>
-                </td>
-                <td class="size-px whitespace-nowrap">
-                  <div class="px-6 py-3">
-                    <div class="flex items-center gap-x-3">
-                      <span class="text-xs text-muted-foreground-1">0/5</span>
-                      <div class="flex w-full h-1.5 bg-surface-1 rounded-full overflow-hidden">
-                        <div class="flex flex-col justify-center overflow-hidden bg-secondary" role="progressbar" style="width: 1%" aria-valuenow="1" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td class="size-px whitespace-nowrap">
-                  <div class="px-6 py-3">
-                    <span class="text-sm text-muted-foreground-1">18 Dec, 15:20</span>
-                  </div>
-                </td>
-                <td class="size-px whitespace-nowrap">
-                  <div class="px-6 py-1.5">
-                    <a class="inline-flex items-center gap-x-1 text-sm text-primary decoration-2 hover:underline focus:outline-hidden focus:underline font-medium" href="#">
-                      Edit
-                    </a>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <!-- End Table -->
-
-          <!-- Footer -->
-          <div class="px-6 py-4 grid gap-3 md:flex md:justify-between md:items-center border-t border-layer-line">
-            <div>
-              <p class="text-sm text-muted-foreground-2">
-                <span class="font-semibold text-foreground">12</span> results
-              </p>
-            </div>
-
-            <div>
-              <div class="inline-flex gap-x-2">
-                <button type="button" class="py-1.5 px-2 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg bg-layer border border-layer-line text-layer-foreground shadow-2xs hover:bg-layer-hover disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden focus:bg-layer-focus">
-                  <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
-                  Prev
-                </button>
-
-                <button type="button" class="py-1.5 px-2 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg bg-layer border border-layer-line text-layer-foreground shadow-2xs hover:bg-layer-hover disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden focus:bg-layer-focus">
-                  Next
-                  <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-                </button>
-              </div>
-            </div>
-          </div>
-          <!-- End Footer -->
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- End Card -->
-</div>
-<!-- End Table Section -->
-
-<link rel="stylesheet" href="../assets/vendor/apexcharts/dist/apexcharts.css">
+<!-- Card -->
+<link rel="stylesheet" href="{{ asset('assets/vendor/apexcharts/dist/apexcharts.css') }}">
 <style type="text/css">
   .apexcharts-tooltip.apexcharts-theme-light {
     background-color: transparent !important;
@@ -989,11 +70,10 @@
     border-bottom-color: var(--color-primary-600) !important;
   }
 </style>
-
-<script src="../assets/vendor/lodash/lodash.min.js"></script>
-<script src="../assets/vendor/apexcharts/dist/apexcharts.min.js"></script>
-<script src="../assets/vendor/preline/dist/helper-shared.js"></script>
-<script src="../assets/vendor/preline/dist/helper-apexcharts.js"></script>
+<script src="{{ asset('assets/vendor/lodash/lodash.min.js') }}"></script>
+<script src="{{ asset('assets/vendor/apexcharts/dist/apexcharts.min.js') }}"></script>
+<script src="{{ asset('assets/vendor/preline/dist/helper-shared.js') }}"></script>
+<script src="{{ asset('assets/vendor/preline/dist/helper-apexcharts.js') }}"></script>
 
 <script>
   window.addEventListener("load", () => {
@@ -1193,29 +273,178 @@
     })();
   });
 </script>
-<!-- Card -->
 <div class="p-4 md:p-5 min-h-102.5 flex flex-col bg-card border border-card-line shadow-2xs rounded-xl">
   <!-- Header -->
   <div class="flex flex-wrap justify-between items-center gap-2">
     <div>
       <h2 class="text-sm text-muted-foreground-1">
-        Visitors
+        Income
       </h2>
       <p class="text-xl sm:text-2xl font-medium text-foreground">
-        80.3k
+        $126,238.49
       </p>
     </div>
 
     <div>
-      <span class="py-[5px] px-1.5 inline-flex items-center gap-x-1 text-xs font-medium rounded-md bg-red-100 text-red-800 dark:bg-red-500/10 dark:text-red-500">
+      <span class="py-[5px] px-1.5 inline-flex items-center gap-x-1 text-xs font-medium rounded-md bg-teal-100 text-teal-800 dark:bg-teal-500/10 dark:text-teal-500">
         <svg class="inline-block size-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
-        2%
+        25%
       </span>
     </div>
   </div>
   <!-- End Header -->
 
-  <div id="hs-single-area-chart"></div>
+  <div id="hs-multiple-bar-charts"></div>
 </div>
 <!-- End Card -->
+
+
+
+
+  <div class="max-w-[85rem] px-4 pb-10 sm:px-6 lg:px-8 mx-auto">
+    <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between mb-6">
+      <div>
+        <h2 class="text-xl font-semibold text-foreground">Admin analytics</h2>
+        <p class="mt-1 text-sm text-muted-foreground-2">Revenue and visitor trends for your tailoring shop.</p>
+      </div>
+    </div>
+
+    <div class="grid gap-4 lg:grid-cols-2">
+      <div class="bg-card border border-layer-line shadow-2xs rounded-xl p-5">
+        <div class="flex items-start justify-between gap-4 mb-4">
+          <div>
+            <p class="text-sm font-semibold text-foreground">Income trend</p>
+            <p class="mt-1 text-sm text-muted-foreground-2">Completed earnings across the selected period.</p>
+          </div>
+          <span class="rounded-full bg-surface px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">{{ ucfirst($range) }}</span>
+        </div>
+        <div id="admin-income-chart" wire:ignore class="min-h-[320px]"></div>
+      </div>
+
+      <div class="bg-card border border-layer-line shadow-2xs rounded-xl p-5">
+        <div class="flex items-start justify-between gap-4 mb-4">
+          <div>
+            <p class="text-sm font-semibold text-foreground">Visitor trend</p>
+            <p class="mt-1 text-sm text-muted-foreground-2">Unique visitors by {{ $range === 'daily' ? 'day' : ($range === 'weekly' ? 'week' : 'month') }}.</p>
+          </div>
+          <span class="rounded-full bg-surface px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">Unique</span>
+        </div>
+        <div id="admin-visitor-chart" wire:ignore class="min-h-[320px]"></div>
+      </div>
+    </div>
+
+    <div class="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+      <div class="bg-card border border-layer-line shadow-2xs rounded-xl p-5">
+        <p class="text-sm font-semibold text-foreground">Total revenue</p>
+        <p class="mt-4 text-3xl font-semibold text-primary">₱{{ number_format($totalRevenue, 2) }}</p>
+        <p class="mt-2 text-sm text-muted-foreground-1">Revenue from paid bookings.</p>
+      </div>
+      <div class="bg-card border border-layer-line shadow-2xs rounded-xl p-5">
+        <p class="text-sm font-semibold text-foreground">Completed orders</p>
+        <p class="mt-4 text-3xl font-semibold text-primary">{{ number_format($completedOrders) }}</p>
+        <p class="mt-2 text-sm text-muted-foreground-1">Approved and paid orders.</p>
+      </div>
+      <div class="bg-card border border-layer-line shadow-2xs rounded-xl p-5">
+        <p class="text-sm font-semibold text-foreground">Unique visitors</p>
+        <p class="mt-4 text-3xl font-semibold text-primary">{{ number_format($uniqueVisitors) }}</p>
+        <p class="mt-2 text-sm text-muted-foreground-1">Unique visitor sessions in this period.</p>
+      </div>
+      <div class="bg-card border border-layer-line shadow-2xs rounded-xl p-5">
+        <p class="text-sm font-semibold text-foreground">Average order</p>
+        <p class="mt-4 text-3xl font-semibold text-primary">₱{{ number_format($averageOrderValue, 2) }}</p>
+        <p class="mt-2 text-sm text-muted-foreground-1">Average value per completed order.</p>
+      </div>
+    </div>
+  </div>
+
+  <script id="admin-dashboard-data" type="application/json">
+    {!! json_encode([
+      'incomeLabels' => $incomeChartLabels,
+      'incomeData' => array_values($incomeChartData),
+      'visitorLabels' => $visitorChartLabels,
+      'visitorData' => array_values($visitorChartData),
+    ]) !!}
+  </script>
+
+<link rel="stylesheet" href="{{ asset('assets/vendor/apexcharts/dist/apexcharts.css') }}">
+<script src="{{ asset('assets/vendor/apexcharts/dist/apexcharts.min.js') }}"></script>
+
+  <script>
+    (function () {
+      const dataElement = document.getElementById('admin-dashboard-data');
+      const incomeChartEl = document.getElementById('admin-income-chart');
+      const visitorChartEl = document.getElementById('admin-visitor-chart');
+
+      let incomeChart = null;
+      let visitorChart = null;
+
+      function parseData() {
+        try {
+          return JSON.parse(dataElement?.textContent || '{}');
+        } catch {
+          return null;
+        }
+      }
+
+      function buildOptions(title, categories, series, color) {
+        return {
+          chart: { type: 'area', height: 320, toolbar: { show: false }, zoom: { enabled: false } },
+          series: [{ name: title, data: series }],
+          stroke: { curve: 'smooth', width: 3 },
+          fill: { type: 'gradient', gradient: { shade: 'light', opacityFrom: 0.55, opacityTo: 0.08, stops: [0, 80, 100] } },
+          grid: { borderColor: '#e5e7eb', strokeDashArray: 4 },
+          xaxis: { categories, labels: { style: { colors: '#6b7280', fontSize: '12px' } }, axisBorder: { show: false }, axisTicks: { show: false } },
+          yaxis: { labels: { style: { colors: '#6b7280', fontSize: '12px' }, formatter: (value) => (value >= 1000 ? `${value / 1000}k` : value) } },
+          tooltip: { theme: 'light', x: { show: true }, y: { formatter: (value) => `₱${value.toLocaleString()}` } },
+          colors: [color],
+          responsive: [{ breakpoint: 768, options: { chart: { height: 280 }, xaxis: { labels: { rotate: -45 } } } }],
+        };
+      }
+
+      function renderCharts() {
+        if (!incomeChartEl || !visitorChartEl || !dataElement) {
+          return;
+        }
+
+        const payload = parseData();
+        if (!payload) {
+          return;
+        }
+
+        if (incomeChart) {
+          incomeChart.updateOptions(buildOptions('Income', payload.incomeLabels, payload.incomeData, '#2563eb'));
+          incomeChart.updateSeries([{ name: 'Income', data: payload.incomeData }]);
+        } else {
+          incomeChart = new ApexCharts(incomeChartEl, buildOptions('Income', payload.incomeLabels, payload.incomeData, '#2563eb'));
+          incomeChart.render();
+        }
+
+        if (visitorChart) {
+          visitorChart.updateOptions(buildOptions('Visitors', payload.visitorLabels, payload.visitorData, '#14b8a6'));
+          visitorChart.updateSeries([{ name: 'Visitors', data: payload.visitorData }]);
+        } else {
+          visitorChart = new ApexCharts(visitorChartEl, buildOptions('Visitors', payload.visitorLabels, payload.visitorData, '#14b8a6'));
+          visitorChart.render();
+        }
+      }
+
+      function setupCharts() {
+        renderCharts();
+
+        if (window.Livewire) {
+          if (typeof Livewire.hook === 'function') {
+            Livewire.hook('message.processed', renderCharts);
+          } else if (typeof Livewire.on === 'function') {
+            Livewire.on('message.processed', renderCharts);
+          }
+        }
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupCharts);
+      } else {
+        setupCharts();
+      }
+    })();
+  </script>
 </div>

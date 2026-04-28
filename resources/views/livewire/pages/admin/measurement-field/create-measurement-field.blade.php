@@ -1,5 +1,10 @@
 <div>
-    <!-- Comment Form -->
+  @if(session()->has('success'))
+    <div class="alert alert-success">
+      {{ session()->get('success') }}
+    </div>
+  @endif
+  <!-- Comment Form -->
 <div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
   <div class="mx-auto max-w-2xl">
     <div class="text-center">
@@ -10,15 +15,15 @@
 
     <!-- Card -->
     <div class="mt-5 p-4 relative z-10 bg-card border border-card-line rounded-xl sm:mt-10 md:p-10">
-      <form>
+      <form wire:submit.prevent="save">
         <div class="mb-4 sm:mb-8">
-          <label for="hs-feedback-post-comment-name-1" class="block mb-2 text-sm font-medium text-foreground">Field name</label>
-          <input type="text" id="hs-feedback-post-comment-name-1" class="py-2.5 sm:py-3 px-4 block w-full bg-layer border-layer-line rounded-lg sm:text-sm text-foreground placeholder:text-muted-foreground-1 focus:border-primary-focus focus:ring-primary-focus disabled:opacity-50 disabled:pointer-events-none" placeholder="Field name">
+          <label  for="hs-feedback-post-comment-name-1" class="block mb-2 text-sm font-medium text-foreground">Field name</label>
+          <input wire:model="field_name" type="text" id="hs-feedback-post-comment-name-1" class="py-2.5 sm:py-3 px-4 block w-full bg-layer border-layer-line rounded-lg sm:text-sm text-foreground placeholder:text-muted-foreground-1 focus:border-primary-focus focus:ring-primary-focus disabled:opacity-50 disabled:pointer-events-none" placeholder="Field name">
         </div>
 
         <div class="mb-4 sm:mb-8">
-          <label for="hs-feedback-post-comment-email-1" class="block mb-2 text-sm font-medium text-foreground">Unit</label>
-          <input type="text" id="hs-feedback-post-comment-email-1" class="py-2.5 sm:py-3 px-4 block w-full bg-layer border-layer-line rounded-lg sm:text-sm text-foreground placeholder:text-muted-foreground-1 focus:border-primary-focus focus:ring-primary-focus disabled:opacity-50 disabled:pointer-events-none" placeholder="Unit">
+          <label  for="hs-feedback-post-comment-email-1" class="block mb-2 text-sm font-medium text-foreground">Unit</label>
+          <input wire:model="unit"type="text" id="hs-feedback-post-comment-email-1" class="py-2.5 sm:py-3 px-4 block w-full bg-layer border-layer-line rounded-lg sm:text-sm text-foreground placeholder:text-muted-foreground-1 focus:border-primary-focus focus:ring-primary-focus disabled:opacity-50 disabled:pointer-events-none" placeholder="Unit">
         </div>
 
         <div class="mt-6 grid">

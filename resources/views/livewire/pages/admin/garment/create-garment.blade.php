@@ -18,27 +18,34 @@
               <div>
                 <label for="hs-name-hire-us-2" class="block mb-2 text-sm text-foreground font-medium">Garment
                   Name</label>
-                <input type="text" name="hs-name-hire-us-2" id="hs-name-hire-us-2"
+                <input wire:model="name" type="text" name="hs-name-hire-us-2" id="hs-name-hire-us-2"
                   class="py-2.5 sm:py-3 px-4 block w-full bg-layer border-layer-line rounded-lg sm:text-sm text-foreground placeholder:text-muted-foreground-1 focus:border-primary-focus focus:ring-primary-focus disabled:opacity-50 disabled:pointer-events-none"
                   placeholder="Name">
               </div>
 
               <div>
                 <label for="hs-image-hire-us-2" class="block mb-2 text-sm text-foreground font-medium">Image</label>
-                <input type="File" name="hs-image-hire-us-2" id="hs-image-hire-us-2"
+                <input wire:model="image" type="File" name="hs-image-hire-us-2" id="hs-image-hire-us-2"
                   class="py-2.5 sm:py-3 px-4 block w-full bg-layer border-layer-line rounded-lg sm:text-sm text-foreground placeholder:text-muted-foreground-1 focus:border-primary-focus focus:ring-primary-focus disabled:opacity-50 disabled:pointer-events-none">
+                  @if ($image)
+                  <div class="mt-4">
+                    <p class="mb-2 text-sm font-medium text-foreground">Image preview</p>
+                    <img src="{{ $image->temporaryUrl() }}" alt="Fabric preview" class="object-cover rounded-lg w-20 h-20" />
+                  </div>
+                @endif
               </div>
+              
             </div>
             <!-- End Grid -->
 
             <div>
               <label for="hs-category-hire-us-2" class="block mb-2 text-sm text-foreground font-medium">Category</label>
-              <select type="text" name="hs-category-hire-us-2" id="hs-category-hire-us-2"
+              <select wire:model="category_id" type="text" name="hs-category-hire-us-2" id="hs-category-hire-us-2"
                 class="py-2.5 sm:py-3 px-4 block w-full bg-layer border-layer-line rounded-lg sm:text-sm text-foreground placeholder:text-muted-foreground-1 focus:border-primary-focus focus:ring-primary-focus disabled:opacity-50 disabled:pointer-events-none">
-                <option>Select-Category</option>
-                <option>blazer</option>
-                <option>T-shirt</option>
-                <option>Pants</option>
+                <option value="">Select Category</option>
+                <option value="1">Blazer</option>
+                <option value="2">T-shirt</option>
+                <option value="3">Pants</option>
               </select>
             </div>
 
@@ -47,12 +54,12 @@
               <div>
                 <label for="hs-measurement_template-hire-us-2"
                   class="block mb-2 text-sm text-foreground font-medium">Measurement-Template</label>
-                <select type="text" name="hs-measurement_template-hire-us-2" id="hs-measurement_template-hire-us-2"
+                <select wire:model="measurement_field_id" type="text" name="hs-measurement_template-hire-us-2" id="hs-measurement_template-hire-us-2"
                   class="py-2.5 sm:py-3 px-4 block w-full bg-layer border-layer-line rounded-lg sm:text-sm text-foreground placeholder:text-muted-foreground-1 focus:border-primary-focus focus:ring-primary-focus disabled:opacity-50 disabled:pointer-events-none">
-                  <option>Select-Measurement-Template</option>
-                  <option>blazer</option>
-                  <option>T-shirt</option>
-                  <option>Pants</option>
+                  <option value="">Select Measurement Template</option>
+                  <option value="1">Blazer</option>
+                  <option value="2">T-shirt</option>
+                  <option value="3">Pants</option>
                 </select>
               </div>
 
@@ -60,7 +67,7 @@
                 <label for="hs-input-with-leading-and-trailing-icon"
                   class="block mb-2 text-sm text-foreground font-medium">Price</label>
                 <div class="relative">
-                  <input type="text" id="hs-input-with-leading-and-trailing-icon"
+                  <input wire:model="base_price" type="text" id="hs-input-with-leading-and-trailing-icon"
                     name="hs-input-with-leading-and-trailing-icon"
                     class="py-2.5 sm:py-3 px-4 ps-9 pe-16 block w-full bg-layer border-layer-line rounded-lg sm:text-sm text-foreground placeholder:text-muted-foreground-1 focus:z-10 focus:border-primary-focus focus:ring-primary-focus disabled:opacity-50 disabled:pointer-events-none"
                     placeholder="0.00">
@@ -84,7 +91,7 @@
                   class="block mb-2 text-sm text-foreground font-medium">Fabric</label>
                 <div class="max-w-sm w-full space-y-3">
                   <div class="flex items-center">
-                    <input type="checkbox"
+                    <input wire:model="fabric" type="checkbox"
                       class="shrink-0 size-4 bg-transparent border-line-3 rounded-sm shadow-2xs text-primary focus:ring-0 focus:ring-offset-0 checked:bg-primary-checked checked:border-primary-checked disabled:opacity-50 disabled:pointer-events-none"
                       id="hs-default-checkbox">
                     <label for="hs-default-checkbox" class="text-sm ms-3 text-muted-foreground-">Cotton</label>
@@ -98,7 +105,7 @@
                 <div>
                 <div class="max-w-sm w-full space-y-3">
                   <div class="flex items-center">
-                    <input type="checkbox"
+                    <input wire:model="color" type="checkbox"
                       class="shrink-0 size-4 bg-transparent border-line-3 rounded-sm shadow-2xs text-primary focus:ring-0 focus:ring-offset-0 checked:bg-primary-checked checked:border-primary-checked disabled:opacity-50 disabled:pointer-events-none"
                       id="hs-default-checkbox">
                     <label for="hs-default-checkbox" class="text-sm ms-3 text-muted-foreground-">White</label>
