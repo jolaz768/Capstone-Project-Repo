@@ -10,7 +10,6 @@ class Garment extends Model
     protected $fillable  =[
         'shop_id',
         'category_id',
-        'tenant_id',
         'name',
         'description',
         'slug',

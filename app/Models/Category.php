@@ -11,7 +11,7 @@ class Category extends Model
         'cat_name',
         'cat_slug',
         'cat_desc',
-        'tenant_id',
+        'shop_id',
     ];
 
     public function garments()

@@ -23,6 +23,9 @@ use App\Livewire\Pages\Admin\Service\EditService;
 use App\Livewire\Pages\Admin\Service\ViewService;
 use App\Livewire\Pages\Admin\Shop\CreateShop;
 use App\Livewire\Pages\Admin\Shop\EditShop;
+use App\Livewire\Pages\Admin\Shop\ShopCategory\CreateCategory;
+use App\Livewire\Pages\Admin\Shop\ShopCategory\EditCategory;
+use App\Livewire\Pages\Admin\Shop\ShopCategory\ViewCategory;
 use App\Livewire\Pages\Admin\Shop\ViewShop;
 use App\Livewire\Pages\Auth\Login;
 use App\Livewire\Pages\Auth\Register;
@@ -152,6 +155,11 @@ Route::prefix('/admin') //shop owner
     Route::get('/shop/view',ViewShop::class)->name('admin.shop.view');
     Route::get('/shop/create',CreateShop::class)->name('admin.shop.create');
     Route::get('/shop/edit/{shop}',EditShop::class)->name('admin.shop.edit');
+
+    //Shop Category
+    Route::get('/shop/category',CreateCategory::class)->name('admin.shop.category.create');
+    Route::get('/shop/category/edit/{category}',EditCategory::class)->name('admin.shop.category.edit');
+    Route::get('/shop/category/view',ViewCategory::class)->name('admin.shop.category.view');
 
     // MeasurementTemplate
     Route::get('/measurementtemplate/view',ViewMeasurementTemplate::class)->name('admin.measurementtemplate.view');
