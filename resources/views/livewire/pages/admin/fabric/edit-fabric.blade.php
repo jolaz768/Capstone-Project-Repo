@@ -40,6 +40,18 @@
           @endif
         </div>
 
+        <div class="grid grid-cols-2 gap-x-4 gap-y-2 mb-6">
+          @foreach ($this->colors() as $color)
+            <label class="flex items-center gap-x-2 cursor-pointer">
+              <input type="checkbox" wire:model="color_id" value="{{ $color->id }}" class="shrink-0 rounded border-gray-300 text-primary focus:ring-primary">
+              <span class="text-sm text-foreground">{{ $color->color_name }}</span>
+            </label>
+          @endforeach
+          @error('color_id')
+            <span class="text-sm text-red-500">{{ $message }}</span>
+          @enderror
+        </div>
+
         <div>
           <label for="hs-feedback-create-fabric-textarea-1" class="block mb-2 text-sm font-medium text-foreground">Description</label>
           <div class="mt-1">

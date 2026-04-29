@@ -11,7 +11,6 @@ class Booking extends Model
         'shop_id',
         'status',
         'booking_date',
-        'booking_type',
         'total_price',
     ];
     

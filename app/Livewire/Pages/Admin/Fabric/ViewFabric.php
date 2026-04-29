@@ -22,8 +22,20 @@ class ViewFabric extends Component
     {
         return Fabric::query()
             ->select('id', 'name', 'description', 'image', 'created_at')
+            ->with('colors')
             ->get();
     }
+        public function getColorDisplay($fabric)
+{
+    $names = $fabric->colors->pluck('color_name');
+    $total = $names->count();
+    $display = $names->take(5)->implode(', ');
+    return (object) [
+        'html' => $display . ($total > 5 ? ' ... (' . $total . ')' : ($total ? ' (' . $total . ')' : '')),
+        'full' => $names->implode(', ')
+    ];
+}
+
     public function delete($id)
     {
         $fabric = Fabric::findOrFail($id);

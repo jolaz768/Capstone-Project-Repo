@@ -1,0 +1,56 @@
+<div>
+      @if(session()->has('message'))
+    <div class="alert alert-success text-green-500 text-center bg-green-100 border border-green-400 rounded-lg p-4 mb-4" role="alert">
+      {{ session()->get('message') }}
+    </div>
+  @endif
+    <!-- Comment Form -->
+<div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+  <div class="mx-auto max-w-2xl">
+    <div class="text-center">
+      <h2 class="text-xl text-foreground font-bold sm:text-3xl">
+        Create Fabric Color
+      </h2>
+    </div>
+
+    <!-- Card -->
+    <div class="mt-5 p-4 relative z-10 bg-card border border-card-line rounded-xl sm:mt-10 md:p-10">
+      <form wire:submit.prevent="save">
+        <div class="mb-4 sm:mb-8">
+          <label for="hs-feedback-post-comment-name-1" class="block mb-2 text-sm font-medium text-foreground">Fabric</label>
+          <select wire:model="fabric_id" type="text" id="hs-feedback-post-comment-name-1" class="py-2.5 sm:py-3 px-4 block w-full bg-layer border-layer-line rounded-lg sm:text-sm text-foreground placeholder:text-muted-foreground-1 focus:border-primary-focus focus:ring-primary-focus disabled:opacity-50 disabled:pointer-events-none" >
+            <option value="">Select Fabric</option>
+            @foreach ($this->fabrics() as $fabric)
+              <option value="{{ $fabric->id }}">{{ $fabric->name }}</option>
+            @endforeach
+          </select>
+          
+            @error('fabric_id')
+                <span class="text-sm text-red-500">{{ $message }}</span>
+            @enderror
+        </div>
+        
+        <div class="grid grid-cols-2 gap-x-4 gap-y-2">
+            @foreach ($this->colors() as $color)
+                <label class="flex items-center gap-x-2 cursor-pointer">
+                    <input type="checkbox" wire:model="color_id" value="{{ $color->id }}"
+                        class="shrink-0 rounded border-gray-300 text-primary focus:ring-primary">
+                    <span class="text-sm text-foreground">{{ $color->color_name }}</span>
+                </label>
+            @endforeach
+            @error('color_id')
+                <span class="text-sm text-red-500">{{ $message }}</span>
+            @enderror
+        </div>
+
+
+        <div class="mt-6 grid">
+          <button type="submit" class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg bg-primary border border-primary-line text-primary-foreground hover:bg-primary-hover focus:outline-hidden focus:bg-primary-focus disabled:opacity-50 disabled:pointer-events-none">Submit</button>
+        </div>
+      </form>
+    </div>
+    <!-- End Card -->
+  </div>
+</div>
+<!-- End Comment Form -->
+</div>

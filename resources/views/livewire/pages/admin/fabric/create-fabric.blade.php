@@ -1,4 +1,10 @@
 <div>
+  @if (session()->has('message'))
+    <div class="alert alert-success">
+      <span class="text-green-500 border-green-200 bg-green-100">{{ session('message') }}</span>
+    </div>
+
+  @endif
   {{-- Care about people's approval and you will be their prisoner. --}}
   <!-Description Form -->
     <div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
@@ -18,9 +24,9 @@
               <input wire:model="name" type="text" id="hs-feedback-create-fabric-name-1"
                 class="py-2.5 sm:py-3 px-4 block w-name bg-layer border-layer-line rounded-lg sm:text-sm text-foreground placeholder:text-muted-foreground-1 focus:border-primary-focus focus:ring-primary-focus disabled:opacity-50 disabled:pointer-events-none"
                 placeholder="Fabric Name">
-                @error('name')
-                  <p class="mt-2 text-sm text-red-500">{{ $message }}</p>
-                @enderror
+              @error('name')
+                <p class="mt-2 text-sm text-red-500">{{ $message }}</p>
+              @enderror
             </div>
 
             <div class="mb-4 sm:mb-8">
@@ -29,16 +35,30 @@
               <input wire:model="image" type="file" id="hs-feedback-create-fabric-image-1"
                 class="py-2.5 sm:py-3 px-4 block w-name bg-layer border-layer-line rounded-lg sm:text-sm text-foreground placeholder:text-muted-foreground-1 focus:border-primary-focus focus:ring-primary-focus disabled:opacity-50 disabled:pointer-events-none"
                 placeholder="image">
-                @error('image')
-                  <p class="mt-2 text-sm text-red-500">{{ $message }}</p>
-                @enderror
+              @error('image')
+                <p class="mt-2 text-sm text-red-500">{{ $message }}</p>
+              @enderror
 
-                @if ($image)
-                  <div class="mt-4">
-                    <p class="mb-2 text-sm font-medium text-foreground">Image preview</p>
-                    <img src="{{ $image->temporaryUrl() }}" alt="Fabric preview" class="object-cover rounded-lg w-40 h-40" />
-                  </div>
-                @endif
+              @if ($image)
+                <div class="mt-4">
+                  <p class="mb-2 text-sm font-medium text-foreground">Image preview</p>
+                  <img src="{{ $image->temporaryUrl() }}" alt="Fabric preview"
+                    class="object-cover rounded-lg w-40 h-40" />
+                </div>
+              @endif
+            </div>
+
+            <div class="grid grid-cols-2 gap-x-4 gap-y-2">
+              @foreach ($this->colors() as $color)
+                <label class="flex items-center gap-x-2 cursor-pointer">
+                  <input type="checkbox" wire:model="color_id" value="{{ $color->id }}"
+                    class="shrink-0 rounded border-gray-300 text-primary focus:ring-primary">
+                  <span class="text-sm text-foreground">{{ $color->color_name }}</span>
+                </label>
+              @endforeach
+              @error('color_id')
+                <span class="text-sm text-red-500">{{ $message }}</span>
+              @enderror
             </div>
 
 
@@ -52,8 +72,8 @@
                   placeholder="Description here..."></textarea>
               </div>
               @error('description')
-                  <p class="mt-2 text-sm text-red-500">{{ $message }}</p>
-                @enderror
+                <p class="mt-2 text-sm text-red-500">{{ $message }}</p>
+              @enderror
             </div>
 
             <div class="mt-6 grid">

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('tenant_id')->nullable()->constrained('users')->cascadeOnDelete();
+            $table->foreignId('shop_id')->nullable()->constrained('shops')->cascadeOnDelete();
             $table->string('cat_name');
             $table->string('cat_slug');
             $table->text('cat_desc')->nullable();

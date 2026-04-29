@@ -148,6 +148,7 @@ lg:block lg:-translate-x-full lg:end-auto lg:bottom-0" role="dialog" tabindex="-
               View Color
             </a>
           </li>
+
           
         </ul>
         <!-- End List -->

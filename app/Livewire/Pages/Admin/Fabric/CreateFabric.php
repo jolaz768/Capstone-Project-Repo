@@ -2,8 +2,10 @@
 
 namespace App\Livewire\Pages\Admin\Fabric;
 
+use App\Models\Color;
 use App\Models\Fabric;
 use Illuminate\Support\Str;
+use Livewire\Attributes\Computed;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -16,6 +18,16 @@ class CreateFabric extends Component
     public $name ;
     public $description ;
     public $image;
+    public array $color_id = [];
+
+    #[Computed()]
+public function colors()
+{
+    return Color::query()
+        ->select('id', 'color_name',)
+        ->get();
+}
+
 
     public function rules()
     {
@@ -23,6 +35,8 @@ class CreateFabric extends Component
             'name' => 'required|string|max:255',
             'description' => 'required|string|max:255|min:10',
             'image' => 'required|image|max:2048', // Max 2MB
+            'color_id' => 'required|array|min:1',
+            'color_id.*' => 'exists:colors,id',
         ];
     }
     public function messages()
@@ -40,6 +54,9 @@ class CreateFabric extends Component
             'image.required' => 'Image is required',
             'image.image' => 'The file must be an image',
             'image.max' => 'The image must not exceed 2MB in size',
+            'color_id.required' => 'Select at least one color for this fabric.',
+            'color_id.array' => 'Color selection must be valid.',
+            'color_id.*.exists' => 'One of the selected colors is invalid.',
         ];
     }
 
@@ -53,11 +70,13 @@ class CreateFabric extends Component
         $description = Str::of($this->description)->trim();
         $imagePath = $this->image ? $this->image->store('fabrics', 'public') : null;
 
-        Fabric::create([
+        $fabric = Fabric::create([
             'name' => $name,
             'image' => $imagePath,
             'description' => $description,
         ]);
+
+        $fabric->colors()->sync($this->color_id);
 
         session()->flash('message', 'Fabric created successfully.');
         return redirect()->route('admin.fabric.view');

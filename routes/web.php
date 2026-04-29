@@ -7,6 +7,9 @@ use App\Livewire\Pages\Admin\Fabric\Color\EditColor;
 use App\Livewire\Pages\Admin\Fabric\Color\ViewColor;
 use App\Livewire\Pages\Admin\Fabric\CreateFabric;
 use App\Livewire\Pages\Admin\Fabric\EditFabric;
+use App\Livewire\Pages\Admin\Fabric\FabricColor\CreateFabricColor;
+use App\Livewire\Pages\Admin\Fabric\FabricColor\EditFabricColor;
+use App\Livewire\Pages\Admin\Fabric\FabricColor\ViewFabricColor;
 use App\Livewire\Pages\Admin\Fabric\ViewFabric;
 use App\Livewire\Pages\Admin\Garment\CreateGarment;
 use App\Livewire\Pages\Admin\Garment\EditGarment;
@@ -143,6 +146,10 @@ Route::prefix('/admin') //shop owner
     Route::get('/color/view',ViewColor::class)->name('admin.color.view');
     Route::get('/color/create',CreateColor::class)->name('admin.color.create');
     Route::get('/color/edit/{color}',EditColor::class)->name('admin.color.edit');
+
+    Route::get('/fabric/color/create',CreateFabricColor::class)->name('admin.fabric.color.create');
+    Route::get('/fabric/color/edit/{fabric_id}',EditFabricColor::class)->name('admin.fabric.color.edit');
+    Route::get('/fabric/color/view',ViewFabricColor::class)->name('admin.fabric.color.view');
 
     
 

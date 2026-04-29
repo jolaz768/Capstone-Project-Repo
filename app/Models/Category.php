@@ -18,4 +18,8 @@ class Category extends Model
     {
         return $this->hasMany(Garment::class);
     }
+    public function shop()
+    {
+        return $this->belongsTo(Shop::class);
+    }
 }

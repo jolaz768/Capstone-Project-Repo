@@ -9,11 +9,13 @@ class Services extends Model
     //
     protected $fillable = [
       'name',
+      'shop_id',
       'slug',
       'description',  
     ];
-    public function  shopServices()
+    public function shop()
     {
-        return $this->hasMany(ShopService::class);
+        return $this->belongsTo(Shop::class);
     }
+
 }

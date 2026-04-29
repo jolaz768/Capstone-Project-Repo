@@ -9,7 +9,6 @@ class Shop extends Model
     //
     protected  $fillable = [
         'user_id',
-        'tenant_id',
         'name',
         'description',
         'slug',
@@ -31,9 +30,9 @@ class Shop extends Model
         return $this->hasMany(Review::class);
     }
 
-    public function shopServices()
+    public function Services()
     {
-        return $this->hasMany(ShopService::class);
+        return $this->hasMany(Services::class);
     }
 
     public  function Bookings()
@@ -49,5 +48,18 @@ class Shop extends Model
     public function shopSettings()
     {
         return $this->hasOne(ShopSetting::class);
+    }
+    public function categories()
+    {
+        return $this->hasMany(Category::class);
+    }
+
+    public function categoriesShop()
+    {
+        return $this->hasMany(CategoryShop::class);
+    }
+    public function userShops()
+    {
+        return $this->hasMany(UserShop::class);
     }
 }
