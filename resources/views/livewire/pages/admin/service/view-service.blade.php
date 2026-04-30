@@ -73,7 +73,8 @@
             </thead>
 
             <tbody class="divide-y divide-table-line">
-              <tr>
+             @forelse ($this->services as $Service )
+              <tr wire:key="{{ $Service->id }}">
                 <td class="size-px whitespace-nowrap">
                   <div class="ps-6 py-3">
                     {{-- <label for="hs-at-with-checkboxes-1" class="flex">
@@ -87,7 +88,7 @@
                     <div class="flex items-center gap-x-3">
                    
                       <div class="grow">
-                        <span class="block text-sm font-semibold text-foreground">Sewing</span>
+                        <span class="block text-sm font-semibold text-foreground">{{ $Service->name }}</span>
                         
                       </div>
                     </div>
@@ -95,18 +96,18 @@
                 </td>
                 <td class="h-px w-72 whitespace-nowrap">
                   <div class="px-6 py-3">
-                    <span class="block text-sm font-semibold text-foreground">Lorem ipsum dolor sit amet.</span>
+                  <span class="block text-sm font-semibold text-foreground">{{ $Service->description }}</span>
                   </div>
                 </td>
                 
                 <td class="size-px whitespace-nowrap">
                   <div class="px-6 py-3">
-                    <span class="text-sm text-muted-foreground-1">28 Dec, 12:12</span>
+                    <span class="text-sm text-muted-foreground-1">{{ $Service->created_at ->format('d M Y')}}</span>
                   </div>
                 </td>
                 <td class="size-px whitespace-nowrap">
                   <div class="px-6 py-1.5">
-                    <a class="inline-flex items-center gap-x-1 text-sm text-primary decoration-2 hover:underline focus:outline-hidden focus:underline font-medium" href="#">
+                    <a class="inline-flex items-center gap-x-1 text-sm text-primary decoration-2 hover:underline focus:outline-hidden focus:underline font-medium" href="{{ route('admin.service.edit',$Service->id) }}">
                       Edit
                     </a>
                   </div>
@@ -120,55 +121,12 @@
                   </div>
                 </td>
               </tr>
+               
+             @empty
+             <span class="text-sm text-gray-500 dark:text-neutral-400">No services found.</span>
+               
+             @endforelse
 
-              <tr>
-                <td class="size-px whitespace-nowrap">
-                  <div class="ps-6 py-3">
-                    {{-- <label for="hs-at-with-checkboxes-2" class="flex">
-                      <input type="checkbox" class="shrink-0 size-4 bg-transparent border-line-3 rounded-sm shadow-2xs text-primary focus:ring-0 focus:ring-offset-0 checked:bg-primary-checked checked:border-primary-checked disabled:opacity-50 disabled:pointer-events-none" id="hs-at-with-checkboxes-2">
-                      <span class="sr-only">Checkbox</span>
-                    </label> --}}
-                  </div>
-                </td>
-                <td class="size-px whitespace-nowrap">
-                  <div class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3">
-                    <div class="flex items-center gap-x-3">
-                      
-                      <div class="grow">
-                        <span class="block text-sm font-semibold text-foreground">rental</span>
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td class="h-px w-72 whitespace-nowrap">
-                  <div class="px-6 py-3">
-                    <span class="block text-sm font-semibold text-foreground">Lorem ipsum dolor sit amet.</span>
-                  </div>
-                </td>
-                
-                <td class="size-px whitespace-nowrap">
-                  <div class="px-6 py-3">
-                    <span class="text-sm text-muted-foreground-1">20 Dec, 09:27</span>
-                  </div>
-                </td>
-
-                <td class="size-px whitespace-nowrap">
-                  <div class="px-6 py-1.5">
-                    <a class="inline-flex items-center gap-x-1 text-sm text-primary decoration-2 hover:underline focus:outline-hidden focus:underline font-medium" href="#">
-                      Edit
-                    </a>
-                  </div>
-                </td>
-
-                <td class="size-px whitespace-nowrap">
-                  <div class="px-6 py-1.5">
-                    <a class="inline-flex items-center gap-x-1 text-sm text-red-500 decoration-2 hover:underline focus:outline-hidden focus:underline font-medium" href="#">
-                      Delete
-                    </a>
-                  </div>
-                </td>
-                
-              </tr>
 
 
             </tbody>

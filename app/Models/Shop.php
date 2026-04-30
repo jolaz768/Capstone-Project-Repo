@@ -32,7 +32,7 @@ class Shop extends Model
 
     public function Services()
     {
-        return $this->hasMany(Services::class);
+        return $this->hasMany(Service::class);
     }
 
     public  function Bookings()

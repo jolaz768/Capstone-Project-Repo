@@ -13,6 +13,7 @@ class ViewCategory extends Component
     public $cat_name;
     public $cat_slug;
     public $cat_desc;
+    
 
     
     #[Computed()]
@@ -23,6 +24,7 @@ class ViewCategory extends Component
         ->select('id', 'cat_name', 'cat_slug', 'cat_desc', 'created_at')
         ->get();
     }
+
 
 
     public function delete($id)

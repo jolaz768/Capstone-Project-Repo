@@ -4,10 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Services extends Model
+class Service extends Model
 {
     //
-    protected $fillable = [
+     protected $fillable = [
       'name',
       'shop_id',
       'slug',
@@ -17,5 +17,4 @@ class Services extends Model
     {
         return $this->belongsTo(Shop::class);
     }
-
 }

@@ -14,6 +14,15 @@ class EditCategory extends Component
     public $cat_name='';
     public $cat_slug='';
     public $cat_desc='';
+    public$category;
+
+    public function mount($id)
+    {
+        $this->category = CategoryShop::findOrFail($id);
+        $this->cat_name = $this->category->cat_name;
+        $this->cat_slug = $this->category->cat_slug;
+        $this->cat_desc = $this->category->cat_desc;
+    }
 
        public function updatedCatName($value): void
     {
@@ -23,8 +32,8 @@ class EditCategory extends Component
     public function rules()
     {
         return [
-            'cat_name' => 'unique:category_shops,cat_name|required|min:3|max:50'.$this->categoryShop->id,
-            'cat_slug' => 'required|unique:category_shops,cat_slug'.$this->categoryShop->id,
+            'cat_name' => 'required|min:3|max:50',
+            'cat_slug' => 'required|unique:category_shops,cat_slug',
             'cat_desc' => 'required|min:10|max:255',
         ];
     }
@@ -36,6 +45,7 @@ class EditCategory extends Component
             'cat_name.unique' => 'Category name must be unique.',
             'cat_name.min' => 'Category name must be at least 3 characters.',
             'cat_name.max' => 'Category name must not exceed 50 characters.',
+
 
             'cat_slug.required' => 'Category slug is required.',
             'cat_slug.unique' => 'Category slug must be unique.',
@@ -53,8 +63,8 @@ class EditCategory extends Component
         $this->cat_slug = Str::slug($this->cat_name);
         $this->cat_desc = ucfirst(trim(strip_tags($this->cat_desc)));
 
-        $this->categoryShop->update([
-            'shop_id' => auth()->user()->shop->id,
+        CategoryShop::where('id', $this->category->id)->update([
+            // 'shop_id' => auth()->user()->shop->id,
             'cat_name' => $this->cat_name,
             'cat_slug' => $this->cat_slug,
             'cat_desc' => $this->cat_desc,

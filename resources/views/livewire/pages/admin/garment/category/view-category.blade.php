@@ -126,7 +126,7 @@
                 </td>
                 <td class="size-px whitespace-nowrap">
                   <div class="px-6 py-1.5">
-                    <a class="inline-flex items-center gap-x-1 text-sm text-primary decoration-2 hover:underline focus:outline-hidden focus:underline font-medium" href="#">
+                    <a class="inline-flex items-center gap-x-1 text-sm text-primary decoration-2 hover:underline focus:outline-hidden focus:underline font-medium" href="{{ route('admin.garment.category.edit',$category->id) }}">
                       Edit
                     </a>
                     <button wire:click="delete({{ $category->id }})" class="inline-flex items-center gap-x-1 text-sm text-red-500 decoration-2 hover:underline focus:outline-hidden focus:underline font-medium mx-5" href="#">

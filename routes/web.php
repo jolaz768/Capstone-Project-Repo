@@ -158,7 +158,7 @@ Route::prefix('/admin') //shop owner
     Route::get('/garment/create',CreateGarment::class)->name('admin.garment.create');
     Route::get('/garment/edit/{garment}',EditGarment::class)->name('admin.garment.edit');
     Route::get('/garment/category/create',App\Livewire\Pages\Admin\Garment\Category\CreateCategory::class)->name('admin.garment.category.create');
-    Route::get('/garment/category/edit/{category}',App\Livewire\Pages\Admin\Garment\Category\EditCategory::class)->name('admin.garment.category.edit');
+    Route::get('/garment/category/edit/{id}',App\Livewire\Pages\Admin\Garment\Category\EditCategory::class)->name('admin.garment.category.edit');
     Route::get('/garment/category/view',App\Livewire\Pages\Admin\Garment\Category\ViewCategory::class)->name('admin.garment.category.view');
     
 
@@ -169,7 +169,7 @@ Route::prefix('/admin') //shop owner
 
     //Shop Category
     Route::get('/shop/category',CreateCategory::class)->name('admin.shop.category.create');
-    Route::get('/shop/category/edit/{category}',EditCategory::class)->name('admin.shop.category.edit');
+    Route::get('/shop/category/edit/{id}',EditCategory::class)->name('admin.shop.category.edit');
     Route::get('/shop/category/view',ViewCategory::class)->name('admin.shop.category.view');
 
     // MeasurementTemplate
@@ -188,7 +188,7 @@ Route::prefix('/admin') //shop owner
     //service
     Route::get('/service/view',ViewService::class)->name('admin.service.view');
     Route::get('/service/create',CreateService::class)->name('admin.service.create');
-    Route::get('/service/edit',EditService::class)->name('admin.service.edit');
+    Route::get('/service/{id}/edit',EditService::class)->name('admin.service.edit');
 
 
 });
