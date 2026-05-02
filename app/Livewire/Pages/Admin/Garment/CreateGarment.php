@@ -2,8 +2,10 @@
 
 namespace App\Livewire\Pages\Admin\Garment;
 
+use App\Models\Category;
 use App\Models\Garment;
 use Illuminate\Support\Str;
+use Livewire\Attributes\Computed;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -17,23 +19,33 @@ class CreateGarment extends Component
     public string $name = '';
     public string $slug = '';
     public string $description = '';
-    public int $category_id = 0;
-    public int $measurement_field_id = 0;
-    public int $base_price = 0;
-    public  $image ;
+    public int $base_price ;
+    public $image ;
+
+    public $category_id = null; 
+   
+
+      #[Computed()]
+    public function categories()
+    {
+        return Category::query()
+            ->select('id', 'cat_name')
+            ->get();
+    }
+
 
     public function rules()
     {
         return [
             'name' => 'required|string|max:255',
             'slug' => 'required|string|max:255|unique:garments,slug',
-            'description' => 'nullable|string',
+            'description' => 'nullable|max:255|min:10|string',
             'category_id' => 'required|exists:categories,id',
-            'measurement_field_id' => 'nullable|exists:measurement_fields,id',
             'base_price' => 'required|integer|min:0',
             'image' => 'nullable|image|max:2048',
         ];
     }
+
 
     public function messages()
     {
@@ -48,11 +60,11 @@ class CreateGarment extends Component
             'slug.unique' => 'Garment slug must be unique',
 
             'description.string' => 'Garment description must be a string',
+            'description.max' => 'Garment description must not exceed 255 characters',
+            'description.min' => 'Garment description must be at least 10 characters',
 
             'category_id.required' => 'Category is required',
             'category_id.exists' => 'Selected category does not exist',
-
-            'measurement_field_id.exists' => 'Selected measurement field does not exist',
 
             'base_price.required' => 'Base price is required',
             'base_price.integer' => 'Base price must be an integer',
@@ -69,6 +81,7 @@ class CreateGarment extends Component
     $this->slug = Str::slug($this->name);
     $this->description = trim($this->description);
     $this->base_price = intval($this->base_price);
+    $this->category_id = ($this->category_id);
      $imagePath = $this->image ? $this->image->store('garments', 'public') : null; 
 
         Garment::create([
@@ -76,7 +89,6 @@ class CreateGarment extends Component
             'slug' => $this->slug,
             'description' => $this->description,
             'category_id' => $this->category_id,
-            'measurement_field_id' => $this->measurement_field_id,
             'base_price' => $this->base_price,
             'image' => $imagePath,
         ]);

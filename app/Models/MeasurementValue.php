@@ -14,6 +14,6 @@ class MeasurementValue extends Model
 
     public function measurementField()
     {
-        return $this->hasOne(MeasurementField::class);
+        return $this->hasMany(MeasurementField::class);
     }
 }

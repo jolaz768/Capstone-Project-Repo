@@ -1,150 +1,109 @@
 <div>
-  {{-- To attain knowledge, add things every day; To attain wisdom, subtract things every day. --}}
-  <!-- Hire Us -->
+  @if(session()->has('success'))
+    <div class="alert alert-success">
+      <span class="text-green-500 border-green-200 bg-green-100">{{ session()->get('success') }}
+      </span>
+    </div>
+  @endif
+  <!-- Comment Form -->
   <div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
-    <div class="max-w-xl mx-auto">
-      <div class="text-center ">
-        <h1 class="text-3xl font-bold text-foreground sm:text-4xl">
+    <div class="mx-auto max-w-2xl">
+      <div class="text-center">
+        <h2 class="text-xl text-foreground font-bold sm:text-3xl">
           Add Garment
-        </h1>
+        </h2>
       </div>
 
-      <div class="mt-12 p-4 relative z-10 bg-card border border-card-line rounded-xl sm:mt-10 md:p-10">
-        <!-- Form -->
-        <form>
-          <div class="grid gap-4 lg:gap-6">
-            <!-- Grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
-              <div>
-                <label for="hs-name-hire-us-2" class="block mb-2 text-sm text-foreground font-medium">Garment
-                  Name</label>
-                <input wire:model="name" type="text" name="hs-name-hire-us-2" id="hs-name-hire-us-2"
-                  class="py-2.5 sm:py-3 px-4 block w-full bg-layer border-layer-line rounded-lg sm:text-sm text-foreground placeholder:text-muted-foreground-1 focus:border-primary-focus focus:ring-primary-focus disabled:opacity-50 disabled:pointer-events-none"
-                  placeholder="Name">
+      <!-- Card -->
+      <div class="mt-5 p-4 relative z-10 bg-card border border-card-line rounded-xl sm:mt-10 md:p-10">
+        <form wire:submit.prevent="save">
+          <div class="mb-4 sm:mb-8">
+            <label for="hs-feedback-post-comment-name-1" class="block mb-2 text-sm font-medium text-foreground">Garment
+              Name</label>
+            <input wire:model="name" type="text" id="hs-feedback-post-comment-name-1"
+              class="py-2.5 sm:py-3 px-4 block w-full bg-layer border-layer-line rounded-lg sm:text-sm text-foreground placeholder:text-muted-foreground-1 focus:border-primary-focus focus:ring-primary-focus disabled:opacity-50 disabled:pointer-events-none"
+              placeholder="Full name">
+          </div>
+          @error('name')
+          <span class="text-sm text-red-500">{{ $message }}</span>
+          @enderror
+
+          <div class="mb-4 sm:mb-8">
+            <label for="hs-feedback-post-comment-name-1" class="block mb-2 text-sm font-medium text-foreground">Slug</label>
+            <input wire:model="slug" type="text" id="hs-feedback-post-comment-name-1"
+              class="py-2.5 sm:py-3 px-4 block w-full bg-layer border-layer-line rounded-lg sm:text-sm text-foreground placeholder:text-muted-foreground-1 focus:border-primary-focus focus:ring-primary-focus disabled:opacity-50 disabled:pointer-events-none"
+              placeholder="slug">
+          </div>
+           @error('slug')
+          <span class="text-sm text-red-500">{{ $message }}</span>
+          @enderror
+
+          <div class="mb-4 sm:mb-8">
+            <label for="hs-feedback-post-comment-name-1" class="block mb-2 text-sm font-medium text-foreground">Image</label>
+            <input wire:model="image" type="file" id="hs-feedback-post-comment-name-1"
+              class="py-2.5 sm:py-3 px-4 block w-full bg-layer border-layer-line rounded-lg sm:text-sm text-foreground placeholder:text-muted-foreground-1 focus:border-primary-focus focus:ring-primary-focus disabled:opacity-50 disabled:pointer-events-none"
+              placeholder="Full name">
+          </div>
+           @error('image')
+          <span class="text-sm text-red-500">{{ $message }}</span>
+          @enderror
+
+          <div class="mb-4 sm:mb-8">
+            <label for="hs-feedback-post-comment-email-1"
+              class="block mb-2 text-sm font-medium text-foreground">Category</label>
+            <select wire:model="category_id"
+              class="py-3 px-4 pe-9 block w-full bg-layer border-layer-line rounded-lg text-sm text-foreground focus:border-primary-focus focus:ring-primary-focus disabled:opacity-50 disabled:pointer-events-none">
+              <option selected>Open this select menu</option>
+              @foreach ($this->categories() as $category)
+                <option value="{{ $category->id }}">{{ $category->name }}</option>
+              @endforeach
+            </select>
+          </div>
+           @error('category_id')
+          <span class="text-sm text-red-500">{{ $message }}</span>
+          @enderror
+
+          <div class="mb-4 sm:mb-8">
+            <label for="hs-input-with-leading-and-trailing-icon"
+              class="block mb-2 text-sm text-foreground font-medium">Price</label>
+            <div class="relative">
+              <input type="text" id="hs-input-with-leading-and-trailing-icon"
+                name="hs-input-with-leading-and-trailing-icon"
+                class="py-2.5 sm:py-3 px-4 ps-9 pe-16 block w-full bg-layer border-layer-line rounded-lg sm:text-sm text-foreground placeholder:text-muted-foreground-1 focus:z-10 focus:border-primary-focus focus:ring-primary-focus disabled:opacity-50 disabled:pointer-events-none"
+                placeholder="0.00">
+              <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none z-20 ps-4">
+                <span class="text-muted-foreground-1">₱</span>
               </div>
-
-              <div>
-                <label for="hs-image-hire-us-2" class="block mb-2 text-sm text-foreground font-medium">Image</label>
-                <input wire:model="image" type="File" name="hs-image-hire-us-2" id="hs-image-hire-us-2"
-                  class="py-2.5 sm:py-3 px-4 block w-full bg-layer border-layer-line rounded-lg sm:text-sm text-foreground placeholder:text-muted-foreground-1 focus:border-primary-focus focus:ring-primary-focus disabled:opacity-50 disabled:pointer-events-none">
-                  @if ($image)
-                  <div class="mt-4">
-                    <p class="mb-2 text-sm font-medium text-foreground">Image preview</p>
-                    <img src="{{ $image->temporaryUrl() }}" alt="Fabric preview" class="object-cover rounded-lg w-20 h-20" />
-                  </div>
-                @endif
+              <div class="absolute inset-y-0 end-0 flex items-center pointer-events-none z-20 pe-4">
+                <span class="text-muted-foreground-1">PESO</span>
               </div>
-              
-            </div>
-            <!-- End Grid -->
-
-            <div>
-              <label for="hs-category-hire-us-2" class="block mb-2 text-sm text-foreground font-medium">Category</label>
-              <select wire:model="category_id" type="text" name="hs-category-hire-us-2" id="hs-category-hire-us-2"
-                class="py-2.5 sm:py-3 px-4 block w-full bg-layer border-layer-line rounded-lg sm:text-sm text-foreground placeholder:text-muted-foreground-1 focus:border-primary-focus focus:ring-primary-focus disabled:opacity-50 disabled:pointer-events-none">
-                <option value="">Select Category</option>
-                <option value="1">Blazer</option>
-                <option value="2">T-shirt</option>
-                <option value="3">Pants</option>
-              </select>
-            </div>
-
-            <!-- Grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
-              <div>
-                <label for="hs-measurement_template-hire-us-2"
-                  class="block mb-2 text-sm text-foreground font-medium">Measurement-Template</label>
-                <select wire:model="measurement_field_id" type="text" name="hs-measurement_template-hire-us-2" id="hs-measurement_template-hire-us-2"
-                  class="py-2.5 sm:py-3 px-4 block w-full bg-layer border-layer-line rounded-lg sm:text-sm text-foreground placeholder:text-muted-foreground-1 focus:border-primary-focus focus:ring-primary-focus disabled:opacity-50 disabled:pointer-events-none">
-                  <option value="">Select Measurement Template</option>
-                  <option value="1">Blazer</option>
-                  <option value="2">T-shirt</option>
-                  <option value="3">Pants</option>
-                </select>
-              </div>
-
-              <div>
-                <label for="hs-input-with-leading-and-trailing-icon"
-                  class="block mb-2 text-sm text-foreground font-medium">Price</label>
-                <div class="relative">
-                  <input wire:model="base_price" type="text" id="hs-input-with-leading-and-trailing-icon"
-                    name="hs-input-with-leading-and-trailing-icon"
-                    class="py-2.5 sm:py-3 px-4 ps-9 pe-16 block w-full bg-layer border-layer-line rounded-lg sm:text-sm text-foreground placeholder:text-muted-foreground-1 focus:z-10 focus:border-primary-focus focus:ring-primary-focus disabled:opacity-50 disabled:pointer-events-none"
-                    placeholder="0.00">
-                  <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none z-20 ps-4">
-                    <span class="text-muted-foreground-1">₱</span>
-                  </div>
-                  <div class="absolute inset-y-0 end-0 flex items-center pointer-events-none z-20 pe-4">
-                    <span class="text-muted-foreground-1">Peso</span>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-
-            <!-- End Grid -->
-            
-            <!-- Grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
-              <div>
-                 <label for="hs-input-with-leading-and-trailing-icon"
-                  class="block mb-2 text-sm text-foreground font-medium">Fabric</label>
-                <div class="max-w-sm w-full space-y-3">
-                  <div class="flex items-center">
-                    <input wire:model="fabric" type="checkbox"
-                      class="shrink-0 size-4 bg-transparent border-line-3 rounded-sm shadow-2xs text-primary focus:ring-0 focus:ring-offset-0 checked:bg-primary-checked checked:border-primary-checked disabled:opacity-50 disabled:pointer-events-none"
-                      id="hs-default-checkbox">
-                    <label for="hs-default-checkbox" class="text-sm ms-3 text-muted-foreground-">Cotton</label>
-                  </div>
-                </div>
-              </div>
-
-              <div>
-                <label for="hs-input-with-leading-and-trailing-icon"
-                  class="block mb-2 text-sm text-foreground font-medium">Color</label>
-                <div>
-                <div class="max-w-sm w-full space-y-3">
-                  <div class="flex items-center">
-                    <input wire:model="color" type="checkbox"
-                      class="shrink-0 size-4 bg-transparent border-line-3 rounded-sm shadow-2xs text-primary focus:ring-0 focus:ring-offset-0 checked:bg-primary-checked checked:border-primary-checked disabled:opacity-50 disabled:pointer-events-none"
-                      id="hs-default-checkbox">
-                    <label for="hs-default-checkbox" class="text-sm ms-3 text-muted-foreground-">White</label>
-                  </div>
-                </div>
-              </div>
-
-              </div>
-
-            </div>
-
-            <!-- End Grid -->
-
-            <div>
-              <label for="hs-description-us-2"
-                class="block mb-2 text-sm text-foreground font-medium">Description</label>
-              <textarea id="hs-description-us-2" name="hs-description-us-2" rows="4"
-                class="py-2.5 sm:py-3 px-4 block w-full bg-layer border-layer-line rounded-lg sm:text-sm text-foreground placeholder:text-muted-foreground-1 focus:border-primary-focus focus:ring-primary-focus disabled:opacity-50 disabled:pointer-events-none"
-                placeholder="Description"></textarea>
             </div>
           </div>
-          <!-- End Grid -->
+           @error('price')
+          <span class="text-sm text-red-500">{{ $message }}</span>
+          @enderror
 
-
+          <div>
+            <label for="hs-feedback-post-comment-textarea-1"
+              class="block mb-2 text-sm font-medium text-foreground">Description</label>
+            <div class="mt-1">
+              <textarea id="hs-feedback-post-comment-textarea-1" name="hs-feedback-post-comment-textarea-1" rows="3"
+                class="py-2.5 sm:py-3 px-4 block w-full bg-layer border-layer-line rounded-lg sm:text-sm text-foreground placeholder:text-muted-foreground-1 focus:border-primary-focus focus:ring-primary-focus disabled:opacity-50 disabled:pointer-events-none"
+                placeholder="Leave your comment here..."></textarea>
+            </div>
+          </div>
+           @error('description')
+          <span class="text-sm text-red-500">{{ $message }}</span>
+          @enderror
 
           <div class="mt-6 grid">
             <button type="submit"
               class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg bg-primary border border-primary-line text-primary-foreground hover:bg-primary-hover focus:outline-hidden focus:bg-primary-focus disabled:opacity-50 disabled:pointer-events-none">Submit</button>
           </div>
-
-
+        </form>
       </div>
+      <!-- End Card -->
     </div>
-    </form>
-
-    <!-- End Form -->
   </div>
-</div>
-</div>
-
-<!-- End Hire Us -->
+  <!-- End Comment Form -->
 </div>

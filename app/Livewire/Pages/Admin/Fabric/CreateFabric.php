@@ -18,6 +18,8 @@ class CreateFabric extends Component
     public $name ;
     public $description ;
     public $image;
+
+    public float $price ;
     public array $color_id = [];
 
     #[Computed()]
@@ -35,6 +37,7 @@ public function colors()
             'name' => 'required|string|max:255',
             'description' => 'required|string|max:255|min:10',
             'image' => 'required|image|max:2048', // Max 2MB
+            'price' => 'required|numeric|min:0',
             'color_id' => 'required|array|min:1',
             'color_id.*' => 'exists:colors,id',
         ];
@@ -54,6 +57,7 @@ public function colors()
             'image.required' => 'Image is required',
             'image.image' => 'The file must be an image',
             'image.max' => 'The image must not exceed 2MB in size',
+
             'color_id.required' => 'Select at least one color for this fabric.',
             'color_id.array' => 'Color selection must be valid.',
             'color_id.*.exists' => 'One of the selected colors is invalid.',
@@ -69,11 +73,13 @@ public function colors()
         $name = Str::of($this->name)->trim()->title();
         $description = Str::of($this->description)->trim();
         $imagePath = $this->image ? $this->image->store('fabrics', 'public') : null;
+        $price = floatval($this->price);
 
         $fabric = Fabric::create([
             'name' => $name,
             'image' => $imagePath,
             'description' => $description,
+            'price' => $price,
         ]);
 
         $fabric->colors()->sync($this->color_id);

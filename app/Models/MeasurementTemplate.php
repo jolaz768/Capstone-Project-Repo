@@ -12,3 +12,8 @@ class MeasurementTemplate extends Model
         'name',
     ];
 }
+
+public function garment()
+{
+    return $this->belongsTo(Garment::class);
+}

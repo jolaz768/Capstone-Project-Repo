@@ -18,11 +18,6 @@
       <div class="mt-5 p-4 relative z-10 bg-card border border-card-line rounded-xl sm:mt-10 md:p-10">
         <form wire:submit.prevent="save">
           <!-- Color Picker (for selection) -->
-          <div class="mb-4 sm:mb-8">
-            <label class="block mb-2 text-sm font-medium text-foreground">Pick a Color</label>
-            <input type="color" wire:model="color_code"
-              class="w-full h-10 rounded border border-layer-line cursor-pointer">
-          </div>
 
           <!-- Color Name -->
           <div class="mb-4 sm:mb-8">
@@ -45,9 +40,6 @@
             @enderror
           </div>
 
-          <div class="mb-4 sm:mb-8">
-            <div class="h-12 rounded-lg border border-layer-line" style="background: {{ $color_code }}"></div>
-          </div>
 
           <div class="mt-6 grid">
             <button type="submit"

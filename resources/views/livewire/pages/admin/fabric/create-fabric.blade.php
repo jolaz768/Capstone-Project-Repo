@@ -18,11 +18,12 @@
         <!-- Card -->
         <div class="mt-5 p-4 relative z-10 bg-card border border-card-line rounded-xl sm:mt-10 md:p-10">
           <form wire:submit.prevent="save">
+
             <div class="mb-4 sm:mb-8">
               <label for="hs-feedback-create-fabric-name-1"
                 class="block mb-2 text-sm font-medium text-foreground">Name</label>
               <input wire:model="name" type="text" id="hs-feedback-create-fabric-name-1"
-                class="py-2.5 sm:py-3 px-4 block w-name bg-layer border-layer-line rounded-lg sm:text-sm text-foreground placeholder:text-muted-foreground-1 focus:border-primary-focus focus:ring-primary-focus disabled:opacity-50 disabled:pointer-events-none"
+                class=" w-full m-auto py-2.5 sm:py-3 px-4 block w-name bg-layer border-layer-line rounded-lg sm:text-sm text-foreground placeholder:text-muted-foreground-1 focus:border-primary-focus focus:ring-primary-focus disabled:opacity-50 disabled:pointer-events-none"
                 placeholder="Fabric Name">
               @error('name')
                 <p class="mt-2 text-sm text-red-500">{{ $message }}</p>
@@ -58,6 +59,31 @@
               @endforeach
               @error('color_id')
                 <span class="text-sm text-red-500">{{ $message }}</span>
+              @enderror
+            </div>
+            <div class="mb-4 sm:mb-8">
+              <label for="hs-feedback-create-fabric-name-1" <input wire:model="price" type="text"
+                id="hs-feedback-create-fabric-name-1"
+                class=" w-full m-auto py-2.5 sm:py-3 px-4 block w-name bg-layer border-layer-line rounded-lg sm:text-sm text-foreground placeholder:text-muted-foreground-1 focus:border-primary-focus focus:ring-primary-focus disabled:opacity-50 disabled:pointer-events-none"
+                placeholder="Fabric Name">
+                @error('name')
+                  <p class="mt-2 text-sm text-red-500">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <div class="mb-4 sm:mb-8">
+              <label for="hs-feedback-create-fabric-name-1"
+                class="block mb-2 text-sm font-medium text-foreground">Price</label>
+              <div class="relative">
+                <input wire:model="price" type="number" id="hs-feedback-create-fabric-name-1"
+                  class="w-full py-2.5 sm:py-3 pl-8 pr-4 block bg-layer border-layer-line rounded-lg sm:text-sm text-foreground placeholder:text-muted-foreground-1 focus:border-primary-focus focus:ring-primary-focus disabled:opacity-50 disabled:pointer-events-none"
+                  placeholder="0.00">
+                <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none z-20 ps-3">
+                  <span class="text-muted-foreground-1 sm:text-sm">₱</span>
+                </div>
+              </div>
+              @error('price')
+                <p class="mt-2 text-sm text-red-500">{{ $message }}</p>
               @enderror
             </div>
 

@@ -11,6 +11,7 @@ class Fabric extends Model
         'name',
         'image',
         'description',
+        'price',
     ];
 
     public function fabricColors()
