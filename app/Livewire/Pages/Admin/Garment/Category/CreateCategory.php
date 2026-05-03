@@ -10,7 +10,7 @@ use Livewire\Component;
 class CreateCategory extends Component
 {
      #[Layout('components.layouts.admin')]
-      public $cat_name='';
+    public $cat_name='';
     public $cat_slug='';
     public $cat_desc='';
 

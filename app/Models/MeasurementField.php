@@ -8,18 +8,18 @@ class MeasurementField extends Model
 {
     //
     protected $fillable = [
-        'measurement_template_id',
+        'measurementt_template_id',
         'field_name',
         'unit',
     ];
 
     public function measurementTemplate()
     {
-        return $this->belongsTo(MeasurementTemplate::class);
+        return $this->belongsTo(MeasurementTemplate::class, 'measurement_template_id');
     }
 
-    public function measurementValues()
+    public function measurementValue()
     {
-        return $this->hasOne(MeasurementValue::class);
+        return $this->hasOne(MeasurementValue::class, 'measurement_field_id');
     }
 }

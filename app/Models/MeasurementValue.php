@@ -6,14 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class MeasurementValue extends Model
 {
-    //
-    protected $fillalbe =  [
+    protected $fillable = [
         'measurement_field_id',
-        'value'
+        'value',
     ];
 
     public function measurementField()
     {
-        return $this->hasMany(MeasurementField::class);
+        return $this->belongsTo(MeasurementField::class, 'measurement_field_id');
     }
 }

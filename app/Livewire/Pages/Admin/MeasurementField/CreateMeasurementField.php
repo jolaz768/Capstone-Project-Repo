@@ -10,14 +10,16 @@ use Livewire\Component;
 class CreateMeasurementField extends Component
 {
     #[Layout('components.layouts.admin')]
-    public $field_name;
-    public string $unit;
+    public array $measuremnent_fields = [];
+    public string $field_name = '';
+    public string $unit = '';    
 
     public function rules()
     {
         return [
             'field_name' => 'required|string|max:255',
             'unit' => 'required|string|min:0|max:10',
+            'measurement_fields' => 'required|array',
         ];
     }
     public function messages()
@@ -31,6 +33,9 @@ class CreateMeasurementField extends Component
             'unit.string' => 'Unit must be a string',
             'unit.min' => 'Unit must be at least 0',
             'unit.max' => 'Unit must not exceed 10 characters',
+
+            'measurement_fields.required' => 'Measurement fields are required',
+            'measurement_fields.array' => 'Measurement fields must be an array',
         ];
     }
 

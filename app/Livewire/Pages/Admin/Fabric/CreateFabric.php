@@ -37,7 +37,7 @@ public function colors()
             'name' => 'required|string|max:255',
             'description' => 'required|string|max:255|min:10',
             'image' => 'required|image|max:2048', // Max 2MB
-            'price' => 'required|numeric|min:0',
+            'price' => 'required|decimal:0,2|min:0',
             'color_id' => 'required|array|min:1',
             'color_id.*' => 'exists:colors,id',
         ];
@@ -58,6 +58,11 @@ public function colors()
             'image.image' => 'The file must be an image',
             'image.max' => 'The image must not exceed 2MB in size',
 
+            'price.required' => 'Price is required',
+            'price.decimal' => 'Price must be a valid decimal number',
+            'price.min' => 'Price must be at least 0',
+            
+
             'color_id.required' => 'Select at least one color for this fabric.',
             'color_id.array' => 'Color selection must be valid.',
             'color_id.*.exists' => 'One of the selected colors is invalid.',
@@ -75,14 +80,14 @@ public function colors()
         $imagePath = $this->image ? $this->image->store('fabrics', 'public') : null;
         $price = floatval($this->price);
 
-        $fabric = Fabric::create([
+        Fabric::create([
             'name' => $name,
             'image' => $imagePath,
             'description' => $description,
             'price' => $price,
         ]);
 
-        $fabric->colors()->sync($this->color_id);
+        // $fabric->colors()->sync($this->color_id);
 
         session()->flash('message', 'Fabric created successfully.');
         return redirect()->route('admin.fabric.view');

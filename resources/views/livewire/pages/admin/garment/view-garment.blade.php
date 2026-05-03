@@ -128,111 +128,129 @@
             </thead>
 
             <tbody class="divide-y divide-table-line">
-              <tr>
-                <td class="size-px whitespace-nowrap">
-                  <div class="ps-6 py-3">
-                    {{-- <label for="hs-at-with-checkboxes-1" class="flex">
-                      <input type="checkbox" class="shrink-0 size-4 bg-transparent border-line-3 rounded-sm shadow-2xs text-primary focus:ring-0 focus:ring-offset-0 checked:bg-primary-checked checked:border-primary-checked disabled:opacity-50 disabled:pointer-events-none" id="hs-at-with-checkboxes-1">
-                      <span class="sr-only">Checkbox</span>
-                    </label> --}}
-                  </div>
-                </td>
-                <td class="size-px whitespace-nowrap">
-                  <div class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3">
-                    <div class="flex items-center gap-x-3">
-                      <div class="grow">
-                        <span class="block text-sm font-semibold text-foreground">1</span>
+              @forelse($garments as $garment)
+                @php
+                  $fabricNames = $garment->garmentColorFabrics
+                      ->map(fn ($item) => $item->fabricColor?->fabric?->name)
+                      ->filter()
+                      ->unique()
+                      ->join(', ');
+
+                  $colorNames = $garment->garmentColorFabrics
+                      ->map(fn ($item) => $item->fabricColor?->color?->color_name)
+                      ->filter()
+                      ->unique()
+                      ->join(', ');
+                @endphp
+
+                <tr>
+                  <td class="size-px whitespace-nowrap">
+                    <div class="ps-6 py-3"></div>
+                  </td>
+
+                  <td class="size-px whitespace-nowrap">
+                    <div class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3">
+                      <div class="flex items-center gap-x-3">
+                        <div class="grow">
+                          <span class="block text-sm font-semibold text-foreground">{{ $garment->shop?->id ?? '—' }}</span>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </td>
+                  </td>
 
-                <td class="size-px whitespace-nowrap">
-                  <div class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3">
-                    <div class="flex items-center gap-x-3">
-                      <div class="grow">
-                        <span class="block text-sm font-semibold text-foreground">Polo-Shirt</span>
+                  <td class="size-px whitespace-nowrap">
+                    <div class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3">
+                      <div class="flex items-center gap-x-3">
+                        <div class="grow">
+                          <span class="block text-sm font-semibold text-foreground">{{ $garment->name }}</span>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </td>
+                  </td>
 
-                <td class="h-px w-72 whitespace-nowrap">
-                  <div class="px-6 py-3">
-                    <img class="objct-cover w-20 h-20" src="https://images.unsplash.com/photo-1625910513413-c23b8bb81cba?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Garment">
-                  </div>
-                </td>
-
-                <td class="size-px whitespace-nowrap">
-                  <div class="px-6 py-3">
-                    <span class="text-sm text-muted-foreground-1" >Lorem ipsum adipisicing....</span>
-                  </div>
-                </td>
-
-                <td class="size-px whitespace-nowrap">
-                  <div class="px-6 py-3">
-                    <div class="flex items-center gap-x-3">
-                      <span class="text-xs text-muted-foreground-1">Polo</span>
+                  <td class="h-px w-72 whitespace-nowrap">
+                    <div class="px-6 py-3">
+                      @if($garment->image)
+                        <img class="object-cover w-20 h-20 rounded-md" src="{{ asset('storage/' . $garment->image) }}" alt="{{ $garment->name }}">
+                      @else
+                        <div class="bg-muted h-20 w-20 rounded-md flex items-center justify-center text-xs text-muted-foreground">No Image</div>
+                      @endif
                     </div>
-                  </div>
-                </td>
+                  </td>
 
-                <td class="size-px whitespace-nowrap">
-                  <div class="px-6 py-3">
-                    <div class="flex items-center gap-x-3">
-                      <span class="text-xs text-muted-foreground-1">Polo-Shirt</span>
+                  <td class="size-px whitespace-nowrap">
+                    <div class="px-6 py-3">
+                      <span class="text-sm text-muted-foreground-1">{{ \Illuminate\Support\Str::limit($garment->description, 70) }}</span>
                     </div>
-                  </div>
-                </td>
+                  </td>
 
-                <td class="size-px whitespace-nowrap">
-                  <div class="px-6 py-3">
-                    <div class="flex items-center gap-x-3">
-                      <span class="text-xs text-muted-foreground-1">Cotton,Silk,Polymer</span>
+                  <td class="size-px whitespace-nowrap">
+                    <div class="px-6 py-3">
+                      <div class="flex items-center gap-x-3">
+                        <span class="text-xs text-muted-foreground-1">{{ $garment->category?->cat_name ?? '—' }}</span>
+                      </div>
                     </div>
-                  </div>
-                </td>
+                  </td>
 
-                <td class="size-px whitespace-nowrap">
-                  <div class="px-6 py-3">
-                    <div class="flex items-center gap-x-3">
-                      <span class="text-xs text-muted-foreground-1">Red,Blue,Green</span>
+                  <td class="size-px whitespace-nowrap">
+                    <div class="px-6 py-3">
+                      <div class="flex items-center gap-x-3">
+                        <span class="text-xs text-muted-foreground-1">{{ $garment->measurementTemplate?->template_name ?? '—' }}</span>
+                      </div>
                     </div>
-                  </div>
-                </td>
+                  </td>
 
-                <td class="size-px whitespace-nowrap">
-                  <div class="px-6 py-3">
-                    <div class="flex items-center gap-x-3">
-                      <span class="text-xs text-muted-foreground-1">200₱</span>
+                  <td class="size-px whitespace-nowrap">
+                    <div class="px-6 py-3">
+                      <div class="flex items-center gap-x-3">
+                        <span class="text-xs text-muted-foreground-1">{{ $fabricNames ?: '—' }}</span>
+                      </div>
                     </div>
-                  </div>
-                </td>
+                  </td>
 
+                  <td class="size-px whitespace-nowrap">
+                    <div class="px-6 py-3">
+                      <div class="flex items-center gap-x-3">
+                        <span class="text-xs text-muted-foreground-1">{{ $colorNames ?: '—' }}</span>
+                      </div>
+                    </div>
+                  </td>
 
-                <td class="size-px whitespace-nowrap">
-                  <div class="px-6 py-3">
-                    <span class="text-sm text-muted-foreground-1">28 Dec, 12:12</span>
-                  </div>
-                </td>
-                
-                <td class="size-px whitespace-nowrap">
-                  <div class="px-6 py-1.5">
-                    <a class="inline-flex items-center gap-x-1 text-sm text-primary decoration-2 hover:underline focus:outline-hidden focus:underline font-medium" href="#">
-                      Edit
-                    </a>
-                  </div>
-                </td>
+                  <td class="size-px whitespace-nowrap">
+                    <div class="px-6 py-3">
+                      <div class="flex items-center gap-x-3">
+                        <span class="text-xs text-muted-foreground-1">{{ number_format($garment->base_price, 2) }}</span>
+                      </div>
+                    </div>
+                  </td>
 
-                <td class="size-px whitespace-nowrap">
-                  <div class="px-6 py-1.5">
-                    <a class="inline-flex items-center gap-x-1 text-sm text-red-500 decoration-2 hover:underline focus:outline-hidden focus:underline font-medium" href="#">
-                      Delete
-                    </a>
-                  </div>
-                </td>
-              </tr>
+                  <td class="size-px whitespace-nowrap">
+                    <div class="px-6 py-3">
+                      <span class="text-sm text-muted-foreground-1">{{ $garment->created_at?->format('d M, Y') }}</span>
+                    </div>
+                  </td>
 
+                  <td class="size-px whitespace-nowrap">
+                    <div class="px-6 py-1.5">
+                      <a class="inline-flex items-center gap-x-1 text-sm text-primary decoration-2 hover:underline focus:outline-hidden focus:underline font-medium" href="{{ route('admin.garment.edit', $garment) }}">
+                        Edit
+                      </a>
+                    </div>
+                  </td>
+
+                  <td class="size-px whitespace-nowrap">
+                    <div class="px-6 py-1.5">
+                      <span class="inline-flex items-center gap-x-1 text-sm text-red-500 decoration-2 font-medium">Delete</span>
+                    </div>
+                  </td>
+                </tr>
+              @empty
+                <tr>
+                  <td colspan="12" class="px-6 py-6 text-center text-sm text-muted-foreground-1">
+                    No garments found. Create one using the Add Garment button.
+                  </td>
+                </tr>
+              @endforelse
             </tbody>
           </table>
           <!-- End Table -->      

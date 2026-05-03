@@ -36,6 +36,11 @@ class Garment extends Model
         return $this->hasMany(GarmentColorFabric::class);
     }
 
+    public function fabricColors()
+    {
+        return $this->hasManyThrough(FabricColor::class, GarmentColorFabric::class, 'garment_id', 'id', 'id', 'fabric_color_id');
+    }
+
     public function bookingItems()
     {
         return $this->hasMany(BookingItem::class);

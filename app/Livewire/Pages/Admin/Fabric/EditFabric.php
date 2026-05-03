@@ -17,7 +17,8 @@ class EditFabric extends Component
     public $fabric;              // ✅ Store model instance
     public $name;
     public $description;
-    public $image;               // ✅ Only for new upload
+    public $image;   
+    public $price;            // ✅ Only for new upload
     public $existingImage;       // ✅ Store existing image path
     public array $color_id = [];
 
@@ -28,7 +29,8 @@ class EditFabric extends Component
         $this->description = $this->fabric->description;
         $this->existingImage = $this->fabric->image;
         $this->image = null;     // ✅ Clear any previous upload
-        $this->color_id = $this->fabric->colors()->pluck('colors.id')->toArray();
+        $this->price = $this->fabric->price;
+        // $this->color_id = $this->fabric->colors()->pluck('colors.id')->toArray();
     }
 
     #[Computed]
@@ -43,6 +45,7 @@ class EditFabric extends Component
             'name' => 'required|string|max:255',
             'description' => 'required|string',   // ✅ Fixed: removed nullable
             'image' => 'nullable|image|max:2048', // ✅ Fixed: removed required
+            'price' => 'required|decimal:0,2|min:0',
             'color_id' => 'required|array|min:1',
             'color_id.*' => 'exists:colors,id',
         ];
@@ -54,10 +57,17 @@ class EditFabric extends Component
             'name.required' => 'Fabric name is required',
             'name.string' => 'Fabric name must be a string',
             'name.max' => 'Fabric name must not exceed 255 characters',
+
             'description.required' => 'Description is required',
             'description.string' => 'Description must be a string',
+
             'image.image' => 'The file must be an image',
             'image.max' => 'The image must not exceed 2MB in size',
+
+            'price.required' => 'Price is required',
+            'price.decimal' => 'Price must be a valid decimal number',
+            'price.min' => 'Price must be at least 0',
+
             'color_id.required' => 'Select at least one color for this fabric.',
             'color_id.array' => 'Color selection must be valid.',
             'color_id.*.exists' => 'One of the selected colors is invalid.',

@@ -11,9 +11,14 @@ class MeasurementTemplate extends Model
         'garment_id',
         'name',
     ];
-}
 
-public function garment()
-{
-    return $this->belongsTo(Garment::class);
+    public function garment()
+    {
+        return $this->belongsTo(Garment::class);
+    }
+
+    public function measurementFields()
+    {
+        return $this->hasMany(MeasurementField::class, 'measurement_template_id');
+    }
 }
