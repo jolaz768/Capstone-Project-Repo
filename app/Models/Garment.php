@@ -45,4 +45,9 @@ class Garment extends Model
     {
         return $this->hasMany(BookingItem::class);
     }
+
+    public function fabricGarments()
+    {
+        return $this->hasMany(FabricGarment::class);
+    }
 }

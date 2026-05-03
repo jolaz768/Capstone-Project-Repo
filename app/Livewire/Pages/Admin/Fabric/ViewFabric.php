@@ -21,7 +21,7 @@ class ViewFabric extends Component
     public function fabrics()
     {
         return Fabric::query()
-            ->select('id', 'name', 'description','price', 'image', 'created_at')
+            ->select('id', 'name', 'description','price', 'image','price', 'created_at')
             ->with('colors')
             ->get();
     }

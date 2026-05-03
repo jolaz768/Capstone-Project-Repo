@@ -47,6 +47,14 @@
                 <th scope="col" class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3 text-start">
                   <div class="flex items-center gap-x-2">
                     <span class="text-xs font-semibold uppercase text-foreground">
+                      Garment Name
+                    </span>
+                  </div>
+                </th>
+
+                <th scope="col" class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3 text-start">
+                  <div class="flex items-center gap-x-2">
+                    <span class="text-xs font-semibold uppercase text-foreground">
                       Name
                     </span>
                   </div>
@@ -73,6 +81,8 @@
             </thead>
 
             <tbody class="divide-y divide-table-line">
+              
+             @forelse ($this->MeasurementTemplates as $MeasurementTemplate)
               <tr>
                 <td class="size-px whitespace-nowrap">
                   <div class="ps-6 py-3">
@@ -82,20 +92,29 @@
                     </label> --}}
                   </div>
                 </td>
+
                 <td class="size-px whitespace-nowrap">
                   <div class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3">
                     <div class="flex items-center gap-x-3">
                    
                       <div class="grow">
-                        <span class="block text-sm font-semibold text-foreground">T-Shirt</span>
-                        
+                        <span class="block text-sm font-semibold text-foreground">{{ $MeasurementTemplate->garment?->name }}</span>
                       </div>
                     </div>
                   </div>
                 </td>
+                
+                @foreach ($this->measurementTemplates as $template )
+                   <td class="h-px w-72 whitespace-nowrap">
+                  <div class="px-6 py-3">
+                  <span class="block text-sm font-semibold text-foreground">{{ $MeasurementTemplate->Measurementfield?->field_name }}</span>
+                  </div>
+                </td>
+                @endforeach
+             
                 <td class="h-px w-72 whitespace-nowrap">
                   <div class="px-6 py-3">
-                    <span class="block text-sm font-semibold text-foreground">sleeve lenght, Chest, Sleeve Opening ,neck ,waist ,hip </span>
+                  <span class="block text-sm font-semibold text-foreground">{{ $MeasurementTemplate->Measurementfield?->field_name }}</span>
                   </div>
                 </td>
                 
@@ -113,45 +132,11 @@
                 </td>
               </tr>
 
-              <tr>
-                <td class="size-px whitespace-nowrap">
-                  <div class="ps-6 py-3">
-                    {{-- <label for="hs-at-with-checkboxes-2" class="flex">
-                      <input type="checkbox" class="shrink-0 size-4 bg-transparent border-line-3 rounded-sm shadow-2xs text-primary focus:ring-0 focus:ring-offset-0 checked:bg-primary-checked checked:border-primary-checked disabled:opacity-50 disabled:pointer-events-none" id="hs-at-with-checkboxes-2">
-                      <span class="sr-only">Checkbox</span>
-                    </label> --}}
-                  </div>
-                </td>
-                <td class="size-px whitespace-nowrap">
-                  <div class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3">
-                    <div class="flex items-center gap-x-3">
-                      
-                      <div class="grow">
-                        <span class="block text-sm font-semibold text-foreground">pants</span>
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td class="h-px w-72 whitespace-nowrap">
-                  <div class="px-6 py-3">
-                    <span class="block text-sm font-semibold text-foreground">waistline, Thigh, knee, leg opening, inseam, outseam, rise,</span>
-                  </div>
-                </td>
-                
-                <td class="size-px whitespace-nowrap">
-                  <div class="px-6 py-3">
-                    <span class="text-sm text-muted-foreground-1">20 Dec, 09:27</span>
-                  </div>
-                </td>
-                <td class="size-px whitespace-nowrap">
-                  <div class="px-6 py-1.5">
-                    <a class="inline-flex items-center gap-x-1 text-sm text-primary decoration-2 hover:underline focus:outline-hidden focus:underline font-medium" href="#">
-                      Edit
-                    </a>
-                  </div>
-                </td>
-              </tr>
-
+              
+               
+             @empty
+               
+             @endforelse
 
             </tbody>
           </table>

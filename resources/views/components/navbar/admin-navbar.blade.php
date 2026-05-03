@@ -143,11 +143,11 @@ lg:block lg:-translate-x-full lg:end-auto lg:bottom-0" role="dialog" tabindex="-
             </a>
           </li>
 
-          <li>
+          {{-- <li>
             <a class="w-full flex items-center gap-x-2 py-2 px-2.5 text-sm text-sidebar-2-nav-foreground rounded-lg hover:bg-sidebar-2-nav-hover focus:outline-hidden focus:bg-sidebar-2-nav-focus "  href="{{ route('admin.color.view') }}">
               View Color
             </a>
-          </li>
+          </li> --}}
 
           
         </ul>

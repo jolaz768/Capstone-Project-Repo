@@ -10,7 +10,6 @@ use Livewire\Attributes\Layout;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
-
 class CreateFabric extends Component
 {
     use WithFileUploads;
@@ -20,15 +19,17 @@ class CreateFabric extends Component
     public $image;
 
     public float $price ;
-    public array $color_id = [];
+    // public array $color_id = [];
+    
 
-    #[Computed()]
-public function colors()
-{
-    return Color::query()
-        ->select('id', 'color_name',)
-        ->get();
-}
+
+//     #[Computed()]
+// public function colors()
+// {
+//     return Color::query()
+//         ->select('id', 'color_name',)
+//         ->get();
+// }
 
 
     public function rules()
@@ -37,9 +38,9 @@ public function colors()
             'name' => 'required|string|max:255',
             'description' => 'required|string|max:255|min:10',
             'image' => 'required|image|max:2048', // Max 2MB
-            'price' => 'required|decimal:0,2|min:0',
-            'color_id' => 'required|array|min:1',
-            'color_id.*' => 'exists:colors,id',
+            'price' => 'required|numeric|decimal:0,2|min:0',
+            // 'color_id' => 'required|array|min:1',
+            // 'color_id.*' => 'exists:colors,id',
         ];
     }
     public function messages()
@@ -61,11 +62,12 @@ public function colors()
             'price.required' => 'Price is required',
             'price.decimal' => 'Price must be a valid decimal number',
             'price.min' => 'Price must be at least 0',
+            'price.numeric' => 'Price must be a number',
             
 
-            'color_id.required' => 'Select at least one color for this fabric.',
-            'color_id.array' => 'Color selection must be valid.',
-            'color_id.*.exists' => 'One of the selected colors is invalid.',
+            // 'color_id.required' => 'Select at least one color for this fabric.',
+            // 'color_id.array' => 'Color selection must be valid.',
+            // 'color_id.*.exists' => 'One of the selected colors is invalid.',
         ];
     }
 
@@ -80,14 +82,14 @@ public function colors()
         $imagePath = $this->image ? $this->image->store('fabrics', 'public') : null;
         $price = floatval($this->price);
 
-        Fabric::create([
+        $fabric = Fabric::create([
             'name' => $name,
             'image' => $imagePath,
             'description' => $description,
             'price' => $price,
         ]);
 
-        // $fabric->colors()->sync($this->color_id);
+    //    $fabric->colors()->sync($this->color_id);
 
         session()->flash('message', 'Fabric created successfully.');
         return redirect()->route('admin.fabric.view');

@@ -8,7 +8,7 @@ class MeasurementField extends Model
 {
     //
     protected $fillable = [
-        'measurementt_template_id',
+        'measurement_template_id',
         'field_name',
         'unit',
     ];

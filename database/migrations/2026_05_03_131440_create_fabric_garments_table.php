@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('measurement_fields', function (Blueprint $table) {
+        Schema::create('fabric_garments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('measurement_template_id')->constrained('measurement_templates')->cascadeOnDelete();
-            $table->string('field_name');
-            $table->string('unit');
+            $table->foreignId('fabric_id')->constrained('fabrics')->onDelete('cascade');
+            $table->foreignId('garment_id')->constrained('garments')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -25,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('measurement_fields');
+        Schema::dropIfExists('fabric_garments');
     }
 };

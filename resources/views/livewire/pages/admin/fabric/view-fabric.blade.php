@@ -70,10 +70,19 @@
                       </span>
                     </div>
                   </th>
-                  <th scope="col" class="px-6 py-3 text-start">
+
+                  {{-- <th scope="col" class="px-6 py-3 text-start">
                     <div class="flex items-center gap-x-2">
                       <span class="text-xs font-semibold uppercase text-foreground">
                         Colors
+                      </span>
+                    </div>
+                  </th> --}}
+
+                    <th scope="col" class="px-6 py-3 text-start">
+                    <div class="flex items-center gap-x-2">
+                      <span class="text-xs font-semibold uppercase text-foreground">
+                        Price
                       </span>
                     </div>
                   </th>
@@ -125,10 +134,16 @@
                       </div>
                     </td>
 
-                    <td class="h-px w-72 whitespace-nowrap">
+                    {{-- <td class="h-px w-72 whitespace-nowrap">
                       <div class="px-6 py-3">
                         @php $display = $this->getColorDisplay($fabric); @endphp
                         <span class="..." title="{{ $display->full }}">{{ $display->html }}</span>
+                      </div>
+                    </td> --}}
+
+                    <td class="size-px whitespace-nowrap">
+                      <div class="px-6 py-3">
+                        <span class="text-sm text-muted-foreground-1">{{ $fabric->price }}</span>
                       </div>
                     </td>
 

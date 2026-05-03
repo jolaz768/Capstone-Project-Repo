@@ -86,23 +86,7 @@
                 <th scope="col" class="px-6 py-3 text-start">
                   <div class="flex items-center gap-x-2">
                     <span class="text-xs font-semibold uppercase text-foreground">
-                      Mesurement-Template
-                    </span>
-                  </div>
-                </th>
-
-                <th scope="col" class="px-6 py-3 text-start">
-                  <div class="flex items-center gap-x-2">
-                    <span class="text-xs font-semibold uppercase text-foreground">
                       Fabric
-                    </span>
-                  </div>
-                </th>
-
-                 <th scope="col" class="px-6 py-3 text-start">
-                  <div class="flex items-center gap-x-2">
-                    <span class="text-xs font-semibold uppercase text-foreground">
-                      Color
                     </span>
                   </div>
                 </th>
@@ -128,21 +112,7 @@
             </thead>
 
             <tbody class="divide-y divide-table-line">
-              @forelse($garments as $garment)
-                @php
-                  $fabricNames = $garment->garmentColorFabrics
-                      ->map(fn ($item) => $item->fabricColor?->fabric?->name)
-                      ->filter()
-                      ->unique()
-                      ->join(', ');
-
-                  $colorNames = $garment->garmentColorFabrics
-                      ->map(fn ($item) => $item->fabricColor?->color?->color_name)
-                      ->filter()
-                      ->unique()
-                      ->join(', ');
-                @endphp
-
+              @forelse ($this->garments as $garment)
                 <tr>
                   <td class="size-px whitespace-nowrap">
                     <div class="ps-6 py-3"></div>
@@ -195,26 +165,11 @@
                   <td class="size-px whitespace-nowrap">
                     <div class="px-6 py-3">
                       <div class="flex items-center gap-x-3">
-                        <span class="text-xs text-muted-foreground-1">{{ $garment->measurementTemplate?->template_name ?? '—' }}</span>
+                        <span class="text-xs text-muted-foreground-1">{{ $fabric->name ?? '—' }}</span>
                       </div>
                     </div>
                   </td>
 
-                  <td class="size-px whitespace-nowrap">
-                    <div class="px-6 py-3">
-                      <div class="flex items-center gap-x-3">
-                        <span class="text-xs text-muted-foreground-1">{{ $fabricNames ?: '—' }}</span>
-                      </div>
-                    </div>
-                  </td>
-
-                  <td class="size-px whitespace-nowrap">
-                    <div class="px-6 py-3">
-                      <div class="flex items-center gap-x-3">
-                        <span class="text-xs text-muted-foreground-1">{{ $colorNames ?: '—' }}</span>
-                      </div>
-                    </div>
-                  </td>
 
                   <td class="size-px whitespace-nowrap">
                     <div class="px-6 py-3">

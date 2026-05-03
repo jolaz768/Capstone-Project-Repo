@@ -64,7 +64,7 @@
             @enderror
           </div>
 
-          <div class="grid grid-cols-2 gap-x-4 gap-y-2 mb-6">
+          {{-- <div class="grid grid-cols-2 gap-x-4 gap-y-2 mb-6">
             @foreach ($this->colors() as $color)
             <label class="flex items-center gap-x-2 cursor-pointer">
               <input type="checkbox" wire:model="color_id" value="{{ $color->id }}"
@@ -75,7 +75,7 @@
             @error('color_id')
             <span class="text-sm text-red-500">{{ $message }}</span>
             @enderror
-          </div>
+          </div> --}}
 
           <div>
             <label for="hs-feedback-create-fabric-textarea-1"

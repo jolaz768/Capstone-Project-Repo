@@ -48,7 +48,7 @@
                 </div>
               @endif
             </div>
-            <h1 class="mb-4 sm:mb-8 text-sm font-medium text-foreground">Color</h1>
+            {{-- <h1 class="mb-4 sm:mb-8 text-sm font-medium text-foreground">Color</h1>
             <div class="grid grid-cols-2 gap-x-4 gap-y-2">
               @foreach ($this->colors() as $color)
                 <label class="flex items-center gap-x-2 cursor-pointer">
@@ -60,14 +60,14 @@
               @error('color_id')
                 <span class="text-sm text-red-500">{{ $message }}</span>
               @enderror
-            </div>
+            </div> --}}
 
 
             <div class="mb-4 sm:mb-8 mt-5">
               <label for="hs-feedback-create-fabric-name-1"
                 class="block mb-2 text-sm font-medium text-foreground">Price</label>
               <div class="relative">
-                <input wire:model="price" type="decimal" id="hs-feedback-create-fabric-name-1"
+                <input wire:model="price" type="number" step="any" id="hs-feedback-create-fabric-name-1"
                   class="w-full py-2.5 sm:py-3 pl-8 pr-4 block bg-layer border-layer-line rounded-lg sm:text-sm text-foreground placeholder:text-muted-foreground-1 focus:border-primary-focus focus:ring-primary-focus disabled:opacity-50 disabled:pointer-events-none"
                   placeholder="0.00">
                 <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none z-20 ps-3">

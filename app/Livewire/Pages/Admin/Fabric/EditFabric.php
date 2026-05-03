@@ -30,7 +30,7 @@ class EditFabric extends Component
         $this->existingImage = $this->fabric->image;
         $this->image = null;     // ✅ Clear any previous upload
         $this->price = $this->fabric->price;
-        // $this->color_id = $this->fabric->colors()->pluck('colors.id')->toArray();
+        $this->color_id = $this->fabric->colors()->pluck('colors.id')->toArray();
     }
 
     #[Computed]
@@ -51,7 +51,7 @@ class EditFabric extends Component
         ];
     }
 
-    public function messages()   // ✅ Correct method name
+    public function messages()   
     {
         return [
             'name.required' => 'Fabric name is required',
@@ -74,7 +74,7 @@ class EditFabric extends Component
         ];
     }
 
-    public function save()     // ✅ Better method name
+    public function save()     
     {
         $this->validate();
 

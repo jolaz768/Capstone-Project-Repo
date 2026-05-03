@@ -3,6 +3,7 @@
 namespace App\Livewire\Pages\Admin\Garment;
 
 use App\Models\Category;
+use App\Models\Fabric;
 use App\Models\Garment;
 use Illuminate\Support\Str;
 use Livewire\Attributes\Computed;
@@ -23,6 +24,7 @@ class CreateGarment extends Component
     public $image ;
 
     public $category_id = null; 
+
    
 
       #[Computed()]
@@ -32,7 +34,7 @@ class CreateGarment extends Component
             ->select('id', 'cat_name')
             ->get();
     }
-
+    
 
     public function rules()
     {
@@ -76,7 +78,7 @@ class CreateGarment extends Component
     }
     public function save()
     {
-        $this->validate();
+    $this->validate();
     $this->name = Str::of($this->name)->trim()->title();
     $this->slug = Str::slug($this->name);
     $this->description = trim($this->description);
@@ -84,7 +86,7 @@ class CreateGarment extends Component
     $this->category_id = ($this->category_id);
      $imagePath = $this->image ? $this->image->store('garments', 'public') : null; 
 
-        Garment::create([
+        Garment::update([
             'name' => $this->name,
             'slug' => $this->slug,
             'description' => $this->description,
@@ -92,6 +94,8 @@ class CreateGarment extends Component
             'base_price' => $this->base_price,
             'image' => $imagePath,
         ]);
+        
+        // $garment->fabricColors()->sync($this->fabric_id);
 
         session()->flash('success', 'Garment created successfully!');
         return redirect()->route('admin.garment.view');
