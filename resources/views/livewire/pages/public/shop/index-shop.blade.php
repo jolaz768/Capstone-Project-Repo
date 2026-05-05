@@ -1,17 +1,17 @@
 <div>
+@foreach ($this->shops as $shop)
 
     <!-- HERO div -->
     <div class="relative bg-cover bg-center h-[300px] border-b border-line-2 border border-radius-2xl">
         <img class="absolute inset-0 w-full h-full object-cover"
-            src="https://images.unsplash.com/photo-1528698827591-e19ccd7bc23d?q=80&w=1752&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            src="{{ asset('storage/' . $shop->shop_image) }}"
             alt="Product Image">
 
         <div class="absolute inset-0 bg-black/50"></div>
 
         <div class="relative h-full flex items-center px-8 text-white">
             <div>
-                <h1 class="text-4xl font-bold">Elegant Stitches</h1>
-
+            <h1 class="text-4xl font-bold">{{ $shop->shop_name}}</h1>
                 <!-- Rating -->
                 <div class="flex items-center gap-2 mt-2">
                     <div class="text-yellow-400 text-lg">★★★★★</div>
@@ -20,6 +20,7 @@
             </div>
         </div>
     </div>
+    @endforeach
 
     <!-- TABS (Preline) -->
     <!-- Tab Nav -->
@@ -411,12 +412,10 @@
          <!-- End Group -->
     </div>
     
-
-
-
      </div>
 </div>
 <!-- End Card Group -->
+
 </div>
 
 

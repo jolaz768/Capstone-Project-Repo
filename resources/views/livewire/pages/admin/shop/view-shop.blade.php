@@ -131,77 +131,78 @@
             </thead>
 
             <tbody class="divide-y divide-table-line">
-              <tr class="bg-layer hover:bg-layer-hover">
+              @foreach ($this->shops as $skey => $shop)
+              <tr wire:key="shop-{{ $shop->id }}" class="bg-layer hover:bg-layer-hover">
                 <td class="size-px whitespace-nowrap align-top">
-                  <a class="block p-6" href="#">
+                  <div class="block p-6">
                     <div class="flex items-center gap-x-4">
                       
                       <div>
-                        <span class="block text-sm font-semibold text-foreground">1</span>
+                        <span class="block text-sm font-semibold text-foreground">{{ $shop->id }}</span>
                       </div>
                     </div>
-                  </a>
+                  </div>
                 </td>
 
                 <td class="size-px whitespace-nowrap align-top">
-                  <a class="block p-6" href="#">
+                  <div class="block p-6">
                     <div class="flex items-center gap-x-3">
-                      <img class="shrink-0 size-18 rounded-lg" src="https://images.unsplash.com/photo-1572307480813-ceb0e59d8325?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=320&h=320&q=80" alt="Product Image">
+                      <img class="shrink-0 size-18 rounded-lg" src="{{ asset('storage/' . $shop->shop_image) }}" alt="Product Image">
                       <div class="grow">
                       </div>
                     </div>
-                  </a>
+                  </div>
                 </td>
 
                  <td class="size-px whitespace-nowrap align-top">
-                  <a class="block p-6" href="#">
+                  <div class="block p-6">
                     <div class="flex items-center gap-x-3">
-                      <img class="inline-block size-9.5 rounded-full" src="https://images.unsplash.com/photo-1531927557220-a9e23c1e4794?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80" alt="Product Image">
+                      <img class="inline-block size-9.5 rounded-full" src="{{ asset('storage/' . $shop->shop_logo) }}" alt="Product Image">
                       <div class="grow">
                       </div>
                     </div>
-                  </a>
+                  </div>
                 </td>
 
                 <td class="h-px w-72 min-w-72 align-top">
-                  <a class="block p-6" href="#">
-                    <span class="block text-sm font-semibold text-foreground">Cedrecky tailoring</span>
-                  </a>
+                  <div class="block p-6">
+                    <span class="block text-sm font-semibold text-foreground">{{ $shop->shop_name }}</span>
+                  </div>
                 </td>
 
                 <td class="h-px w-72 min-w-72 align-top">
-                  <a class="block p-6" href="#">    
-                    <span class="block text-sm text-muted-foreground-1">I bought this hat for my boyfriend, but then i found out he cheated on me so I kept it and I love it!! I wear it all the time and there is no problem with the fit even though its a mens" hat.</span>
-                  </a>
+                  <div class="block p-6">   
+                  <span class="block text-sm text-muted-foreground-1">{{Str::limit($shop->description, 20) ?? $shop->description }}</span>
+                  </div>
                 </td>
 
                 <td class="size-px whitespace-nowrap align-top">
-                  <a class="block p-6" href="#">
-                    <span class="text-sm text-muted-foreground-2">Laguna, Batangas</span>
-                  </a>
-                </td>
-                
-                <td class="size-px whitespace-nowrap align-top">
-                  <a class="block p-6" href="#">
-                    <span class="text-sm text-muted-foreground-2">09519702937</span>
-                  </a>
+                  <div class="block p-6">
+                    <span class="text-sm text-muted-foreground-2">{{ $shop->address }}</span>
+                  </div>
                 </td>
                 
+                <td class="size-px whitespace-nowrap align-top">
+                  <div class="block p-6">
+                    <span class="text-sm text-muted-foreground-2">{{ $shop->phone }}</span>
+                  </div>
+                </td>
+                
 
 
                 <td class="size-px whitespace-nowrap align-top">
-                  <a class="block p-6" href="#">
+                  <div class="block p-6">
                     <span class="py-1 px-1.5 inline-flex items-center gap-x-1 text-xs font-medium bg-teal-100 text-teal-800 rounded-full dark:bg-teal-500/10 dark:text-teal-500">
                       <svg class="size-2.5" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
                       </svg>
-                      Active
+                      {{ $shop->is_active == 1 ? 'Active' : 'Inactive' }}
                     </span>
-                  </a>
+                  </div>
                 </td>
 
                 <td class="size-px whitespace-nowrap align-top">
-                  <a class="block p-6" href="#">
+                  <a class="block p-6" href="{{ route('admin.shop.edit', ['id' => $shop->id]) }}">
                     <span class="py-1 px-1.5 inline-flex items-center gap-x-1 text-xs font-medium bg-blue-100 text-blue-800 rounded-full dark:bg-blue-500/10 dark:text-blue-500">
                       Edit
                     </span>
@@ -209,15 +210,15 @@
                 </td>
 
                 <td class="size-px whitespace-nowrap align-top">
-                  <a class="block p-6" href="#">
+                  <button wire:click="deleteShop({{ $shop->id }})" class="block p-6">
                     <span class="py-1 px-1.5 inline-flex items-center gap-x-1 text-xs font-medium bg-red-100 text-red-800 rounded-full dark:bg-red-500/10 dark:text-red-500">
                       Delete
                     </span>
-                  </a>
+                  </button>
                 </td>
-
-                
               </tr>
+                
+              @endforeach
 
 
             </tbody>

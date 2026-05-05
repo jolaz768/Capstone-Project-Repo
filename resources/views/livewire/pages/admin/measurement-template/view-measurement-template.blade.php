@@ -68,6 +68,14 @@
                   </div>
                 </th>
 
+                 <th scope="col" class="px-6 py-3 text-start">
+                  <div class="flex items-center gap-x-2">
+                    <span class="text-xs font-semibold uppercase text-foreground">
+                      Measurement Unit
+                    </span>
+                  </div>
+                </th>
+
                 <th scope="col" class="px-6 py-3 text-start">
                   <div class="flex items-center gap-x-2">
                     <span class="text-xs font-semibold uppercase text-foreground">
@@ -103,39 +111,62 @@
                     </div>
                   </div>
                 </td>
-                
-                @foreach ($this->measurementTemplates as $template )
-                   <td class="h-px w-72 whitespace-nowrap">
-                  <div class="px-6 py-3">
-                  <span class="block text-sm font-semibold text-foreground">{{ $MeasurementTemplate->Measurementfield?->field_name }}</span>
-                  </div>
-                </td>
-                @endforeach
-             
-                <td class="h-px w-72 whitespace-nowrap">
-                  <div class="px-6 py-3">
-                  <span class="block text-sm font-semibold text-foreground">{{ $MeasurementTemplate->Measurementfield?->field_name }}</span>
+
+                <td class="size-px whitespace-nowrap">
+                  <div class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3">
+                    <div class="flex items-center gap-x-3">
+                   
+                      <div class="grow">
+                        <span class="block text-sm font-semibold text-foreground">{{ $MeasurementTemplate->name }}</span>
+                      </div>
+                    </div>
                   </div>
                 </td>
                 
+                
+                  <td class="h-px w-72 whitespace-nowrap">
+                  <div class="px-6 py-3">
+                  @foreach ($MeasurementTemplate->measurementFields as $measurementField )
+                  <span class="block text-sm font-semibold text-foreground">{{ $measurementField->field_name}}</span>
+                  @endforeach
+                  </div>
+                  </td>
+
+                  <td class="h-px w-72 whitespace-nowrap">
+                  <div class="px-6 py-3">
+                  @foreach ($MeasurementTemplate->measurementFields as $measurementField )
+                  <span class="block text-sm font-semibold text-foreground">{{ $measurementField->unit}}</span>
+                  @endforeach
+                  </div>
+                  </td>
+                
+
                 <td class="size-px whitespace-nowrap">
                   <div class="px-6 py-3">
-                    <span class="text-sm text-muted-foreground-1">28 Dec, 12:12</span>
+                    <span class="text-sm text-muted-foreground-1">{{ $MeasurementTemplate->created_at?->format('d M, Y') }}</span>
                   </div>
                 </td>
+
                 <td class="size-px whitespace-nowrap">
                   <div class="px-6 py-1.5">
-                    <a class="inline-flex items-center gap-x-1 text-sm text-primary decoration-2 hover:underline focus:outline-hidden focus:underline font-medium" href="#">
+                    <a class="inline-flex items-center gap-x-1 text-sm text-primary decoration-2 hover:underline focus:outline-hidden focus:underline font-medium" href="{{ route('admin.measurementtemplate.edit', $MeasurementTemplate->id) }}">
                       Edit
+                    </a>
+                  </div>
+                </td>
+
+                <td class="size-px whitespace-nowrap">
+                  <div class="px-6 py-1.5">
+                    <button wire:click="delete({{ $MeasurementTemplate->id }})" type="submit" class="inline-flex items-center gap-x-1 text-sm text-red-500 decoration-2 hover:underline focus:outline-hidden focus:underline font-medium" >
+                      delete
                     </a>
                   </div>
                 </td>
               </tr>
 
               
-               
              @empty
-               
+              <span class="text-sm text-gray-500 dark:text-neutral-400">No measurement templates found.</span>
              @endforelse
 
             </tbody>

@@ -17,8 +17,6 @@ return new class extends Migration
             $table->boolean('auto_accept_bookings')->default(false);
             $table->time('opening_time')->nullable();
             $table->time('closing_time')->nullable();
-            $table->date('working_days')->nullable();
-            $table->foreignId('tenant_id')->nullable()->constrained('users')->cascadeOnDelete();
             $table->timestamps();
         });
     }

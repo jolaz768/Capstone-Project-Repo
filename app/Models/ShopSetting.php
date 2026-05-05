@@ -12,8 +12,6 @@ class ShopSetting extends Model
         'auto_accept_booking',
         'open_time',
         'closing_time',
-        'working_days',
-        'tenant_id',
     ];
 
     public function shop()

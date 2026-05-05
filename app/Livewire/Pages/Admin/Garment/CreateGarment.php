@@ -34,7 +34,11 @@ class CreateGarment extends Component
             ->select('id', 'cat_name')
             ->get();
     }
-    
+public function updatedName($value): void
+{
+    $this->slug = Str::slug($value);
+}
+
 
     public function rules()
     {
@@ -76,6 +80,7 @@ class CreateGarment extends Component
             'image.max' => 'Image must not exceed 2048 kilobytes',
         ];
     }
+    
     public function save()
     {
     $this->validate();
@@ -84,9 +89,10 @@ class CreateGarment extends Component
     $this->description = trim($this->description);
     $this->base_price = intval($this->base_price);
     $this->category_id = ($this->category_id);
-     $imagePath = $this->image ? $this->image->store('garments', 'public') : null; 
+    $imagePath = $this->image ? $this->image->store('garments', 'public') : null; 
 
-        Garment::update([
+        Garment::create([
+            // 'shop_id' => auth()->user()->shop->id,
             'name' => $this->name,
             'slug' => $this->slug,
             'description' => $this->description,

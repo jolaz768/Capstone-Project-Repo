@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->nullable()->constrained('users')->cascadeOnDelete();
+            $table->foreignId('shop_id')->nullable()->constrained('shops')->cascadeOnDelete();
             $table->foreignId('booking_id')->nullable()->constrained('bookings')->cascadeOnDelete();
             $table->foreignId('payment_method_id')->nullable()->constrained('payment_methods')->cascadeOnDelete();
             $table->enum('status', ['pending', 'completed', 'Incomplete'])->default('pending');

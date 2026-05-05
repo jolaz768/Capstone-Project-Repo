@@ -8,8 +8,7 @@ class Shop extends Model
 {
     //
     protected  $fillable = [
-        'user_id',
-        'name',
+        'shop_name',
         'description',
         'slug',
         'phone',
@@ -17,14 +16,9 @@ class Shop extends Model
         'shop_logo',
         'is_active',
         'address',
-        'shop_setting_id'
         
     ];
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-
+ 
     public function Reviews()
     {
         return $this->hasMany(Review::class);

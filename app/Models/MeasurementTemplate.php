@@ -10,6 +10,7 @@ class MeasurementTemplate extends Model
     protected $fillable = [
         'garment_id',
         'name',
+        
     ];
 
     public function garment()

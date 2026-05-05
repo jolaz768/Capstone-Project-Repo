@@ -10,7 +10,6 @@ class Review extends Model
     protected $fillable =[
     'shop_id',
     'booking_id',
-    'tenant_id',
     'user_id',
     'rating',
     'comment',

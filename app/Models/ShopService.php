@@ -6,19 +6,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class ShopService extends Model
 {
-    //
-    protected $fillable = [
-        'shop_id',
-        'service_id',
-        'tenant_id', 
-    ];
-    public function service()
-    {
-        return $this->belongsTo(Services::class);
-    }
+    // //
+    // protected $fillable = [
+    //     'shop_id',
+    //     'service_id',
 
-    public function shop()
-    {
-        return $this->belongsTo(Shop::class);
-    }
+    // ];
+    // public function service()
+    // {
+    //     return $this->belongsTo(Service::class);
+    // }
+
+    // public function shop()
+    // {
+    //     return $this->belongsTo(Shop::class);
+    // }
 }

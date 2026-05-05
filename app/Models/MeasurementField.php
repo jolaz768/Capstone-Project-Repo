@@ -11,6 +11,7 @@ class MeasurementField extends Model
         'measurement_template_id',
         'field_name',
         'unit',
+        'value',
     ];
 
     public function measurementTemplate()

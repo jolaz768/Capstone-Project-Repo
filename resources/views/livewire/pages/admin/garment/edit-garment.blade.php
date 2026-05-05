@@ -42,8 +42,6 @@
               @error('category_id')<span class="text-sm text-red-500">{{ $message }}</span>@enderror
             </div>
 
-            
-
             <div>
               <label class="block mb-2 text-sm font-medium text-foreground">Base Price</label>
               <div class="relative">

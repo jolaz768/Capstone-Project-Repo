@@ -13,15 +13,17 @@ return new class extends Migration
     {
         Schema::create('shops', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->nullable()->constrained('users')->cascadeOnDelete();;
-            $table->foreignId('tenant_id')->nullable()->constrained('users')->cascadeOnDelete();
-            $table->string('name');
+            $table->foreignId('user_id')->nullable()->constrained('users')->cascadeOnDelete();
+            // $table->foreignId('tenant_id')->nullable()->constrained('users')->cascadeOnDelete();
+            $table->string('shop_name');
             $table->text('description')->nullable();
             $table->string('slug');
             $table->string('phone');
             $table->string('shop_image');
             $table->string('shop_logo');
+            $table->string('address');
             $table->boolean('is_active')->default(true);
+            // $table->foreignId('created_by')->nullable()->constrained('users')->nullOnDelete();
             $table->timestamps();
         });
     }

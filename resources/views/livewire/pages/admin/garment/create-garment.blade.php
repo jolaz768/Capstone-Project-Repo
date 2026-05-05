@@ -25,7 +25,7 @@
 
             <div>
               <label class="block mb-2 text-sm font-medium text-foreground">Slug</label>
-              <input wire:model="slug" type="text"
+              <input wire:model.live="slug" type="text"
                 class="py-2.5 sm:py-3 px-4 block w-full bg-layer border-layer-line rounded-lg sm:text-sm text-foreground placeholder:text-muted-foreground-1 focus:border-primary-focus focus:ring-primary-focus"
                 placeholder="slug">
               @error('slug')<span class="text-sm text-red-500">{{ $message }}</span>@enderror
@@ -59,21 +59,7 @@
                   PESO</div>
               </div>
               @error('base_price')<span class="text-sm text-red-500">{{ $message }}</span>@enderror
-
-
-              <div class="sm:col-span-2">
-                <label class="block mb-2 text-sm font-medium text-foreground">Image</label>
-                <input wire:model="image" type="file"
-                  class="w-full text-sm text-foreground file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-primary-foreground hover:file:bg-primary-hover" />
-                @error('image')<span class="text-sm text-red-500">{{ $message }}</span>@enderror
-              </div>
-              @if ($image)
-                <div class="mt-4">
-                  <p class="mb-2 text-sm font-medium text-foreground">Image preview</p>
-                  <img src="{{ $image->temporaryUrl() }}" alt="image preview" class="object-cover rounded-lg w-40 h-40" />
-                </div>
-              @endif
-            </div>
+                       
 
             {{-- <div class="sm:col-span-2">
               @foreach ($fabrics as $fabric )

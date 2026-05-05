@@ -23,14 +23,17 @@
 
     <!-- Icon Blocks -->
     <div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 items-center gap-6 md:gap-10">
+            
+
+            @foreach ($this->shops as $shop )
             <!-- Card -->
             <div class="relative size-full border border-card-line shadow-lg rounded-lg overflow-hidden min-h-64">
 
                 <!-- Background Image -->
                 <img class="absolute inset-0 w-full h-full object-cover"
-                    src="https://images.pexels.com/photos/18311248/pexels-photo-18311248.jpeg" alt="Product Image">
-
+                    src="{{ asset('storage/' . $shop->shop_image) }}" alt="Product Image">
                 <!-- Dark overlay -->
                 <div class="absolute inset-0 bg-black/40"></div>
 
@@ -42,10 +45,10 @@
                         <div
                             class="inline-flex justify-center items-center size-15.5 rounded-full border-4 border-primary-100 dark:border-primary-900 overflow-hidden shrink-0">
                             <img class="w-full h-full object-cover rounded-full"
-                                src="https://images.pexels.com/photos/28238144/pexels-photo-28238144.jpeg" alt="Logo">
+                                src="{{ asset('storage/' . $shop->shop_logo) }}" alt="Logo">
                         </div>
                         <div class="shrink-0">
-                            <h3 class="block text-lg font-semibold text-white">Kathleen Stitches</h3>
+                        <h3 class="block text-lg font-semibold text-white">{{ $shop->shop_name }}</h3>
                         </div>
                     </div>
 
@@ -67,226 +70,8 @@
                 </div>
 
             </div>
-            <!-- End Card -->
-
-            <!-- Card -->
-            <div class="relative size-full border border-card-line shadow-lg rounded-lg overflow-hidden min-h-64">
-
-                <!-- Background Image -->
-                <img class="absolute inset-0 w-full h-full object-cover"
-                    src="https://images.pexels.com/photos/18311248/pexels-photo-18311248.jpeg" alt="Product Image">
-
-                <!-- Dark overlay -->
-                <div class="absolute inset-0 bg-black/40"></div>
-
-                <!-- Card Content -->
-                <div class="relative z-10 p-5 flex flex-col h-full">
-
-                    <!-- Logo Icon (top) -->
-                    <div class="flex items-center gap-x-4 mb-3">
-                        <div
-                            class="inline-flex justify-center items-center size-15.5 rounded-full border-4 border-primary-100 dark:border-primary-900 overflow-hidden shrink-0">
-                            <img class="w-full h-full object-cover rounded-full"
-                                src="https://images.pexels.com/photos/28238144/pexels-photo-28238144.jpeg" alt="Logo">
-                        </div>
-                        <div class="shrink-0">
-                            <h3 class="block text-lg font-semibold text-white">Kathleen Stitches</h3>
-                        </div>
-                    </div>
-
-                    <div class="grow">
-                        <p class="text-xs uppercase font-medium text-white">
-                            Rating: <span class="font-semibold text-xl text-yellow-500">★★★★★</span>
-                        </p>
-                        <p class="mt-1 text-xl sm:text-md font-semibold text-white">
-                            Sevices: <span class="font-xs text-muted-foreground-">Tailoring, Embroidery, Sewing &
-                                More</span>
-                        </p>
-                    </div>
-
-                    <a href="{{ route('shop.view') }}"
-                        class="mt-auto inline-flex items-center gap-x-2 text-sm font-medium text-white hover:text-primary-focus">
-                        <button class="border border-line-5 py-2.5 px-4 rounded-md ">Visit Shop</button>
-
-                    </a>
-                </div>
-
-            </div>
-
-            <!-- Card -->
-            <div class="relative size-full border border-card-line shadow-lg rounded-lg overflow-hidden min-h-64">
-
-                <!-- Background Image -->
-                <img class="absolute inset-0 w-full h-full object-cover"
-                    src="https://images.pexels.com/photos/18311248/pexels-photo-18311248.jpeg" alt="Product Image">
-
-                <!-- Dark overlay -->
-                <div class="absolute inset-0 bg-black/40"></div>
-
-                <!-- Card Content -->
-                <div class="relative z-10 p-5 flex flex-col h-full">
-
-                    <!-- Logo Icon (top) -->
-                    <div class="flex items-center gap-x-4 mb-3">
-                        <div
-                            class="inline-flex justify-center items-center size-15.5 rounded-full border-4 border-primary-100 dark:border-primary-900 overflow-hidden shrink-0">
-                            <img class="w-full h-full object-cover rounded-full"
-                                src="https://images.pexels.com/photos/28238144/pexels-photo-28238144.jpeg" alt="Logo">
-                        </div>
-                        <div class="shrink-0">
-                            <h3 class="block text-lg font-semibold text-white">Kathleen Stitches</h3>
-                        </div>
-                    </div>
-
-                    <div class="grow">
-                        <p class="text-xs uppercase font-medium text-white">
-                            Rating: <span class="font-semibold text-xl text-yellow-500">★★★★★</span>
-                        </p>
-                        <p class="mt-1 text-xl sm:text-md font-semibold text-white">
-                            Sevices: <span class="font-xs text-muted-foreground-">Tailoring, Embroidery, Sewing &
-                                More</span>
-                        </p>
-                    </div>
-
-                    <a href="{{ route('shop.view') }}"
-                        class="mt-auto inline-flex items-center gap-x-2 text-sm font-medium text-white hover:text-primary-focus">
-                        <button class="border border-line-5 py-2.5 px-4 rounded-md ">Visit Shop</button>
-
-                    </a>
-                </div>
-
-            </div>
-
-            <!-- Card -->
-            <div class="relative size-full border border-card-line shadow-lg rounded-lg overflow-hidden min-h-64">
-
-                <!-- Background Image -->
-                <img class="absolute inset-0 w-full h-full object-cover"
-                    src="https://images.pexels.com/photos/18311248/pexels-photo-18311248.jpeg" alt="Product Image">
-
-                <!-- Dark overlay -->
-                <div class="absolute inset-0 bg-black/40"></div>
-
-                <!-- Card Content -->
-                <div class="relative z-10 p-5 flex flex-col h-full">
-
-                    <!-- Logo Icon (top) -->
-                    <div class="flex items-center gap-x-4 mb-3">
-                        <div
-                            class="inline-flex justify-center items-center size-15.5 rounded-full border-4 border-primary-100 dark:border-primary-900 overflow-hidden shrink-0">
-                            <img class="w-full h-full object-cover rounded-full"
-                                src="https://images.pexels.com/photos/28238144/pexels-photo-28238144.jpeg" alt="Logo">
-                        </div>
-                        <div class="shrink-0">
-                            <h3 class="block text-lg font-semibold text-white">Kathleen Stitches</h3>
-                        </div>
-                    </div>
-
-                    <div class="grow">
-                        <p class="text-xs uppercase font-medium text-white">
-                            Rating: <span class="font-semibold text-xl text-yellow-500">★★★★★</span>
-                        </p>
-                        <p class="mt-1 text-xl sm:text-md font-semibold text-white">
-                            Sevices: <span class="font-xs text-muted-foreground-">Tailoring, Embroidery, Sewing &
-                                More</span>
-                        </p>
-                    </div>
-
-                    <a href="{{ route('shop.view') }}"
-                        class="mt-auto inline-flex items-center gap-x-2 text-sm font-medium text-white hover:text-primary-focus">
-                        <button class="border border-line-5 py-2.5 px-4 rounded-md ">Visit Shop</button>
-
-                    </a>
-                </div>
-
-            </div>
-
-            <!-- Card -->
-            <div class="relative size-full border border-card-line shadow-lg rounded-lg overflow-hidden min-h-64">
-
-                <!-- Background Image -->
-                <img class="absolute inset-0 w-full h-full object-cover"
-                    src="https://images.pexels.com/photos/18311248/pexels-photo-18311248.jpeg" alt="Product Image">
-
-                <!-- Dark overlay -->
-                <div class="absolute inset-0 bg-black/40"></div>
-
-                <!-- Card Content -->
-                <div class="relative z-10 p-5 flex flex-col h-full">
-
-                    <!-- Logo Icon (top) -->
-                    <div class="flex items-center gap-x-4 mb-3">
-                        <div
-                            class="inline-flex justify-center items-center size-15.5 rounded-full border-4 border-primary-100 dark:border-primary-900 overflow-hidden shrink-0">
-                            <img class="w-full h-full object-cover rounded-full"
-                                src="https://images.pexels.com/photos/28238144/pexels-photo-28238144.jpeg" alt="Logo">
-                        </div>
-                        <div class="shrink-0">
-                            <h3 class="block text-lg font-semibold text-white">Kathleen Stitches</h3>
-                        </div>
-                    </div>
-
-                    <div class="grow">
-                        <p class="text-xs uppercase font-medium text-white">
-                            Rating: <span class="font-semibold text-xl text-yellow-500">★★★★★</span>
-                        </p>
-                        <p class="mt-1 text-xl sm:text-md font-semibold text-white">
-                            Sevices: <span class="font-xs text-muted-foreground-">Tailoring, Embroidery, Sewing &
-                                More</span>
-                        </p>
-                    </div>
-
-                    <a href="{{ route('shop.view') }}"
-                        class="mt-auto inline-flex items-center gap-x-2 text-sm font-medium text-white hover:text-primary-focus">
-                        <button class="border border-line-5 py-2.5 px-4 rounded-md ">Visit Shop</button>
-
-                    </a>
-                </div>
-
-            </div>
-
-            <!-- Card -->
-            <div
-                class="relative size-full border border-card-line-1 shadow-lg rounded-lg overflow-hidden min-h-64 p-1 ">
-
-                <!-- Background Image -->
-                <img class="absolute inset-0 w-full h-full object-cover"
-                    src="https://images.pexels.com/photos/18311248/pexels-photo-18311248.jpeg" alt="Product Image">
-
-                <!-- Dark overlay -->
-                <div class="absolute inset-0 bg-black/40"></div>
-
-                <!-- Card Content -->
-                <div class="relative z-10 p-5 flex flex-col h-full">
-
-                    <!-- Logo Icon (top) -->
-                    <div class="flex items-center gap-x-4 mb-3">
-                        <div
-                            class="inline-flex justify-center items-center size-15.5 rounded-full border-4 border-primary-100 dark:border-primary-900 overflow-hidden shrink-0">
-                            <img class="w-full h-full object-cover rounded-full"
-                                src="https://images.pexels.com/photos/28238144/pexels-photo-28238144.jpeg" alt="Logo">
-                        </div>
-                        <div class="shrink-0">
-                            <h3 class="block text-lg font-semibold text-white">Kathleen Stitches</h3>
-                        </div>
-                    </div>
-
-                    <div class="grow">
-                        <p class="text-xs uppercase font-medium text-white">
-                            Rating: <span class="font-semibold text-xl text-yellow-500">★★★★★</span>
-                        </p>
-                        <p class="mt-1 text-xl sm:text-md font-semibold text-white">
-                            Sevices: <span class="font-xs text-muted-foreground-">Tailoring, Embroidery, Sewing &
-                                More</span>
-                        </p>
-                    </div>
-
-                    <a href="{{ route('shop.view') }}"
-                        class="mt-auto inline-flex items-center gap-x-2 text-sm font-medium text-white hover:text-primary-focus">
-                        <button class="border border-line-5 py-2.5 px-4 rounded-md ">Visit Shop</button>
-
-                    </a>
-                </div>
+                
+            @endforeach
 
             </div>
 

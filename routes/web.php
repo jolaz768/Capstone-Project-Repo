@@ -29,6 +29,9 @@ use App\Livewire\Pages\Admin\Shop\EditShop;
 use App\Livewire\Pages\Admin\Shop\ShopCategory\CreateCategory;
 use App\Livewire\Pages\Admin\Shop\ShopCategory\EditCategory;
 use App\Livewire\Pages\Admin\Shop\ShopCategory\ViewCategory;
+use App\Livewire\Pages\Admin\Shop\ShopSetting\CreateShopSetting;
+use App\Livewire\Pages\Admin\Shop\ShopSetting\EditShopSetting;
+use App\Livewire\Pages\Admin\Shop\ShopSetting\ViewShopSetting;
 use App\Livewire\Pages\Admin\Shop\ViewShop;
 use App\Livewire\Pages\Auth\Login;
 use App\Livewire\Pages\Auth\Register;
@@ -94,7 +97,7 @@ Route::get('/shop/pricing',Pricing::class)->name('shop.pricing');
 //Shop  Review
  Route::get('/shop/review',Review::class)->name('shop.review');
 
-//
+//shop  service
 Route::get('/shop/service',ShopService::class)->name('shop.service');
     
 
@@ -165,7 +168,12 @@ Route::prefix('/admin') //shop owner
     //shop
     Route::get('/shop/view',ViewShop::class)->name('admin.shop.view');
     Route::get('/shop/create',CreateShop::class)->name('admin.shop.create');
-    Route::get('/shop/edit/{shop}',EditShop::class)->name('admin.shop.edit');
+    Route::get('/shop/edit/{id}',EditShop::class)->name('admin.shop.edit');
+
+    //shop Settings
+    Route::get('/shop/setting',ViewShopSetting::class)->name('admin.shop.setting.view');
+    Route::get('/shop/setting/edit/{id}',EditShopSetting::class)->name('admin.shop.setting.edit');
+    Route::get('/shop/setting/create',CreateShopSetting::class)->name('admin.shop.setting.create');
 
     //Shop Category
     Route::get('/shop/category',CreateCategory::class)->name('admin.shop.category.create');
@@ -175,7 +183,7 @@ Route::prefix('/admin') //shop owner
     // MeasurementTemplate
     Route::get('/measurementtemplate/view',ViewMeasurementTemplate::class)->name('admin.measurementtemplate.view');
     Route::get('/measurementtemplate/create',CreateMeasurementTemplate::class)->name('admin.measurementtemplate.create');
-    Route::get('/measurementtemplate/edit/{measurementtemplate}',EditMeasurementTemplate::class)->name('admin.measurementtemplate.edit');
+    Route::get('/measurementtemplate/edit/{id}',EditMeasurementTemplate::class)->name('admin.measurementtemplate.edit');
 
     //MeasurementField
     Route::get('/measurementfield/view',ViewMeasurementField::class)->name('admin.measurementfield.view');

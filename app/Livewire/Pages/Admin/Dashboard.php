@@ -26,11 +26,7 @@ class Dashboard extends Component
     public array $visitorChartData = [];
     public bool $visitorsTableExists = false;
 
-    #[Layout('components.layouts.admin')]
-    public function render()
-    {
-        return view('livewire.pages.admin.dashboard');
-    }
+    
 
     public function mount(): void
     {
@@ -207,5 +203,11 @@ class Dashboard extends Component
             'monthly' => "DATE_FORMAT({$dateColumn}, '%Y-%m') AS period",
             default => "DATE({$dateColumn}) AS period",
         };
+    }
+
+    #[Layout('components.layouts.admin')]
+    public function render()
+    {
+        return view('livewire.pages.admin.dashboard');
     }
 }

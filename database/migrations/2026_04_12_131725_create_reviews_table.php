@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->nullable()->constrained('users')->cascadeOnDelete();
             $table->foreignId('booking_id')->constrained()->cascadeOnDelete();
             $table->foreignId('shop_id')->nullable()->constrained('shops')->cascadeOnDelete();
-            $table->foreignId('tenant_id')->nullable()->constrained('users')->cascadeOnDelete();
+            // $table->foreignId('tenant_id')->nullable()->constrained('users')->cascadeOnDelete();
             $table->integer('rating');
             $table->text('comment')->nullable();
             $table->timestamps();
