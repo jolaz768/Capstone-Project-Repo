@@ -16,18 +16,21 @@ class ViewGarment extends Component
     public function garments()
     {
         return Garment::query()
-        ->select('id', 'name', 'image','base_price','description','slug','category_id','created_at')
-        ->with('category:id,cat_name',)
-        ->get();
+            ->select('id', 'name', 'image','base_price','description','slug','category_id','created_at')
+            ->with('category:id,cat_name','shop:id,')
+            
+            ->whereHas('shop.users', fn ($query) => $query->where('users.id', auth()->id()))
+            ->get();
     }
 
-    public function fabrics(){
-        return Fabric::query()->select('id', 'name')->get();
-    }
+    // public function fabrics()
+    // {
+    //     return Fabric::query()->select('id', 'name')->get();
+    // }
 
-    public function colors(){
-        return Color::query()->select('id', 'color_name')->get();
-    }
+    // public function colors(){
+    //     return Color::query()->select('id', 'color_name')->get();
+    // }
 
     
     

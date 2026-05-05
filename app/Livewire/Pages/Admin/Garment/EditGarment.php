@@ -35,7 +35,10 @@ class EditGarment extends Component
 
     public function mount($id)
     {
-        $this->garment = Garment::findOrFail($id);
+        $this->garment = Garment::where('id', $id)
+            ->whereHas('shop.users', fn ($query) => $query->where('users.id', auth()->id()))
+            ->firstOrFail();
+
         $this->name = $this->garment->name;
         $this->slug = $this->garment->slug;
         $this->description = $this->garment->description;

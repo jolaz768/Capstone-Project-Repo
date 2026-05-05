@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use App\Traits\HasShopScope;
 use Illuminate\Database\Eloquent\Model;
 
 class Payment extends Model
 {
+    use HasShopScope;
     //
     protected $fillable = [
         'shop_id',

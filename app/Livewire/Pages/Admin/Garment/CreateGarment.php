@@ -91,8 +91,13 @@ public function updatedName($value): void
     $this->category_id = ($this->category_id);
     $imagePath = $this->image ? $this->image->store('garments', 'public') : null; 
 
+        $shopId = auth()->user()->shop()->first()?->id;
+        if (! $shopId) {
+            throw new \RuntimeException('Authenticated user is not assigned to a shop.');
+        }
+
         Garment::create([
-            // 'shop_id' => auth()->user()->shop->id,
+            'shop_id' => $shopId,
             'name' => $this->name,
             'slug' => $this->slug,
             'description' => $this->description,

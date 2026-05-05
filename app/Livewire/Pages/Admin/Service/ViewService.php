@@ -18,14 +18,20 @@ class ViewService extends Component
 
      #[Computed()]
 
-     public function services(){
+     public function services()
+     {
          return Service::query()
-         ->select('id', 'name', 'description', 'slug', 'created_at')
-         ->get();
+             ->select('id', 'name', 'description', 'slug', 'created_at')
+             ->whereHas('shop.users', fn ($query) => $query->where('users.id', auth()->id()))
+             ->get();
      }
 
-     public function delete($id){
-        $service = Service::findOrFail($id);
+     public function delete($id)
+     {
+        $service = Service::where('id', $id)
+            ->whereHas('shop.users', fn ($query) => $query->where('users.id', auth()->id()))
+            ->firstOrFail();
+
         $service->delete();
         session()->flash('message', 'Service deleted successfully!');
         return redirect()->route('admin.service.view');

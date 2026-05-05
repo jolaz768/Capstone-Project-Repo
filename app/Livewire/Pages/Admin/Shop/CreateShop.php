@@ -20,6 +20,7 @@ class CreateShop extends Component
     public $shop_logo;
     public string $address ;
     public  $is_active;
+    
 
     public function rules()
     {
@@ -91,7 +92,8 @@ class CreateShop extends Component
     $imagePath = $this->shop_image ? $this->shop_image->store('shops', 'public') : null;
     $logoPath = $this->shop_logo ? $this->shop_logo->store('shops', 'public') : null;
 
-    Shop::create([
+    $shop = Shop::create([
+        'user_id'     => auth()->id(),
         'shop_name'   => $this->shop_name,
         'slug'        => $this->slug,
         'description' => $this->description,
@@ -101,6 +103,8 @@ class CreateShop extends Component
         'address'     => $this->address,
         'is_active'   => $this->is_active,
     ]);
+
+    $shop->users()->attach(auth()->id());
 
     session()->flash('success', 'Shop created successfully!');
     return redirect()->route('admin.shop.view');

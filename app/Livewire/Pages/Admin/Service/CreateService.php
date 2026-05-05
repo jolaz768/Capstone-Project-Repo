@@ -16,13 +16,12 @@ class CreateService extends Component
     // public $shop_id;
     public $slug;
 
-    public function  rules()
+    public function rules()
     {
-    return[
-        'name'=> 'required|min:3|max:50|unique:services,name',
-        'description' => 'required|min:10|max:255',
-        'slug' => 'required|unique:services,slug',
-    ];
+        return [
+            'name' => 'required|min:3|max:50',
+            'description' => 'required|min:10|max:255',
+        ];
     }
 
     public function messages()
@@ -42,29 +41,49 @@ class CreateService extends Component
             'slug.required' => 'Slug is required',
         ];
     }
-    public function updatedCatName($value): void
+    public function updatedName($value): void
     {
         $this->slug = Str::slug($value);
     }
 
-        
-        public function save(){
-            $this->validate();
-            $this->name = Str::of(trim(strip_tags($this->name)))->title();
-            $this->description = Str::of(trim(strip_tags($this->description)))->title();
-            $this->slug = Str::slug($this->name);
+    public function save()
+    {
+        $this->validate();
+
+        $name = Str::of(trim(strip_tags($this->name)))->title();
+        $description = Str::of(trim(strip_tags($this->description)))->title();
+        $slugBase = Str::slug($name);
+
+        $shops = auth()->user()->shops()->get();
+        if ($shops->isEmpty()) {
+            throw new \RuntimeException('Authenticated user is not assigned to a shop.');
+        }
+
+        $createdCount = 0;
+        foreach ($shops as $shop) {
+            if (Service::where('shop_id', $shop->id)->where('name', $name)->exists()) {
+                continue;
+            }
 
             Service::create([
-                'name' => $this->name,
-                'description' => $this->description,
-                'slug' => $this->slug,
-                // 'shop_id' => auth()->user()->shop->id, //Assuming the shop ID is associated with the authenticated user
+                'name' => $name,
+                'description' => $description,
+                'slug' => $slugBase . '-' . $shop->id,
+                'shop_id' => $shop->id,
             ]);
 
-            $this->reset(['name', 'description', 'slug']);
-            session()->flash('message', 'Service created successfully!');
-            return redirect()->route('admin.service.view');
+            $createdCount++;
         }
+
+        if ($createdCount === 0) {
+            session()->flash('message', 'This service already exists in all your shops.');
+        } else {
+            session()->flash('message', "Service created successfully for {$createdCount} shop(s)!");
+        }
+
+        $this->reset(['name', 'description', 'slug']);
+        return redirect()->route('admin.service.view');
+    }
     
 
     public function render()

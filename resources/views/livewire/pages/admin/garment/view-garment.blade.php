@@ -43,13 +43,13 @@
                   </label> --}}
                 </th>
 
-                <th scope="col" class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3 text-start">
+                {{-- <th scope="col" class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3 text-start">
                   <div class="flex items-center gap-x-2">
                     <span class="text-xs font-semibold uppercase text-foreground">
                       Shop_Id
                     </span>
                   </div>
-                </th>
+                </th> --}}
 
                 <th scope="col" class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3 text-start">
                   <div class="flex items-center gap-x-2">
@@ -62,7 +62,7 @@
                 <th scope="col" class="px-6 py-3 text-start">
                   <div class="flex items-center gap-x-2">
                     <span class="text-xs font-semibold uppercase text-foreground">
-                      Image
+                     Garment Image
                     </span>
                   </div>
                 </th>
@@ -118,15 +118,15 @@
                     <div class="ps-6 py-3"></div>
                   </td>
 
-                  <td class="size-px whitespace-nowrap">
+                  {{-- <td class="size-px whitespace-nowrap">
                     <div class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3">
                       <div class="flex items-center gap-x-3">
                         <div class="grow">
-                          <span class="block text-sm font-semibold text-foreground">{{ $garment->shop?->id ?? '—' }}</span>
+                          <span class="block text-sm font-semibold text-foreground">{{ $garment->shop->id}}</span>
                         </div>
                       </div>
                     </div>
-                  </td>
+                  </td> --}}
 
                   <td class="size-px whitespace-nowrap">
                     <div class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3">

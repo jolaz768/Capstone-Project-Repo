@@ -11,7 +11,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 
-#[Fillable(['name', 'email', 'password', 'shop_id', 'phone', 'address'])]
+#[Fillable(['name', 'email', 'password',  'phone', 'address'])]
 #[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable
 {
@@ -35,9 +35,19 @@ class User extends Authenticatable
         return $this->hasMany(Review::class);
     }
 
-    public function shop()
+    // public function shop()
+    // {
+    //     return $this->belongsToMany(Shop::class, 'user_shops', 'user_id', 'shop_id')->withTimestamps();
+    // }
+
+    // public function shops()
+    // {
+    //     return $this->belongsToMany(Shop::class, 'user_shops', 'user_id', 'shop_id')->withTimestamps();
+    // }
+
+    public function ownedShopIds(): array
     {
-        return $this->hasmany(Shop::class);
+        return $this->shops()->pluck('shops.id')->toArray();
     }
 
     public function booking()

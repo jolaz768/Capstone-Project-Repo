@@ -15,8 +15,8 @@ class IndexShop extends Component
 
     public function shops()
     {
-        return Shop::query()->select('id', 'shop_name', 'shop_image', )
-        // ->where('is_active', 1)
+        return Shop::query()->select('id', 'shop_name', 'shop_image', 'shop_logo')
+        ->where('is_active', 1)
         ->get(); // run Shop::query()
     }
     

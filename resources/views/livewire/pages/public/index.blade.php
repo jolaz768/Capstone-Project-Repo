@@ -56,10 +56,14 @@
                         <p class="text-xs uppercase font-medium text-white">
                             Rating: <span class="font-semibold text-xl text-yellow-500">★★★★★</span>
                         </p>
-                        <p class="mt-1 text-xl sm:text-md font-semibold text-white">
-                            Sevices: <span class="font-xs text-muted-foreground-">Tailoring, Embroidery, Sewing &
-                                More</span>
+                        
+                            <p class="mt-1 text-xl sm:text-md font-semibold text-white">
+                            Sevices:
+                            @foreach ($this->services as $service ) <span class="font-xs text-muted-foreground-">{{ $service->name }},</span>
+                            @endforeach
                         </p>
+                        
+                        
                     </div>
 
                     <a href="{{ route('shop.view') }}"

@@ -19,7 +19,10 @@ class EditService extends Component
     public function mount($id)
     {
         $this->serviceId = $id;
-        $this->service = Service::findOrFail($id);
+        $this->service = Service::where('id', $id)
+            ->whereHas('shop.users', fn ($query) => $query->where('users.id', auth()->id()))
+            ->firstOrFail();
+
         $this->name = $this->service->name;
         $this->description = $this->service->description;
         $this->slug = $this->service->slug;

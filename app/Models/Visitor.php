@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\HasShopScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Visitor extends Model
 {
+    // use HasShopScope;
     protected $fillable = [
         'user_id',
         'shop_id',

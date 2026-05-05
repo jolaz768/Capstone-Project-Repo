@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use App\Traits\HasShopScope;
 use Illuminate\Database\Eloquent\Model;
 
 class Garment extends Model
 {
+    use HasShopScope;
     //
     protected $fillable  =[
         'shop_id',
@@ -24,6 +26,11 @@ class Garment extends Model
     public function shop()
     {
         return $this->belongsTo(Shop::class);
+    }
+
+    public function scopeForOwner($query, int $userId)
+    {
+        return $query->whereHas('shop.users', fn ($query) => $query->where('users.id', $userId));
     }
 
     public function measurementTemplate()

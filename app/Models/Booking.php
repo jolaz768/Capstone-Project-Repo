@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use App\Traits\HasShopScope;
 use Illuminate\Database\Eloquent\Model;
 
 class Booking extends Model
 {
+    // use HasShopScope;
     protected $fillable = [
         'user_id',
         'shop_id',

@@ -2,10 +2,11 @@
 
 namespace App\Livewire\Pages\Public;
 
+use App\Models\Service;
+use App\Models\Shop;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
-use App\Models\Shop;
 
 class Index extends Component
 {   
@@ -20,7 +21,15 @@ class Index extends Component
        ->get(); // run Shop::query()
    }
 
-   
+        #[Computed()]
+
+     public function services()
+     {
+         return Service::query()
+             ->select('id', 'name')
+             ->whereHas('shop.users', fn ($query) => $query->where('users.id', auth()->id()))
+             ->get();
+     }
 
 
 

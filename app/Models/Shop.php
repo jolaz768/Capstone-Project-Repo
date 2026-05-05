@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Shop extends Model
 {
     //
-    protected  $fillable = [
+    protected $fillable = [
+        // 'user_id',
         'shop_name',
         'description',
         'slug',
@@ -16,9 +17,23 @@ class Shop extends Model
         'shop_logo',
         'is_active',
         'address',
-        
     ];
  
+    // public function user()
+    // {
+    //     return $this->belongsTo(User::class);
+    // }
+
+    public function scopeForOwner($query, int $userId)
+    {
+        return $query->whereHas('users', fn ($query) => $query->where('users.id', $userId));
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'user_shops')->withTimestamps();
+    }
+
     public function Reviews()
     {
         return $this->hasMany(Review::class);
