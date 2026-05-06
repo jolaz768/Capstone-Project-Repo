@@ -21,6 +21,8 @@ class ViewCategory extends Component
     {
         return Category::query()
         ->select('id', 'cat_name', 'cat_slug', 'cat_desc', 'created_at')
+        
+        ->whereHas('shop.users', fn ($query) => $query->where('users.id', auth()->id()))
         ->get();
     }
 

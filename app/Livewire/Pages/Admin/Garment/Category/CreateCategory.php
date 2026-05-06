@@ -22,7 +22,7 @@ class CreateCategory extends Component
     public function rules()
     {
         return [
-            'cat_name' => 'unique:categories,cat_name|required|min:3|max:50',
+            'cat_name' => 'required|min:3|max:50',
             'cat_slug' => 'required|unique:categories,cat_slug',
             'cat_desc' => 'required|min:10|max:255',
         ];

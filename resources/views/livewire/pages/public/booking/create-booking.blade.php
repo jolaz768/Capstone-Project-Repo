@@ -1,7 +1,12 @@
 <div>
+  @if(session()->has('message'))
+    <div class="alert alert-success">
+      <span class="text-green-500 border-green-200 bg-green-100 px-4 py-3 rounded-lg inline-block text-center">{{ session()->get('message') }}</span>
+    </div>
+  @endif
     {{-- If you look to others for fulfillment, you will never truly be fulfilled. --}}
     <!-- Comment Form -->
-<div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+<div class="max-w-340 px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
   <div class="mx-auto max-w-2xl">
     <div class="text-center">
       <h2 class="text-xl text-foreground-1 font-bold sm:text-3xl">
@@ -11,23 +16,31 @@
 
     <!-- Card -->
     <div class="mt-5 p-4 relative z-10 bg-card border border-card-line rounded-xl sm:mt-10 md:p-10">
-      <form>
+      <form wire:submit.prevent="createBooking">
+        @if (session()->has('message'))
+          <div class="mb-6 rounded-lg border border-success/20 bg-success/10 p-4 text-sm text-success-foreground">
+            {{ session('message') }}
+          </div>
+        @endif
+
         <div class="mb-4 sm:mb-8">
-          <label for="date" class="block mb-2 text-sm font-medium text-foreground">Apointment Date</label>
-          <input type="date" id="date" name="date" class="py-2.5 sm:py-3 px-4 block w-full bg-card-line border-layer-line rounded-lg sm:text-sm text-foreground placeholder:text-muted-foreground-1 focus:border-primary-focus focus:ring-primary-focus disabled:opacity-50 disabled:pointer-events-none" placeholder="Date"  value="{{ request('date') }}">
+          <label for="date" class="block mb-2 text-sm font-medium text-foreground">Appointment Date</label>
+          <input wire:model.defer="bookingDate" type="date" id="date" class="py-2.5 sm:py-3 px-4 block w-full bg-card-line border-layer-line rounded-lg sm:text-sm text-foreground placeholder:text-muted-foreground-1 focus:border-primary-focus focus:ring-primary-focus" />
+          @error('bookingDate') <p class="mt-1 text-sm text-destructive">{{ $message }}</p> @enderror
         </div>
 
          <h1 class="my-2 text-xl  text-center font-mono">Customer Details</h1>
          
         <div class="mb-4 sm:mb-8">
-         
           <label for="hs-feedback-post-comment-email-1" class="block mb-2 text-sm font-medium text-foreground">Email address</label>
-          <input type="email" id="hs-feedback-post-comment-email-1" class="py-2.5 sm:py-3 px-4 block w-full bg-card-line border-layer-line rounded-lg sm:text-sm text-foreground placeholder:text-muted-foreground-1 focus:border-primary-focus focus:ring-primary-focus disabled:opacity-50 disabled:pointer-events-none" placeholder="Email address">
+          <input wire:model.defer="customerEmail" type="email" id="hs-feedback-post-comment-email-1" class="py-2.5 sm:py-3 px-4 block w-full bg-card-line border-layer-line rounded-lg sm:text-sm text-foreground placeholder:text-muted-foreground-1 focus:border-primary-focus focus:ring-primary-focus" placeholder="Email address" />
+          @error('customerEmail') <p class="mt-1 text-sm text-destructive">{{ $message }}</p> @enderror
         </div>
 
         <div class="mb-4 sm:mb-8">
           <label for="hs-feedback-post-comment-full-name-1" class="block mb-2 text-sm font-medium text-foreground">Full Name</label>
-          <input type="text" id="hs-feedback-post-comment-full-name-1" class="py-2.5 sm:py-3 px-4 block w-full bg-card-line border-layer-line rounded-lg sm:text-sm text-foreground placeholder:text-muted-foreground-1 focus:border-primary-focus focus:ring-primary-focus disabled:opacity-50 disabled:pointer-events-none" placeholder="Full Name">
+          <input wire:model.defer="customerName" type="text" id="hs-feedback-post-comment-full-name-1" class="py-2.5 sm:py-3 px-4 block w-full bg-card-line border-layer-line rounded-lg sm:text-sm text-foreground placeholder:text-muted-foreground-1 focus:border-primary-focus focus:ring-primary-focus" placeholder="Full Name" />
+          @error('customerName') <p class="mt-1 text-sm text-destructive">{{ $message }}</p> @enderror
         </div>
 
         <h3 class="my-2 text-xl text-center font-mono">Select Service</h3>
@@ -37,14 +50,15 @@
             class="block mb-2 text-sm font-medium text-foreground">Service</label>
           <div class="mt-1">
             <div class="mb-4 sm:mb-8">
-              <select type="text" id="hs-feedback-post-garment"
+              <select wire:model.defer="serviceId" type="text" id="hs-feedback-post-garment"
                 class="py-2.5 sm:py-3 px-4 block w-full bg-card-line border-layer-line rounded-lg sm:text-sm text-foreground placeholder:text-muted-foreground-1 focus:border-primary-focus focus:ring-primary-focus disabled:opacity-50 disabled:pointer-events-none"
                 placeholder="Full Name">
-                <option value="1">Select-Service</option>
-                <option value="2">Sewing</option>
-                <option value="3">Alteration</option>
-                <option value="4">Rental</option>
+                <option value="">Select a service</option>
+                @foreach ($this->shop->services as $service)
+                  <option value="{{ $service->id }}">{{ $service->name }}</option>
+                @endforeach
               </select>
+              @error('serviceId') <p class="mt-1 text-sm text-destructive">{{ $message }}</p> @enderror
             </div>
           </div>
         </div>
@@ -55,43 +69,51 @@
     <label class="block mb-2 text-sm font-medium text-foreground">Garment</label>
 
     <div class="grid grid-cols-2 gap-x-4 gap-y-2">
+        @forelse ($this->shop->garments as $garment)
+            <label class="flex items-center gap-x-2 cursor-pointer">
+                <input wire:model="selectedGarmentIds" type="checkbox" name="garment[]" value="{{ $garment->id }}"
+                    class="shrink-0 rounded border-gray-300 text-primary focus:ring-primary">
+                <span class="text-sm text-foreground">{{ $garment->name }}</span>
+            </label>
+        @empty
+            <p class="text-sm text-muted-foreground">No garments available for this shop.</p>
+        @endforelse
+        @error('selectedGarmentIds') <p class="mt-2 text-sm text-destructive">{{ $message }}</p> @enderror
+    </div>
 
-        <label class="flex items-center gap-x-2 cursor-pointer">
-            <input type="checkbox" name="garment[]" value="t-shirt"
-                class="shrink-0 rounded border-gray-300 text-primary focus:ring-primary">
-            <span class="text-sm text-foreground">T-Shirt</span>
-        </label>
+    <div class="mt-6 rounded-lg border border-card-line bg-card p-5">
+        <div class="flex items-center justify-between">
+            <div>
+                <h4 class="text-lg font-semibold text-foreground">Selected measurement inputs</h4>
+                <p class="text-sm text-muted-foreground">Fill the values for each selected garment.</p>
+            </div>
+            <div class="text-sm font-semibold text-foreground">Total: ₱{{ number_format($this->totalPrice, 2) }}</div>
+        </div>
 
-        <label class="flex items-center gap-x-2 cursor-pointer">
-            <input type="checkbox" name="garment[]" value="polo"
-                class="shrink-0 rounded border-gray-300 text-primary focus:ring-primary">
-            <span class="text-sm text-foreground">Polo</span>
-        </label>
-
-        <label class="flex items-center gap-x-2 cursor-pointer">
-            <input type="checkbox" name="garment[]" value="shorts"
-                class="shrink-0 rounded border-gray-300 text-primary focus:ring-primary">
-            <span class="text-sm text-foreground">Shorts</span>
-        </label>
-
-        <label class="flex items-center gap-x-2 cursor-pointer">
-            <input type="checkbox" name="garment[]" value="pants"
-                class="shrink-0 rounded border-gray-300 text-primary focus:ring-primary">
-            <span class="text-sm text-foreground">Pants</span>
-        </label>
-
-        <label class="flex items-center gap-x-2 cursor-pointer">
-            <input type="checkbox" name="garment[]" value="jacket"
-                class="shrink-0 rounded border-gray-300 text-primary focus:ring-primary">
-            <span class="text-sm text-foreground">Jacket</span>
-        </label>
-
-        <label class="flex items-center gap-x-2 cursor-pointer">
-            <input type="checkbox" name="garment[]" value="dress"
-                class="shrink-0 rounded border-gray-300 text-primary focus:ring-primary">
-            <span class="text-sm text-foreground">Dress</span>
-        </label>
-
+        @if ($this->selectedGarments->isEmpty())
+            <div class="mt-4 text-sm text-muted-foreground">Choose at least one garment to see measurement inputs.</div>
+        @else
+            @foreach ($this->selectedGarments as $garment)
+                @if ($garment->measurementTemplate)
+                    <div class="mt-6 rounded-2xl border border-card-line bg-base p-4">
+                        <div class="mb-3 text-base font-semibold text-foreground">{{ $garment->name }} — {{ $garment->measurementTemplate->name }}</div>
+                        <div class="grid gap-4 sm:grid-cols-2">
+                            @foreach ($garment->measurementTemplate->measurementFields as $field)
+                                <div>
+                                    <label class="block mb-2 text-sm font-medium text-foreground">{{ $field->field_name }} ({{ $field->unit }})</label>
+                                    <input wire:model.defer="measurementValues.{{ $field->id }}" type="number" step="0.01" min="0" class="py-2.5 sm:py-3 px-4 block w-full bg-card-line border-layer-line rounded-lg sm:text-sm text-foreground focus:border-primary-focus focus:ring-primary-focus" placeholder="Enter value" />
+                                    @error('measurementValues.' . $field->id) <p class="mt-1 text-sm text-destructive">{{ $message }}</p> @enderror
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                @else
+                    <div class="mt-6 rounded-2xl border border-warning/20 bg-warning/10 p-4 text-sm text-foreground">
+                        No measurement template is configured for <strong>{{ $garment->name }}</strong>.
+                    </div>
+                @endif
+            @endforeach
+        @endif
     </div>
     
     <div>

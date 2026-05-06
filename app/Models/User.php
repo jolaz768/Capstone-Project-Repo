@@ -40,10 +40,10 @@ class User extends Authenticatable
     //     return $this->belongsToMany(Shop::class, 'user_shops', 'user_id', 'shop_id')->withTimestamps();
     // }
 
-    // public function shops()
-    // {
-    //     return $this->belongsToMany(Shop::class, 'user_shops', 'user_id', 'shop_id')->withTimestamps();
-    // }
+    public function shops()
+    {
+        return $this->belongsToMany(Shop::class, 'user_shops', 'user_id', 'shop_id')->withTimestamps();
+    }
 
     public function ownedShopIds(): array
     {

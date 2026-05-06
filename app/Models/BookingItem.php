@@ -11,7 +11,7 @@ class BookingItem extends Model
         'booking_id',
         'garment_id',
         'quantity',
-        'Sub_total'
+        'sub_total',
     ];
 
     public  function booking()

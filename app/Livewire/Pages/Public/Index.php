@@ -18,20 +18,9 @@ class Index extends Component
    {
        return Shop::query()->select('id', 'shop_name', 'shop_image', 'shop_logo')
        ->where('is_active', 1)
+       ->with('services:id,name,shop_id')
        ->get(); // run Shop::query()
    }
-
-        #[Computed()]
-
-     public function services()
-     {
-         return Service::query()
-             ->select('id', 'name')
-             ->whereHas('shop.users', fn ($query) => $query->where('users.id', auth()->id()))
-             ->get();
-     }
-
-
 
     public function render()
     {

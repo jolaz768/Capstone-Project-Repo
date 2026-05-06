@@ -5,7 +5,7 @@
 
         <!-- REVIEWS -->
         <div class="lg:col-span-3">
-            <a href="{{ route('shop.view') }}"
+            <a href="{{ route('shop.view', ['id' => $shop->id]) }}"
                 class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-full bg-primary border border-primary-line text-primary-foreground hover:bg-primary-hover focus:outline-hidden focus:bg-primary-hover disabled:opacity-50 disabled:pointer-events-none">
 
                 <svg class="size-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"

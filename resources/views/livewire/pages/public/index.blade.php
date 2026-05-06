@@ -59,14 +59,14 @@
                         
                             <p class="mt-1 text-xl sm:text-md font-semibold text-white">
                             Sevices:
-                            @foreach ($this->services as $service ) <span class="font-xs text-muted-foreground-">{{ $service->name }},</span>
-                            @endforeach
+                           <span class="font-xs text-foreground"> {{ $shop->Services->pluck('name')->implode(', ') }},</span>
+                            
                         </p>
                         
                         
                     </div>
 
-                    <a href="{{ route('shop.view') }}"
+                    <a href="{{ route('shop.view' , ['id' => $shop->id]) }}"
                         class="mt-auto inline-flex items-center gap-x-2 text-sm font-medium text-white hover:text-primary-focus">
                         <button class="border border-line-5 py-2.5 px-4 rounded-md ">Visit Shop</button>
 

@@ -85,17 +85,17 @@ Route::prefix('public')
 
 //booking
 Route::get('/booking-view',publicbooking::class)->name('booking.view');
-Route::get('/create-booking',CreateBooking::class)->name('booking.create');
-Route::get('/edit-booking/{booking}',EditBooking::class)->name('booking.edit');
+Route::get('/create-booking/{id}',CreateBooking::class)->name('booking.create');
+Route::get('/edit-booking/{id}',EditBooking::class)->name('booking.edit');
 
 //shop
-Route::get('/Shop-view',IndexShop::class)->name('shop.view');
+Route::get('/Shop-view/{id}',IndexShop::class)->name('shop.view');
 
 //Shop  Pricing
 Route::get('/shop/pricing',Pricing::class)->name('shop.pricing');
 
 //Shop  Review
- Route::get('/shop/review',Review::class)->name('shop.review');
+ Route::get('/shop/review/{id}',Review::class)->name('shop.review');
 
 //shop  service
 Route::get('/shop/service',ShopService::class)->name('shop.service');
@@ -198,5 +198,9 @@ Route::prefix('/admin') //shop owner
     Route::get('/service/create',CreateService::class)->name('admin.service.create');
     Route::get('/service/{id}/edit',EditService::class)->name('admin.service.edit');
 
+    //booking
+    Route::get('/booking/view',ViewBooking::class)->name('admin.booking.view');
+    Route::get('/booking/create',CreateBooking::class)->name('admin.booking.create');
+    Route::get('/booking/edit/{booking}',EditBooking::class)->name('admin.booking.edit');
 
 });

@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Traits\HasShopScope;
 use Illuminate\Database\Eloquent\Model;
 
 class Booking extends Model
@@ -11,6 +10,7 @@ class Booking extends Model
     protected $fillable = [
         'user_id',
         'shop_id',
+        'service_id',
         'status',
         'booking_date',
         'total_price',
@@ -19,6 +19,11 @@ class Booking extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function service()
+    {
+        return $this->belongsTo(Service::class);
     }
 
     public function shop()

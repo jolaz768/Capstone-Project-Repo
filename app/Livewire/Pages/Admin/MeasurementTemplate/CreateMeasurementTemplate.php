@@ -29,7 +29,7 @@ class CreateMeasurementTemplate extends Component
 
     public function addField()
     {
-        $this->fields[] = ['field_name' => '', 'unit' => ''];
+        $this->fields[] = ['field_name' => '', 'unit' => '','value'=>''];
     }
 
     public function removeField($index)
@@ -91,6 +91,7 @@ class CreateMeasurementTemplate extends Component
                     'measurement_template_id' => $template->id,
                     'field_name' => trim($field['field_name']),
                     'unit' => trim($field['unit']),
+                    
                 ]);
             }
         });

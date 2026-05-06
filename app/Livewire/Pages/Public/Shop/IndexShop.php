@@ -11,13 +11,20 @@ class IndexShop extends Component
 {   
     #[Layout('components.layouts.app')]
 
-    #[Computed()]
+      public Shop $shop;
 
-    public function shops()
+    public function mount($id)
     {
-        return Shop::query()->select('id', 'shop_name', 'shop_image', 'shop_logo')
-        ->where('is_active', 1)
-        ->get(); // run Shop::query()
+        $this->shop = Shop::query()
+            ->where('id', $id)
+            ->where('is_active', 1)
+            ->with([
+                'services:id,shop_id,name,description,created_at',
+                'garments:id,shop_id,name,description,image,base_price',
+
+                
+            ])
+            ->firstOrFail();
     }
     
     public function render()

@@ -23,7 +23,7 @@ class CreateCategory extends Component
     public function rules()
     {
         return [
-            'cat_name' => 'unique:category_shops,cat_name|required|min:3|max:50',
+            'cat_name' => 'required|min:3|max:50',
             'cat_slug' => 'required|unique:category_shops,cat_slug',
             'cat_desc' => 'required|min:10|max:255',
         ];
@@ -33,7 +33,7 @@ class CreateCategory extends Component
     {
         return [
             'cat_name.required' => 'Category name is required.',
-            'cat_name.unique' => 'Category name must be unique.',
+  
             'cat_name.min' => 'Category name must be at least 3 characters.',
             'cat_name.max' => 'Category name must not exceed 50 characters.',
 
