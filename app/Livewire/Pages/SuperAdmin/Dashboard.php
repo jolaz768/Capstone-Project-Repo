@@ -37,11 +37,7 @@ class Dashboard extends Component
     public array $topShopRevenue = [];
     public array $topShopOrders = [];
 
-    #[Layout('components.layouts.superadmin')]
-    public function render()
-    {
-        return view('livewire.pages.super-admin.dashboard');
-    }
+   
 
     public function mount(): void
     {
@@ -129,20 +125,20 @@ class Dashboard extends Component
         $this->orderTrendSeries = $series;
     }
 
-    protected function setTopShopAnalytics(): void
-    {
-        $topShops = Shop::query()
-            ->leftJoin('bookings', 'bookings.shop_id', '=', 'shops.id')
-            ->selectRaw('shops.name, SUM(CASE WHEN bookings.status = "approved" THEN bookings.total_price ELSE 0 END) AS revenue, COUNT(CASE WHEN bookings.status = "approved" THEN 1 END) AS order_count')
-            ->groupBy('shops.id', 'shops.name')
-            ->orderByDesc('revenue')
-            ->limit(5)
-            ->get();
+protected function setTopShopAnalytics(): void
+{
+    $topShops = Shop::query()
+        ->leftJoin('bookings', 'bookings.shop_id', '=', 'shops.id')
+        ->selectRaw('shops.shop_name as name, SUM(CASE WHEN bookings.status = "approved" THEN bookings.total_price ELSE 0 END) AS revenue, COUNT(CASE WHEN bookings.status = "approved" THEN 1 END) AS order_count')
+        ->groupBy('shops.id', 'shops.shop_name')
+        ->orderByDesc('revenue')
+        ->limit(5)
+        ->get();
 
-        $this->topShopNames = $topShops->pluck('name')->toArray();
-        $this->topShopRevenue = $topShops->pluck('revenue')->map(fn ($value) => (int) $value)->toArray();
-        $this->topShopOrders = $topShops->pluck('order_count')->map(fn ($value) => (int) $value)->toArray();
-    }
+    $this->topShopNames = $topShops->pluck('name')->toArray();
+    $this->topShopRevenue = $topShops->pluck('revenue')->map(fn ($value) => (int) $value)->toArray();
+    $this->topShopOrders = $topShops->pluck('order_count')->map(fn ($value) => (int) $value)->toArray();
+}
 
     protected function buildSeries($query, string $dateColumn, string $aggregate, bool $distinct = false): array
     {
@@ -227,5 +223,10 @@ class Dashboard extends Component
             'monthly' => "DATE_FORMAT({$dateColumn}, '%Y-%m') AS period",
             default => "DATE({$dateColumn}) AS period",
         };
+    }
+     #[Layout('components.layouts.superadmin')]
+    public function render()
+    {
+        return view('livewire.pages.super-admin.dashboard');
     }
 }

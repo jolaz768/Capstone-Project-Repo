@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->nullable()->constrained('users')->cascadeOnDelete();
             $table->foreignId('shop_id')->constrained('shops')->cascadeOnDelete();
-            $table->enum('status', ['pending', 'approved', 'rejected', 'cancelled','completed'])->default('pending');
+            $table->enum('status', ['pending', 'approved', 'rejected', 'cancelled','processing','completed'])->default('pending');
             $table->date('booking_date');
             $table->float('total_price');
             $table->timestamps();

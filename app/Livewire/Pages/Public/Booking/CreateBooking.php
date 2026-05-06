@@ -20,6 +20,8 @@ class CreateBooking extends Component
     public ?int $serviceId = null;
     public array $selectedGarmentIds = [];
     public array $measurementValues = [];
+    public array $quantities = [];
+    public string $status = 'pending';
     public string $customerName = '';
     public string $customerEmail = '';
     public ?string $bookingDate = null;
@@ -30,7 +32,7 @@ class CreateBooking extends Component
             ->where('id', $id)
             ->where('is_active', 1)
             ->with([
-                'bookings:id,shop_id,user_id,created_at',
+                'bookings:id,shop_id,user_id,created_at,status',
                 'services:id,shop_id,name',
                 'garments:id,shop_id,name,description,image,base_price',
                 'garments.measurementTemplate:id,garment_id,name',
@@ -46,15 +48,35 @@ class CreateBooking extends Component
 
     public function getTotalPriceProperty()
     {
-        return $this->selectedGarments->sum('base_price');
+        return $this->selectedGarments->sum(function ($garment) {
+            return $garment->base_price * ($this->quantities[$garment->id] ?? 1);
+        });
     }
 
     public function updatedSelectedGarmentIds(): void
     {
+        // Initialize quantity = 1 if not set
+        foreach ($this->selectedGarmentIds as $id) {
+            if (!isset($this->quantities[$id])) {
+                $this->quantities[$id] = 1;
+            }
+        }
+
+        // Remove quantities for unselected garments
+        $this->quantities = array_intersect_key(
+            $this->quantities,
+            array_flip($this->selectedGarmentIds)
+        );
+
+        // Keep measurement values clean
         $activeFieldIds = $this->selectedGarments
-            ->flatMap(fn ($garment) => $garment->measurementTemplate ? $garment->measurementTemplate->measurementFields : collect())
+            ->flatMap(
+                fn($garment) => $garment->measurementTemplate
+                    ? $garment->measurementTemplate->measurementFields
+                    : collect()
+            )
             ->pluck('id')
-            ->map(fn ($id) => (string) $id)
+            ->map(fn($id) => (string) $id)
             ->all();
 
         $this->measurementValues = array_intersect_key(
@@ -72,6 +94,9 @@ class CreateBooking extends Component
             'customerName' => 'required|string|max:255',
             'customerEmail' => 'required|email|max:255',
             'bookingDate' => 'required|date|after_or_equal:today',
+            'quantities' => 'required|array',
+            'quantities.*' => 'required|integer|min:1',
+            'status' => 'required|in:pending,approved,processing,completed,cancelled',
         ];
 
         foreach ($this->selectedGarments as $garment) {
@@ -90,24 +115,26 @@ class CreateBooking extends Component
         $validated = $this->validate();
 
         $garments = $this->selectedGarments;
-        $totalPrice = $garments->sum('base_price');
+        $totalPrice = $this->getTotalPriceProperty();
 
         DB::transaction(function () use ($validated, $garments, $totalPrice) {
             $booking = Booking::create([
                 'user_id' => Auth::id(),
                 'shop_id' => $this->shop->id,
                 'service_id' => $this->serviceId,
-                'status' => 'pending',
+                'status' => $this->status,
                 'booking_date' => $this->bookingDate,
                 'total_price' => $totalPrice,
             ]);
 
             foreach ($garments as $garment) {
+                $qty = $this->quantities[$garment->id] ?? 1;
+
                 BookingItem::create([
                     'booking_id' => $booking->id,
                     'garment_id' => $garment->id,
-                    'quantity' => 1,
-                    'sub_total' => $garment->base_price,
+                    'quantity' => $qty,
+                    'sub_total' => $garment->base_price * $qty,
                 ]);
 
                 if ($garment->measurementTemplate) {

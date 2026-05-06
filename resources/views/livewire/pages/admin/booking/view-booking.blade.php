@@ -45,7 +45,23 @@
                             </td>
                             <td class="px-4 py-4">{{ $booking->booking_date }}</td>
                             <td class="px-4 py-4">₱{{ number_format($booking->total_price, 2) }}</td>
-                            <td class="px-4 py-4 capitalize">{{ $booking->status }}</td>
+                            <td class="px-4 py-4">
+                                <select wire:change="updateStatus({{ $booking->id }}, $event.target.value)"
+                                    class="rounded-lg border border-card-line bg-card px-3 py-1 text-sm capitalize focus:border-primary-focus focus:ring-primary-focus">
+                                    <option value="pending" {{ $booking->status == 'pending' ? 'selected' : '' }}>Pending</option>
+                                    <option value="approved" {{ $booking->status == 'approved' ? 'selected' : '' }}>Approved
+                                    </option>
+                                    <option value="processing" {{ $booking->status == 'processing' ? 'selected' : '' }}>Processing
+                                    </option>
+                                    <option value="completed" {{ $booking->status == 'completed' ? 'selected' : '' }}>Completed
+                                    </option>
+                                    <option value="cancelled" {{ $booking->status == 'cancelled' ? 'selected' : '' }}>Cancelled
+                                    </option>
+                                </select>
+                                <div wire:loading wire:target="updateStatus({{ $booking->id }}, *)"
+                                    class="inline-block ml-2 h-4 w-4 animate-spin rounded-full border-2 border-primary border-t-transparent">
+                                </div>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>

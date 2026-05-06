@@ -53,26 +53,20 @@ class Dashboard extends Component
         $this->setOrderMetrics($shopIds);
     }
 
-    protected function getShopIds(): array
-    {
-        $user = Auth::user();
+protected function getShopIds(): array
+{
+    $user = Auth::user();
 
-        $shopIds = $user->shops()->pluck('shops.id')->toArray();
+    // Primary: many-to-many via user_shop pivot
+    $shopIds = $user->shops()->pluck('shops.id')->toArray();
 
-        if (empty($shopIds)) {
-            if ($user->shop_id) {
-                $shopIds[] = $user->shop_id;
-            } else {
-                $shopIds = Shop::query()
-                    ->where('user_id', $user->id)
-                    ->orWhere('shop_id', $user->id)
-                    ->pluck('id')
-                    ->toArray();
-            }
-        }
-
-        return $shopIds;
+    // Fallback: direct shop_id on users table (if exists)
+    if (empty($shopIds) && Schema::hasColumn('users', 'shop_id') && $user->shop_id) {
+        $shopIds = [$user->shop_id];
     }
+
+    return $shopIds;
+}
 
     protected function setIncomeMetrics(array $shopIds): void
     {

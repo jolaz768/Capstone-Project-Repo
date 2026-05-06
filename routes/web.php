@@ -117,7 +117,7 @@ Route::prefix('/super-admin')
         Route::get('/view-roles', ViewRole::class)->name('super-admin.role.view');
 
         Route::get('/user/create', CreateUser::class)->name('super-admin.user.create');
-        Route::get('/user/edit/{user}', EditUser::class)->name('super-admin.user.edit');
+        Route::get('/user/edit/{id}', EditUser::class)->name('super-admin.user.edit');
         Route::get('/user/view', ViewUser::class)->name('super-admin.user.view');
 
         //permission route

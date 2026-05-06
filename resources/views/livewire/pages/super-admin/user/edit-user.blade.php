@@ -1,6 +1,6 @@
 <div>
     {{-- In work, do what you enjoy. --}}
-</div>
+
 <div>
      @if (session()->has('message'))
         <div class="bg-blue-100 border-t-4 border-blue-500 rounded-b text-blue-900 px-4 py-3 shadow-md" role="alert">
@@ -20,7 +20,7 @@
                     Create User
                 </h2>
 
-                <form wire:submit.prevent="save">
+                <form wire:submit.prevent="update">
                     <div class="grid gap-4 lg:gap-6">
                         <!-- Grid -->
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
@@ -70,7 +70,7 @@
                             {{-- using forelse loop for show the roles in the table selected roles --}}
                             @forelse ($roles as $role)
                             <label wire:key="role-{{ $role->id }}" for="hs-checkbox-in-form-{{ $role->id }}" class="flex items-center p-3 w-full bg-layer border dark:border-neutral-700 border-layer-line rounded-lg text-sm focus:border-primary-focus focus:ring-primary-focus">
-                                <input wire:model="selectedUserRole" type="checkbox" value="{{ $role->name }}" 
+                                <input wire:model="selectedRole" type="checkbox" value="{{ $role->name }}" 
                                 id="hs-checkbox-in-form-{{ $role->id }}" name="selectedUserRole" class="shrink-0 size-4 bg-transparent border-line-3 rounded-sm shadow-2xs text-primary focus:ring-0 focus:ring-offset-0 checked:bg-primary-checked checked:border-primary-checked disabled:opacity-50 disabled:pointer-events-none" >
                                 <span class="text-sm ms-3 text-muted-foreground-1 dark:text-amber-50">{{ $role->name }}</span>
                             </label>

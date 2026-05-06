@@ -90,30 +90,42 @@
             <div class="text-sm font-semibold text-foreground">Total: ₱{{ number_format($this->totalPrice, 2) }}</div>
         </div>
 
-        @if ($this->selectedGarments->isEmpty())
-            <div class="mt-4 text-sm text-muted-foreground">Choose at least one garment to see measurement inputs.</div>
-        @else
-            @foreach ($this->selectedGarments as $garment)
-                @if ($garment->measurementTemplate)
-                    <div class="mt-6 rounded-2xl border border-card-line bg-base p-4">
-                        <div class="mb-3 text-base font-semibold text-foreground">{{ $garment->name }} — {{ $garment->measurementTemplate->name }}</div>
-                        <div class="grid gap-4 sm:grid-cols-2">
-                            @foreach ($garment->measurementTemplate->measurementFields as $field)
-                                <div>
-                                    <label class="block mb-2 text-sm font-medium text-foreground">{{ $field->field_name }} ({{ $field->unit }})</label>
-                                    <input wire:model.defer="measurementValues.{{ $field->id }}" type="number" step="0.01" min="0" class="py-2.5 sm:py-3 px-4 block w-full bg-card-line border-layer-line rounded-lg sm:text-sm text-foreground focus:border-primary-focus focus:ring-primary-focus" placeholder="Enter value" />
-                                    @error('measurementValues.' . $field->id) <p class="mt-1 text-sm text-destructive">{{ $message }}</p> @enderror
-                                </div>
-                            @endforeach
+  @if ($this->selectedGarments->isEmpty())
+    <div class="mt-4 text-sm text-muted-foreground">Choose at least one garment to see measurement inputs.</div>
+@else
+    @foreach ($this->selectedGarments as $garment)
+        @if ($garment->measurementTemplate)
+            <div class="mt-6 rounded-2xl border border-card-line bg-base p-4">
+                <div class="mb-3 flex items-center justify-between gap-4">
+                    <div class="text-base font-semibold text-foreground">{{ $garment->name }} — {{ $garment->measurementTemplate->name }}</div>
+                    <div class="flex items-center gap-2">
+                        <label class="text-sm font-medium text-foreground">Qty:</label>
+                        <input wire:model.defer="quantities.{{ $garment->id }}" type="number" min="1" value="1" class="w-20 rounded-lg border border-layer-line bg-card-line px-3 py-2 text-sm text-foreground focus:border-primary-focus focus:ring-primary-focus" />
+                    </div>
+                </div>
+                <div class="grid gap-4 sm:grid-cols-2">
+                    @foreach ($garment->measurementTemplate->measurementFields as $field)
+                        <div>
+                            <label class="block mb-2 text-sm font-medium text-foreground">{{ $field->field_name }} ({{ $field->unit }})</label>
+                            <input wire:model.defer="measurementValues.{{ $field->id }}" type="number" step="0.01" min="0" class="py-2.5 sm:py-3 px-4 block w-full bg-card-line border-layer-line rounded-lg sm:text-sm text-foreground focus:border-primary-focus focus:ring-primary-focus" placeholder="Enter value" />
+                            @error('measurementValues.' . $field->id) <p class="mt-1 text-sm text-destructive">{{ $message }}</p> @enderror
                         </div>
+                    @endforeach
+                </div>
+            </div>
+        @else
+            <div class="mt-6 rounded-2xl border border-warning/20 bg-warning/10 p-4 text-sm text-foreground">
+                <div class="flex items-center justify-between gap-4">
+                    <div><strong>{{ $garment->name }}</strong> — No measurement template configured.</div>
+                    <div class="flex items-center gap-2">
+                        <label class="text-sm font-medium text-foreground">Qty:</label>
+                        <input wire:model.defer="quantities.{{ $garment->id }}" type="number" min="1" value="1" class="w-20 rounded-lg border border-layer-line bg-card-line px-3 py-2 text-sm text-foreground focus:border-primary-focus focus:ring-primary-focus" />
                     </div>
-                @else
-                    <div class="mt-6 rounded-2xl border border-warning/20 bg-warning/10 p-4 text-sm text-foreground">
-                        No measurement template is configured for <strong>{{ $garment->name }}</strong>.
-                    </div>
-                @endif
-            @endforeach
+                </div>
+            </div>
         @endif
+    @endforeach
+@endif
     </div>
     
     <div>
