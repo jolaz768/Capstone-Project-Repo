@@ -59,61 +59,58 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::prefix('auth')->group(function () {
-   // auth
-Route::middleware('guest')->group(function () {
-    Route::get('/login', Login::class)->name('login.page');
-    Route::get('/register', Register::class)->name('register.page');
-});
+    // auth
+    Route::middleware('guest')->group(function () {
+        Route::get('/login', Login::class)->name('login.page');
+        Route::get('/register', Register::class)->name('register.page');
+    });
 
-Route::post('/logout', function () {
-    Auth::logout();
+    Route::post('/logout', function () {
+        Auth::logout();
 
-    request()->session()->invalidate();
-    request()->session()->regenerateToken();
+        request()->session()->invalidate();
+        request()->session()->regenerateToken();
 
-    return redirect()->route('index.page');
-})->name('logout')->middleware('auth');
+        return redirect()->route('index.page');
+    })->name('logout')->middleware('auth');
 });
 
 
 //public
-Route::get('/',Index::class)->name('index.page');
+Route::get('/', Index::class)->name('index.page');
 
 Route::prefix('public')
-->middleware(['auth','role:customer'])
-->group(function () {
+    ->middleware(['auth', 'role:customer'])
+    ->group(function () {
 
-//booking
-Route::get('/booking-view',publicbooking::class)->name('booking.view');
-Route::get('/create-booking/{id}',CreateBooking::class)->name('booking.create');
-Route::get('/edit-booking/{id}',EditBooking::class)->name('booking.edit');
+        //booking
+        Route::get('/booking-view', publicbooking::class)->name('booking.view');
+        Route::get('/create-booking/{id}', CreateBooking::class)->name('booking.create');
+        Route::get('/edit-booking/{id}', EditBooking::class)->name('booking.edit');
 
-//shop
-Route::get('/Shop-view/{id}',IndexShop::class)->name('shop.view');
+        //shop
+        Route::get('/Shop-view/{id}', IndexShop::class)->name('shop.view');
 
-//Shop  Pricing
-Route::get('/shop/pricing',Pricing::class)->name('shop.pricing');
+        //Shop  Pricing
+        Route::get('/shop/pricing', Pricing::class)->name('shop.pricing');
 
-//Shop  Review
- Route::get('/shop/review/{id}',Review::class)->name('shop.review');
+        //Shop  Review
+        Route::get('/shop/review/{id}', Review::class)->name('shop.review');
 
-//shop  service
-Route::get('/shop/service',ShopService::class)->name('shop.service');
-    
-
-    
-});
+        //shop  service
+        Route::get('/shop/service', ShopService::class)->name('shop.service');
+    });
 
 //super admin
 Route::prefix('/super-admin')
-->middleware(['auth','role:super-admin'])
-->group(function () {
+    ->middleware(['auth', 'role:super-admin'])
+    ->group(function () {
 
-    Route::get('/dashboard',Dashboard::class)->name('super-admin.dashboard');
+        Route::get('/dashboard', Dashboard::class)->name('super-admin.dashboard');
 
-    
+
         Route::get('/create', CreateRole::class)->name('super-admin.role.create');
-        Route::get('/edit/{role}',EditRole::class)->name('super-admin.role.edit');
+        Route::get('/edit/{role}', EditRole::class)->name('super-admin.role.edit');
         Route::get('/view-roles', ViewRole::class)->name('super-admin.role.view');
 
         Route::get('/user/create', CreateUser::class)->name('super-admin.user.create');
@@ -124,83 +121,80 @@ Route::prefix('/super-admin')
         Route::get('/permission/create', CreatePermission::class)->name('super-admin.permission.create');
         Route::get('/permission/edit/{permission}', EditPermission::class)->name('super-admin.permission.edit');
         Route::get('/permission/view', ViewPermission::class)->name('super-admin.permission.view');
-        
-  
-});
+    });
 
 //admin
 Route::prefix('/admin') //shop owner
-->middleware(['auth','role:admin'])
-->group(function () {
+    ->middleware(['auth', 'role:admin'])
+    ->group(function () {
 
-    //dashboard admin or shop owner
-    Route::get('/dashboard',OwnerDashboard::class)->name('admin.dashboard');
+        //dashboard admin or shop owner
+        Route::get('/dashboard', OwnerDashboard::class)->name('admin.dashboard');
 
-    //booking
-    Route::get('/booking/view',ViewBooking::class)->name('admin.booking.view');
-    Route::get('/booking/create',CreateBooking::class)->name('admin.booking.create');
-    Route::get('/booking/edit/{booking}',EditBooking::class)->name('admin.booking.edit');
+        //booking
+        Route::get('/booking/view', ViewBooking::class)->name('admin.booking.view');
+        Route::get('/booking/create', CreateBooking::class)->name('admin.booking.create');
+        Route::get('/booking/edit/{booking}', EditBooking::class)->name('admin.booking.edit');
 
-    //fabric and colors
-    Route::get('/fabric/view',ViewFabric::class)->name('admin.fabric.view');
-    Route::get('/fabric/create',CreateFabric::class)->name('admin.fabric.create');
-    Route::get('/fabric/edit/{id}',EditFabric::class)->name('admin.fabric.edit');
+        //fabric and colors
+        Route::get('/fabric/view', ViewFabric::class)->name('admin.fabric.view');
+        Route::get('/fabric/create', CreateFabric::class)->name('admin.fabric.create');
+        Route::get('/fabric/edit/{id}', EditFabric::class)->name('admin.fabric.edit');
 
-    Route::get('/color/view',ViewColor::class)->name('admin.color.view');
-    Route::get('/color/create',CreateColor::class)->name('admin.color.create');
-    Route::get('/color/edit/{color}',EditColor::class)->name('admin.color.edit');
+        Route::get('/color/view', ViewColor::class)->name('admin.color.view');
+        Route::get('/color/create', CreateColor::class)->name('admin.color.create');
+        Route::get('/color/edit/{color}', EditColor::class)->name('admin.color.edit');
 
-    Route::get('/fabric/color/create',CreateFabricColor::class)->name('admin.fabric.color.create');
-    Route::get('/fabric/color/edit/{fabric_id}',EditFabricColor::class)->name('admin.fabric.color.edit');
-    Route::get('/fabric/color/view',ViewFabricColor::class)->name('admin.fabric.color.view');
+        Route::get('/fabric/color/create', CreateFabricColor::class)->name('admin.fabric.color.create');
+        Route::get('/fabric/color/edit/{fabric_id}', EditFabricColor::class)->name('admin.fabric.color.edit');
+        Route::get('/fabric/color/view', ViewFabricColor::class)->name('admin.fabric.color.view');
 
-    
 
-    //garment
-    Route::get('/garment/view',ViewGarment::class)->name('admin.garment.view');
-    Route::get('/garment/create',CreateGarment::class)->name('admin.garment.create');
-    Route::get('/garment/edit/{id}',EditGarment::class)->name('admin.garment.edit');
-    Route::get('/garment/category/create',App\Livewire\Pages\Admin\Garment\Category\CreateCategory::class)->name('admin.garment.category.create');
-    Route::get('/garment/category/edit/{id}',App\Livewire\Pages\Admin\Garment\Category\EditCategory::class)->name('admin.garment.category.edit');
-    Route::get('/garment/category/view',App\Livewire\Pages\Admin\Garment\Category\ViewCategory::class)->name('admin.garment.category.view');
-    
 
-    //shop
-    Route::get('/shop/view',ViewShop::class)->name('admin.shop.view');
-    Route::get('/shop/create',CreateShop::class)->name('admin.shop.create');
-    Route::get('/shop/edit/{id}',EditShop::class)->name('admin.shop.edit');
+        //garment
+        Route::get('/garment/view', ViewGarment::class)->name('admin.garment.view');
+        Route::get('/garment/create', CreateGarment::class)->name('admin.garment.create');
+        Route::get('/garment/edit/{id}', EditGarment::class)->name('admin.garment.edit');
+        Route::get('/garment/category/create', App\Livewire\Pages\Admin\Garment\Category\CreateCategory::class)->name('admin.garment.category.create');
+        Route::get('/garment/category/edit/{id}', App\Livewire\Pages\Admin\Garment\Category\EditCategory::class)->name('admin.garment.category.edit');
+        Route::get('/garment/category/view', App\Livewire\Pages\Admin\Garment\Category\ViewCategory::class)->name('admin.garment.category.view');
 
-    //shop Settings
-    Route::get('/shop/setting',ViewShopSetting::class)->name('admin.shop.setting.view');
-    Route::get('/shop/setting/edit/{id}',EditShopSetting::class)->name('admin.shop.setting.edit');
-    Route::get('/shop/setting/create',CreateShopSetting::class)->name('admin.shop.setting.create');
 
-    //Shop Category
-    Route::get('/shop/category',CreateCategory::class)->name('admin.shop.category.create');
-    Route::get('/shop/category/edit/{id}',EditCategory::class)->name('admin.shop.category.edit');
-    Route::get('/shop/category/view',ViewCategory::class)->name('admin.shop.category.view');
+        //shop
+        Route::get('/shop/view', ViewShop::class)->name('admin.shop.view');
+        Route::get('/shop/create', CreateShop::class)->name('admin.shop.create');
+        Route::get('/shop/edit/{id}', EditShop::class)->name('admin.shop.edit');
 
-    // MeasurementTemplate
-    Route::get('/measurementtemplate/view',ViewMeasurementTemplate::class)->name('admin.measurementtemplate.view');
-    Route::get('/measurementtemplate/create',CreateMeasurementTemplate::class)->name('admin.measurementtemplate.create');
-    Route::get('/measurementtemplate/edit/{id}',EditMeasurementTemplate::class)->name('admin.measurementtemplate.edit');
+        //shop Settings
+        Route::get('/shop/setting', ViewShopSetting::class)->name('admin.shop.setting.view');
+        Route::get('/shop/setting/edit/{id}', EditShopSetting::class)->name('admin.shop.setting.edit');
+        Route::get('/shop/setting/create', CreateShopSetting::class)->name('admin.shop.setting.create');
 
-    //MeasurementField
-    Route::get('/measurementfield/view',ViewMeasurementField::class)->name('admin.measurementfield.view');
-    Route::get('/measurementfield/create',CreateMeasurementField::class)->name('admin.measurementfield.create');
-    Route::get('/measurementfield/edit/{measurementfield}',EditMeasurementField::class)->name('admin.measurementfield.edit');
+        //Shop Category
+        Route::get('/shop/category', CreateCategory::class)->name('admin.shop.category.create');
+        Route::get('/shop/category/edit/{id}', EditCategory::class)->name('admin.shop.category.edit');
+        Route::get('/shop/category/view', ViewCategory::class)->name('admin.shop.category.view');
 
-    //Reviews
-    Route::get('/review/view',ViewReview::class)->name('admin.review.view');
+        // MeasurementTemplate
+        Route::get('/measurementtemplate/view', ViewMeasurementTemplate::class)->name('admin.measurementtemplate.view');
+        Route::get('/measurementtemplate/create', CreateMeasurementTemplate::class)->name('admin.measurementtemplate.create');
+        Route::get('/measurementtemplate/edit/{id}', EditMeasurementTemplate::class)->name('admin.measurementtemplate.edit');
 
-    //service
-    Route::get('/service/view',ViewService::class)->name('admin.service.view');
-    Route::get('/service/create',CreateService::class)->name('admin.service.create');
-    Route::get('/service/{id}/edit',EditService::class)->name('admin.service.edit');
+        //MeasurementField
+        Route::get('/measurementfield/view', ViewMeasurementField::class)->name('admin.measurementfield.view');
+        Route::get('/measurementfield/create', CreateMeasurementField::class)->name('admin.measurementfield.create');
+        Route::get('/measurementfield/edit/{measurementfield}', EditMeasurementField::class)->name('admin.measurementfield.edit');
 
-    //booking
-    Route::get('/booking/view',ViewBooking::class)->name('admin.booking.view');
-    Route::get('/booking/create',CreateBooking::class)->name('admin.booking.create');
-    Route::get('/booking/edit/{booking}',EditBooking::class)->name('admin.booking.edit');
+        //Reviews
+        Route::get('/review/view', ViewReview::class)->name('admin.review.view');
 
-});
+        //service
+        Route::get('/service/view', ViewService::class)->name('admin.service.view');
+        Route::get('/service/create', CreateService::class)->name('admin.service.create');
+        Route::get('/service/{id}/edit', EditService::class)->name('admin.service.edit');
+
+        //booking
+        Route::get('/booking/view', ViewBooking::class)->name('admin.booking.view');
+        Route::get('/booking/create', CreateBooking::class)->name('admin.booking.create');
+        Route::get('/booking/edit/{booking}', EditBooking::class)->name('admin.booking.edit');
+    });

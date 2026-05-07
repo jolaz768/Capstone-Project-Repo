@@ -83,13 +83,13 @@
                   </div>
                 </th>
 
-                <th scope="col" class="px-6 py-3 text-start">
+                {{-- <th scope="col" class="px-6 py-3 text-start">
                   <div class="flex items-center gap-x-2">
                     <span class="text-xs font-semibold uppercase text-foreground">
                       Fabric
                     </span>
                   </div>
-                </th>
+                </th> --}}
 
                 <th scope="col" class="px-6 py-3 text-start">
                   <div class="flex items-center gap-x-2">
@@ -162,13 +162,13 @@
                     </div>
                   </td>
 
-                  <td class="size-px whitespace-nowrap">
+                  {{-- <td class="size-px whitespace-nowrap">
                     <div class="px-6 py-3">
                       <div class="flex items-center gap-x-3">
                         <span class="text-xs text-muted-foreground-1">{{ $fabric->name ?? '—' }}</span>
                       </div>
                     </div>
-                  </td>
+                  </td> --}}
 
 
                   <td class="size-px whitespace-nowrap">

@@ -12,4 +12,5 @@ class ViewBooking extends Component
     {
         return view('livewire.pages.public.booking.view-booking');
     }
+
 }

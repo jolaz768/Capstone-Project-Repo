@@ -27,20 +27,27 @@ class CreateBooking extends Component
     public ?string $bookingDate = null;
     public $showMeasurements = false;
 
-    public function mount($id)
-    {
-        $this->shop = Shop::query()
-            ->where('id', $id)
-            ->where('is_active', 1)
-            ->with([
-                'bookings:id,shop_id,user_id,created_at,status',
-                'services:id,shop_id,name',
-                'garments:id,shop_id,name,description,image,base_price',
-                'garments.measurementTemplate:id,garment_id,name',
-                'garments.measurementTemplate.measurementFields:id,measurement_template_id,field_name,unit',
-            ])
-            ->firstOrFail();
+   public function mount($id)
+{
+    $this->shop = Shop::query()
+        ->where('id', $id)
+        ->where('is_active', 1)
+        ->with([
+            'bookings:id,shop_id,user_id,created_at,status',
+            'services:id,shop_id,name',
+            'garments:id,shop_id,name,description,image,base_price',
+            'garments.measurementTemplate:id,garment_id,name',
+            'garments.measurementTemplate.measurementFields:id,measurement_template_id,field_name,unit',
+        ])
+        ->firstOrFail();
+
+    // Auto‑load authenticated user data into the booking form
+    if (Auth::check()) {
+        $user = Auth::user();
+        $this->customerName = $user->name;
+        $this->customerEmail = $user->email;
     }
+}
 
     public function getSelectedGarmentsProperty()
     {
@@ -119,6 +126,7 @@ class CreateBooking extends Component
 
         return $rules;
     }
+    
 
     public function createBooking(): void
     {
