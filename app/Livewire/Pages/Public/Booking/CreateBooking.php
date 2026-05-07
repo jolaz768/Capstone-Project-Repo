@@ -25,6 +25,7 @@ class CreateBooking extends Component
     public string $customerName = '';
     public string $customerEmail = '';
     public ?string $bookingDate = null;
+    public $showMeasurements = false;
 
     public function mount($id)
     {
@@ -84,6 +85,15 @@ class CreateBooking extends Component
             array_flip($activeFieldIds)
         );
     }
+    public function loadMeasurements()
+{
+    if (empty($this->selectedGarmentIds)) {
+        session()->flash('error', 'Please select at least one garment first.');
+        return;
+    }
+    
+    $this->showMeasurements = true;
+}
 
     protected function rules(): array
     {
