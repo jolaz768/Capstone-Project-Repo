@@ -70,7 +70,7 @@
         </div>
     </div>
     <!-- End Tab Content -->
-
+    <h1 class="text-2xl font-semibold text-foreground text-center mt-5 m-5">Services Section</h1>
     <!-- SERVICES -->
    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
     @forelse ($shop->services as $service)
@@ -223,11 +223,12 @@
 
     {{-- pricing section --}}
 
-
-   <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4">
+    <h1 class="text-2xl font-semibold text-foreground text-center mt-5 m-5">Garments Section</h1>
+   <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4
+    gap-4 mb-5">
     @forelse ($shop->garments as $garment)
         <div class="flex flex-col flex-1 bg-card border rounded-xl overflow-hidden mt-5">
-            <img class="w-full h-40 object-cover"
+            <img class="w-full h-80 object-cover rounded-t-xl"
                 src="{{ $garment->image ? asset('storage/' . $garment->image) : 'https://via.placeholder.com/300x200' }}"
                 alt="{{ $garment->name }}">
 

@@ -43,6 +43,7 @@ use App\Livewire\Pages\Public\Shop\IndexShop;
 use App\Livewire\Pages\Public\Shop\Pricing;
 use App\Livewire\Pages\Public\Shop\Review;
 use App\Livewire\Pages\Public\Shop\ShopService;
+use App\Livewire\Pages\Public\ShopCart\Cart;
 use App\Livewire\Pages\SuperAdmin\Dashboard;
 use App\Livewire\Pages\SuperAdmin\Permission\CreatePermission;
 use App\Livewire\Pages\SuperAdmin\Permission\EditPermission;
@@ -87,6 +88,7 @@ Route::prefix('public')
         Route::get('/booking-view', publicbooking::class)->name('booking.view');
         Route::get('/create-booking/{id}', CreateBooking::class)->name('booking.create');
         Route::get('/edit-booking/{id}', EditBooking::class)->name('booking.edit');
+        
 
         //shop
         Route::get('/Shop-view/{id}', IndexShop::class)->name('shop.view');
@@ -99,6 +101,9 @@ Route::prefix('public')
 
         //shop  service
         Route::get('/shop/service', ShopService::class)->name('shop.service');
+
+        //shop cart
+        Route::get('/shop/cart', Cart::class)->name('shop.cart');
     });
 
 //super admin
