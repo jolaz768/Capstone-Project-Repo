@@ -18,7 +18,6 @@ class Review extends Component
             ->where('id', $id)
             ->where('is_active', 1)
             ->with([
-
                 'reviews:id,shop_id,user_id,rating,comment,created_at',
             ])
             ->firstOrFail();

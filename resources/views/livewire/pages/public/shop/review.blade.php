@@ -1,268 +1,153 @@
-<div>
-    {{-- The Master doesn't talk, he acts. --}}
-    <!-- MAIN GRID: REVIEWS + BOOKING -->
-    <div class="mt-10 grid lg:grid-cols-3 gap-6">
+<div class="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors">
 
-        <!-- REVIEWS -->
-        <div class="lg:col-span-3">
-            <a href="{{ route('shop.view', ['id' => $shop->id]) }}"
-                class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-full bg-primary border border-primary-line text-primary-foreground hover:bg-primary-hover focus:outline-hidden focus:bg-primary-hover disabled:opacity-50 disabled:pointer-events-none">
-
-                <svg class="size-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-                </svg>
-                Back to Shop
-            </a>
-
-            <h2 class="text-xl font-semibold mb-4 text-center">Customer Reviews</h2>
-            <div class=" bg-card border border-card-line rounded-lg p-4 mb-6 ">
-                <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 ">
-
-                    <!-- RIGHT: FILTER BUTTONS -->
-                    <div class="inline-flex flex-wrap gap-2 ">
-                        <button type="button"
-                            class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent text-primary-600 hover:bg-primary-100 focus:outline-hidden focus:bg-primary-100 hover:text-primary-800 focus:outline-hidden focus:bg-primary-100 focus:text-primary-800 disabled:opacity-50 disabled:pointer-events-none dark:text-primary-500 dark:hover:bg-primary-500/20 dark:hover:text-primary-400 dark:focus:bg-primary-500/20 dark:focus:text-primary-400">
-                            All
-                        </button>
-                        <button type="button"
-                            class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent text-primary-600 hover:bg-primary-100 focus:outline-hidden focus:bg-primary-100 hover:text-primary-800 focus:outline-hidden focus:bg-primary-100 focus:text-primary-800 disabled:opacity-50 disabled:pointer-events-none dark:text-primary-500 dark:hover:bg-primary-500/20 dark:hover:text-primary-400 dark:focus:bg-primary-500/20 dark:focus:text-primary-400">
-                            5 Star
-                        </button>
-                        <button type="button"
-                            class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent text-primary-600 hover:bg-primary-100 focus:outline-hidden focus:bg-primary-100 hover:text-primary-800 focus:outline-hidden focus:bg-primary-100 focus:text-primary-800 disabled:opacity-50 disabled:pointer-events-none dark:text-primary-500 dark:hover:bg-primary-500/20 dark:hover:text-primary-400 dark:focus:bg-primary-500/20 dark:focus:text-primary-400">
-                            4 Star
-                        </button>
-                        <button type="button"
-                            class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent text-primary-600 hover:bg-primary-100 focus:outline-hidden focus:bg-primary-100 hover:text-primary-800 focus:outline-hidden focus:bg-primary-100 focus:text-primary-800 disabled:opacity-50 disabled:pointer-events-none dark:text-primary-500 dark:hover:bg-primary-500/20 dark:hover:text-primary-400 dark:focus:bg-primary-500/20 dark:focus:text-primary-400">
-                            with Media
-                        </button>
-                    </div>
-
+    <!-- ===== SHOP HEADER ===== -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border dark:border-gray-700 p-6 md:flex md:items-center md:justify-between">
+            <div class="flex-1">
+                <div class="flex items-center gap-3">
+                    <h1 class="text-3xl font-bold text-gray-900 dark:text-white">Perfect Stitch Tailors</h1>
                 </div>
-            </div>
-
-            <!-- Card -->
-            <div class="flex flex-col bg-card border border-card-line shadow-2xs rounded-xl">
-                <div class="p-4 md:p-5">
-                    <div class="flex items-center gap-x-4 mb-3">
-                        <div
-                            class="inline-flex justify-center items-center size-15.5 rounded-full border-4 border-primary-100 dark:border-primary-900 overflow-hidden shrink-0">
-                            <img class="w-20 h-20 object-cover rounded-full"
-                                src="https://images.pexels.com/photos/28238144/pexels-photo-28238144.jpeg" alt="Logo">
-                        </div>
-                        <div class="shrink-0">
-                            <h3 class="block text-sm font-semibold text-foreground-1">John doe</h3>
-
-                            <div class="grow">
-                                <p class="text-xs uppercase font-medium text-foreground-1">
-                                    Rating: <span class="font-semibold text-xl text-yellow-500">★★★★★</span>
-                                </p>
-                                <p class="mt-1 text-xl sm:text-xs font-semibold text-foreground-1">
-                                    Sevices: <span class="font-xs text-foreground-1"> Sewing </span>
-                                </p>
-                            </div>
-                        </div>
-
-                    </div>
-                    <img src="https://plus.unsplash.com/premium_photo-1675186049366-64a655f8f537?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                        class=" mt-4 rounded-lg
-                        object-cover w-20 h-20">
-                    <p class="mt-2 text-sm text-foreground-1">
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officia ipsam, error illum nostrum
-                        soluta, tempore provident qui natus, voluptates sunt maiores! Corporis, mollitia dicta,
-                        obcaecati consequatur iure qui sed porro molestiae explicabo soluta illum officiis perspiciatis
-                        laboriosam facere, repellat animi dolorem ex delectus! Quia molestiae ut magni officiis dolore
-                        saepe error, repudiandae nulla unde, laudantium non explicabo dolorem nobis ipsam vel officia
-                        qui accusantium illo quidem similique! Libero, ipsum modi! Veniam nihil eligendi tempora minima
-                        dolor debitis. Laboriosam ea minus in porro, optio, ratione tempore facere sequi vitae dolore
-                        delectus at corrupti! Neque facere fugiat illum quasi sint ex fuga?
-                    </p>
-
-                    <div class="flex items-center gap-x-4 mt-4">
-                        <p class="text-xs uppercase font-medium text-foreground-1">Date: <span
-                                class="font-semibold text-foreground-1"> 12/12/2022</span>
-                        </p>
-                    </div>
-
-                </div>
-            </div>
-            <!-- End Card -->
-
-            <!-- Card -->
-            <div class="flex flex-col bg-card border border-card-line shadow-2xs rounded-xl">
-                <div class="p-4 md:p-5">
-                    <div class="flex items-center gap-x-4 mb-3">
-                        <div
-                            class="inline-flex justify-center items-center size-15.5 rounded-full border-4 border-primary-100 dark:border-primary-900 overflow-hidden shrink-0">
-                            <img class="w-20 h-20 object-cover rounded-full"
-                                src="https://images.pexels.com/photos/28238144/pexels-photo-28238144.jpeg" alt="Logo">
-                        </div>
-                        <div class="shrink-0">
-                            <h3 class="block text-sm font-semibold text-foreground-1">John doe</h3>
-
-                            <div class="grow">
-                                <p class="text-xs uppercase font-medium text-foreground-1">
-                                    Rating: <span class="font-semibold text-xl text-yellow-500">★★★★★</span>
-                                </p>
-                                <p class="mt-1 text-xl sm:text-xs font-semibold text-foreground-1">
-                                    Sevices: <span class="font-xs text-foreground-1"> Sewing </span>
-                                </p>
-                            </div>
-                        </div>
-
-                    </div>
-                    <img src="https://plus.unsplash.com/premium_photo-1675186049366-64a655f8f537?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                        class=" mt-4 rounded-lg
-                        object-cover w-20 h-20">
-                    <p class="mt-2 text-sm text-foreground-1">
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officia ipsam, error illum nostrum
-                        soluta, tempore provident qui natus, voluptates sunt maiores! Corporis, mollitia dicta,
-                        obcaecati consequatur iure qui sed porro molestiae explicabo soluta illum officiis perspiciatis
-                        laboriosam facere, repellat animi dolorem ex delectus! Quia molestiae ut magni officiis dolore
-                        saepe error, repudiandae nulla unde, laudantium non explicabo dolorem nobis ipsam vel officia
-                        qui accusantium illo quidem similique! Libero, ipsum modi! Veniam nihil eligendi tempora minima
-                        dolor debitis. Laboriosam ea minus in porro, optio, ratione tempore facere sequi vitae dolore
-                        delectus at corrupti! Neque facere fugiat illum quasi sint ex fuga?
-                    </p>
-
-                    <div class="flex items-center gap-x-4 mt-4">
-                        <p class="text-xs uppercase font-medium text-foreground-1">Date: <span
-                                class="font-semibold text-foreground-1"> 12/12/2022</span>
-                        </p>
-                    </div>
-
-                </div>
-            </div>
-
-            <!-- Card -->
-            <div class="flex flex-col bg-card border border-card-line shadow-2xs rounded-xl">
-                <div class="p-4 md:p-5">
-                    <div class="flex items-center gap-x-4 mb-3">
-                        <div
-                            class="inline-flex justify-center items-center size-15.5 rounded-full border-4 border-primary-100 dark:border-primary-900 overflow-hidden shrink-0">
-                            <img class="w-20 h-20 object-cover rounded-full"
-                                src="https://images.pexels.com/photos/28238144/pexels-photo-28238144.jpeg" alt="Logo">
-                        </div>
-                        <div class="shrink-0">
-                            <h3 class="block text-sm font-semibold text-foreground-1">John doe</h3>
-
-                            <div class="grow">
-                                <p class="text-xs uppercase font-medium text-foreground-1">
-                                    Rating: <span class="font-semibold text-xl text-yellow-500">★★★★★</span>
-                                </p>
-                                <p class="mt-1 text-xl sm:text-xs font-semibold text-foreground-1">
-                                    Sevices: <span class="font-xs text-foreground-1"> Sewing </span>
-                                </p>
-                            </div>
-                        </div>
-
-                    </div>
-                    <img src="https://plus.unsplash.com/premium_photo-1675186049366-64a655f8f537?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                        class=" mt-4 rounded-lg
-                        object-cover w-20 h-20">
-                    <p class="mt-2 text-sm text-foreground-1">
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officia ipsam, error illum nostrum
-                        soluta, tempore provident qui natus, voluptates sunt maiores! Corporis, mollitia dicta,
-                        obcaecati consequatur iure qui sed porro molestiae explicabo soluta illum officiis perspiciatis
-                        laboriosam facere, repellat animi dolorem ex delectus! Quia molestiae ut magni officiis dolore
-                        saepe error, repudiandae nulla unde, laudantium non explicabo dolorem nobis ipsam vel officia
-                        qui accusantium illo quidem similique! Libero, ipsum modi! Veniam nihil eligendi tempora minima
-                        dolor debitis. Laboriosam ea minus in porro, optio, ratione tempore facere sequi vitae dolore
-                        delectus at corrupti! Neque facere fugiat illum quasi sint ex fuga?
-                    </p>
-
-                    <div class="flex items-center gap-x-4 mt-4">
-                        <p class="text-xs uppercase font-medium text-foreground-1">Date: <span
-                                class="font-semibold text-foreground-1"> 12/12/2022</span>
-                        </p>
-                    </div>
-
-                </div>
-            </div>
-
-            <!-- Card -->
-            <div class="flex flex-col bg-card border border-card-line shadow-2xs rounded-xl">
-                <div class="p-4 md:p-5">
-                    <div class="flex items-center gap-x-4 mb-3">
-                        <div
-                            class="inline-flex justify-center items-center size-15.5 rounded-full border-4 border-primary-100 dark:border-primary-900 overflow-hidden shrink-0">
-                            <img class="w-20 h-20 object-cover rounded-full"
-                                src="https://images.pexels.com/photos/28238144/pexels-photo-28238144.jpeg" alt="Logo">
-                        </div>
-                        <div class="shrink-0">
-                            <h3 class="block text-sm font-semibold text-foreground-1">John doe</h3>
-
-                            <div class="grow">
-                                <p class="text-xs uppercase font-medium text-foreground-1">
-                                    Rating: <span class="font-semibold text-xl text-yellow-500">★★★★★</span>
-                                </p>
-                                <p class="mt-1 text-xl sm:text-xs font-semibold text-foreground-1">
-                                    Sevices: <span class="font-xs text-foreground-1"> Sewing </span>
-                                </p>
-                            </div>
-                        </div>
-
-                    </div>
-                    <img src="https://plus.unsplash.com/premium_photo-1675186049366-64a655f8f537?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                        class=" mt-4 rounded-lg
-                        object-cover w-20 h-20">
-                    <p class="mt-2 text-sm text-foreground-1">
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officia ipsam, error illum nostrum
-                        soluta, tempore provident qui natus, voluptates sunt maiores! Corporis, mollitia dicta,
-                        obcaecati consequatur iure qui sed porro molestiae explicabo soluta illum officiis perspiciatis
-                        laboriosam facere, repellat animi dolorem ex delectus! Quia molestiae ut magni officiis dolore
-                        saepe error, repudiandae nulla unde, laudantium non explicabo dolorem nobis ipsam vel officia
-                        qui accusantium illo quidem similique! Libero, ipsum modi! Veniam nihil eligendi tempora minima
-                        dolor debitis. Laboriosam ea minus in porro, optio, ratione tempore facere sequi vitae dolore
-                        delectus at corrupti! Neque facere fugiat illum quasi sint ex fuga?
-                    </p>
-
-                    <div class="flex items-center gap-x-4 mt-4">
-                        <p class="text-xs uppercase font-medium text-foreground-1">Date: <span
-                                class="font-semibold text-foreground-1"> 12/12/2022</span>
-                        </p>
-                    </div>
-
-                </div>
-            </div>
-
-            <!-- Pagination -->
-            <nav class="bg-card border border-card-line rounded-lg p-4 mb-6 mt-3 flex items-center justify-center gap-x-1"
-                aria-label="Pagination">
-                <button type="button"
-                    class="min-h-9.5 min-w-9.5 py-2 px-2.5 inline-flex justify-center items-center gap-x-1.5 text-sm rounded-lg text-foreground hover:bg-muted-hover focus:outline-hidden focus:bg-muted-focus disabled:opacity-50 disabled:pointer-events-none"
-                    aria-label="Previous">
-                    <svg aria-hidden="true" class="hidden shrink-0 size-3.5" xmlns="http://www.w3.org/2000/svg"
-                        width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <path d="m15 18-6-6 6-6" />
+                <p class="text-gray-500 dark:text-gray-400 mt-1 flex items-center gap-2">
+                    <!-- SVG icon remains the same, but we can add dark: to stroke if needed -->
+                    <svg class="w-4 h-4 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
                     </svg>
-                    <span>Previous</span>
-                </button>
-                <div class="flex items-center gap-x-1">
-                    <button type="button"
-                        class="min-h-9.5 min-w-9.5 flex justify-center items-center text-foreground hover:bg-muted-hover py-2 px-3 text-sm rounded-lg focus:outline-hidden focus:bg-muted-focus disabled:opacity-50 disabled:pointer-events-none"
-                        aria-current="page">1</button>
-                    <button type="button"
-                        class="min-h-9.5 min-w-9.5 flex justify-center items-center text-foreground hover:bg-muted-hover py-2 px-3 text-sm rounded-lg focus:outline-hidden focus:bg-muted-focus disabled:opacity-50 disabled:pointer-events-none">2</button>
-                    <button type="button"
-                        class="min-h-9.5 min-w-9.5 flex justify-center items-center text-foreground hover:bg-muted-hover py-2 px-3 text-sm rounded-lg focus:outline-hidden focus:bg-muted-focus disabled:opacity-50 disabled:pointer-events-none">3</button>
+                    Bandra West, Mumbai
+                </p>
+                <div class="flex items-center gap-3 mt-2">
+                    <div class="flex items-center text-yellow-400 dark:text-yellow-300">
+                        @for ($i = 1; $i <= 5; $i++)
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                        @endfor
+                    </div>
+                    <span class="text-gray-600 dark:text-gray-300 font-medium">4.8 (120 Reviews)</span>
                 </div>
-                <button type="button"
-                    class="min-h-9.5 min-w-9.5 py-2 px-2.5 inline-flex justify-center items-center gap-x-1.5 text-sm rounded-lg text-foreground hover:bg-muted-hover focus:outline-hidden focus:bg-muted-focus disabled:opacity-50 disabled:pointer-events-none"
-                    aria-label="Next">
-                    <span>Next</span>
-                    <svg aria-hidden="true" class="hidden shrink-0 size-3.5" xmlns="http://www.w3.org/2000/svg"
-                        width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <path d="m9 18 6-6-6-6" />
-                    </svg>
-                </button>
-            </nav>
-            <!-- End Pagination -->
+                <p class="mt-2 text-sm font-medium text-green-600 dark:text-green-400 flex items-center gap-1">
+                    <span class="w-2 h-2 bg-green-500 rounded-full"></span>
+                    Open · Closes at 8:00 PM
+                </p>
+            </div>
+            <div class="mt-4 md:mt-0 flex gap-3">
+                <a href="#" class="px-5 py-2.5 rounded-lg border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200 font-medium hover:bg-gray-50 dark:hover:bg-gray-700 transition">View Shop</a>
+                <a href="#" class="px-5 py-2.5 rounded-lg bg-indigo-600 dark:bg-indigo-500 text-white font-medium hover:bg-indigo-700 dark:hover:bg-indigo-400 transition">Book Appointment</a>
+            </div>
         </div>
-        <!-- End Sign In -->
     </div>
-</div>
+
+    <!-- ===== CONTENT ===== -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+            <!-- LEFT: Rating Summary + Write Review -->
+            <div class="lg:col-span-1 space-y-8">
+                <!-- Rating Summary -->
+                <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border dark:border-gray-700 p-6">
+                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Customer Reviews</h3>
+                    <div class="flex items-center gap-4 mb-6">
+                        <span class="text-4xl font-bold text-gray-900 dark:text-white">4.8</span>
+                        <div>
+                            <div class="flex text-yellow-400 dark:text-yellow-300 mb-1">
+                                @for ($i = 1; $i <= 5; $i++)
+                                    <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                                @endfor
+                            </div>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">Based on 120 reviews</p>
+                        </div>
+                    </div>
+
+                    <!-- Rating Distribution -->
+                    <div class="space-y-2">
+                        @php
+                            $ratings = [5 => 92, 4 => 18, 3 => 7, 2 => 1, 1 => 0];
+                            $total = array_sum($ratings);
+                        @endphp
+                        @foreach([5,4,3,2,1] as $star)
+                            @php $percent = $total > 0 ? ($ratings[$star] / $total) * 100 : 0; @endphp
+                            <div class="flex items-center gap-2">
+                                <span class="text-sm text-gray-600 dark:text-gray-300 w-4">{{ $star }}</span>
+                                <div class="flex-1 h-2 bg-gray-200 dark:bg-gray-700 rounded-full">
+                                    <div class="h-2 bg-yellow-400 dark:bg-yellow-300 rounded-full" style="width: {{ $percent }}%"></div>
+                                </div>
+                                <span class="text-sm text-gray-600 dark:text-gray-300 w-8">{{ $ratings[$star] }}</span>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+
+                <!-- Write a Review -->
+                <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border dark:border-gray-700 p-6">
+                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Write a Review</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">Share your experience with this shop</p>
+                    <!-- Star selector (Alpine) -->
+                    <div x-data="{ rating: 0 }" class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Your Rating</label>
+                        <div class="flex gap-1">
+                            @for ($i = 1; $i <= 5; $i++)
+                                <button type="button" @click="rating = {{ $i }}"
+                                    class="text-3xl focus:outline-none transition"
+                                    :class="rating >= {{ $i }} ? 'text-yellow-400' : 'text-gray-300 dark:text-gray-600'">
+                                    ★
+                                </button>
+                            @endfor
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Your Review</label>
+                        <textarea rows="3"
+                            class="w-full border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 rounded-lg px-4 py-2 text-sm focus:ring-indigo-500 focus:border-indigo-500"
+                            placeholder="Write your review here..."></textarea>
+                    </div>
+                    <button class="w-full bg-indigo-600 dark:bg-indigo-500 text-white py-2.5 rounded-lg font-medium hover:bg-indigo-700 dark:hover:bg-indigo-400 transition">
+                        Submit Review
+                    </button>
+                </div>
+            </div>
+
+            <!-- RIGHT: All Reviews -->
+            <div class="lg:col-span-2">
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-6">All Reviews (120)</h3>
+                <div class="space-y-6">
+                    <!-- Single Review -->
+                    @php
+                        $reviews = [
+                            ['name' => 'Rahul Verma', 'initials' => 'R', 'color' => 'indigo', 'text' => 'Excellent stitching quality...', 'helpful' => 2, 'time' => '2 days ago', 'rating' => 5],
+                            ['name' => 'Sneha Patil', 'initials' => 'S', 'color' => 'pink', 'text' => 'Very happy with the service...', 'helpful' => 1, 'time' => '1 week ago', 'rating' => 5],
+                            // ... add more
+                        ];
+                    @endphp
+                    @foreach($reviews as $review)
+                    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border dark:border-gray-700 p-6">
+                        <div class="flex items-start justify-between">
+                            <div class="flex gap-3">
+                                <div class="w-10 h-10 rounded-full bg-{{ $review['color'] }}-100 dark:bg-{{ $review['color'] }}-900 text-{{ $review['color'] }}-600 dark:text-{{ $review['color'] }}-300 flex items-center justify-center font-bold">
+                                    {{ $review['initials'] }}
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-gray-900 dark:text-white">{{ $review['name'] }}</p>
+                                    <div class="flex items-center gap-2 mt-1">
+                                        <span class="text-xs bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 px-2 py-0.5 rounded-full">Verified Customer</span>
+                                        <span class="text-xs text-gray-500 dark:text-gray-400">{{ $review['time'] }}</span>
+                                    </div>
+                                    <div class="flex text-yellow-400 dark:text-yellow-300 mt-2">
+                                        @for ($i = 1; $i <= 5; $i++)
+                                            <svg class="w-4 h-4 {{ $i <= $review['rating'] ? 'fill-current' : 'text-gray-300 dark:text-gray-600' }}" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                                        @endfor
+                                    </div>
+                                    <p class="mt-3 text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
+                                        {{ $review['text'] }}
+                                    </p>
+                                    <button class="mt-2 text-xs text-gray-500 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 flex items-center gap-1">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"/></svg>
+                                        Helpful ({{ $review['helpful'] }})
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

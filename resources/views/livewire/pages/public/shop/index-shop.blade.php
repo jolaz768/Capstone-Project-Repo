@@ -1,260 +1,195 @@
-<div>
+<div class="min-h-screen bg-layer dark:bg-blue-950">
 
-    <!-- HERO div -->
-    <div class="relative bg-cover bg-center h-[300px] border-b border-line-2 border border-radius-2xl">
-        <img class="absolute inset-0 w-full h-full object-cover"
+    {{-- HERO — with responsive height + text sizing --}}
+    <div class="relative min-h-[420px] md:h-[480px] overflow-hidden rounded-b-[40px] shadow-2xl">
+        <img
             src="{{ asset('storage/' . $shop->shop_image) }}"
-            alt="Product Image">
+            class="absolute inset-0 w-full h-full object-cover"
+            alt="{{ $shop->shop_name }}">
 
-        <div class="absolute inset-0 bg-black/50"></div>
+        <div class="absolute inset-0 bg-black/60"></div>
 
-        <div class="relative h-full flex items-center px-8 text-white">
+        <div class="relative z-10 h-full flex items-center">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 w-full py-8 md:py-0">
+                <div class="max-w-2xl text-white">
+
+                    {{-- Logo – smaller on mobile --}}
+                    <span class="inline-block">
+                        <img
+                            src="{{ asset('storage/' . $shop->shop_logo) }}"
+                            alt="Logo"
+                            class="inline-block size-16 md:size-20.5 rounded-full">
+                    </span>
+
+                    {{-- Heading – responsive font sizes --}}
+                    <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mt-4 md:mt-5 leading-tight">
+                        {{ $shop->shop_name }}
+                    </h1>
+
+                    <p class="mt-3 md:mt-5 text-base md:text-lg text-slate-200">
+                        {{ $shop->description }}
+                    </p>
+
+                    {{-- Rating --}}
+                    <div class="flex items-center gap-3 mt-3 md:mt-5">
+                        <div class="text-yellow-400 text-xl md:text-2xl">
+                            ★★★★★
+                        </div>
+                        <span class="text-white/80 text-sm md:text-base">
+                            120+ Customer Reviews
+                        </span>
+                    </div>
+                    <div class="flex items-center gap-3 mt-3 md:mt-5">
+                        <div class="text-green-400 text-xl md:text-sm">
+                            Open:
+                        </div>
+                        <span class="text-white/80 text-sm md:text-base">
+                            Business Operating Hours: 8:00 AM - 5:00 PM
+                        </span>
+                    </div>
+
+                    {{-- Buttons --}}
+                    <div class="flex flex-wrap gap-3 md:gap-4 mt-5 md:mt-8">
+                        <a href="{{ route('booking.create', ['id' => $shop->id]) }}"
+                            class="bg-yellow-500 hover:bg-yellow-400 text-black px-5 md:px-7 py-3 md:py-4 rounded-2xl font-semibold transition text-sm md:text-base">
+                            Book Appointment
+                        </a>
+                        <a href="{{ route('shop.review', ['id' => $shop->id]) }}"
+                            class="border border-white hover:bg-white hover:text-black px-5 md:px-7 py-3 md:py-4 rounded-2xl font-semibold transition text-sm md:text-base">
+                            View Reviews
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- SERVICES --}}
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 mt-10 md:mt-16">
+        <div class="flex items-center justify-between mb-6 md:mb-8">
             <div>
-                <h1 class="text-4xl font-bold">{{ $shop->shop_name }}</h1>
-                <!-- Rating -->
-                <div class="flex items-center gap-2 mt-2">
-                    <div class="text-yellow-400 text-lg">★★★★★</div>
-                    <span class="text-sm">(120 Reviews)</span>
-                </div>
+                <h2 class="text-3xl md:text-4xl font-bold text-foreground dark:text-blue-100">Our Services</h2>
+                <p class="text-muted-foreground dark:text-blue-300 mt-1 md:mt-2">Browse tailoring services available in this shop.</p>
             </div>
         </div>
-    </div>
 
-
-    <!-- TABS (Preline) -->
-    <!-- Tab Nav -->
-    <nav class="relative z-0 flex border border-line-2 rounded-xl overflow-hidden" aria-label="Tabs" role="tablist"
-        aria-orientation="horizontal">
-        {{-- <a type="button" href="{{ route('shop.service') }}"
-            class="hs-tab-active:border-b-primary-active hs-tab-active:text-foreground relative min-w-0 flex-1 bg-layer first:border-s-0 border-s border-b-2 border-layer-line py-4 px-4 text-muted-foreground-1 hover:text-foreground text-sm font-medium text-center overflow-hidden hover:bg-layer-hover focus:z-10 focus:outline-hidden focus:text-foreground focus:bg-layer-focus disabled:opacity-50 disabled:pointer-events-none active"
-            id="bar-with-underline-item-1" aria-selected="true" data-hs-tab="#bar-with-underline-1"
-            aria-controls="bar-with-underline-1" role="tab">
-            Services
-        </a> --}}
-        <a type="button" href="{{ route('shop.review', ['id' => $shop->id] ) }}"
-            class="hs-tab-active:border-b-primary-active hs-tab-active:text-foreground relative min-w-0 flex-1 bg-layer first:border-s-0 border-s border-b-2 border-layer-line py-4 px-4 text-muted-foreground-1 hover:text-foreground text-sm font-medium text-center overflow-hidden hover:bg-layer-hover focus:z-10 focus:outline-hidden focus:text-foreground focus:bg-layer-focus disabled:opacity-50 disabled:pointer-events-none"
-            id="bar-with-underline-item-2" aria-selected="false" data-hs-tab="#bar-with-underline-2"
-            aria-controls="bar-with-underline-2" role="tab">
-            Reviews
-        </a>
-        <a type="button" href="{{ route('booking.create',['id' => $shop->id]) }}"
-            class="hs-tab-active:border-b-primary-active hs-tab-active:text-foreground relative min-w-0 flex-1 bg-layer first:border-s-0 border-s border-b-2 border-layer-line py-4 px-4 text-muted-foreground-1 hover:text-foreground text-sm font-medium text-center overflow-hidden hover:bg-layer-hover focus:z-10 focus:outline-hidden focus:text-foreground focus:bg-layer-focus disabled:opacity-50 disabled:pointer-events-none"
-            id="bar-with-underline-item-3" aria-selected="false" data-hs-tab="#bar-with-underline-3"
-            aria-controls="bar-with-underline-3" role="tab">
-            Book Apointment
-        </a>
-    </nav>
-    <!-- End Tab Nav -->
-
-    <!-- Tab Content -->
-    <div class="mt-3">
-        {{-- <div id="bar-with-underline-1" role="tabpanel" aria-labelledby="bar-with-underline-item-1">
-            <p class="text-muted-foreground-1">
-                This is the <em class="font-semibold text-foreground">Services</em>
-            </p>
-        </div> --}}
-        <div id="bar-with-underline-2" class="hidden" role="tabpanel" aria-labelledby="bar-with-underline-item-2">
-            <p class="text-muted-foreground-1">
-                This is the <em class="font-semibold text-foreground">Reviews</em>
-            </p>
-        </div>
-        <div id="bar-with-underline-3" class="hidden" role="tabpanel" aria-labelledby="bar-with-underline-item-3">
-            <p class="text-muted-foreground-1">
-                This is the <em class="font-semibold text-foreground">Book Apointment</em>
-            </p>
-        </div>
-        <div id="bar-with-underline-4" class="hidden" role="tabpanel" aria-labelledby="bar-with-underline-item-4">
-            <p class="text-muted-foreground-1">
-                This is the <em class="font-semibold text-foreground">Pricing</em>
-            </p>
-        </div>
-    </div>
-    <!-- End Tab Content -->
-    <h1 class="text-2xl font-semibold text-foreground text-center mt-5 m-5">Services Section</h1>
-    <!-- SERVICES -->
-   <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
-    @forelse ($shop->services as $service)
-        <div class="sm:flex bg-card border border-card-line rounded-xl shadow-2xs">
-            <div class="shrink-0 relative w-full rounded-t-xl overflow-hidden pt-[40%] sm:rounded-s-xl sm:max-w-60 sm:rounded-se-none sm:max-w-20">
-                <img class="size-full absolute top-0 start-0 object-cover"
-                    src="https://images.unsplash.com/photo-1625479144604-ae69462778b7?q=80&w=688&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                    alt="Service Image">
-            </div>
-
-            <div class="flex flex-wrap">
-                <div class="p-4 flex flex-col h-full sm:p-7">
-                    <h3 class="font-semibold text-foreground">
-                        {{ $service->name }}
-                    </h3>
-
-                    <p class="mt-1 text-muted-foreground-1">
-                        {{ $service->description }}
-                    </p>
-
-                    <div class="mt-5 sm:mt-auto">
-                        <p class="text-xs text-muted-foreground-1">
-                            {{ $service->created_at->diffForHumans() }}
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            @forelse ($shop->services as $service)
+                <div class="bg-white dark:bg-blue-900 rounded-3xl overflow-hidden shadow-xl border border-slate-100 dark:border-blue-800 hover:-translate-y-1 transition">
+                    <div class="h-48 md:h-52 overflow-hidden">
+                        <img
+                            src="https://images.unsplash.com/photo-1625479144604-ae69462778b7?q=80&w=1200&auto=format&fit=crop"
+                            class="w-full h-full object-cover"
+                            alt="{{ $service->name }}">
+                    </div>
+                    <div class="p-5 md:p-6">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-xl md:text-2xl font-bold text-foreground dark:text-blue-100">{{ $service->name }}</h3>
+                        </div>
+                        <p class="mt-3 md:mt-4 text-slate-600 dark:text-blue-200 leading-relaxed text-sm md:text-base">
+                            {{ $service->description }}
                         </p>
+                        <div class="mt-4 md:mt-6 flex items-center justify-between">
+                            <span class="text-xs md:text-sm text-slate-400 dark:text-blue-300">{{ $service->created_at->diffForHumans() }}</span>
+                            <a href="{{ route('booking.create', ['id' => $shop->id]) }}"
+                                class="bg-[#0f2342] hover:bg-[#18365f] dark:bg-blue-600 dark:hover:bg-blue-500 text-white px-4 md:px-5 py-2 md:py-3 rounded-2xl text-sm font-semibold transition">
+                                Book Now
+                            </a>
+                        </div>
                     </div>
                 </div>
+            @empty
+                <div class="col-span-full">
+                    <div class="bg-white dark:bg-blue-900 rounded-3xl p-8 md:p-10 text-center shadow-lg border dark:border-blue-800">
+                        <h3 class="text-xl md:text-2xl font-bold text-slate-700 dark:text-blue-100">No Services Available</h3>
+                        <p class="text-slate-500 dark:text-blue-300 mt-2">This shop has not added services yet.</p>
+                    </div>
+                </div>
+            @endforelse
+        </div>
+    </div>
+
+    {{-- GARMENTS --}}
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 mt-14 md:mt-20">
+        <div class="flex items-center justify-between mb-6 md:mb-8">
+            <div>
+                <h2 class="text-3xl md:text-4xl font-bold text-foreground dark:text-blue-100">Garments Available</h2>
+                <p class="text-muted-foreground dark:text-blue-300 mt-1 md:mt-2">Explore garments customized by this tailoring shop.</p>
             </div>
         </div>
-    @empty
-        <p>No services available.</p>
-    @endforelse
-</div>
 
-    <!-- MAIN GRID: REVIEWS + BOOKING -->
-    <div class="mt-10 grid lg:grid-cols-3 gap-6">
-
-        <!-- REVIEWS -->
-        <div class="lg:col-span-2">
-            <h2 class="text-xl font-semibold mb-4">Customer Reviews</h2>
-
-            <!-- Card -->
-            <div class="flex flex-col bg-card border border-card-line shadow-2xs rounded-xl">
-                <div class="p-4 md:p-5">
-                    <div class="flex items-center gap-x-4 mb-3">
-                        <div
-                            class="inline-flex justify-center items-center size-15.5 rounded-full border-4 border-primary-100 dark:border-primary-900 overflow-hidden shrink-0">
-                            <img class="w-20 h-20 object-cover rounded-full"
-                                src="https://images.pexels.com/photos/28238144/pexels-photo-28238144.jpeg" alt="Logo">
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            @forelse ($shop->garments as $garment)
+                <div class="bg-white dark:bg-blue-900 rounded-3xl overflow-hidden shadow-xl border border-slate-100 dark:border-blue-800 hover:-translate-y-1 transition">
+                    <div class="relative h-64 md:h-80 overflow-hidden">
+                        <img
+                            src="{{ $garment->image ? asset('storage/' . $garment->image) : 'https://via.placeholder.com/300x400' }}"
+                            class="w-full h-full object-cover"
+                            alt="{{ $garment->name }}">
+                        <div class="absolute top-3 right-3 md:top-4 md:right-4">
+                            <span class="bg-yellow-500 text-black px-3 md:px-4 py-1.5 md:py-2 rounded-full text-xs md:text-sm font-bold shadow-lg">
+                                ₱ {{ number_format($garment->base_price, 2) }}
+                            </span>
                         </div>
-                        <div class="shrink-0">
-                            <h3 class="block text-sm font-semibold text-foreground-1">John doe</h3>
-                            <div class="grow">
-                                <p class="text-xs uppercase font-medium text-foreground-1">
-                                    Rating: <span class="font-semibold text-xl text-yellow-500">★★★★★</span>
-                                </p>
-                                <p class="mt-1 text-xl sm:text-xs font-semibold text-foreground-1">
-                                    Sevices: <span class="font-xs text-foreground-1"> Sewing </span>
-                                </p>
-                            </div>
-                        </div>
-
                     </div>
-                    <img src="https://plus.unsplash.com/premium_photo-1675186049366-64a655f8f537?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                        class=" mt-4 rounded-lg
-                        object-cover w-20 h-20">
-                    <p class="mt-2 text-sm text-foreground-1">
-                        quality as shit!!
-                    </p>
-
-                </div>
-            </div>
-            <!-- End Card -->
-
-            <!-- Card -->
-            <div class="flex flex-col bg-card border border-card-line shadow-2xs rounded-xl">
-                <div class="p-4 md:p-5">
-                    <div class="flex items-center gap-x-4 mb-3">
-                        <div
-                            class="inline-flex justify-center items-center size-15.5 rounded-full border-4 border-primary-100 dark:border-primary-900 overflow-hidden shrink-0">
-                            <img class="w-20 h-20 object-cover rounded-full"
-                                src="https://images.pexels.com/photos/28238144/pexels-photo-28238144.jpeg" alt="Logo">
+                    <div class="p-5 md:p-6">
+                        <h3 class="text-xl md:text-2xl font-bold text-foreground dark:text-blue-100">{{ $garment->name }}</h3>
+                        <p class="mt-2 md:mt-3 text-slate-600 dark:text-blue-200 line-clamp-3 text-sm md:text-base">{{ $garment->description }}</p>
+                        <div class="mt-4 md:mt-6 flex gap-3">
+                            <button class="flex-1 bg-[#0f2342] hover:bg-[#18365f] dark:bg-blue-600 dark:hover:bg-blue-500 text-white py-2 md:py-3 rounded-2xl font-semibold transition text-sm">
+                                View
+                            </button>
+                            <button
+                                wire:click="addToCart({{ $garment->id }}, '{{ addslashes($garment->name) }}', {{ $garment->base_price }}, '{{ $garment->image }}')"
+                                class="flex-1 bg-yellow-500 hover:bg-yellow-400 text-black py-3 rounded-2xl font-semibold transition">
+                                Add to Cart
+                            </button>
                         </div>
-                        <div class="shrink-0">
-                            <h3 class="block text-sm font-semibold text-foreground-1">John doe</h3>
-                            <div class="grow">
-                                <p class="text-xs uppercase font-medium text-foreground-1">
-                                    Rating: <span class="font-semibold text-xl text-yellow-500">★★★★★</span>
-                                </p>
-                                <p class="mt-1 text-xl sm:text-xs font-semibold text-foreground-1">
-                                    Sevices: <span class="font-xs text-foreground-1"> Sewing </span>
-                                </p>
-                            </div>
-                        </div>
-
                     </div>
-                    <img src="https://plus.unsplash.com/premium_photo-1675186049366-64a655f8f537?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                        class=" mt-4 rounded-lg
-                        object-cover w-20 h-20">
-                    <p class="mt-2 text-sm text-foreground-1">
-                        quality as shit!!
-                    </p>
-
                 </div>
-            </div>
-            <!-- End Card -->
-
+            @empty
+                <div class="col-span-full">
+                    <div class="bg-white dark:bg-blue-900 rounded-3xl p-8 md:p-10 text-center shadow-lg border dark:border-blue-800">
+                        <h3 class="text-xl md:text-2xl font-bold text-foreground dark:text-blue-100">No Garments Available</h3>
+                        <p class="text-foreground dark:text-blue-300 mt-2">This shop has not added garments yet.</p>
+                    </div>
+                </div>
+            @endforelse
         </div>
+    </div>
 
-        <!-- BOOKING -->
-        <div class="lg:col-span-">
-            <h2 class="text-xl font-semibold mb-4">Book Appointment</h2>
+    {{-- BOOKING SECTION --}}
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 mt-14 md:mt-20 pb-16 md:pb-20">
+        <div class="bg-[#0f2342] rounded-[40px] overflow-hidden shadow-2xl">
+            <div class="grid lg:grid-cols-2 gap-6 md:gap-10 p-6 md:p-10 items-center">
+                <div class="text-white">
+                    <span class="bg-yellow-500 text-black px-3 md:px-4 py-1.5 md:py-2 rounded-full text-sm font-semibold">
+                        Quick Booking
+                    </span>
+                    <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mt-4 md:mt-6">Book Your Tailoring Appointment</h2>
+                    <p class="mt-3 md:mt-5 text-slate-300 text-base md:text-lg">Schedule your fitting and tailoring services online.</p>
+                </div>
 
-            <div class="bg-card border border-card-line rounded-xl shadow-2xs ">
-                <!-- Sign In -->
-                <div class="p-4 sm:p-7">
-                    <div class="text-center">
-                        <h3 id="hs-modal-signin-label" class="block text-2xl font-bold text-foreground">Create Booking
-                        </h3>
-                    </div>
-
-                    <!-- Form -->
-                    <form method="GET" action="{{ route('booking.create',['id' => $shop->id]) }}">
-                        <div class="grid gap-y-4">
-                            <!-- Form Group -->
+                <div class="bg-white dark:bg-blue-900 rounded-3xl p-6 md:p-8 shadow-xl border dark:border-blue-800">
+                    <h3 class="text-2xl md:text-3xl font-bold text-black dark:text-blue-100 mb-4 md:mb-6">Create Booking</h3>
+                    <form method="GET" action="{{ route('booking.create', ['id' => $shop->id]) }}">
+                        <div class="space-y-4 md:space-y-5">
                             <div>
-                                <label for="bookingDate" class="block text-sm mb-2 text-foreground">Date</label>
-                                <div class="relative">
-                                    <input type="date" id="bookingDate" name="date"
-                                        class="py-2 px-4 w-full border rounded-lg">
-                                    <div class="hidden absolute inset-y-0 end-0 pointer-events-none pe-3">
-
-                                    </div>
-                                </div>
-                                <p class="hidden text-xs text-red-600 mt-2" id="date-error">Please include a valid date
-                                    address so we can get back to you</p>
+                                <label class="block mb-1.5 md:mb-2 font-semibold text-slate-700 dark:text-blue-100">Select Date</label>
+                                <input
+                                    type="date"
+                                    name="date"
+                                    class="w-full border border-slate-200 dark:border-blue-700 bg-white dark:bg-blue-800 text-slate-700 dark:text-blue-100 rounded-2xl px-4 md:px-5 py-3 md:py-4 focus:ring-2 focus:ring-yellow-500 focus:outline-none">
                             </div>
-                            <!-- End Form Group -->
                             <button type="submit"
-                                class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg bg-primary border border-primary-line text-primary-foreground hover:bg-primary-hover focus:outline-hidden focus:bg-primary-focus disabled:opacity-50 disabled:pointer-events-none">Book</button>
+                                class="w-full bg-yellow-500 hover:bg-yellow-400 text-black py-3 md:py-4 rounded-2xl font-bold text-lg transition">
+                                Book Appointment
+                            </button>
                         </div>
                     </form>
-                    <!-- End Form -->
-
-
                 </div>
             </div>
-            <!-- End Sign In -->
         </div>
     </div>
 
-    {{-- pricing section --}}
-
-    <h1 class="text-2xl font-semibold text-foreground text-center mt-5 m-5">Garments Section</h1>
-   <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4
-    gap-4 mb-5">
-    @forelse ($shop->garments as $garment)
-        <div class="flex flex-col flex-1 bg-card border rounded-xl overflow-hidden mt-5">
-            <img class="w-full h-80 object-cover rounded-t-xl"
-                src="{{ $garment->image ? asset('storage/' . $garment->image) : 'https://via.placeholder.com/300x200' }}"
-                alt="{{ $garment->name }}">
-
-            <div class="p-4 flex-1 md:p-5">
-                <h3 class="font-semibold text-foreground">
-                    {{ $garment->name }}
-                </h3>
-
-                <p class="mt-1 text-muted-foreground-1">
-                    {{ $garment->description }}
-                </p>
-
-                <p class="mt-1 text-muted-foreground-1">
-                    Price: <span class="font-xs text-foreground-1">{{ $garment->base_price }}</span>
-                </p>
-            </div>
-        </div>
-    @empty
-        <p>No garments available.</p>
-    @endforelse
 </div>
-        <!-- End Group -->
-
-
-    
-
-</div>
-<!-- End Card Group -->
-

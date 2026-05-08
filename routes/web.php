@@ -99,8 +99,6 @@ Route::prefix('public')
         //Shop  Review
         Route::get('/shop/review/{id}', Review::class)->name('shop.review');
 
-        //shop  service
-        Route::get('/shop/service', ShopService::class)->name('shop.service');
 
         //shop cart
         Route::get('/shop/cart', Cart::class)->name('shop.cart');
