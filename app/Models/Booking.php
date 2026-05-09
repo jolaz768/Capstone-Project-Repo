@@ -13,6 +13,9 @@ class Booking extends Model
         'service_id',
         'status',
         'booking_date',
+        'rental_start_date',
+        'rental_end_date',
+        'require_date',
         'total_price',
     ];
     

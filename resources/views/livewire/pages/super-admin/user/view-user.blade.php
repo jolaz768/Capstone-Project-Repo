@@ -144,7 +144,7 @@
                                     <td class="size-px whitespace-nowrap">
                                         <div class="px-6 py-1.5">
                                             <button class="text-sm font-medium text-red-600 hover:underline"
-                                                href="{{ $user->id }}">
+                                                wire:click="delete({{ $user->id }})">
                                                 Delete
                                             </button>
                                         </div>

@@ -1,7 +1,9 @@
 <?php
 
 use App\Livewire\Pages\Admin\Booking\ViewBooking;
+
 use App\Livewire\Pages\Admin\Dashboard as OwnerDashboard;
+
 use App\Livewire\Pages\Admin\Fabric\Color\CreateColor;
 use App\Livewire\Pages\Admin\Fabric\Color\EditColor;
 use App\Livewire\Pages\Admin\Fabric\Color\ViewColor;
@@ -11,19 +13,24 @@ use App\Livewire\Pages\Admin\Fabric\FabricColor\CreateFabricColor;
 use App\Livewire\Pages\Admin\Fabric\FabricColor\EditFabricColor;
 use App\Livewire\Pages\Admin\Fabric\FabricColor\ViewFabricColor;
 use App\Livewire\Pages\Admin\Fabric\ViewFabric;
+
 use App\Livewire\Pages\Admin\Garment\CreateGarment;
 use App\Livewire\Pages\Admin\Garment\EditGarment;
 use App\Livewire\Pages\Admin\Garment\ViewGarment;
+
 use App\Livewire\Pages\Admin\MeasurementField\CreateMeasurementField;
 use App\Livewire\Pages\Admin\MeasurementField\EditMeasurementField;
 use App\Livewire\Pages\Admin\MeasurementField\ViewMeasurementField;
 use App\Livewire\Pages\Admin\MeasurementTemplate\CreateMeasurementTemplate;
 use App\Livewire\Pages\Admin\MeasurementTemplate\EditMeasurementTemplate;
 use App\Livewire\Pages\Admin\MeasurementTemplate\ViewMeasurementTemplate;
+
 use App\Livewire\Pages\Admin\Review\ViewReview;
+
 use App\Livewire\Pages\Admin\Service\CreateService;
 use App\Livewire\Pages\Admin\Service\EditService;
 use App\Livewire\Pages\Admin\Service\ViewService;
+
 use App\Livewire\Pages\Admin\Shop\CreateShop;
 use App\Livewire\Pages\Admin\Shop\EditShop;
 use App\Livewire\Pages\Admin\Shop\ShopCategory\CreateCategory;
@@ -33,17 +40,20 @@ use App\Livewire\Pages\Admin\Shop\ShopSetting\CreateShopSetting;
 use App\Livewire\Pages\Admin\Shop\ShopSetting\EditShopSetting;
 use App\Livewire\Pages\Admin\Shop\ShopSetting\ViewShopSetting;
 use App\Livewire\Pages\Admin\Shop\ViewShop;
+
 use App\Livewire\Pages\Auth\Login;
 use App\Livewire\Pages\Auth\Register;
+
 use App\Livewire\Pages\Public\Booking\CreateBooking;
 use App\Livewire\Pages\Public\Booking\EditBooking;
-use App\Livewire\Pages\Public\Booking\ViewBooking as publicbooking;
+use App\Livewire\Pages\Public\Booking\RentalBooking\RentalBooking;
 use App\Livewire\Pages\Public\Index;
 use App\Livewire\Pages\Public\Shop\IndexShop;
 use App\Livewire\Pages\Public\Shop\Pricing;
 use App\Livewire\Pages\Public\Shop\Review;
-use App\Livewire\Pages\Public\Shop\ShopService;
+
 use App\Livewire\Pages\Public\ShopCart\Cart;
+
 use App\Livewire\Pages\SuperAdmin\Dashboard;
 use App\Livewire\Pages\SuperAdmin\Permission\CreatePermission;
 use App\Livewire\Pages\SuperAdmin\Permission\EditPermission;
@@ -54,6 +64,7 @@ use App\Livewire\Pages\SuperAdmin\Role\ViewRole;
 use App\Livewire\Pages\SuperAdmin\User\CreateUser;
 use App\Livewire\Pages\SuperAdmin\User\EditUser;
 use App\Livewire\Pages\SuperAdmin\User\ViewUser;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -85,10 +96,9 @@ Route::prefix('public')
     ->group(function () {
 
         //booking
-        Route::get('/booking-view', publicbooking::class)->name('booking.view');
+
         Route::get('/create-booking/{id}', CreateBooking::class)->name('booking.create');
-        Route::get('/edit-booking/{id}', EditBooking::class)->name('booking.edit');
-        
+        Route::get('/rental-booking', RentalBooking::class)->name('booking.rental');
 
         //shop
         Route::get('/Shop-view/{id}', IndexShop::class)->name('shop.view');
@@ -137,8 +147,7 @@ Route::prefix('/admin') //shop owner
         //booking
         Route::get('/booking/view', ViewBooking::class)->name('admin.booking.view');
         Route::get('/booking/create', CreateBooking::class)->name('admin.booking.create');
-        Route::get('/booking/edit/{booking}', EditBooking::class)->name('admin.booking.edit');
-
+     
         //fabric and colors
         Route::get('/fabric/view', ViewFabric::class)->name('admin.fabric.view');
         Route::get('/fabric/create', CreateFabric::class)->name('admin.fabric.create');
@@ -199,5 +208,5 @@ Route::prefix('/admin') //shop owner
         //booking
         Route::get('/booking/view', ViewBooking::class)->name('admin.booking.view');
         Route::get('/booking/create', CreateBooking::class)->name('admin.booking.create');
-        Route::get('/booking/edit/{booking}', EditBooking::class)->name('admin.booking.edit');
+        
     });

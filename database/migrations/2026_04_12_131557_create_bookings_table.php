@@ -16,6 +16,9 @@ return new class extends Migration
             $table->foreignId('user_id')->nullable()->constrained('users')->cascadeOnDelete();
             $table->foreignId('shop_id')->constrained('shops')->cascadeOnDelete();
             $table->enum('status', ['pending', 'approved', 'rejected', 'cancelled','processing','completed'])->default('pending');
+            $table->date('rental_start_date')->nullable();
+            $table->date('rental_end_date')->nullable();
+            $table->date('required_date')->nullable();
             $table->date('booking_date');
             $table->float('total_price');
             $table->timestamps();

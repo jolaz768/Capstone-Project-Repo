@@ -1,7 +1,7 @@
-<div class="min-h-screen bg-layer dark:bg-blue-950">
+<div class="min-h-screen bg-layer dark:bg-gray-900">
 
     {{-- HERO SECTION --}}
-    <div class="relative overflow-hidden rounded-3xl border border-line-2 dark:border-blue-800 h-[420px]">
+    <div class="relative overflow-hidden rounded-3xl border border-line-2 dark:border-gray-700 h-[420px]">
 
         {{-- Background Image --}}
         <img class="absolute inset-0 w-full h-full object-cover"
@@ -52,14 +52,14 @@
                 <form action="#" method="GET" class="mt-8 flex w-full max-w-xl">
                     <div class="max-w-sm w-full space-y-3">
                         <input wire:model.live="search" id="input-base" type="text"
-                            class="py-2.5 sm:py-3 px-4 rounded-lg block w-full bg-layer-500 dark:bg-blue-900 border border-line-5 dark:border-blue-700 sm:text-sm text-foreground dark:text-blue-100 placeholder:text-foreground dark:placeholder:text-blue-300 focus:border-primary-focus focus:ring-primary-focus disabled:opacity-50 disabled:pointer-events-none"
+                            class="py-2.5 sm:py-3 px-4 rounded-lg block w-full bg-layer-500 dark:bg-gray-800 border border-line-5 dark:border-gray-700 sm:text-sm text-foreground dark:text-gray-100 placeholder:text-foreground dark:placeholder:text-gray-400 focus:border-primary-focus focus:ring-primary-focus disabled:opacity-50 disabled:pointer-events-none"
                             placeholder="Search for Tailors" aria-label="Search for Tailors">
                     </div>
                 </form>
-                <h2 class="text-3xl font-bold text-foreground dark:text-blue-100">
+                <h2 class="text-3xl font-bold text-foreground dark:text-gray-100">
                     Featured Tailoring Shops
                 </h2>
-                <p class="text-muted-foreground dark:text-blue-300 mt-1">
+                <p class="text-muted-foreground dark:text-gray-400 mt-1">
                     Explore top-rated tailoring shops in your area.
                 </p>
             </div>
@@ -69,7 +69,7 @@
         <div class="grid sm:grid-cols-2 xl:grid-cols-4 gap-8">
 
             @foreach ($this->shops as $shop)
-                <div class="group bg-card dark:bg-blue-900 border border-card-line dark:border-blue-800 rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition duration-300">
+                <div class="group bg-card dark:bg-gray-800 border border-card-line dark:border-gray-700 rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition duration-300">
 
                     {{-- IMAGE --}}
                     <div class="relative h-56 overflow-hidden">
@@ -94,40 +94,40 @@
                     <div class="p-5">
                         <div class="flex items-center gap-2 text-sm">
                             <span class="text-yellow-500 font-semibold">★ 4.8</span>
-                            <span class="text-muted-foreground dark:text-blue-300">(120 Reviews)</span>
+                            <span class="text-muted-foreground dark:text-gray-400">(120 Reviews)</span>
                         </div>
 
                         <div class="mt-5">
-                            <p class="text-sm font-semibold text-foreground dark:text-blue-100 mb-3">Services</p>
+                            <p class="text-sm font-semibold text-foreground dark:text-gray-100 mb-3">Services</p>
                             <div class="flex flex-wrap gap-2">
                                 @forelse ($shop->Services as $service)
-                                    <span class="px-3 py-1.5 rounded-full bg-[#071d49]/10 dark:bg-blue-800 text-foreground dark:text-blue-200 text-xs font-medium">
+                                    <span class="px-3 py-1.5 rounded-full bg-[#071d49]/10 dark:bg-gray-700 text-foreground dark:text-gray-200 text-xs font-medium">
                                         {{ $service->name }}
                                     </span>
                                 @empty
-                                    <span class="text-sm text-muted-foreground dark:text-blue-300">No services available</span>
+                                    <span class="text-sm text-muted-foreground dark:text-gray-400">No services available</span>
                                 @endforelse
                             </div>
                         </div>
 
                         {{-- STATS --}}
                         <div class="grid grid-cols-3 gap-3 mt-6">
-                            <div class="bg-layer-1 dark:bg-blue-950 rounded-xl p-3 text-center border border-line-2 dark:border-blue-800">
-                                <p class="text-lg font-bold text-foreground dark:text-blue-100">{{ $shop->Services->count() }}</p>
-                                <p class="text-xs text-muted-foreground dark:text-blue-300">Services</p>
+                            <div class="bg-layer-1 dark:bg-gray-900 rounded-xl p-3 text-center border border-line-2 dark:border-gray-700">
+                                <p class="text-lg font-bold text-foreground dark:text-gray-100">{{ $shop->Services->count() }}</p>
+                                <p class="text-xs text-muted-foreground dark:text-gray-400">Services</p>
                             </div>
-                            <div class="bg-layer dark:bg-blue-900 rounded-xl p-3 text-center border border-line-2 dark:border-blue-800">
-                                <p class="text-lg font-bold text-foreground dark:text-blue-100">{{ $shop->bookings->count() }}</p>
-                                <p class="text-xs text-muted-foreground dark:text-blue-300">Bookings</p>
+                            <div class="bg-layer dark:bg-gray-800 rounded-xl p-3 text-center border border-line-2 dark:border-gray-700">
+                                <p class="text-lg font-bold text-foreground dark:text-gray-100">{{ $shop->bookings->count() }}</p>
+                                <p class="text-xs text-muted-foreground dark:text-gray-400">Bookings</p>
                             </div>
-                            <div class="bg-layer dark:bg-blue-900 rounded-xl p-3 text-center border border-line-2 dark:border-blue-800">
-                                <p class="text-lg font-bold text-foreground dark:text-blue-100">{{ $shop->garments->count() }}</p>
-                                <p class="text-xs text-muted-foreground dark:text-blue-300">Garments</p>
+                            <div class="bg-layer dark:bg-gray-800 rounded-xl p-3 text-center border border-line-2 dark:border-gray-700">
+                                <p class="text-lg font-bold text-foreground dark:text-gray-100">{{ $shop->garments->count() }}</p>
+                                <p class="text-xs text-muted-foreground dark:text-gray-400">Garments</p>
                             </div>
                         </div>
 
                         <a href="{{ route('shop.view', ['id' => $shop->id]) }}" class="mt-6 block">
-                            <button class="w-full bg-[#071d49] hover:bg-[#0b2e73] dark:bg-indigo-600 dark:hover:bg-indigo-500 text-white py-3 rounded-2xl font-semibold transition">
+                            <button class="w-full bg-[#071d49] hover:bg-[#0b2e73] dark:bg-gray-700 dark:hover:bg-gray-600 text-white py-3 rounded-2xl font-semibold transition">
                                 View Shop →
                             </button>
                         </a>
@@ -139,35 +139,35 @@
         {{-- FEATURES --}}
         <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-16">
 
-            <div class="bg-card dark:bg-blue-900 border border-card-line dark:border-blue-800 rounded-2xl p-5 flex gap-4">
+            <div class="bg-card dark:bg-gray-800 border border-card-line dark:border-gray-700 rounded-2xl p-5 flex gap-4">
                 <div class="size-12 rounded-full bg-[#071d49] text-white flex items-center justify-center shrink-0">✔</div>
                 <div>
-                    <h4 class="font-bold text-foreground dark:text-blue-100">Verified Tailors</h4>
-                    <p class="text-sm text-muted-foreground dark:text-blue-300 mt-1">All tailoring shops are verified and trusted.</p>
+                    <h4 class="font-bold text-foreground dark:text-gray-100">Verified Tailors</h4>
+                    <p class="text-sm text-muted-foreground dark:text-gray-400 mt-1">All tailoring shops are verified and trusted.</p>
                 </div>
             </div>
 
-            <div class="bg-card dark:bg-blue-900 border border-card-line dark:border-blue-800 rounded-2xl p-5 flex gap-4">
+            <div class="bg-card dark:bg-gray-800 border border-card-line dark:border-gray-700 rounded-2xl p-5 flex gap-4">
                 <div class="size-12 rounded-full bg-[#071d49] text-white flex items-center justify-center shrink-0">✂</div>
                 <div>
-                    <h4 class="font-bold text-foreground dark:text-blue-100">Quality Services</h4>
-                    <p class="text-sm text-muted-foreground dark:text-blue-300 mt-1">Expert tailoring in every stitch.</p>
+                    <h4 class="font-bold text-foreground dark:text-gray-100">Quality Services</h4>
+                    <p class="text-sm text-muted-foreground dark:text-gray-400 mt-1">Expert tailoring in every stitch.</p>
                 </div>
             </div>
 
-            <div class="bg-card dark:bg-blue-900 border border-card-line dark:border-blue-800 rounded-2xl p-5 flex gap-4">
+            <div class="bg-card dark:bg-gray-800 border border-card-line dark:border-gray-700 rounded-2xl p-5 flex gap-4">
                 <div class="size-12 rounded-full bg-[#071d49] text-white flex items-center justify-center shrink-0">📅</div>
                 <div>
-                    <h4 class="font-bold text-foreground dark:text-blue-100">Easy Booking</h4>
-                    <p class="text-sm text-muted-foreground dark:text-blue-300 mt-1">Book appointments quickly and securely.</p>
+                    <h4 class="font-bold text-foreground dark:text-gray-100">Easy Booking</h4>
+                    <p class="text-sm text-muted-foreground dark:text-gray-400 mt-1">Book appointments quickly and securely.</p>
                 </div>
             </div>
 
-            <div class="bg-card dark:bg-blue-900 border border-card-line dark:border-blue-800 rounded-2xl p-5 flex gap-4">
+            <div class="bg-card dark:bg-gray-800 border border-card-line dark:border-gray-700 rounded-2xl p-5 flex gap-4">
                 <div class="size-12 rounded-full bg-[#071d49] text-white flex items-center justify-center shrink-0">💰</div>
                 <div>
-                    <h4 class="font-bold text-foreground dark:text-blue-100">Affordable Pricing</h4>
-                    <p class="text-sm text-muted-foreground dark:text-blue-300 mt-1">Premium tailoring services at fair prices.</p>
+                    <h4 class="font-bold text-foreground dark:text-gray-100">Affordable Pricing</h4>
+                    <p class="text-sm text-muted-foreground dark:text-gray-400 mt-1">Premium tailoring services at fair prices.</p>
                 </div>
             </div>
 

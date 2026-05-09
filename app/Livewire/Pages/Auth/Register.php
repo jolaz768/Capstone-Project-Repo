@@ -16,8 +16,8 @@ class Register extends Component
     public string $password_confirmation = '';
     public string $phone = '';
     public string $address = '';
+     public $selectedRoles = '';
     public $roles = [];
-
 
   
     public function rule()
@@ -26,9 +26,9 @@ class Register extends Component
             'name' => 'required|min:2|max:60',
             'email' => 'required|email:rfc,dns|unique:users',
             'password' => 'required|min:8|confirmed',
-            
             'phone' => ['required', 'regex:/^(09|\+639)\d{9}$/', 'max:13', 'unique:users'],
             'address' => 'required|nullable|string|max:255',
+            'selectedRoles' => 'required|min:1',
         ];
     }
     public function messages()
@@ -56,7 +56,9 @@ class Register extends Component
             'address.string' => 'Address must be a string',
             'address.max' => 'Address must be at most 255 characters',
 
-            ''
+            'selectedRoles.required' => 'Please select at least one role',
+            'selectedRoles.min' => 'Please select at least one role',
+
         ];
     }
      public function mount()
@@ -85,32 +87,13 @@ class Register extends Component
             'phone' => $this->phone,
             'address' => $this->address,
         ]);
-        // $user->tenant_id = $user->id;
         
         $user->save();
 
-        $user->assignRole($this->roles);
+        $user->syncRoles($this->selectedRoles);
 
-        // Auth::login($user);
 
         return redirect()->route('login.page');
-        // match(true){
-        //     !$user=> redirect()->route('login.page'),
-
-        //     $user->hasRole('super-admin')=> redirect()->route('super-admin.dashboard'),
-        //     $user->hasRole('admin')=> redirect()->route('admin.dashboard'),
-        //     $user->hasRole('customer')=> redirect()->route('index.page'),
-        //     default=> redirect()->route('login.page'),
-        // };
-        // if ($user->hasRole('super-admin')) {
-        //     return redirect()->route('super-admin.dashboard');
-        // } elseif ($user->hasRole('admin')) {
-        //     return redirect()->route('admin.dashboard');
-        // } elseif ($user->hasRole('customer')) {
-        //     return redirect()->route('index.page');
-        // } else {
-        //     return redirect()->route('login.page');
-        // }
     }
 
 

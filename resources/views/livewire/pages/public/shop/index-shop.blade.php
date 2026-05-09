@@ -1,4 +1,4 @@
-<div class="min-h-screen bg-layer dark:bg-blue-950">
+<div class="min-h-screen bg-layer dark:bg-gray-950">
 
     {{-- HERO — with responsive height + text sizing --}}
     <div class="relative min-h-[420px] md:h-[480px] overflow-hidden rounded-b-[40px] shadow-2xl">
@@ -68,14 +68,14 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 mt-10 md:mt-16">
         <div class="flex items-center justify-between mb-6 md:mb-8">
             <div>
-                <h2 class="text-3xl md:text-4xl font-bold text-foreground dark:text-blue-100">Our Services</h2>
-                <p class="text-muted-foreground dark:text-blue-300 mt-1 md:mt-2">Browse tailoring services available in this shop.</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-foreground dark:text-gray-100">Our Services</h2>
+                <p class="text-muted-foreground dark:text-gray-400 mt-1 md:mt-2">Browse tailoring services available in this shop.</p>
             </div>
         </div>
 
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             @forelse ($shop->services as $service)
-                <div class="bg-white dark:bg-blue-900 rounded-3xl overflow-hidden shadow-xl border border-slate-100 dark:border-blue-800 hover:-translate-y-1 transition">
+                <div class="bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-xl border border-slate-100 dark:border-gray-700 hover:-translate-y-1 transition">
                     <div class="h-48 md:h-52 overflow-hidden">
                         <img
                             src="https://images.unsplash.com/photo-1625479144604-ae69462778b7?q=80&w=1200&auto=format&fit=crop"
@@ -84,15 +84,15 @@
                     </div>
                     <div class="p-5 md:p-6">
                         <div class="flex items-center justify-between">
-                            <h3 class="text-xl md:text-2xl font-bold text-foreground dark:text-blue-100">{{ $service->name }}</h3>
+                            <h3 class="text-xl md:text-2xl font-bold text-foreground dark:text-gray-100">{{ $service->name }}</h3>
                         </div>
-                        <p class="mt-3 md:mt-4 text-slate-600 dark:text-blue-200 leading-relaxed text-sm md:text-base">
+                        <p class="mt-3 md:mt-4 text-slate-600 dark:text-gray-300 leading-relaxed text-sm md:text-base">
                             {{ $service->description }}
                         </p>
                         <div class="mt-4 md:mt-6 flex items-center justify-between">
-                            <span class="text-xs md:text-sm text-slate-400 dark:text-blue-300">{{ $service->created_at->diffForHumans() }}</span>
+                            <span class="text-xs md:text-sm text-slate-400 dark:text-gray-500">{{ $service->created_at->diffForHumans() }}</span>
                             <a href="{{ route('booking.create', ['id' => $shop->id]) }}"
-                                class="bg-[#0f2342] hover:bg-[#18365f] dark:bg-blue-600 dark:hover:bg-blue-500 text-white px-4 md:px-5 py-2 md:py-3 rounded-2xl text-sm font-semibold transition">
+                                class="bg-[#0f2342] hover:bg-[#18365f] dark:bg-gray-700 dark:hover:bg-gray-600 text-white px-4 md:px-5 py-2 md:py-3 rounded-2xl text-sm font-semibold transition">
                                 Book Now
                             </a>
                         </div>
@@ -100,9 +100,9 @@
                 </div>
             @empty
                 <div class="col-span-full">
-                    <div class="bg-white dark:bg-blue-900 rounded-3xl p-8 md:p-10 text-center shadow-lg border dark:border-blue-800">
-                        <h3 class="text-xl md:text-2xl font-bold text-slate-700 dark:text-blue-100">No Services Available</h3>
-                        <p class="text-slate-500 dark:text-blue-300 mt-2">This shop has not added services yet.</p>
+                    <div class="bg-white dark:bg-gray-800 rounded-3xl p-8 md:p-10 text-center shadow-lg border dark:border-gray-700">
+                        <h3 class="text-xl md:text-2xl font-bold text-slate-700 dark:text-gray-100">No Services Available</h3>
+                        <p class="text-slate-500 dark:text-gray-400 mt-2">This shop has not added services yet.</p>
                     </div>
                 </div>
             @endforelse
@@ -113,14 +113,14 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 mt-14 md:mt-20">
         <div class="flex items-center justify-between mb-6 md:mb-8">
             <div>
-                <h2 class="text-3xl md:text-4xl font-bold text-foreground dark:text-blue-100">Garments Available</h2>
-                <p class="text-muted-foreground dark:text-blue-300 mt-1 md:mt-2">Explore garments customized by this tailoring shop.</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-foreground dark:text-gray-100">Garments Available</h2>
+                <p class="text-muted-foreground dark:text-gray-400 mt-1 md:mt-2">Explore garments customized by this tailoring shop.</p>
             </div>
         </div>
 
         <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             @forelse ($shop->garments as $garment)
-                <div class="bg-white dark:bg-blue-900 rounded-3xl overflow-hidden shadow-xl border border-slate-100 dark:border-blue-800 hover:-translate-y-1 transition">
+                <div class="bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-xl border border-slate-100 dark:border-gray-700 hover:-translate-y-1 transition">
                     <div class="relative h-64 md:h-80 overflow-hidden">
                         <img
                             src="{{ $garment->image ? asset('storage/' . $garment->image) : 'https://via.placeholder.com/300x400' }}"
@@ -133,10 +133,10 @@
                         </div>
                     </div>
                     <div class="p-5 md:p-6">
-                        <h3 class="text-xl md:text-2xl font-bold text-foreground dark:text-blue-100">{{ $garment->name }}</h3>
-                        <p class="mt-2 md:mt-3 text-slate-600 dark:text-blue-200 line-clamp-3 text-sm md:text-base">{{ $garment->description }}</p>
+                        <h3 class="text-xl md:text-2xl font-bold text-foreground dark:text-gray-100">{{ $garment->name }}</h3>
+                        <p class="mt-2 md:mt-3 text-slate-600 dark:text-gray-300 line-clamp-3 text-sm md:text-base">{{ $garment->description }}</p>
                         <div class="mt-4 md:mt-6 flex gap-3">
-                            <button class="flex-1 bg-[#0f2342] hover:bg-[#18365f] dark:bg-blue-600 dark:hover:bg-blue-500 text-white py-2 md:py-3 rounded-2xl font-semibold transition text-sm">
+                            <button class="flex-1 bg-[#0f2342] hover:bg-[#18365f] dark:bg-gray-700 dark:hover:bg-gray-600 text-white py-2 md:py-3 rounded-2xl font-semibold transition text-sm">
                                 View
                             </button>
                             <button
@@ -149,14 +149,14 @@
                 </div>
             @empty
                 <div class="col-span-full">
-                    <div class="bg-white dark:bg-blue-900 rounded-3xl p-8 md:p-10 text-center shadow-lg border dark:border-blue-800">
-                        <h3 class="text-xl md:text-2xl font-bold text-foreground dark:text-blue-100">No Garments Available</h3>
-                        <p class="text-foreground dark:text-blue-300 mt-2">This shop has not added garments yet.</p>
+                    <div class="bg-white dark:bg-gray-800 rounded-3xl p-8 md:p-10 text-center shadow-lg border dark:border-gray-700">
+                        <h3 class="text-xl md:text-2xl font-bold text-foreground dark:text-gray-100">No Garments Available</h3>
+                        <p class="text-foreground dark:text-gray-400 mt-2">This shop has not added garments yet.</p>
                     </div>
                 </div>
             @endforelse
         </div>
-    </div>
+    </div> 
 
     {{-- BOOKING SECTION --}}
     <div class="max-w-7xl mx-auto px-4 sm:px-6 mt-14 md:mt-20 pb-16 md:pb-20">
@@ -170,16 +170,16 @@
                     <p class="mt-3 md:mt-5 text-slate-300 text-base md:text-lg">Schedule your fitting and tailoring services online.</p>
                 </div>
 
-                <div class="bg-white dark:bg-blue-900 rounded-3xl p-6 md:p-8 shadow-xl border dark:border-blue-800">
-                    <h3 class="text-2xl md:text-3xl font-bold text-black dark:text-blue-100 mb-4 md:mb-6">Create Booking</h3>
+                <div class="bg-white dark:bg-gray-800 rounded-3xl p-6 md:p-8 shadow-xl border dark:border-gray-700">
+                    <h3 class="text-2xl md:text-3xl font-bold text-black dark:text-gray-100 mb-4 md:mb-6">Create Booking</h3>
                     <form method="GET" action="{{ route('booking.create', ['id' => $shop->id]) }}">
                         <div class="space-y-4 md:space-y-5">
                             <div>
-                                <label class="block mb-1.5 md:mb-2 font-semibold text-slate-700 dark:text-blue-100">Select Date</label>
+                                <label class="block mb-1.5 md:mb-2 font-semibold text-slate-700 dark:text-gray-200">Select Date</label>
                                 <input
                                     type="date"
                                     name="date"
-                                    class="w-full border border-slate-200 dark:border-blue-700 bg-white dark:bg-blue-800 text-slate-700 dark:text-blue-100 rounded-2xl px-4 md:px-5 py-3 md:py-4 focus:ring-2 focus:ring-yellow-500 focus:outline-none">
+                                    class="w-full border border-slate-200 dark:border-gray-700 bg-white dark:bg-gray-900 text-slate-700 dark:text-gray-200 rounded-2xl px-4 md:px-5 py-3 md:py-4 focus:ring-2 focus:ring-yellow-500 focus:outline-none">
                             </div>
                             <button type="submit"
                                 class="w-full bg-yellow-500 hover:bg-yellow-400 text-black py-3 md:py-4 rounded-2xl font-bold text-lg transition">
