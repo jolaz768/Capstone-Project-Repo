@@ -157,7 +157,8 @@
                   <td class="size-px whitespace-nowrap">
                     <div class="px-6 py-3">
                       <div class="flex items-center gap-x-3">
-                        <span class="text-xs text-muted-foreground-1">{{ $garment->category?->cat_name ?? '—' }}</span>
+                    </div>
+                      <span class="text-xs text-muted-foreground-1">{{ $garment->category->cat_name }}</span>
                       </div>
                     </div>
                   </td>

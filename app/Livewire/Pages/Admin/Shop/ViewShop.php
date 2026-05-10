@@ -17,21 +17,21 @@ class ViewShop extends Component
     public function shops()
     {
         return Shop::query()
-            ->select('id', 'shop_name', 'slug', 'description', 'phone', 'shop_image', 'shop_logo', 'address', 'is_active', 'created_at')
+            ->select('id', 'shop_name', 'description', 'phone', 'shop_image', 'shop_logo', 'address', 'is_active', 'created_at')
             ->whereHas('users', fn ($query) => $query->where('users.id', auth()->id()))
             ->get();
     }
 
-    public function delete($id)
-    {
-        $shop = Shop::where('id', $id)
-            ->whereHas('users', fn ($query) => $query->where('users.id', auth()->id()))
-            ->firstOrFail();
+    // public function delete($id)
+    // {
+    //     $shop = Shop::where('id', $id)
+    //         ->whereHas('users', fn ($query) => $query->where('users.id', auth()->id()))
+    //         ->firstOrFail();
 
-        $shop->delete();
-        session()->flash('success', 'Shop deleted successfully!');
-        return redirect()->route('admin.shop.view');
-    }
+    //     $shop->delete();
+    //     session()->flash('success', 'Shop deleted successfully!');
+    //     return redirect()->route('admin.shop.view');
+    // }
     
     public function render()
     {

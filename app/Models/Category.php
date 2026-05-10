@@ -16,10 +16,6 @@ class Category extends Model
         'shop_id',
     ];
 
-    public function garments()
-    {
-        return $this->hasMany(Garment::class);
-    }
     public function shop()
     {
         return $this->belongsTo(Shop::class);

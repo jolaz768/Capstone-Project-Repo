@@ -23,20 +23,14 @@
               @error('name')<span class="text-sm text-red-500">{{ $message }}</span>@enderror
             </div>
 
-            <div>
-              <label class="block mb-2 text-sm font-medium text-foreground">Slug</label>
-              <input wire:model.live="slug" type="text"
-                class="py-2.5 sm:py-3 px-4 block w-full bg-layer border-layer-line rounded-lg sm:text-sm text-foreground placeholder:text-muted-foreground-1 focus:border-primary-focus focus:ring-primary-focus"
-                placeholder="slug">
-              @error('slug')<span class="text-sm text-red-500">{{ $message }}</span>@enderror
-            </div>
+           
 
             <div>
               <label class="block mb-2 text-sm font-medium text-foreground">Category</label>
               <select wire:model="category_id"
                 class="py-3 px-4 block w-full bg-layer border-layer-line rounded-lg text-sm text-foreground focus:border-primary-focus focus:ring-primary-focus">
                 <option value="" >Select a category</option>
-                @foreach($this->categories() as $category)
+                @foreach($this->categories as $category)
                   <option value="{{ $category->id }}">{{ $category->cat_name }}</option>
                 @endforeach
               </select>

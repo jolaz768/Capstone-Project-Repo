@@ -21,7 +21,7 @@ class ViewService extends Component
      public function services()
      {
          return Service::query()
-             ->select('id', 'name', 'description', 'slug', 'created_at')
+             ->select('id', 'name', 'description', 'image', 'created_at')
              ->whereHas('shop.users', fn ($query) => $query->where('users.id', auth()->id()))
              ->get();
      }

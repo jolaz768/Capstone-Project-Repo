@@ -138,7 +138,7 @@
                     <div class="flex items-center gap-x-4">
                       
                       <div>
-                        <span class="block text-sm font-semibold text-foreground">{{ $shop->id }}</span>
+                        <span class="block text-sm font-semibold text-foreground"> </span>
                       </div>
                     </div>
                   </div>
@@ -209,13 +209,7 @@
                   </a>
                 </td>
 
-                <td class="size-px whitespace-nowrap align-top">
-                  <button wire:click="delete({{ $shop->id }})" class="block p-6">
-                    <span class="py-1 px-1.5 inline-flex items-center gap-x-1 text-xs font-medium bg-red-100 text-red-800 rounded-full dark:bg-red-500/10 dark:text-red-500">
-                      Delete
-                    </span>
-                  </button>
-                </td>
+                
               </tr>
                 
               @endforeach

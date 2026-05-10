@@ -27,7 +27,6 @@ class CreateShop extends Component
         return [
             'shop_name' => 'required|string|min:3|max:50',
             'description' => 'required|min:10|max:255',
-            'slug'=> 'required|unique:shops,slug|alpha_dash',
             'phone' => ['required', 'regex:/^(09|\+639)\d{3}[-\s]?\d{3}[-\s]?\d{3}$/', 'max:15'],
             'shop_image' => 'required|image|max:2048',
             'shop_logo' => 'required|image|max:2048',
@@ -48,9 +47,6 @@ class CreateShop extends Component
             'description.string' => 'Description must be a string',
             'description.min' => 'Description must be at least 10 characters',
             'description.max' => 'Description must not exceed 255 characters',
-
-            'slug.required' => 'Slug is required',
-            'slug.unique' => 'Slug must be unique',
 
             'phone' => 'Phone number must be a valid Philippine number',
             'phone.max' => 'Phone number must not exceed 15 characters',
@@ -83,7 +79,6 @@ class CreateShop extends Component
     $this->validate();
 
     $this->shop_name   = Str::of($this->shop_name)->trim()->title();
-    $this->slug        = Str::slug($this->shop_name);
     $this->description = Str::of($this->description)->trim()->title();
     $this->phone       = intval($this->phone);
     $this->address     = trim($this->address ?? '');
@@ -95,7 +90,6 @@ class CreateShop extends Component
     $shop = Shop::create([
         'user_id'     => auth()->id(),
         'shop_name'   => $this->shop_name,
-        'slug'        => $this->slug,
         'description' => $this->description,
         'phone'       => $this->phone,
         'shop_image'  => $imagePath,

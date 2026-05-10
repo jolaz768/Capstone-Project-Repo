@@ -1,9 +1,7 @@
 <?php
 
 use App\Livewire\Pages\Admin\Booking\ViewBooking;
-
 use App\Livewire\Pages\Admin\Dashboard as OwnerDashboard;
-
 use App\Livewire\Pages\Admin\Fabric\Color\CreateColor;
 use App\Livewire\Pages\Admin\Fabric\Color\EditColor;
 use App\Livewire\Pages\Admin\Fabric\Color\ViewColor;
@@ -13,24 +11,19 @@ use App\Livewire\Pages\Admin\Fabric\FabricColor\CreateFabricColor;
 use App\Livewire\Pages\Admin\Fabric\FabricColor\EditFabricColor;
 use App\Livewire\Pages\Admin\Fabric\FabricColor\ViewFabricColor;
 use App\Livewire\Pages\Admin\Fabric\ViewFabric;
-
 use App\Livewire\Pages\Admin\Garment\CreateGarment;
 use App\Livewire\Pages\Admin\Garment\EditGarment;
 use App\Livewire\Pages\Admin\Garment\ViewGarment;
-
 use App\Livewire\Pages\Admin\MeasurementField\CreateMeasurementField;
 use App\Livewire\Pages\Admin\MeasurementField\EditMeasurementField;
 use App\Livewire\Pages\Admin\MeasurementField\ViewMeasurementField;
 use App\Livewire\Pages\Admin\MeasurementTemplate\CreateMeasurementTemplate;
 use App\Livewire\Pages\Admin\MeasurementTemplate\EditMeasurementTemplate;
 use App\Livewire\Pages\Admin\MeasurementTemplate\ViewMeasurementTemplate;
-
 use App\Livewire\Pages\Admin\Review\ViewReview;
-
 use App\Livewire\Pages\Admin\Service\CreateService;
 use App\Livewire\Pages\Admin\Service\EditService;
 use App\Livewire\Pages\Admin\Service\ViewService;
-
 use App\Livewire\Pages\Admin\Shop\CreateShop;
 use App\Livewire\Pages\Admin\Shop\EditShop;
 use App\Livewire\Pages\Admin\Shop\ShopCategory\CreateCategory;
@@ -40,10 +33,8 @@ use App\Livewire\Pages\Admin\Shop\ShopSetting\CreateShopSetting;
 use App\Livewire\Pages\Admin\Shop\ShopSetting\EditShopSetting;
 use App\Livewire\Pages\Admin\Shop\ShopSetting\ViewShopSetting;
 use App\Livewire\Pages\Admin\Shop\ViewShop;
-
 use App\Livewire\Pages\Auth\Login;
 use App\Livewire\Pages\Auth\Register;
-
 use App\Livewire\Pages\Public\Booking\CreateBooking;
 use App\Livewire\Pages\Public\Booking\EditBooking;
 use App\Livewire\Pages\Public\Booking\RentalBooking\RentalBooking;
@@ -51,9 +42,7 @@ use App\Livewire\Pages\Public\Index;
 use App\Livewire\Pages\Public\Shop\IndexShop;
 use App\Livewire\Pages\Public\Shop\Pricing;
 use App\Livewire\Pages\Public\Shop\Review;
-
 use App\Livewire\Pages\Public\ShopCart\Cart;
-
 use App\Livewire\Pages\SuperAdmin\Dashboard;
 use App\Livewire\Pages\SuperAdmin\Permission\CreatePermission;
 use App\Livewire\Pages\SuperAdmin\Permission\EditPermission;
@@ -61,10 +50,10 @@ use App\Livewire\Pages\SuperAdmin\Permission\ViewPermission;
 use App\Livewire\Pages\SuperAdmin\Role\CreateRole;
 use App\Livewire\Pages\SuperAdmin\Role\EditRole;
 use App\Livewire\Pages\SuperAdmin\Role\ViewRole;
+use App\Livewire\Pages\SuperAdmin\Shop\ShopList;
 use App\Livewire\Pages\SuperAdmin\User\CreateUser;
 use App\Livewire\Pages\SuperAdmin\User\EditUser;
 use App\Livewire\Pages\SuperAdmin\User\ViewUser;
-
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -134,6 +123,9 @@ Route::prefix('/super-admin')
         Route::get('/permission/create', CreatePermission::class)->name('super-admin.permission.create');
         Route::get('/permission/edit/{permission}', EditPermission::class)->name('super-admin.permission.edit');
         Route::get('/permission/view', ViewPermission::class)->name('super-admin.permission.view');
+
+        //shop
+        Route::get('/shop/list', ShopList::class)->name('super-admin.shop.list');
     });
 
 //admin

@@ -8,10 +8,8 @@ class Shop extends Model
 {
     //
     protected $fillable = [
-        // 'user_id',
         'shop_name',
         'description',
-        'slug',
         'phone',
         'shop_image',
         'shop_logo',

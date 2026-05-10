@@ -46,14 +46,17 @@ class Dashboard extends Component
     }
 
     public function setRange(string $range): void
-    {
-        if (! in_array($range, ['daily', 'weekly', 'monthly'], true)) {
-            $range = 'monthly';
-        }
-
-        $this->range = $range;
-        $this->refreshAnalytics();
+{
+    if (! in_array($range, ['daily', 'weekly', 'monthly'], true)) {
+        $range = 'monthly';
     }
+
+    $this->range = $range;
+
+    $this->refreshAnalytics();
+
+    $this->dispatch('refreshChart');
+}
 
     public function refreshAnalytics(): void
     {
@@ -224,6 +227,7 @@ protected function setTopShopAnalytics(): void
             default => "DATE({$dateColumn}) AS period",
         };
     }
+    
      #[Layout('components.layouts.superadmin')]
     public function render()
     {

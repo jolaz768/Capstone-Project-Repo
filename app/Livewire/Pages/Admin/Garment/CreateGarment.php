@@ -3,6 +3,7 @@
 namespace App\Livewire\Pages\Admin\Garment;
 
 use App\Models\Category;
+use App\Models\CategoryShop;
 use App\Models\Fabric;
 use App\Models\Garment;
 use Illuminate\Support\Str;
@@ -27,30 +28,24 @@ class CreateGarment extends Component
 
    
 
-      #[Computed()]
+    #[Computed]
     public function categories()
     {
-        return Category::query()
-            ->select('id', 'cat_name')
-            ->get();
+        return CategoryShop::whereHas('shop.users', fn($q) => $q->where('users.id', auth()->id()))->get();
     }
-public function updatedName($value): void
-{
-    $this->slug = Str::slug($value);
-}
 
 
     public function rules()
     {
         return [
             'name' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:garments,slug',
             'description' => 'nullable|max:255|min:10|string',
-            'category_id' => 'required|exists:categories,id',
+            'category_id' => 'required|exists:category_shops,id',
             'base_price' => 'required|integer|min:0',
             'image' => 'nullable|image|max:2048',
         ];
     }
+
 
 
     public function messages()
@@ -59,11 +54,6 @@ public function updatedName($value): void
             'name.required' => 'Garment name is required',
             'name.string' => 'Garment name must be a string',
             'name.max' => 'Garment name must not exceed 255 characters',
-
-            'slug.required' => 'Garment slug is required',
-            'slug.string' => 'Garment slug must be a string',
-            'slug.max' => 'Garment slug must not exceed 255 characters',
-            'slug.unique' => 'Garment slug must be unique',
 
             'description.string' => 'Garment description must be a string',
             'description.max' => 'Garment description must not exceed 255 characters',
@@ -85,7 +75,6 @@ public function updatedName($value): void
     {
     $this->validate();
     $this->name = Str::of($this->name)->trim()->title();
-    $this->slug = Str::slug($this->name);
     $this->description = trim($this->description);
     $this->base_price = intval($this->base_price);
     $this->category_id = ($this->category_id);
@@ -99,7 +88,6 @@ public function updatedName($value): void
         Garment::create([
             'shop_id' => $shopId,
             'name' => $this->name,
-            'slug' => $this->slug,
             'description' => $this->description,
             'category_id' => $this->category_id,
             'base_price' => $this->base_price,

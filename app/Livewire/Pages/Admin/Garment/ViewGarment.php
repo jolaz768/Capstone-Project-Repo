@@ -12,16 +12,15 @@ use Livewire\Component;
 class ViewGarment extends Component
 {
     public $garment;
-    #[Computed()]
-    public function garments()
-    {
-        return Garment::query()
-            ->select('id', 'name', 'image','base_price','description','slug','category_id','created_at')
-            ->with('category:id,cat_name','shop:id,')
-            
-            ->whereHas('shop.users', fn ($query) => $query->where('users.id', auth()->id()))
-            ->get();
-    }
+   #[Computed()]
+public function garments()
+{
+    return Garment::query()
+        ->select('id', 'name', 'image', 'base_price', 'description','category_id', 'created_at', 'shop_id')
+        ->with(['category', 'shop'])  // eager load both
+        ->whereHas('shop.users', fn ($query) => $query->where('users.id', auth()->id()))
+        ->get();
+}
 
     // public function fabrics()
     // {

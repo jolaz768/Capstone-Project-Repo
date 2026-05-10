@@ -176,23 +176,26 @@
     </div>
   </div>
 
-  <script id="superadmin-dashboard-data" type="application/json">
-    {!! }json([
-      'revenueLabels' => $revenueChartLabels,
-      'revenueData' => array_values($revenueChartData),
-      'visitorLabels' => $visitorChartLabels,
-      'visitorData' => array_values($visitorChartData),
-      'userLabels' => $userChartLabels,
-      'userData' => array_values($userChartData),
-      'orderLabels' => $orderTrendLabels,
-      'orderSeries' => $orderTrendSeries,
-    ])}
-  </script>
+<script id="superadmin-dashboard-data" type="application/json">
+{!! json_encode([
+    'revenueLabels' => $revenueChartLabels,
+    'revenueData' => array_values($revenueChartData),
+
+    'visitorLabels' => $visitorChartLabels,
+    'visitorData' => array_values($visitorChartData),
+
+    'userLabels' => $userChartLabels,
+    'userData' => array_values($userChartData),
+
+    'orderLabels' => $orderTrendLabels,
+    'orderSeries' => $orderTrendSeries,
+]) !!}
+</script>
 
   <link rel="stylesheet" href="{{ asset('assets/vendor/apexcharts/dist/apexcharts.css') }}">
   <script src="{{ asset('assets/vendor/apexcharts/dist/apexcharts.min.js') }}"></script>
   <script>
-    document.addEventListener('livewire:load', function () {
+    document.addEventListener('livewire:init', () => {
       const dataElement = document.getElementById('superadmin-dashboard-data');
       const revenueEl = document.getElementById('superadmin-revenue-chart');
       const visitorsEl = document.getElementById('superadmin-visitors-chart');
@@ -205,12 +208,63 @@
       let ordersChart = null;
 
       function getData() {
-        try {
-          return JSON.parse(dataElement.textContent || '{}');
-        } catch {
-          return {};
-        }
-      }
+    try {
+        const parsed = JSON.parse(dataElement.textContent || '{}');
+
+        return {
+            revenueLabels: parsed.revenueLabels?.length
+                ? parsed.revenueLabels
+                : ['No Data'],
+
+            revenueData: parsed.revenueData?.length
+                ? parsed.revenueData
+                : [0],
+
+            visitorLabels: parsed.visitorLabels?.length
+                ? parsed.visitorLabels
+                : ['No Data'],
+
+            visitorData: parsed.visitorData?.length
+                ? parsed.visitorData
+                : [0],
+
+            userLabels: parsed.userLabels?.length
+                ? parsed.userLabels
+                : ['No Data'],
+
+            userData: parsed.userData?.length
+                ? parsed.userData
+                : [0],
+
+            orderLabels: parsed.orderLabels?.length
+                ? parsed.orderLabels
+                : ['No Data'],
+
+            orderSeries: parsed.orderSeries?.length
+                ? parsed.orderSeries
+                : [
+                    {
+                        name: 'No Data',
+                        data: [0]
+                    }
+                ]
+        };
+    } catch {
+        return {
+            revenueLabels: ['No Data'],
+            revenueData: [0],
+            visitorLabels: ['No Data'],
+            visitorData: [0],
+            userLabels: ['No Data'],
+            userData: [0],
+            orderLabels: ['No Data'],
+            orderSeries: [{
+                name: 'No Data',
+                data: [0]
+            }]
+        };
+    }
+}
 
       function buildAreaOptions(title, categories, series, color) {
         return {
@@ -279,8 +333,9 @@
         }
       }
 
-      renderCharts();
-      Livewire.hook('message.processed', renderCharts);
+     Livewire.on('refreshChart', () => {
+    renderCharts();
+});
     });
   </script>
 

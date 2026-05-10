@@ -3,10 +3,11 @@
 namespace App\Livewire\Pages\Admin\Garment;
 
 use App\Models\Category;
+use App\Models\CategoryShop;
 use App\Models\Garment;
 use Illuminate\Support\Str;
-use Livewire\Attributes\Layout;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\Layout;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -25,14 +26,11 @@ class EditGarment extends Component
     public $garment;
     public $existingImage;
 
-    #[Computed()]
+     #[Computed]
     public function categories()
     {
-        return Category::query()
-            ->select('id', 'cat_name')
-            ->get();
+        return CategoryShop::whereHas('shop.users', fn($q) => $q->where('users.id', auth()->id()))->get();
     }
-
     public function mount($id)
     {
         $this->garment = Garment::where('id', $id)
@@ -40,7 +38,6 @@ class EditGarment extends Component
             ->firstOrFail();
 
         $this->name = $this->garment->name;
-        $this->slug = $this->garment->slug;
         $this->description = $this->garment->description;
         $this->existingImage = $this->garment->image;
         $this->image = null;
@@ -52,9 +49,8 @@ class EditGarment extends Component
     {
         return [
             'name' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:garments,slug,' . ($this->garment->id ?? 'NULL'),
             'description' => 'nullable|max:255|min:10|string',
-            'category_id' => 'required|exists:categories,id',
+            'category_id' => 'required|exists:category_shops,id',
             'base_price' => 'required|integer|min:0',
             'image' => 'nullable|image|max:2048',
         ];
@@ -66,11 +62,6 @@ class EditGarment extends Component
             'name.required' => 'Garment name is required',
             'name.string' => 'Garment name must be a string',
             'name.max' => 'Garment name must not exceed 255 characters',
-
-            'slug.required' => 'Garment slug is required',
-            'slug.string' => 'Garment slug must be a string',
-            'slug.max' => 'Garment slug must not exceed 255 characters',
-            'slug.unique' => 'Garment slug must be unique',
 
             'description.string' => 'Garment description must be a string',
             'description.max' => 'Garment description must not exceed 255 characters',
@@ -93,7 +84,6 @@ class EditGarment extends Component
         $this->validate();
         
         $this->name = Str::of($this->name)->trim()->title();
-        $this->slug = Str::slug($this->name);
         $this->description = trim($this->description);
         $this->base_price = intval($this->base_price);
         
@@ -102,7 +92,6 @@ class EditGarment extends Component
         // ✅ Correct way - call update on the instance
         $this->garment->update([
             'name' => $this->name,
-            'slug' => $this->slug,
             'description' => $this->description,
             'category_id' => $this->category_id,
             'base_price' => $this->base_price,

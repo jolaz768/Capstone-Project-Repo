@@ -11,17 +11,13 @@ class Garment extends Model
     //
     protected $fillable  =[
         'shop_id',
-        'category_id',
         'name',
         'description',
+        'category_id',
         'slug',
         'base_price',
         'image',
     ];
-    public function category()
-    {
-        return $this->belongsTo(Category::class);
-    }
 
     public function shop()
     {
@@ -57,4 +53,8 @@ class Garment extends Model
     {
         return $this->hasMany(FabricGarment::class);
     }
+    public function category()
+{
+    return $this->belongsTo(CategoryShop::class, 'category_id');
+}
 }

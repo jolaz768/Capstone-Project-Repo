@@ -6,21 +6,25 @@ use App\Models\Service;
 use Illuminate\Support\Str;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class CreateService extends Component
 {
+    use WithFileUploads;
      #[Layout('components.layouts.admin')]
 
      public $name;
     public $description;
+    public $image;
+
     // public $shop_id;
-    public $slug;
 
     public function rules()
     {
         return [
             'name' => 'required|min:3|max:50',
             'description' => 'required|min:10|max:255',
+            'image' => 'required|image|max:2048',
         ];
     }
 
@@ -36,15 +40,13 @@ class CreateService extends Component
             'description.min' => 'Description must be at least 10 characters',
             'description.max' => 'Description must not exceed 255 characters',
 
-           
-            'slug.unique' => 'Slug must be unique',
-            'slug.required' => 'Slug is required',
+            'image.required' => 'Image is required',
+            'image.image' => 'Image must be an image file',
+            'image.max' => 'Image size must not exceed 2MB',
+  
         ];
     }
-    public function updatedName($value): void
-    {
-        $this->slug = Str::slug($value);
-    }
+
 
     public function save()
     {
@@ -52,7 +54,7 @@ class CreateService extends Component
 
         $name = Str::of(trim(strip_tags($this->name)))->title();
         $description = Str::of(trim(strip_tags($this->description)))->title();
-        $slugBase = Str::slug($name);
+        $imagePath = $this->image->store('services', 'public');
 
         $shops = auth()->user()->shops()->get();
         if ($shops->isEmpty()) {
@@ -68,8 +70,8 @@ class CreateService extends Component
             Service::create([
                 'name' => $name,
                 'description' => $description,
-                'slug' => $slugBase . '-' . $shop->id,
                 'shop_id' => $shop->id,
+                'image' => $imagePath,
             ]);
 
             $createdCount++;
@@ -81,7 +83,7 @@ class CreateService extends Component
             session()->flash('message', "Service created successfully for {$createdCount} shop(s)!");
         }
 
-        $this->reset(['name', 'description', 'slug']);
+        $this->reset(['name', 'description', 'image']);
         return redirect()->route('admin.service.view');
     }
     
