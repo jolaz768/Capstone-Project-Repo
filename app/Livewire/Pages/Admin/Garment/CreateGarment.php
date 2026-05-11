@@ -31,7 +31,7 @@ class CreateGarment extends Component
     #[Computed]
     public function categories()
     {
-        return CategoryShop::whereHas('shop.users', fn($q) => $q->where('users.id', auth()->id()))->get();
+        return CategoryShop::whereHas('shop.users', fn($q) => $q->where('users.id', auth()->guard('web')->id()))->get();
     }
 
 
@@ -80,7 +80,7 @@ class CreateGarment extends Component
     $this->category_id = ($this->category_id);
     $imagePath = $this->image ? $this->image->store('garments', 'public') : null; 
 
-        $shopId = auth()->user()->shops()->first()?->id;
+        $shopId = auth()->guard('web')->user()->shops()->first()?->id;
         if (! $shopId) {
             throw new \RuntimeException('Authenticated user is not assigned to a shop.');
         }

@@ -42,7 +42,7 @@ class User extends Authenticatable
 
     public function shops()
     {
-        return $this->belongsToMany(Shop::class, 'user_shops', 'user_id', 'shop_id')->withTimestamps();
+        return $this->belongsToMany(Shop::class, 'user_shops')->withTimestamps();
     }
 
     public function ownedShopIds(): array

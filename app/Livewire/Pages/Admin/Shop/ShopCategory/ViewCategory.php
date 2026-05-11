@@ -22,7 +22,7 @@ class ViewCategory extends Component
     {
         return CategoryShop::query()
         ->select('id', 'cat_name', 'cat_slug', 'cat_desc', 'created_at')
-        ->whereHas('shop.users', fn ($query) => $query->where('users.id', auth()->id()))
+        ->whereHas('shop.users', fn ($query) => $query->where('users.id', auth()->guard('web')->id()))
         ->get();
     }
 

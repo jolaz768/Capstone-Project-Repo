@@ -9,33 +9,34 @@ use Livewire\Component;
 
 class ViewService extends Component
 {
-     #[Layout('components.layouts.admin')]
+    #[Layout('components.layouts.admin')]
 
-     public $name;
-     public $description;
-     public $slug;
-    
+    public $name;
+    public $description;
+    public $slug;
 
-     #[Computed()]
 
-     public function services()
-     {
-         return Service::query()
-             ->select('id', 'name', 'description', 'image', 'created_at')
-             ->whereHas('shop.users', fn ($query) => $query->where('users.id', auth()->id()))
-             ->get();
-     }
+    #[Computed()]
 
-     public function delete($id)
-     {
+    public function services()
+    {
+        return Service::query()
+            ->select('id', 'name', 'description', 'image', 'created_at')
+            ->whereHas('shop.users', fn($query) => $query->where('users.id', auth()->guard('web')->id()))
+            ->get();
+    }
+
+
+    public function delete($id)
+    {
         $service = Service::where('id', $id)
-            ->whereHas('shop.users', fn ($query) => $query->where('users.id', auth()->id()))
+            ->whereHas('shop.users', fn($query) => $query->where('users.id', auth()->guard('web')->id()))
             ->firstOrFail();
 
         $service->delete();
         session()->flash('message', 'Service deleted successfully!');
         return redirect()->route('admin.service.view');
-     }
+    }
 
 
     public function render()

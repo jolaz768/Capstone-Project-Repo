@@ -52,9 +52,14 @@ class CreateCategory extends Component
         $this->cat_name = ucwords(trim(strip_tags($this->cat_name)));
         $this->cat_slug = Str::slug($this->cat_name);
         $this->cat_desc = ucfirst(trim(strip_tags($this->cat_desc)));
+        
+        $shopId = auth()->guard('web')->user()->shops()->first()?->id;
+        if (! $shopId) {
+            throw new \RuntimeException('Authenticated user is not assigned to a shop.');
+        }
 
         CategoryShop::create([
-            // 'shop_id' => auth()->user()->shop->id,
+            'shop_id' => $shopId,
             'cat_name' => $this->cat_name,
             'cat_slug' => $this->cat_slug,
             'cat_desc' => $this->cat_desc,

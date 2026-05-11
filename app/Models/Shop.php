@@ -29,7 +29,7 @@ class Shop extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class, 'user_shops, user_id,shop_id')->withTimestamps();
+        return $this->belongsToMany(User::class, 'user_shops')->withTimestamps();
     }
 
     public function Reviews()

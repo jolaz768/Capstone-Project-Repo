@@ -144,10 +144,9 @@
 
                     <td class="size-px whitespace-nowrap">
                       <div class="px-6 py-1.5">
-                        <a class="inline-flex items-center gap-x-1 text-sm text-red-500 decoration-2 hover:underline focus:outline-hidden focus:underline font-medium"
-                          href="#">
+                        <button wire:click="delete({{ $Service->id }})" class="inline-flex items-center gap-x-1 text-sm text-red-500 decoration-2 hover:underline focus:outline-hidden focus:underline font-medium">
                           Delete
-                        </a>
+                        </button>
                       </div>
                     </td>
                   </tr>

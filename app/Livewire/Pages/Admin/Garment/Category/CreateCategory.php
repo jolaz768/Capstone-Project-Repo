@@ -51,7 +51,7 @@ class CreateCategory extends Component
         $this->cat_name = ucwords(trim(strip_tags($this->cat_name)));
         $this->cat_slug = Str::slug($this->cat_name);
         $this->cat_desc = ucfirst(trim(strip_tags($this->cat_desc)));
-
+        
         Category::create([
             // 'shop_id' => auth()->user()->shop->id,
             'cat_name' => $this->cat_name,
