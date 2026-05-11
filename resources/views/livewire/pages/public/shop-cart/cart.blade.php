@@ -107,9 +107,9 @@
                         class="px-4 py-2 text-sm font-medium rounded-lg border border-layer-line text-foreground hover:bg-muted-hover transition">
                         Continue Shopping
                     </a>
-                    <a href="#" wire:click.prevent="checkout"
+                    <a href="{{ route('booking.create', ['id' => $this->shopId]) }}" 
                         class="px-4 py-2 text-sm font-medium rounded-lg bg-primary text-primary-foreground hover:bg-primary-hover transition">
-                        Checkout
+                        Book appointment
                     </a>
                 </div>
             </div>

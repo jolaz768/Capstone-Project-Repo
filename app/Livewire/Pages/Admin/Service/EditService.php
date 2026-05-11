@@ -20,12 +20,13 @@ class EditService extends Component
     public $existing_image;       // current image path from DB
     public $service;
     public $serviceId;
+    public $shopId;
 
-    public function mount($id)
+    public function mount(int $id)
     {
         $this->serviceId = $id;
         $this->service = Service::where('id', $id)
-            ->whereHas('shop.users', fn ($query) => $query->where('users.id', auth()->id()))
+            ->whereHas('shop.users', fn ($query) => $query->where('users.id', auth()->guard('web')->id()))
             ->firstOrFail();
 
         $this->name = $this->service->name;
@@ -36,7 +37,7 @@ class EditService extends Component
     public function rules()
     {
         return [
-            'name'        => 'required|min:3|max:50|unique:services,name,' . $this->serviceId,
+            'name' => 'required|min:3|max:50|unique:services,name,NULL,id,shop_id,' . $this->shopId,
             'description' => 'required|min:10|max:255',
             'image'       => 'nullable|image|max:2048', // new image validation
         ];
@@ -49,9 +50,11 @@ class EditService extends Component
             'name.min'       => 'Service name must be at least 3 characters',
             'name.max'       => 'Service name must not exceed 50 characters',
             'name.unique'    => 'Service name must be unique',
+
             'description.required' => 'Description is required',
             'description.min'      => 'Description must be at least 10 characters',
             'description.max'      => 'Description must not exceed 255 characters',
+            
             'image.image'          => 'The file must be an image',
             'image.max'            => 'Image size must not exceed 2MB',
         ];

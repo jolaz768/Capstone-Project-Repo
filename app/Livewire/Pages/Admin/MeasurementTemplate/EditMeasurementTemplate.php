@@ -22,13 +22,15 @@ class EditMeasurementTemplate extends Component
     public array $fields = [];
 
     public MeasurementTemplate $template;
+    public $garments;
 
-    public function mount($id)
+    public function mount(int $id)
 {
     $this->template = MeasurementTemplate::with('measurementFields')->findOrFail($id);
 
     $this->name = $this->template->name;
     $this->garment_id = $this->template->garment_id;
+    $this->garments = Garment::query()->select('id', 'name', 'shop_id')->get();
 
     foreach ($this->template->measurementFields as $field) {
         $this->fields[] = [

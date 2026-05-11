@@ -13,11 +13,11 @@ class IndexShop extends Component
 
       public Shop $shop;
 
-    public function mount($id)
+    public function mount(int $id)
     {
         
         $this->shop = Shop::query()
-            ->where('id', $id)
+            ->where('id', '=', $id)
             ->where('is_active', 1)
             ->with([
                 'services:id,shop_id,name,description,created_at',
