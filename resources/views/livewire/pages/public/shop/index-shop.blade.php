@@ -132,13 +132,15 @@
                             </span>
                         </div>
                     </div>
+
                     <div class="p-5 md:p-6">
                         <h3 class="text-xl md:text-2xl font-bold text-foreground dark:text-gray-100">{{ $garment->name }}</h3>
                         <p class="mt-2 md:mt-3 text-slate-600 dark:text-gray-300 line-clamp-3 text-sm md:text-base">{{ $garment->description }}</p>
+                        <h2 class ="text-xl md:text-md font-bold text-foreground dark:text-gray-100">Service: {{ $garment->category->cat_name }}</h2>
                         <div class="mt-4 md:mt-6 flex gap-3">
-                            <button class="flex-1 bg-[#0f2342] hover:bg-[#18365f] dark:bg-gray-700 dark:hover:bg-gray-600 text-white py-2 md:py-3 rounded-2xl font-semibold transition text-sm">
+                            {{-- <button class="flex-1 bg-[#0f2342] hover:bg-[#18365f] dark:bg-gray-700 dark:hover:bg-gray-600 text-white py-2 md:py-3 rounded-2xl font-semibold transition text-sm">
                                 View
-                            </button>
+                            </button> --}}
                             <button
                                 wire:click="addToCart({{ $garment->id }}, '{{ addslashes($garment->name) }}', {{ $garment->base_price }}, '{{ $garment->image }}')"
                                 class="flex-1 bg-yellow-500 hover:bg-yellow-400 text-black py-3 rounded-2xl font-semibold transition">

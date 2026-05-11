@@ -112,21 +112,34 @@ class Dashboard extends Component
     }
 
     protected function setOrderAnalytics(): void
-    {
-        $statuses = ['pending', 'approved', 'rejected', 'cancelled'];
-        $series = [];
+{
+    $statuses = [
+        'pending',
+        'approved',
+        'rejected',
+        'cancelled',
+        'processing',
+        'completed'
+    ];
 
-        foreach ($statuses as $status) {
-            $query = Booking::query()->where('status', $status);
-            $series[] = [
-                'name' => ucfirst($status),
-                'data' => array_values($this->buildSeries($query, 'created_at', 'id', true)),
-            ];
-        }
+    $series = [];
 
-        $this->orderTrendLabels = array_keys($this->buildPeriods());
-        $this->orderTrendSeries = $series;
+    foreach ($statuses as $status) {
+
+        $query = Booking::query()
+            ->where('status', $status);
+
+        $series[] = [
+            'name' => ucfirst($status),
+            'data' => array_values(
+                $this->buildSeries($query, 'created_at', 'id', true)
+            ),
+        ];
     }
+
+    $this->orderTrendLabels = array_keys($this->buildPeriods());
+    $this->orderTrendSeries = $series;
+}
 
 protected function setTopShopAnalytics(): void
 {

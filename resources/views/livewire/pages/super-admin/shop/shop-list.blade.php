@@ -50,8 +50,7 @@
                     <path d="M5 12h14" />
                     <path d="M12 5v14" />
                   </svg>
-
-                  Add user
+                  Add Tenant
                 </a>
               </div>
             </div>
@@ -69,6 +68,14 @@
                       id="hs-at-with-checkboxes-main">
                     <span class="sr-only">Checkbox</span>
                   </label> --}}
+                </th>
+
+                <th scope="col" class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3 text-start">
+                  <div class="flex items-center gap-x-2">
+                    <span class="text-xs font-semibold uppercase text-foreground">
+                      Shop Owner Name
+                    </span>
+                  </div>
                 </th>
 
                 <th scope="col" class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3 text-start">
@@ -141,8 +148,8 @@
 
             <tbody class="divide-y divide-table-line">
 
-              @forelse ($this->shops as $skey => $shop)
-                <tr wire:key="shop-{{ $skey }}-{{ $shop->id }}">
+              @forelse ($this->shops as $skey => $userShop)
+                <tr wire:key="shop-{{ $skey }}-{{ $userShop->id }}">
                   <td class="size-px whitespace-nowrap">
                     <div class="ps-6 py-3">
                       {{-- <label for="hs-at-with-checkboxes-1" class="flex">
@@ -153,20 +160,31 @@
                       </label> --}}
                     </div>
                   </td>
+
                   <td class="size-px whitespace-nowrap">
                     <div class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3">
                       <div class="flex items-center gap-x-3">
                         <div class="grow">
-                          <span class="block text-sm font-semibold text-foreground">{{ $shop->shop_name}}</span>
-
+                          <span class="block text-sm font-semibold text-foreground">{{ $userShop->user->name }}</span>
                         </div>
                       </div>
                     </div>
                   </td>
+
+                  <td class="size-px whitespace-nowrap">
+                    <div class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3">
+                      <div class="flex items-center gap-x-3">
+                        <div class="grow">
+                          <span class="block text-sm font-semibold text-foreground">{{ $userShop->shop?->shop_name }}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+
                   <td class="h-px w-72 whitespace-nowrap">
                     <div class="px-6 py-3">
                       <span
-                        class="block text-sm font-semibold text-foreground">{{Str::limit($shop->description, 20) ?? $shop->description }}</span>
+                        class="block text-sm font-semibold text-foreground">{{ Str::limit($userShop->shop?->description, 20) }}</span>
 
                     </div>
                   </td>
@@ -179,19 +197,19 @@
                           <path
                             d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
                         </svg>
-                        @if($shop->is_active == 1)
-                          Active
-                        @else
-                          Inactive
-                        @endif
+                        @if($userShop->shop?->is_active)
+    Active
+@else
+    Inactive
+@endif
                       </span>
                     </div>
                   </td>
                   <td class="size-px whitespace-nowrap">
                     <div class="px-6 py-3">
                       <div class="flex items-center gap-x-3">
-                        <img class="w-20 h-20 rounded-full" src="{{ asset('storage/' . $shop->shop_image) }}"
-                          alt="{{ $shop->shop_name }}" />
+                        <img class="w-20 h-20 rounded-full" src="{{ asset('storage/' . $userShop->shop?->shop_image) }}"
+                          alt="{{ $userShop->shop?->shop_name }}" />
                         <div class="flex w-full h-1.5 bg-surface-1 rounded-full overflow-hidden">
                           <div class="flex flex-col justify-center overflow-hidden bg-secondary" role="progressbar"
                             style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
@@ -202,26 +220,26 @@
 
                   <td class="size-px whitespace-nowrap">
                     <div class="px-6 py-3">
-                      <img class="inline-block size-9.5 rounded-full" src="{{ asset('storage/' . $shop->shop_logo) }}"
-                        alt="{{ $shop->shop_name }}" />
+                      <img class="inline-block size-9.5 rounded-full" src="{{ asset('storage/' . $userShop->shop?->shop_logo) }}"
+                        alt="{{ $userShop->shop?->shop_name }}" />
                     </div>
                   </td>
 
                   <td class="size-px whitespace-nowrap">
                     <div class="px-6 py-3">
-                      <span class="text-sm text-muted-foreground-1">{{ $shop->phone }}</span>
+                      <span class="text-sm text-muted-foreground-1">{{ $userShop->shop?->phone }}</span>
                     </div>
                   </td>
 
                   <td class="size-px whitespace-nowrap">
                     <div class="px-6 py-3">
-                      <span class="text-sm text-muted-foreground-1">{{ $shop->address }}</span>
+                      <span class="text-sm text-muted-foreground-1">{{ $userShop->shop?->address }}</span>
                     </div>
                   </td>
 
                   <td class="size-px whitespace-nowrap">
                     <div class="px-6 py-3">
-                      <span class="text-sm text-muted-foreground-1">{{ $shop->created_at->format('m-d-Y') }}</span>
+                      <span class="text-sm text-muted-foreground-1">{{ $userShop->shop?->created_at?->format('m-d-Y') }}</span>
                     </div>
                   </td>
 

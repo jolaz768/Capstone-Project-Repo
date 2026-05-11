@@ -21,9 +21,8 @@ class IndexShop extends Component
             ->where('is_active', 1)
             ->with([
                 'services:id,shop_id,name,description,created_at',
-                'garments:id,shop_id,name,description,image,base_price',
+                'garments:id,shop_id,name,description,image,base_price,category_id',
 
-                
             ])
             
             ->firstOrFail();
