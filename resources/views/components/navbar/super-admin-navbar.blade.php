@@ -85,12 +85,6 @@ lg:block lg:-translate-x-full lg:end-auto lg:bottom-0" role="dialog" tabindex="-
               View Role
             </a>
           </li>
-          <li>
-            <a class="w-full flex items-center gap-x-2 py-2 px-2.5 text-sm text-sidebar-2-nav-foreground rounded-lg hover:bg-sidebar-2-nav-hover focus:outline-hidden focus:bg-sidebar-2-nav-focus "
-              href="{{ route('super-admin.role.create') }}">
-              Create Role
-            </a>
-          </li>
         </ul>
         <!-- End List -->
       </div>
@@ -102,12 +96,6 @@ lg:block lg:-translate-x-full lg:end-auto lg:bottom-0" role="dialog" tabindex="-
 
         <!-- List -->
         <ul class="flex flex-col gap-y-1">
-          <li>
-            <a class="w-full flex items-center gap-x-2 py-2 px-2.5 text-sm text-sidebar-2-nav-foreground rounded-lg hover:bg-sidebar-2-nav-hover focus:outline-hidden focus:bg-sidebar-2-nav-focus "
-              href="{{ route('super-admin.user.create') }}">
-              Create User
-            </a>
-          </li>
           <li>
             <a class="w-full flex items-center gap-x-2 py-2 px-2.5 text-sm text-sidebar-2-nav-foreground rounded-lg hover:bg-sidebar-2-nav-hover focus:outline-hidden focus:bg-sidebar-2-nav-focus "
               href="{{ route('super-admin.user.view') }}">

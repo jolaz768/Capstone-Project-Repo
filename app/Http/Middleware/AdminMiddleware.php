@@ -22,7 +22,7 @@ class AdminMiddleware
             return redirect()->route('login.page');
         }
 
-        if ($user->hasRole('admin')) {
+        if ($user->hasRole('owner')) {
             abort(403, 'Unauthorized');
         }
 

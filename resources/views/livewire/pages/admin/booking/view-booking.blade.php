@@ -36,12 +36,33 @@
                             <td class="px-4 py-4">{{ $booking->shop->shop_name }}</td>
                             <td class="px-4 py-4">{{ $booking->service->name ?? 'N/A' }}</td>
                             <td class="px-4 py-4 space-y-2">
-                                @foreach ($booking->bookingItems as $item)
-                                    <div>
-                                        <span class="font-medium">{{ $item->garment->name ?? 'Item' }}</span>
-                                        <span class="text-muted-foreground text-xs">× {{ $item->quantity }}</span>
-                                    </div>
-                                @endforeach
+@foreach ($booking->bookingItems as $item)
+    <div class="py-2">
+        <div class="flex justify-between">
+            <span class="font-semibold">{{ $item->garment->name ?? 'Garment' }}</span>
+            <span class="text-sm text-gray-500">Qty: {{ $item->quantity }}</span>
+        </div>
+
+        @php $template = $item->garment->measurementTemplate; @endphp
+        @if($template)
+            <div class="mt-1 text-xs text-foreground">
+                <span class="font-medium">Measurements:</span>
+                @if($template->measurementFields->isNotEmpty())
+                    <ul class="ml-4">
+                        @foreach($template->measurementFields as $field)
+                            <li>
+                                {{ $field->field_name }} ({{ $field->unit }}):
+                                {{ $field->measurementValue->value ?? '—' }}
+                            </li>
+                        @endforeach
+                    </ul>
+                @else
+                    <span class="italic">No fields defined</span>
+                @endif
+            </div>
+        @endif
+    </div>
+@endforeach
                             </td>
                             <td class="px-4 py-4">{{ $booking->booking_date }}</td>
                             <td class="px-4 py-4">₱{{ number_format($booking->total_price, 2) }}</td>

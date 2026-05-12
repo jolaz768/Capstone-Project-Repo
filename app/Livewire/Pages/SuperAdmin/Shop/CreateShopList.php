@@ -1,7 +1,6 @@
 <?php
 
-namespace App\Livewire\Pages\Admin\Shop;
-
+namespace App\Livewire\Pages\SuperAdmin\Shop;
 
 use App\Models\Shop;
 use Illuminate\Support\Str;
@@ -9,9 +8,9 @@ use Livewire\Attributes\Layout;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
-class CreateShop extends Component
+class CreateShopList extends Component
 {
-    use WithFileUploads;
+        use WithFileUploads;
     public string $shop_name = '';
     public string $description = '';
     public string $slug;
@@ -101,13 +100,13 @@ class CreateShop extends Component
     $shop->users()->attach(auth()->guard('web')->id());
 
     session()->flash('success', 'Shop created successfully!');
-    return redirect()->route('admin.shop.view');
+    return redirect()->route('super-admin.shop.list');
 }
        
 
-    #[Layout('components.layouts.admin')]
+    #[Layout('components.layouts.superadmin')]
     public function render()
     {
-        return view('livewire.pages.admin.shop.create-shop');
+        return view('livewire.pages.super-admin.shop.create-shop-list');
     }
 }

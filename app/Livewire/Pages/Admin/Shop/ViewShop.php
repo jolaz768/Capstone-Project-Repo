@@ -18,7 +18,7 @@ class ViewShop extends Component
     {
         return Shop::query()
             ->select('id', 'shop_name', 'description', 'phone', 'shop_image', 'shop_logo', 'address', 'is_active', 'created_at')
-            ->whereHas('users', fn ($query) => $query->where('users.id', auth()->id()))
+            ->whereHas('users', fn ($query) => $query->where('users.id', auth()->guard('web')->id()))
             ->get();
     }
 

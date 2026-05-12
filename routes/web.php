@@ -50,6 +50,8 @@ use App\Livewire\Pages\SuperAdmin\Permission\ViewPermission;
 use App\Livewire\Pages\SuperAdmin\Role\CreateRole;
 use App\Livewire\Pages\SuperAdmin\Role\EditRole;
 use App\Livewire\Pages\SuperAdmin\Role\ViewRole;
+use App\Livewire\Pages\SuperAdmin\Shop\CreateShopList;
+use App\Livewire\Pages\SuperAdmin\Shop\EditShopList;
 use App\Livewire\Pages\SuperAdmin\Shop\ShopList;
 use App\Livewire\Pages\SuperAdmin\User\CreateUser;
 use App\Livewire\Pages\SuperAdmin\User\EditUser;
@@ -104,8 +106,8 @@ Route::prefix('public')
     });
 
 //super admin
-Route::prefix('/super-admin')
-    ->middleware(['auth', 'role:super-admin'])
+Route::prefix('/admin')
+    ->middleware(['auth', 'role:admin'])
     ->group(function () {
 
         Route::get('/dashboard', Dashboard::class)->name('super-admin.dashboard');
@@ -126,11 +128,13 @@ Route::prefix('/super-admin')
 
         //shop
         Route::get('/shop/list', ShopList::class)->name('super-admin.shop.list');
+        Route::get('/shop/create', CreateShopList::class)->name('super-admin.shop.create');
+        Route::get('/shop/edit/{id}', EditShopList::class)->name('super-admin.shop.edit');
     });
 
 //admin
-Route::prefix('/admin') //shop owner
-    ->middleware(['auth', 'role:admin'])
+Route::prefix('/tenant') //shop owner
+    ->middleware(['auth', 'role:owner'])
     ->group(function () {
 
         //dashboard admin or shop owner

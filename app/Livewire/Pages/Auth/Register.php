@@ -16,6 +16,7 @@ class Register extends Component
     public string $password_confirmation = '';
     public string $phone = '';
     public string $address = '';
+    
      public $selectedRoles = '';
     public $roles = [];
 

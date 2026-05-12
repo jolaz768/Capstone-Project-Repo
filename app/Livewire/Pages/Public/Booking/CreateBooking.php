@@ -26,28 +26,76 @@ class CreateBooking extends Component
     public string $customerEmail = '';
     public ?string $bookingDate = null;
     public $showMeasurements = false;
+    public $fromCart = false;  
 
-   public function mount($id)
-{
-    $this->shop = Shop::query()
-        ->where('id', $id)
-        ->where('is_active', 1)
-        ->with([
-            'bookings:id,shop_id,user_id,created_at,status',
-            'services:id,shop_id,name',
-            'garments:id,shop_id,name,description,image,base_price',
-            'garments.measurementTemplate:id,garment_id,name',
-            'garments.measurementTemplate.measurementFields:id,measurement_template_id,field_name,unit',
-        ])
-        ->firstOrFail();
+    public function mount($id)
+    {
+        $this->shop = Shop::query()
+            ->where('id', $id)
+            ->where('is_active', 1)
+            ->with([
+                'bookings:id,shop_id,user_id,created_at,status',
+                'services:id,shop_id,name',
+                'garments:id,shop_id,name,description,image,base_price',
+                'garments.measurementTemplate:id,garment_id,name',
+                'garments.measurementTemplate.measurementFields:id,measurement_template_id,field_name,unit',
+            ])
+            ->firstOrFail();
 
-    // Auto‑load authenticated user data into the booking form
-    if (Auth::check()) {
-        $user = Auth::user();
-        $this->customerName = $user->name;
-        $this->customerEmail = $user->email;
+        // Auto‑load authenticated user data into the booking form
+        if (Auth::check()) {
+            $user = Auth::user();
+            $this->customerName = $user->name;
+            $this->customerEmail = $user->email;
+        }
+
+        // Check if coming from cart
+        $this->fromCart = request()->get('from_cart', false);
+        
+        // Load cart data if available
+        if ($this->fromCart && session()->has('booking_cart_data')) {
+            $this->loadCartData();
+        }
     }
-}
+
+    /**
+     * Load garments and quantities from cart
+     */
+    protected function loadCartData(): void
+    {
+        $cartData = session()->get('booking_cart_data');
+        
+        if (!$cartData || empty($cartData['garments'])) {
+            return;
+        }
+
+        $garmentIds = [];
+        
+        foreach ($cartData['garments'] as $garmentId => $item) {
+            // Check if garment exists in this shop
+            $garmentExists = $this->shop->garments->contains('id', $garmentId);
+            
+            if ($garmentExists) {
+                $garmentIds[] = $garmentId;
+                // Set quantity from cart
+                $this->quantities[$garmentId] = $item['quantity'];
+            }
+        }
+        
+        // Set selected garment IDs
+        $this->selectedGarmentIds = $garmentIds;
+        
+        // Clear the session data after loading
+        session()->forget('booking_cart_data');
+        
+        // Show a flash message
+        session()->flash('info', 'Cart items have been loaded! Please complete your measurements and booking details.');
+        
+        // Auto-show measurements if garments are loaded
+        if (!empty($this->selectedGarmentIds)) {
+            $this->showMeasurements = true;
+        }
+    }
 
     public function getSelectedGarmentsProperty()
     {
@@ -92,15 +140,16 @@ class CreateBooking extends Component
             array_flip($activeFieldIds)
         );
     }
-    public function loadMeasurements()
-{
-    if (empty($this->selectedGarmentIds)) {
-        session()->flash('error', 'Please select at least one garment first.');
-        return;
-    }
     
-    $this->showMeasurements = true;
-}
+    public function loadMeasurements()
+    {
+        if (empty($this->selectedGarmentIds)) {
+            session()->flash('error', 'Please select at least one garment first.');
+            return;
+        }
+        
+        $this->showMeasurements = true;
+    }
 
     protected function rules(): array
     {
@@ -126,7 +175,6 @@ class CreateBooking extends Component
 
         return $rules;
     }
-    
 
     public function createBooking(): void
     {
@@ -156,15 +204,16 @@ class CreateBooking extends Component
                 ]);
 
                 if ($garment->measurementTemplate) {
-                    CustomerMesurement::create([
+                    $customerMeasurement = CustomerMesurement::create([
                         'user_id' => Auth::id(),
                         'garment_id' => $garment->id,
                         'measurement_template_id' => $garment->measurementTemplate->id,
                     ]);
 
                     foreach ($garment->measurementTemplate->measurementFields as $field) {
-                        if (array_key_exists($field->id, $this->measurementValues)) {
+                        if (isset($this->measurementValues[$field->id])) {
                             MeasurementValue::create([
+                                'customer_measurement_id' => $customerMeasurement->id,
                                 'measurement_field_id' => $field->id,
                                 'value' => $this->measurementValues[$field->id],
                             ]);
@@ -174,8 +223,14 @@ class CreateBooking extends Component
             }
         });
 
-        $this->reset(['serviceId', 'selectedGarmentIds', 'measurementValues', 'customerName', 'customerEmail', 'bookingDate']);
+        // Clear cart after successful booking
+        session()->forget('cart');
+        
+        $this->reset(['serviceId', 'selectedGarmentIds', 'measurementValues', 'customerName', 'customerEmail', 'bookingDate', 'quantities']);
         session()->flash('message', 'Your booking has been created and sent to the shop owner.');
+        
+        // Redirect to confirmation page
+        // return redirect()->route('booking.confirmation');
     }
 
     public function render()

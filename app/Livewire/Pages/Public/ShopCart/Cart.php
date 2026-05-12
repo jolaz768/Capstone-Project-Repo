@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Pages\Public\ShopCart;
 
-use App\Models\Shop;
+
 use Livewire\Component;
 
 class Cart extends Component

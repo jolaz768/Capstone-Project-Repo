@@ -23,4 +23,6 @@ class BookingItem extends Model
     {
         return $this->belongsTo(Garment::class);
     }
+
+    
 }

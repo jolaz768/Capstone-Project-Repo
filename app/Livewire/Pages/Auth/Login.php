@@ -28,9 +28,9 @@ class Login extends Component
             $user = Auth::user();
 
             return match (true) {
-                $user->hasRole('super-admin') =>redirect()->intended(route('super-admin.dashboard')),
+                $user->hasRole('admin') =>redirect()->intended(route('super-admin.dashboard')),
 
-                $user->hasAnyRole(['admin']) =>redirect()->intended(route('admin.dashboard')),
+                $user->hasAnyRole(['owner']) =>redirect()->intended(route('admin.dashboard')),
 
                 $user->hasRole('customer') =>redirect()->intended(route('index.page')),
 

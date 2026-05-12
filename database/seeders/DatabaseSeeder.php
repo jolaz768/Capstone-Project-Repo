@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
          // Create Admin Role if not exists
-        $role = Role::firstOrCreate(['name' => 'super-admin']);
+        $role = Role::firstOrCreate(['name' => 'admin']);
 
         // Get all permissions
         $permissions = Permission::all();
@@ -37,7 +37,7 @@ class DatabaseSeeder extends Seeder
 
         // Create Admin User
         $user = User::firstOrCreate(
-            ['email' => 'superadmin@gmail.com'],
+            ['email' => 'admin@gmail.com'],
             [
                 'name' => 'superadmin',
                 'password' => Hash::make('123123123'),
@@ -45,7 +45,7 @@ class DatabaseSeeder extends Seeder
         );
          $user->assignRole($role);
 
-          $role = Role::firstOrCreate(['name' => 'admin']);
+          $role = Role::firstOrCreate(['name' => 'owner']);
 
         // Get all permissions
         $permissions = Permission::wherein('name', ['can-view', 'can-create', 'can-update', 'can-delete'])->get();
@@ -55,9 +55,9 @@ class DatabaseSeeder extends Seeder
 
         // Create Admin User
         $user = User::firstOrCreate(
-            ['email' => 'admin@gmail.com'],
+            ['email' => 'owner@gmail.com'],
             [
-                'name' => 'superadmin',
+                'name' => 'Katharina',
                 'password' => Hash::make('123123123'),
             ]
         );
@@ -77,7 +77,7 @@ class DatabaseSeeder extends Seeder
         $user = User::firstOrCreate(
             ['email' => 'customer@gmail.com'],
             [
-                'name' => 'customer',
+                'name' => 'katerina',
                 'password' => Hash::make('123123123'),
             ]
         );
@@ -89,6 +89,7 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             ColorSeeder::class,
             // FabricSeeder::class,
+            DashboardDummySeeder::class
         ]);
     }
 }

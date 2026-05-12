@@ -1,8 +1,10 @@
 <div>
   @if(session()->has('message'))
-    <div class="alert alert-success">
-      <span
-        class="text-green-500 border-green-200 bg-green-100 px-4 py-3 rounded-lg inline-block text-center">{{ session()->get('message') }}</span>
+    <div class="flex justify-center">
+      <div class="alert alert-success">
+        <span
+          class="text-green-500 border-green-200 bg-green-100 px-4 py-3 rounded-lg inline-block text-center">{{ session()->get('message') }}</span>
+      </div>
     </div>
   @endif
   {{-- If you look to others for fulfillment, you will never truly be fulfilled. --}}
@@ -167,7 +169,7 @@
               @endif
             </div>
 
-            {{-- <div>
+            <div>
               <label for="hs-feedback-post-comment-textarea-1"
                 class="block mb-2 text-sm font-medium text-foreground mt-5">Size</label>
               <div class="mt-1">
@@ -186,7 +188,7 @@
               </div>
             </div>
 
-          </div> --}}
+          </div>
 
       </div>
 

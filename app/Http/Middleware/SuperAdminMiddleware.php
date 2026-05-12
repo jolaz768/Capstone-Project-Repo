@@ -22,7 +22,7 @@ class SuperAdminMiddleware
             return redirect()->route('login.page');
         }
 
-        if ($user->hasRole('super-admin')) {
+        if ($user->hasRole('admin')) {
             abort(403, 'Unauthorized');
         }
 

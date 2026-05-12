@@ -17,8 +17,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('phone')->nullable();
             $table->string('address')->nullable();
-            // $table->foreignId('shop_id')->nullable()->constrained('shops')->nullOnDelete();
-            // $table->foreignId('tenant_id')->nullable()->constrained('users')->nullOnDelete();
+            $table->string('profile_image')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

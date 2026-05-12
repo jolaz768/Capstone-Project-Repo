@@ -21,7 +21,7 @@ class ViewBooking extends Component
         $shopIds = Auth::user()->ownedShopIds();
 
         $this->bookings = Booking::query()
-            ->with(['user', 'shop', 'service', 'bookingItems.garment'])
+            ->with(['user', 'shop', 'service', 'bookingItems.garment.measurementTemplate.measurementFields.MeasurementValue'])
             ->whereIn('shop_id', $shopIds)
             ->orderByDesc('created_at')
             ->get();

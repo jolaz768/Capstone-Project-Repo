@@ -42,7 +42,7 @@
                 </a>
 
                 <a class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg bg-primary border border-primary-line text-primary-foreground hover:bg-primary-hover"
-                  href="#">
+                  href="{{ route('super-admin.shop.create') }}">
 
                   <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -175,7 +175,8 @@
                     <div class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3">
                       <div class="flex items-center gap-x-3">
                         <div class="grow">
-                          <span class="block text-sm font-semibold text-foreground">{{ $userShop->shop?->shop_name }}</span>
+                          <span
+                            class="block text-sm font-semibold text-foreground">{{ $userShop->shop?->shop_name }}</span>
                         </div>
                       </div>
                     </div>
@@ -198,10 +199,10 @@
                             d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
                         </svg>
                         @if($userShop->shop?->is_active)
-    Active
-@else
-    Inactive
-@endif
+                          Active
+                        @else
+                          Inactive
+                        @endif
                       </span>
                     </div>
                   </td>
@@ -220,7 +221,8 @@
 
                   <td class="size-px whitespace-nowrap">
                     <div class="px-6 py-3">
-                      <img class="inline-block size-9.5 rounded-full" src="{{ asset('storage/' . $userShop->shop?->shop_logo) }}"
+                      <img class="inline-block size-9.5 rounded-full"
+                        src="{{ asset('storage/' . $userShop->shop?->shop_logo) }}"
                         alt="{{ $userShop->shop?->shop_name }}" />
                     </div>
                   </td>
@@ -239,21 +241,31 @@
 
                   <td class="size-px whitespace-nowrap">
                     <div class="px-6 py-3">
-                      <span class="text-sm text-muted-foreground-1">{{ $userShop->shop?->created_at?->format('m-d-Y') }}</span>
+                      <span
+                        class="text-sm text-muted-foreground-1">{{ $userShop->shop?->created_at?->format('m-d-Y') }}</span>
                     </div>
                   </td>
 
                   <td class="size-px whitespace-nowrap">
                     <div class="px-6 py-1.5">
                       <a class="inline-flex items-center gap-x-1 text-sm text-primary decoration-2 hover:underline focus:outline-hidden focus:underline font-medium"
-                        href="#">
+                        href="{{ route('super-admin.shop.edit', $userShop->id) }}">
                         Edit
                       </a>
                     </div>
+
+                  <td class="size-px whitespace-nowrap">
+                    <div class="px-6 py-1.5">
+                      <button wire:click="delete({{ $userShop->shop->id }})"
+                        wire:confirm="Are you sure you want to delete this shop?" class="text-red-600 hover:text-red-800">
+                        Delete
+                      </button>
+                    </div>
+                  </td>
                   </td>
                 </tr>
               @empty
-                <span class="text-sm text-foreground">No Shops Found</span>
+                <span class="text-sm text-foreground text-center block">No Shops Found</span>
               @endforelse
 
             </tbody>
