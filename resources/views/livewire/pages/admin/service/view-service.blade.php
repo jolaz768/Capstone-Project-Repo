@@ -123,7 +123,7 @@
 
                     <td class="h-px w-72 whitespace-nowrap">
                       <div class="px-6 py-3">
-                        <span class="block text-sm font-semibold text-foreground">{{ $Service->description }}</span>
+                        <span class="block text-sm font-semibold text-foreground">{{ Str::limit($Service->description, 100) }}</span>
                       </div>
                     </td>
 
@@ -155,9 +155,6 @@
                   <span class="text-sm text-gray-500 dark:text-neutral-400">No services found.</span>
 
                 @endforelse
-
-
-
               </tbody>
             </table>
           </div>

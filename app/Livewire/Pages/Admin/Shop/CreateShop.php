@@ -80,7 +80,7 @@ class CreateShop extends Component
 
     $this->shop_name   = Str::of($this->shop_name)->trim()->title();
     $this->description = Str::of($this->description)->trim()->title();
-    $this->phone       = intval($this->phone);
+    $this->phone       = trim($this->phone);
     $this->address     = trim($this->address ?? '');
     $this->is_active   = $this->is_active ? 1 : 0;  // boolean to 0/1 if needed
 

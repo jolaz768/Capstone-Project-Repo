@@ -83,6 +83,7 @@ class EditShopList extends Component
         $this->description = Str::of($this->description)->trim();
         $this->phone       = trim($this->phone);            // keep as string
         $this->address     = trim($this->address);
+        $this->is_active   = (bool) $this->is_active;
 
         // Handle shop image
         $imagePath = $this->existing_shop_image;
@@ -110,7 +111,7 @@ class EditShopList extends Component
             'shop_image'  => $imagePath,
             'shop_logo'   => $logoPath,
             'address'     => $this->address,
-            'is_active'   => $this->is_active ? 1 : 0,
+            'is_active'   => $this->is_active,
         ]);
 
         session()->flash('success', 'Shop updated successfully!');

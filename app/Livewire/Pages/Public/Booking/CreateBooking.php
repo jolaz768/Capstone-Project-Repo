@@ -168,7 +168,7 @@ class CreateBooking extends Component
         foreach ($this->selectedGarments as $garment) {
             if ($garment->measurementTemplate) {
                 foreach ($garment->measurementTemplate->measurementFields as $field) {
-                    $rules["measurementValues.{$field->id}"] = 'required|numeric';
+                    $rules["measurementValues.{$field->id}"] = 'required|float|min:0|max:999';
                 }
             }
         }
@@ -179,6 +179,7 @@ class CreateBooking extends Component
     public function createBooking(): void
     {
         $validated = $this->validate();
+        
 
         $garments = $this->selectedGarments;
         $totalPrice = $this->getTotalPriceProperty();

@@ -114,7 +114,7 @@
                 <td class="size-px whitespace-nowrap">
                   <div class="px-6 py-3">
                     <span class="py-1 px-1.5 items-center gap-x-1 block text-sm font-semibold text-foreground">
-                      {{ $category->cat_desc }}
+                      {{ Str::limit($category->cat_desc, 100) }}
                     </span>
                   </div>
                 </td>

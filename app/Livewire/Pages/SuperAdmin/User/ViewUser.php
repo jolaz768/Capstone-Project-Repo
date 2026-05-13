@@ -13,6 +13,8 @@ class ViewUser extends Component
     public $user;
     public $role;
 
+    public $search = '';
+
   
 
     #[Computed()]
@@ -22,6 +24,9 @@ class ViewUser extends Component
         return User::query()
         ->select('id','name','email','created_at')
         ->with('roles:id,name')
+        ->when($this->search, function ($query) {
+            $query->where('name', 'like', '%' . $this->search . '%');
+        })
         ->orderBy('created_at', 'desc')
         ->get();
         // this should show all the users with their roles in the view

@@ -322,7 +322,7 @@
             grid: { borderColor: '#e5e7eb', strokeDashArray: 4 },
             xaxis: { categories, labels: { style: { colors: '#6b7280', fontSize: '12px' } }, axisBorder: { show: false }, axisTicks: { show: false } },
             yaxis: { labels: { style: { colors: '#6b7280', fontSize: '12px' }, formatter: (value) => value >= 1000 ? `${value / 1000}k` : value } },
-            tooltip: { theme: 'light', x: { show: true }, y: { formatter: (value) => `₱${value.toLocaleString()}` } },
+            tooltip: { theme: document.documentElement.classList.contains('dark') ? 'dark' : 'light', x: { show: true }, y: { formatter: (value) => `₱${value.toLocaleString()}` } },
             colors: [color],
             responsive: [{ breakpoint: 768, options: { chart: { height: 280 }, xaxis: { labels: { rotate: -45 } } } }],
           };
@@ -347,7 +347,7 @@
             },
 
             dataLabels: {
-              enabled: false
+              enabled: true
             },
 
             xaxis: {
@@ -377,8 +377,8 @@
             },
 
             tooltip: {
-              theme: 'light'
-            },
+    theme: document.documentElement.classList.contains('dark') ? 'dark' : 'light'
+},
 
             colors: [
               '#FACC15', // Pending

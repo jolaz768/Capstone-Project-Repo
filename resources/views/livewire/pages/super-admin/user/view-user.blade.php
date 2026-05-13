@@ -17,9 +17,24 @@
                             <p class="text-sm text-muted-foreground-2">
                                 Add users, edit and more.
                             </p>
+
                         </div>
 
-                        <div>
+
+                        <div class="flex flex-col md:flex-row gap-3 items-center">
+                            <!-- Search Bar -->
+                            <div class="relative">
+                                <input type="text" wire:model.live="search" placeholder="Search shops..."
+                                    class="py-2 ps-10 pe-4 block w-full md:w-64 border border-layer-line rounded-lg text-sm bg-layer text-foreground focus:border-primary focus:ring-primary">
+
+                                <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none ps-3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-4 text-muted-foreground-2"
+                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="m21 21-4.35-4.35m1.85-5.15a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z" />
+                                    </svg>
+                                </div>
+                            </div>
                             <div class="inline-flex gap-x-2">
                                 <a class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg bg-layer border border-layer-line text-layer-foreground shadow-2xs hover:bg-layer-hover disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden focus:bg-layer-focus"
                                     href="#">
@@ -47,7 +62,7 @@
                             <tr>
                                 <th scope="col" class="ps-6 py-3 text-start">
                                     <label for="hs-at-with-checkboxes-main" class="flex">
-                                       
+
                                     </label>
                                 </th>
 
@@ -112,8 +127,7 @@
 
                                     <td class="size-px whitespace-nowrap">
                                         <div class="px-6 py-3">
-                                            <span
-                                                class="text-sm text-muted-foreground-1">{{ $user->email }}</span>
+                                            <span class="text-sm text-muted-foreground-1">{{ $user->email }}</span>
                                         </div>
                                     </td>
 
@@ -127,8 +141,7 @@
 
                                     <td class="size-px whitespace-nowrap">
                                         <div class="px-6 py-3">
-                                            <span
-                                                class="text-sm text-muted-foreground-1">{{ $user->created_at }}</span>
+                                            <span class="text-sm text-muted-foreground-1">{{ $user->created_at }}</span>
                                         </div>
                                     </td>
 

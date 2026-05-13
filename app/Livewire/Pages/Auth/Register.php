@@ -16,7 +16,7 @@ class Register extends Component
     public string $password_confirmation = '';
     public string $phone = '';
     public string $address = '';
-    
+
      public $selectedRoles = '';
     public $roles = [];
 
@@ -65,7 +65,7 @@ class Register extends Component
      public function mount()
 {
     $roles = Role::select('id', 'name')
-        ->whereIn('name', ['admin', 'customer'])
+        ->whereIn('name', ['owner', 'customer'])
         ->get();
 
     $this->roles = $roles;

@@ -10,10 +10,10 @@
           <div class="px-6 py-4 grid gap-3 md:flex md:justify-between md:items-center border-b border-table-line">
             <div>
               <h2 class="text-xl font-semibold text-foreground">
-                Users
+                Permissions
               </h2>
               <p class="text-sm text-muted-foreground-2">
-                Add users, edit and more.
+                Add Permissions, edit and more.
               </p>
             </div>
 

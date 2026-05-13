@@ -27,9 +27,8 @@
           <div class="mb-4 sm:mb-8">
             <label for="hs-feedback-post-comment-image-1" class="block mb-2 text-sm font-medium text-foreground">Image
               Shop</label>
-            <input wire:model="shop_image" type="file" id="hs-feedback-post-comment-image-1"
-              class="py-2.5 sm:py-3 px-4 block w-full bg-layer border-layer-line rounded-lg sm:text-sm text-foreground placeholder:text-muted-foreground-1 focus:border-primary-focus focus:ring-primary-focus disabled:opacity-50 disabled:pointer-events-none"
-              placeholder="image shop">
+           <input wire:model="shop_image" type="file"
+                  class="w-full text-sm text-foreground file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-primary-foreground hover:file:bg-primary-hover" />
             @if ($shop_image)
               <div class="mt-4">
                 <p class="mb-2 text-sm font-medium text-foreground">Image preview</p>
@@ -45,9 +44,8 @@
           <div class="mb-4 sm:mb-8">
             <label for="hs-feedback-post-comment-logo-1" class="block mb-2 text-sm font-medium text-foreground">Logo
               Shop</label>
-            <input wire:model="shop_logo" type="file" id="hs-feedback-post-comment-logo-1"
-              class="py-2.5 sm:py-3 px-4 block w-full bg-layer border-layer-line rounded-lg sm:text-sm text-foreground placeholder:text-muted-foreground-1 focus:border-primary-focus focus:ring-primary-focus disabled:opacity-50 disabled:pointer-events-none"
-              placeholder="logo shop">
+                <input wire:model="shop_logo" type="file"
+                  class="w-full text-sm text-foreground file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-primary-foreground hover:file:bg-primary-hover" />
             @if ($shop_logo)
               <div class="mt-4">
                 <p class="mb-2 text-sm font-medium text-foreground">Logo preview</p>
@@ -104,7 +102,7 @@
               <span
                 class="absolute top-1/2 start-0.5 -translate-y-1/2 size-5 bg-switch rounded-full shadow-sm transition-transform duration-200 ease-in-out peer-checked:translate-x-full"></span>
             </label>
-            <label for="hs-basic-usage" class="ml-2 text-sm font-medium text-foreground">Active</label>
+            <label for="hs-basic-usage" class="ml-2 text-sm font-medium text-foreground">@if($is_active==1) Active @else Inactive @endif (Default: Inactive)</label>
           </div>
           @error('is_active')
          <span class="text-sm text-red-500">{{ $message }}</span> 
