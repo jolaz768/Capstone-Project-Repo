@@ -20,11 +20,11 @@
       <!-- Card -->
       <div class="mt-5 p-4 relative z-10 bg-card border border-card-line rounded-xl sm:mt-10 md:p-10">
         <form wire:submit.prevent="createBooking">
-          @if (session()->has('message'))
-            <div class="mb-6 rounded-lg border border-success/20 bg-success/10 p-4 text-sm text-success-foreground">
-              {{ session('message') }}
-            </div>
-          @endif
+          {{-- @if (session()->has('message'))
+          <div class="mb-6 rounded-lg border border-success/20 bg-success/10 p-4 text-sm text-success-foreground">
+            {{ session('message') }}
+          </div>
+          @endif --}}
 
           <div class="mb-4 sm:mb-8">
             <label for="date" class="block mb-2 text-sm font-medium text-foreground">Appointment Date</label>
@@ -60,7 +60,7 @@
               class="block mb-2 text-sm font-medium text-foreground">Service</label>
             <div class="mt-1">
               <div class="mb-4 sm:mb-8">
-                <select wire:model.defer="serviceId" type="text" id="hs-feedback-post-garment"
+                <select wire:model.live="serviceId" type="text" id="hs-feedback-post-garment"
                   class="py-2.5 sm:py-3 px-4 block w-full bg-card-line border-layer-line rounded-lg sm:text-sm text-foreground placeholder:text-muted-foreground-1 focus:border-primary-focus focus:ring-primary-focus disabled:opacity-50 disabled:pointer-events-none"
                   placeholder="Full Name">
                   <option value="">Select a service</option>
@@ -78,22 +78,32 @@
           <div class="mb-4 sm:mb-8">
             <label class="block mb-2 text-sm font-medium text-foreground">Garment</label>
 
-            <div class="grid grid-cols-2 gap-x-4 gap-y-2">
+            <div class="grid grid-cols-2 gap-4">
+              @forelse ($this->garmentsByService as $garment)
+                <label
+                  class="flex items-start gap-3 p-3 border border-layer-line rounded-lg cursor-pointer hover:bg-layer-hover transition">
+                  <input type="checkbox" wire:model="selectedGarmentIds" value="{{ $garment->id }}"
+                    class="mt-1 shrink-0 rounded border-gray-300 text-primary focus:ring-primary">
 
-              @forelse ($this->shop->garments as $garment)
-                <label class="flex items-center gap-x-2 cursor-pointer">
-                  <input wire:model="selectedGarmentIds" type="checkbox" name="garment[]" value="{{ $garment->id }}"
-                    class="shrink-0 rounded border-gray-300 text-primary focus:ring-primary">
-                  <span class="text-sm text-foreground">{{ $garment->name }}</span>
+                  {{-- Garment Image --}}
+                  @if($garment->image)
+                    <img src="{{ Storage::url($garment->image) }}" alt="{{ $garment->name }}"
+                      class="w-12 h-12 object-cover rounded-lg">
+                  @else
+                    <div class="w-12 h-12 bg-surface rounded-lg flex items-center justify-center text-muted-foreground">No
+                      Img</div>
+                  @endif
+
+                  <div class="flex-1">
+                    <span class="text-sm font-medium text-foreground">{{ $garment->name }}</span>
+                    <p class="text-xs text-muted-foreground">₱{{ number_format($garment->base_price, 2) }}</p>
+                  </div>
                 </label>
-
               @empty
-                <p class="text-sm text-muted-foreground">No garments available for this shop.</p>
-
+                <p class="text-sm text-muted-foreground col-span-2">No garments available for this shop.</p>
               @endforelse
-
-              @error('selectedGarmentIds') <p class="mt-2 text-sm text-destructive">{{ $message }}</p> @enderror
             </div>
+
             <div class="mt-4">
               <button type="button" wire:click="loadMeasurements"
                 class="rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary-hover">
@@ -131,7 +141,8 @@
                     <div class="mt-6 rounded-2xl border border-card-line bg-base p-4">
                       <div class="mb-3 flex items-center justify-between gap-4">
                         <div class="text-base font-semibold text-foreground">{{ $garment->name }} —
-                          {{ $garment->measurementTemplate->name }}</div>
+                          {{ $garment->measurementTemplate->name }}
+                        </div>
                         <div class="flex items-center gap-2">
                           <label class="text-sm font-medium text-foreground">Qty:</label>
                           <input wire:model.defer="quantities.{{ $garment->id }}" type="number" min="1" value="1"
@@ -188,17 +199,13 @@
               </div>
             </div>
 
+            <div class="mt-6 grid">
+              <button type="submit"
+                class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg bg-primary border border-primary-line text-primary-foreground hover:bg-primary-hover focus:outline-hidden focus:bg-primary-focus disabled:opacity-50 disabled:pointer-events-none">Submit</button>
+            </div>
           </div>
-
+        </form>
       </div>
-
-
-
-      <div class="mt-6 grid">
-        <button type="submit"
-          class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg bg-primary border border-primary-line text-primary-foreground hover:bg-primary-hover focus:outline-hidden focus:bg-primary-focus disabled:opacity-50 disabled:pointer-events-none">Submit</button>
-      </div>
-      </form>
     </div>
     <!-- End Card -->
   </div>

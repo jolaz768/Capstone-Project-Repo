@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->nullable()->constrained('users')->cascadeOnDelete();
             $table->foreignId('measurement_template_id')->nullable()->constrained('measurement_templates')->cascadeOnDelete();
-            $table->foreignId('garment_id')->nullable()->constrained('garments')->cascadeOnDelete();
+            $table->foreignId('booking_id')->nullable()->constrained('bookings')->cascadeOnDelete();
+            $table->foreignId('measurement_value_id')->nullable()->constrained('measurement_values')->cascadeOnDelete();
             $table->timestamps();
         });
     }

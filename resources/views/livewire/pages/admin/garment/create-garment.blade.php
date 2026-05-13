@@ -23,6 +23,17 @@
               @error('name')<span class="text-sm text-red-500">{{ $message }}</span>@enderror
             </div>
 
+            <div>
+              <label class="block mb-2 text-sm font-medium text-foreground">Service</label>
+              <select wire:model="service_id"
+                class="py-3 px-4 block w-full bg-layer border-layer-line rounded-lg text-sm text-foreground focus:border-primary-focus focus:ring-primary-focus">
+                <option value="" >Select a Service</option>
+                @foreach($this->services as $service)
+                  <option value="{{ $service->id }}">{{ $service->name }}</option>
+                @endforeach
+              </select>
+              @error('category_id')<span class="text-sm text-red-500">{{ $message }}</span>@enderror
+            </div>
            
 
             <div>
@@ -36,7 +47,6 @@
               </select>
               @error('category_id')<span class="text-sm text-red-500">{{ $message }}</span>@enderror
             </div>
-
 
 
             <div>
@@ -53,6 +63,8 @@
                   PESO</div>
               </div>
               @error('base_price')<span class="text-sm text-red-500">{{ $message }}</span>@enderror
+
+              
 
 
               <div class="sm:col-span-2">

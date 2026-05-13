@@ -9,6 +9,7 @@ use App\Models\MeasurementValue;
 use App\Models\Shop;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Livewire\Attributes\Computed;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 
@@ -26,7 +27,7 @@ class CreateBooking extends Component
     public string $customerEmail = '';
     public ?string $bookingDate = null;
     public $showMeasurements = false;
-    public $fromCart = false;  
+    public $fromCart = false;
 
     public function mount($id)
     {
@@ -36,7 +37,7 @@ class CreateBooking extends Component
             ->with([
                 'bookings:id,shop_id,user_id,created_at,status',
                 'services:id,shop_id,name',
-                'garments:id,shop_id,name,description,image,base_price',
+                'garments:id,shop_id,name,description,image,base_price,category_id,service_id',
                 'garments.measurementTemplate:id,garment_id,name',
                 'garments.measurementTemplate.measurementFields:id,measurement_template_id,field_name,unit',
             ])
@@ -51,11 +52,28 @@ class CreateBooking extends Component
 
         // Check if coming from cart
         $this->fromCart = request()->get('from_cart', false);
-        
+
         // Load cart data if available
         if ($this->fromCart && session()->has('booking_cart_data')) {
             $this->loadCartData();
         }
+    }
+
+    #[Computed]
+    public function garmentsByService()
+    {
+        if (!$this->serviceId) {
+            return collect(); // empty collection if no service selected
+        }
+        return $this->shop->garments->where('service_id', $this->serviceId);
+    }
+    public function updatedServiceId()
+    {
+        // Reset selected garments, measurements, and quantities when service changes
+        $this->selectedGarmentIds = [];
+        $this->measurementValues = [];
+        $this->quantities = [];
+        $this->showMeasurements = false;
     }
 
     /**
@@ -64,33 +82,33 @@ class CreateBooking extends Component
     protected function loadCartData(): void
     {
         $cartData = session()->get('booking_cart_data');
-        
+
         if (!$cartData || empty($cartData['garments'])) {
             return;
         }
 
         $garmentIds = [];
-        
+
         foreach ($cartData['garments'] as $garmentId => $item) {
             // Check if garment exists in this shop
             $garmentExists = $this->shop->garments->contains('id', $garmentId);
-            
+
             if ($garmentExists) {
                 $garmentIds[] = $garmentId;
                 // Set quantity from cart
                 $this->quantities[$garmentId] = $item['quantity'];
             }
         }
-        
+
         // Set selected garment IDs
         $this->selectedGarmentIds = $garmentIds;
-        
+
         // Clear the session data after loading
         session()->forget('booking_cart_data');
-        
+
         // Show a flash message
         session()->flash('info', 'Cart items have been loaded! Please complete your measurements and booking details.');
-        
+
         // Auto-show measurements if garments are loaded
         if (!empty($this->selectedGarmentIds)) {
             $this->showMeasurements = true;
@@ -140,14 +158,14 @@ class CreateBooking extends Component
             array_flip($activeFieldIds)
         );
     }
-    
+
     public function loadMeasurements()
     {
         if (empty($this->selectedGarmentIds)) {
             session()->flash('error', 'Please select at least one garment first.');
             return;
         }
-        
+
         $this->showMeasurements = true;
     }
 
@@ -168,7 +186,7 @@ class CreateBooking extends Component
         foreach ($this->selectedGarments as $garment) {
             if ($garment->measurementTemplate) {
                 foreach ($garment->measurementTemplate->measurementFields as $field) {
-                    $rules["measurementValues.{$field->id}"] = 'required|float|min:0|max:999';
+                    $rules["measurementValues.{$field->id}"] = 'required|numeric|min:0|max:999';
                 }
             }
         }
@@ -179,7 +197,7 @@ class CreateBooking extends Component
     public function createBooking(): void
     {
         $validated = $this->validate();
-        
+
 
         $garments = $this->selectedGarments;
         $totalPrice = $this->getTotalPriceProperty();
@@ -207,6 +225,7 @@ class CreateBooking extends Component
                 if ($garment->measurementTemplate) {
                     $customerMeasurement = CustomerMesurement::create([
                         'user_id' => Auth::id(),
+                        'booking_id' => $booking->id,         
                         'garment_id' => $garment->id,
                         'measurement_template_id' => $garment->measurementTemplate->id,
                     ]);
@@ -226,10 +245,10 @@ class CreateBooking extends Component
 
         // Clear cart after successful booking
         session()->forget('cart');
-        
+
         $this->reset(['serviceId', 'selectedGarmentIds', 'measurementValues', 'customerName', 'customerEmail', 'bookingDate', 'quantities']);
         session()->flash('message', 'Your booking has been created and sent to the shop owner.');
-        
+
         // Redirect to confirmation page
         // return redirect()->route('booking.confirmation');
     }

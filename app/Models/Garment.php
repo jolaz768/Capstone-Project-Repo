@@ -13,6 +13,7 @@ class Garment extends Model
         'shop_id',
         'name',
         'description',
+        'service_id',
         'category_id',
         'slug',
         'base_price',
@@ -22,6 +23,11 @@ class Garment extends Model
     public function shop()
     {
         return $this->belongsTo(Shop::class);
+    }
+
+    public function service()
+    {
+        return $this->belongsTo(Service::class);
     }
 
     public function scopeForOwner($query, int $userId)

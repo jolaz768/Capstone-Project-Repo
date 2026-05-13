@@ -36,8 +36,6 @@
           <label class="inline-block text-sm font-medium text-foreground mb-2">
             Rental Details
           </label>
-
-          
           <div class="space-y-4">
 
             <select
@@ -48,12 +46,14 @@
             </select>
             <!-- Garment Checkboxes (2 columns) -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <label class="flex items-center p-3 w-full bg-layer border border-layer-line rounded-lg text-sm cursor-pointer">
+              <label
+                class="flex items-center p-3 w-full bg-layer border border-layer-line rounded-lg text-sm cursor-pointer">
                 <input type="checkbox"
                   class="shrink-0 size-4 bg-transparent border-2 border-gray-400 rounded-sm text-primary focus:ring-0 checked:bg-primary-checked checked:border-primary-checked">
                 <span class="text-sm ms-3 text-muted-foreground-1">Dress</span>
               </label>
-              <label class="flex items-center p-3 w-full bg-layer border border-layer-line rounded-lg text-sm cursor-pointer">
+              <label
+                class="flex items-center p-3 w-full bg-layer border border-layer-line rounded-lg text-sm cursor-pointer">
                 <input type="checkbox" checked
                   class="shrink-0 size-4 bg-transparent border-2 border-gray-400 rounded-sm text-primary focus:ring-0 checked:bg-primary-checked checked:border-primary-checked">
                 <span class="text-sm ms-3 text-muted-foreground-1">Suit</span>
@@ -72,7 +72,7 @@
             <!-- Start & End Date (2 columns) -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-            <label class="block text-sm font-medium text-foreground mb-1">Pick-Up Date</label>
+                <label class="block text-sm font-medium text-foreground mb-1">Pick-Up Date</label>
                 <input type="date"
                   class="py-1.5 sm:py-2 px-3 block w-full bg-layer border border-layer-line shadow-sm sm:text-sm rounded-lg text-foreground placeholder:text-muted-foreground-1 focus:border-primary-focus focus:ring-primary-focus">
               </div>

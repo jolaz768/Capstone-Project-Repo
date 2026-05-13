@@ -83,13 +83,13 @@
                   </div>
                 </th>
 
-                {{-- <th scope="col" class="px-6 py-3 text-start">
+                <th scope="col" class="px-6 py-3 text-start">
                   <div class="flex items-center gap-x-2">
                     <span class="text-xs font-semibold uppercase text-foreground">
-                      Fabric
+                      Service
                     </span>
                   </div>
-                </th> --}}
+                </th>
 
                 <th scope="col" class="px-6 py-3 text-start">
                   <div class="flex items-center gap-x-2">
@@ -163,19 +163,19 @@
                     </div>
                   </td>
 
-                  {{-- <td class="size-px whitespace-nowrap">
+                  <td class="size-px whitespace-nowrap">
                     <div class="px-6 py-3">
                       <div class="flex items-center gap-x-3">
-                        <span class="text-xs text-muted-foreground-1">{{ $fabric->name ?? '—' }}</span>
+                        <span class="text-xs text-muted-foreground-1">{{ $garment->service->name}}</span>
                       </div>
                     </div>
-                  </td> --}}
+                  </td>
 
 
                   <td class="size-px whitespace-nowrap">
                     <div class="px-6 py-3">
                       <div class="flex items-center gap-x-3">
-                        <span class="text-xs text-muted-foreground-1">{{ number_format($garment->base_price, 2) }}</span>
+                        <span class="text-xs text-muted-foreground-1">{{ number_format((float) $garment->base_price, 2) }}</span>
                       </div>
                     </div>
                   </td>
@@ -196,7 +196,9 @@
 
                   <td class="size-px whitespace-nowrap">
                     <div class="px-6 py-1.5">
-                      <span class="inline-flex items-center gap-x-1 text-sm text-red-500 decoration-2 font-medium">Delete</span>
+                      <button type ="submit" wire:click="delete({{ $garment->id }})" class="inline-flex items-center gap-x-1 text-sm text-red-500 decoration-2 hover:underline focus:outline-hidden focus:underline font-medium" href="{{ route('admin.garment.edit', $garment) }}">
+                        Delete
+                      </button>
                     </div>
                   </td>
                 </tr>

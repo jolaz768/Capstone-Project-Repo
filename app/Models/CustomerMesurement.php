@@ -9,7 +9,7 @@ class CustomerMesurement extends Model
     //
     protected $fillable = [
     'user_id',
-    'garment_id',
+    'booking_id',
     'measurement_template_id',
     ];
 
@@ -18,9 +18,9 @@ class CustomerMesurement extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function garment()
+    public function booking()
     {
-        return $this->belongsTo(Garment::class);
+        return $this->belongsTo(Booking::class);
     }
 
     public function measurementTemplate()

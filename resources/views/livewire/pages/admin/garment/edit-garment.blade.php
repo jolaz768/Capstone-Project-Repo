@@ -23,20 +23,29 @@
               @error('name')<span class="text-sm text-red-500">{{ $message }}</span>@enderror
             </div>
 
-           
+            <div>
+              <label class="block mb-2 text-sm font-medium text-foreground">Service</label>
+              <select wire:model="service_id"
+                class="py-3 px-4 block w-full bg-layer border-layer-line rounded-lg text-sm text-foreground focus:border-primary-focus focus:ring-primary-focus">
+                <option value="">Select a Service</option>
+                @foreach($this->services as $service)
+                  <option value="{{ $service->id }}">{{ $service->name }}</option>
+                @endforeach
+              </select>
+              @error('category_id')<span class="text-sm text-red-500">{{ $message }}</span>@enderror
+            </div>
 
             <div>
               <label class="block mb-2 text-sm font-medium text-foreground">Category</label>
               <select wire:model="category_id"
                 class="py-3 px-4 block w-full bg-layer border-layer-line rounded-lg text-sm text-foreground focus:border-primary-focus focus:ring-primary-focus">
-                <option value="" >Select a category</option>
+                <option value="">Select a category</option>
                 @foreach($this->categories as $category)
                   <option value="{{ $category->id }}">{{ $category->cat_name }}</option>
                 @endforeach
               </select>
               @error('category_id')<span class="text-sm text-red-500">{{ $message }}</span>@enderror
             </div>
-
 
 
             <div>
@@ -59,22 +68,35 @@
                 <label class="block mb-2 text-sm font-medium text-foreground">Image</label>
                 <input wire:model="image" type="file"
                   class="w-full text-sm text-foreground file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-primary-foreground hover:file:bg-primary-hover" />
-                @error('image')<span class="text-sm text-red-500">{{ $message }}</span>@enderror
+                @error('image') <span class="text-sm text-red-500">{{ $message }}</span> @enderror
+
+
+                @if (!$image && $existingImage)
+                  <div class="mt-4">
+                    <p class="mb-2 text-sm font-medium text-foreground">Current image</p>
+                    <img src="{{ Storage::url($existingImage) }}" alt="Current image"
+                      class="object-cover rounded-lg w-40 h-40" />
+                  </div>
+                @endif
+
+
+                @if ($image)
+                  <div class="mt-4">
+                    <p class="mb-2 text-sm font-medium text-foreground">New image preview</p>
+                    <img src="{{ $image->temporaryUrl() }}" alt="New image preview"
+                      class="object-cover rounded-lg w-40 h-40" />
+                  </div>
+                @endif
               </div>
-              @if ($image)
-                <div class="mt-4">
-                  <p class="mb-2 text-sm font-medium text-foreground">Image preview</p>
-                  <img src="{{ $image->temporaryUrl() }}" alt="image preview" class="object-cover rounded-lg w-40 h-40" />
-                </div>
-              @endif
+
             </div>
 
             {{-- <div class="sm:col-span-2">
               @foreach ($fabrics as $fabric )
-                <label class="block mb-2 text-sm font-medium text-foreground">{{ $fabric->name }}</label>
-                <input wire:model="fabrics" type="checkbox" value="{{ $fabric->id }}" class="" />
+              <label class="block mb-2 text-sm font-medium text-foreground">{{ $fabric->name }}</label>
+              <input wire:model="fabrics" type="checkbox" value="{{ $fabric->id }}" class="" />
               @endforeach
-              
+
             </div>
             @error('fabrics')<span class="text-sm text-red-500">{{ $message }}</span>@enderror --}}
 
@@ -91,7 +113,7 @@
           <div class="mt-8 grid">
             <button type="submit"
               class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg bg-primary border border-primary-line text-primary-foreground hover:bg-primary-hover focus:outline-hidden focus:bg-primary-focus">
-              Create Garment
+              Update Garment
             </button>
           </div>
         </form>

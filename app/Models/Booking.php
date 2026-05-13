@@ -33,9 +33,6 @@ class Booking extends Model
     {
         return $this->belongsTo(Shop::class);
     }
-
-
-
     public function bookingItems()
     {
         return $this->hasMany(BookingItem::class);
@@ -45,4 +42,9 @@ class Booking extends Model
     {
         return $this->hasOne(Payment::class);
     }
+
+    public function customerMeasurements()
+{
+    return $this->hasMany(CustomerMesurement::class, 'booking_id');
+}
 }
