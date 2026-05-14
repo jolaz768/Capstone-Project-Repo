@@ -30,7 +30,7 @@ class IndexShop extends Component
       
     // ... other properties
 
-    public function addToCart($garmentId, $name, $price , $image = null)
+    public function addToCart($garmentId, $name, $price , $image = null, $serviceId = null)
     {
         $cart = session()->get('cart', []);
 
@@ -38,12 +38,13 @@ class IndexShop extends Component
             $cart[$garmentId]['quantity']++;
         } else {
             $cart[$garmentId] = [
-                'id'       => $garmentId,
-                'name'     => $name,
-                'price'    => $price,
-                'image'    => $image,
-                'quantity' => 1,
-                'shop_id'  => $this->shop->id,   // so you know which shop the item belongs to
+                'id'         => $garmentId,
+                'name'       => $name,
+                'price'      => $price,
+                'image'      => $image,
+                'quantity'   => 1,
+                'shop_id'    => $this->shop->id,
+                'service_id' => $serviceId,
             ];
         }
 

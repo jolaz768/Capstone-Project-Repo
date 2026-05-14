@@ -51,7 +51,7 @@ class CreateBooking extends Component
         }
 
         // Check if coming from cart
-        $this->fromCart = request()->get('from_cart', false);
+        $this->fromCart = request()->input('from_cart', false);
 
         // Load cart data if available
         if ($this->fromCart && session()->has('booking_cart_data')) {
@@ -63,13 +63,24 @@ class CreateBooking extends Component
     public function garmentsByService()
     {
         if (!$this->serviceId) {
-            return collect(); // empty collection if no service selected
+            if (!empty($this->selectedGarmentIds)) {
+                return $this->shop->garments->whereIn('id', $this->selectedGarmentIds);
+            }
+
+            return collect();
         }
+
         return $this->shop->garments->where('service_id', $this->serviceId);
     }
+
     public function updatedServiceId()
     {
-        // Reset selected garments, measurements, and quantities when service changes
+        $selectedService = $this->shop->services->firstWhere('id', $this->serviceId);
+
+        if ($selectedService && str_contains(strtolower($selectedService->name), 'rental')) {
+            return redirect()->route('booking.rental');
+        }
+
         $this->selectedGarmentIds = [];
         $this->measurementValues = [];
         $this->quantities = [];
@@ -90,26 +101,30 @@ class CreateBooking extends Component
         $garmentIds = [];
 
         foreach ($cartData['garments'] as $garmentId => $item) {
-            // Check if garment exists in this shop
             $garmentExists = $this->shop->garments->contains('id', $garmentId);
 
             if ($garmentExists) {
                 $garmentIds[] = $garmentId;
-                // Set quantity from cart
                 $this->quantities[$garmentId] = $item['quantity'];
             }
         }
 
-        // Set selected garment IDs
         $this->selectedGarmentIds = $garmentIds;
+        $this->serviceId = $cartData['service_id'] ?? null;
 
-        // Clear the session data after loading
+        // If rental service is selected in cart, redirect to rental booking page
+        if ($this->serviceId) {
+            $selectedService = $this->shop->services->firstWhere('id', $this->serviceId);
+            if ($selectedService && str_contains(strtolower($selectedService->name), 'rental')) {
+                session()->forget('booking_cart_data');
+                redirect()->route('booking.rental');
+                return;
+            }
+        }
+
         session()->forget('booking_cart_data');
-
-        // Show a flash message
         session()->flash('info', 'Cart items have been loaded! Please complete your measurements and booking details.');
 
-        // Auto-show measurements if garments are loaded
         if (!empty($this->selectedGarmentIds)) {
             $this->showMeasurements = true;
         }
@@ -215,7 +230,7 @@ class CreateBooking extends Component
             foreach ($garments as $garment) {
                 $qty = $this->quantities[$garment->id] ?? 1;
 
-                BookingItem::create([
+                $bookingItem = BookingItem::create([
                     'booking_id' => $booking->id,
                     'garment_id' => $garment->id,
                     'quantity' => $qty,
@@ -223,21 +238,21 @@ class CreateBooking extends Component
                 ]);
 
                 if ($garment->measurementTemplate) {
-                    $customerMeasurement = CustomerMesurement::create([
-                        'user_id' => Auth::id(),
-                        'booking_id' => $booking->id,         
-                        'garment_id' => $garment->id,
-                        'measurement_template_id' => $garment->measurementTemplate->id,
-                    ]);
-
                     foreach ($garment->measurementTemplate->measurementFields as $field) {
-                        if (isset($this->measurementValues[$field->id])) {
-                            MeasurementValue::create([
-                                'customer_measurement_id' => $customerMeasurement->id,
-                                'measurement_field_id' => $field->id,
-                                'value' => $this->measurementValues[$field->id],
-                            ]);
+                        if (! isset($this->measurementValues[$field->id])) {
+                            continue;
                         }
+
+                        $measurementValue = MeasurementValue::create([
+                            'measurement_field_id' => $field->id,
+                            'value' => $this->measurementValues[$field->id],
+                        ]);
+
+                        CustomerMesurement::create([
+                            'user_id' => Auth::id(),
+                            'booking_item_id' => $bookingItem->id,
+                            'measurement_value_id' => $measurementValue->id,
+                        ]);
                     }
                 }
             }

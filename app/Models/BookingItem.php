@@ -23,6 +23,10 @@ class BookingItem extends Model
     {
         return $this->belongsTo(Garment::class);
     }
+    public function customerMeasurements()
+    {
+        return $this->hasMany(CustomerMesurement::class);
+    }
 
     
 }

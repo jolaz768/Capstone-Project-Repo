@@ -13,7 +13,7 @@
     <div class="mx-auto max-w-2xl">
       <div class="text-center">
         <h2 class="text-xl text-foreground-1 font-bold sm:text-3xl">
-          Booking Form
+          Sewing Booking Form 
         </h2>
       </div>
 

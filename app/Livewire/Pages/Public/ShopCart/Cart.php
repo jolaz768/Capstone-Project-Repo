@@ -61,6 +61,25 @@ public function getShopIdProperty()
         session()->forget('cart');
     }
 
+    public function checkoutCart()
+    {
+        if (empty($this->cart)) {
+            session()->flash('error', 'Your cart is empty.');
+            return;
+        }
+
+        $serviceIds = array_unique(array_filter(array_column($this->cart, 'service_id')));
+        $serviceId = count($serviceIds) === 1 ? reset($serviceIds) : null;
+
+        session()->put('booking_cart_data', [
+            'shop_id'   => $this->shopId,
+            'garments'  => $this->cart,
+            'service_id'=> $serviceId,
+        ]);
+
+        return redirect()->route('booking.create', ['id' => $this->shopId, 'from_cart' => true]);
+    }
+
     private function saveCart()
     {
         session()->put('cart', $this->cart);

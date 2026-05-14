@@ -144,7 +144,7 @@
                                 View
                             </button> --}}
                             <button
-                                wire:click="addToCart({{ $garment->id }}, '{{ addslashes($garment->name) }}', {{ $garment->base_price }}, '{{ $garment->image }}')"
+                                wire:click="addToCart({{ $garment->id }}, '{{ addslashes($garment->name) }}', {{ $garment->base_price }}, '{{ $garment->image }}', {{ $garment->service_id ?? 'null' }})"
                                 class="flex-1 bg-yellow-500 hover:bg-yellow-400 text-black py-3 rounded-2xl font-semibold transition">
                                 Add to Cart
                             </button>

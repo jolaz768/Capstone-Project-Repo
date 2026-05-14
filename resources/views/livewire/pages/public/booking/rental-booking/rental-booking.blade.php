@@ -5,10 +5,10 @@
     <div class="bg-layer rounded-xl shadow-md p-4 sm:p-7">
       <div class="text-center mb-8">
         <h2 class="text-2xl md:text-3xl font-bold text-foreground">
-          Rental Booking
+          Rental Booking Form
         </h2>
         <p class="text-sm text-muted-foreground-2">
-          Manage your payment methods.
+          Manage your Booking.
         </p>
       </div>
 

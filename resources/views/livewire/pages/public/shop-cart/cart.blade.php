@@ -107,10 +107,10 @@
                         class="px-4 py-2 text-sm font-medium rounded-lg border border-layer-line text-foreground hover:bg-muted-hover transition">
                         Continue Shopping
                     </a>
-                    <a href="{{ route('booking.create', ['id' => $this->shopId]) }}" 
+                    <button wire:click="checkoutCart"
                         class="px-4 py-2 text-sm font-medium rounded-lg bg-primary text-primary-foreground hover:bg-primary-hover transition">
                         Book appointment
-                    </a>
+                    </button>
                 </div>
             </div>
         @else
