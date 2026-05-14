@@ -8,6 +8,9 @@ use Livewire\Component;
 class RentalBooking extends Component
 {
     #[Layout('components.layouts.app')]
+
+    
+    
     
     public function render()
     {

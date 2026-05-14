@@ -102,7 +102,7 @@
               <span
                 class="absolute top-1/2 start-0.5 -translate-y-1/2 size-5 bg-switch rounded-full shadow-sm transition-transform duration-200 ease-in-out peer-checked:translate-x-full"></span>
             </label>
-            <label for="hs-basic-usage" class="ml-2 text-sm font-medium text-foreground">@if($is_active==1) Active @else Inactive @endif (Default: Inactive)</label>
+            <label for="hs-basic-usage" class="ml-2 text-sm font-medium text-foreground">Active</label>
           </div>
           @error('is_active')
          <span class="text-sm text-red-500">{{ $message }}</span> 

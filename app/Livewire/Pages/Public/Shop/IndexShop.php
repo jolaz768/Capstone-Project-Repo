@@ -20,7 +20,7 @@ class IndexShop extends Component
             ->where('id', '=', $id)
             ->where('is_active', 1)
             ->with([
-                'services:id,shop_id,name,description,created_at',
+                'services:id,shop_id,name,description,image,created_at',
                 'garments:id,shop_id,name,description,image,base_price,category_id,service_id',
 
             ])

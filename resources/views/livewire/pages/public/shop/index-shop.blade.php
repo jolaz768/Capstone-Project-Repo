@@ -70,7 +70,7 @@
                 <div
                     class="bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-xl border border-slate-100 dark:border-gray-700 hover:-translate-y-1 transition">
                     <div class="h-48 md:h-52 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1625479144604-ae69462778b7?q=80&w=1200&auto=format&fit=crop"
+                        <img src="{{ asset('storage/' . $service->image) ? asset('storage/' . $service->image) : 'https://via.placeholder.com/300x400' }}" alt="{{ $service->image }}" 
                             class="w-full h-full object-cover" alt="{{ $service->name }}">
                     </div>
                     <div class="p-5 md:p-6">

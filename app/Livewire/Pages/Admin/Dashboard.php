@@ -107,7 +107,7 @@ protected function getShopIds(): array
 
         $this->completedOrders = Booking::query()
             ->whereIn('shop_id', $shopIds)
-            ->where('status', 'approved')
+            ->where('status', 'completed')
             ->count();
 
         $this->averageOrderValue = $this->completedOrders > 0
