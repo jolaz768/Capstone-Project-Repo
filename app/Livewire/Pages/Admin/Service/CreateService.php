@@ -56,7 +56,7 @@ class CreateService extends Component
         $description = Str::of(trim(strip_tags($this->description)))->title();
         $imagePath = $this->image->store('services', 'public');
 
-        $shops = auth()->user()->shops()->get();
+        $shops = auth()->guard('web')->user()->shops()->get();
         if ($shops->isEmpty()) {
             throw new \RuntimeException('Authenticated user is not assigned to a shop.');
         }
@@ -72,6 +72,7 @@ class CreateService extends Component
                 'description' => $description,
                 'shop_id' => $shop->id,
                 'image' => $imagePath,
+                
             ]);
 
             $createdCount++;

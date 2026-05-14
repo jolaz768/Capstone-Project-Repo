@@ -38,6 +38,7 @@ use App\Livewire\Pages\Auth\Register;
 use App\Livewire\Pages\Public\Booking\CreateBooking;
 use App\Livewire\Pages\Public\Booking\EditBooking;
 use App\Livewire\Pages\Public\Booking\RentalBooking\RentalBooking;
+use App\Livewire\Pages\Public\CustomerProfile\Profile;
 use App\Livewire\Pages\Public\Index;
 use App\Livewire\Pages\Public\Shop\IndexShop;
 use App\Livewire\Pages\Public\Shop\Pricing;
@@ -90,19 +91,16 @@ Route::prefix('public')
 
         Route::get('/create-booking/{id}', CreateBooking::class)->name('booking.create');
         Route::get('/rental-booking', RentalBooking::class)->name('booking.rental');
-
         //shop
         Route::get('/Shop-view/{id}', IndexShop::class)->name('shop.view');
-
         //Shop  Pricing
         Route::get('/shop/pricing', Pricing::class)->name('shop.pricing');
-
         //Shop  Review
         Route::get('/shop/review/{id}', Review::class)->name('shop.review');
-
-
         //shop cart
         Route::get('/shop/cart', Cart::class)->name('shop.cart');
+        //profile
+        Route::get('/profile', Profile::class)->name('profile');
     });
 
 //super admin

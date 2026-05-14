@@ -50,9 +50,16 @@
           <button id="hs-dnad" type="button"
             class="p-0.5 inline-flex shrink-0 items-center gap-x-3 text-start text-navbar-nav-foreground rounded-full hover:bg-navbar-nav-hover focus:outline-hidden focus:bg-navbar-nav-focus"
             aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
-            <img class="shrink-0 size-7 rounded-full"
-              src="https://images.unsplash.com/photo-1659482633369-9fe69af50bfb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=3&w=320&h=320&q=80"
-              alt="Avatar">
+            @if(Auth::user()->profile_image)
+    <img class="shrink-0 size-7 rounded-full object-cover"
+         src="{{ asset('storage/' . Auth::user()->profile_image) }}"
+         alt="Avatar">
+@else
+    <span class="size-7 inline-flex items-center justify-center rounded-full bg-black text-white text-xs font-semibold uppercase"
+          aria-label="{{ Auth::user()->name }}">
+        {{ substr(Auth::user()->name, 0, 1) }}
+    </span>
+@endif
           </button>
 
           <!-- Account Dropdown -->
@@ -61,10 +68,10 @@
             role="menu" aria-orientation="vertical" aria-labelledby="hs-dnad">
             <div class="py-2 px-3.5">
               <span class="font-medium text-foreground">
-                James Collison
+                {{ Auth::user()->name }}
               </span>
               <p class="text-sm text-muted-foreground-1">
-                jamescollison@site.com
+                {{ Auth::user()->email }}
               </p>
               <div class="mt-1.5">
                 <a class="flex justify-center items-center gap-x-1.5 py-2 px-2.5 font-medium text-[13px] bg-secondary text-secondary-foreground rounded-lg hover:bg-secondary-hover focus:outline-hidden focus:bg-secondary-focus disabled:opacity-50 disabled:pointer-events-none"
@@ -124,7 +131,7 @@
             </div>
             <div class="p-1 border-t border-dropdown-divider">
               <a class="flex items-center gap-x-3 py-2 px-3 rounded-lg text-sm text-dropdown-item-foreground hover:bg-dropdown-item-hover disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden focus:bg-dropdown-item-focus"
-                href="#">
+                href="{{ route('profile') }}">
                 <svg class="shrink-0 mt-0.5 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                   viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                   stroke-linejoin="round">
