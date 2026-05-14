@@ -51,15 +51,15 @@
             class="p-0.5 inline-flex shrink-0 items-center gap-x-3 text-start text-navbar-nav-foreground rounded-full hover:bg-navbar-nav-hover focus:outline-hidden focus:bg-navbar-nav-focus"
             aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
             @if(Auth::user()->profile_image)
-    <img class="shrink-0 size-7 rounded-full object-cover"
-         src="{{ asset('storage/' . Auth::user()->profile_image) }}"
-         alt="Avatar">
-@else
-    <span class="size-7 inline-flex items-center justify-center rounded-full bg-black text-white text-xs font-semibold uppercase"
-          aria-label="{{ Auth::user()->name }}">
-        {{ substr(Auth::user()->name, 0, 1) }}
-    </span>
-@endif
+              <img class="shrink-0 size-7 rounded-full object-cover"
+                src="{{ asset('storage/' . Auth::user()->profile_image) }}" alt="Avatar">
+            @else
+              <span
+                class="size-7 inline-flex items-center justify-center rounded-full bg-black text-white text-xs font-semibold uppercase"
+                aria-label="{{ Auth::user()->name }}">
+                {{ substr(Auth::user()->name, 0, 1) }}
+              </span>
+            @endif
           </button>
 
           <!-- Account Dropdown -->

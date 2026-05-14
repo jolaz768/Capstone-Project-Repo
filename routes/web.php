@@ -20,6 +20,7 @@ use App\Livewire\Pages\Admin\MeasurementField\ViewMeasurementField;
 use App\Livewire\Pages\Admin\MeasurementTemplate\CreateMeasurementTemplate;
 use App\Livewire\Pages\Admin\MeasurementTemplate\EditMeasurementTemplate;
 use App\Livewire\Pages\Admin\MeasurementTemplate\ViewMeasurementTemplate;
+use App\Livewire\Pages\Admin\Profile\AdminProfile;
 use App\Livewire\Pages\Admin\Review\ViewReview;
 use App\Livewire\Pages\Admin\Service\CreateService;
 use App\Livewire\Pages\Admin\Service\EditService;
@@ -48,6 +49,7 @@ use App\Livewire\Pages\SuperAdmin\Dashboard;
 use App\Livewire\Pages\SuperAdmin\Permission\CreatePermission;
 use App\Livewire\Pages\SuperAdmin\Permission\EditPermission;
 use App\Livewire\Pages\SuperAdmin\Permission\ViewPermission;
+use App\Livewire\Pages\SuperAdmin\Profile\SuperAdminProfile;
 use App\Livewire\Pages\SuperAdmin\Role\CreateRole;
 use App\Livewire\Pages\SuperAdmin\Role\EditRole;
 use App\Livewire\Pages\SuperAdmin\Role\ViewRole;
@@ -103,6 +105,9 @@ Route::prefix('public')
         Route::get('/profile', Profile::class)->name('profile');
     });
 
+
+    //profile
+    Route::get('/profile', Profile::class)->name('profile');
 //super admin
 Route::prefix('/admin')
     ->middleware(['auth', 'role:admin'])
@@ -128,6 +133,9 @@ Route::prefix('/admin')
         Route::get('/shop/list', ShopList::class)->name('super-admin.shop.list');
         Route::get('/shop/create', CreateShopList::class)->name('super-admin.shop.create');
         Route::get('/shop/edit/{id}', EditShopList::class)->name('super-admin.shop.edit');
+
+        //profile
+        Route::get('/admin/profile',SuperAdminProfile::class)->name('super-admin.profile');
     });
 
 //admin
@@ -202,5 +210,7 @@ Route::prefix('/tenant') //shop owner
         //booking
         Route::get('/booking/view', ViewBooking::class)->name('admin.booking.view');
         Route::get('/booking/create', CreateBooking::class)->name('admin.booking.create');
-        
+
+        //profile
+        Route::get('/profile', AdminProfile::class)->name('admin.profile');
     });
