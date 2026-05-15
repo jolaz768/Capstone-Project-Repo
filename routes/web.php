@@ -41,6 +41,7 @@ use App\Livewire\Pages\Public\Booking\EditBooking;
 use App\Livewire\Pages\Public\Booking\RentalBooking\RentalBooking;
 use App\Livewire\Pages\Public\CustomerProfile\Profile;
 use App\Livewire\Pages\Public\Index;
+use App\Livewire\Pages\Public\MyOrder\Order;
 use App\Livewire\Pages\Public\Shop\IndexShop;
 use App\Livewire\Pages\Public\Shop\Pricing;
 use App\Livewire\Pages\Public\Shop\Review;
@@ -103,6 +104,8 @@ Route::prefix('public')
         Route::get('/shop/cart', Cart::class)->name('shop.cart');
         //profile
         Route::get('/profile', Profile::class)->name('profile');
+        //my order
+        Route::get('/my-order', Order::class)->name('my-order');
     });
 
 

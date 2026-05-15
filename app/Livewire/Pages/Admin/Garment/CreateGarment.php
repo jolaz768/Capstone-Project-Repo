@@ -22,7 +22,7 @@ class CreateGarment extends Component
     public string $name = '';
     public string $slug = '';
     public string $description = '';
-    public float $base_price =0.0;
+    public float $base_price = 0.0;
     public $image ;
 
     public $category_id = null; 
