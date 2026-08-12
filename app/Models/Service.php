@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Traits\HasShopScope;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 class Service extends Model
 {
@@ -15,11 +16,6 @@ class Service extends Model
         'image',
         'description',
     ];
-
-    public function scopeForOwner($query, int $userId)
-    {
-        return $query->whereHas('shop.users', fn ($query) => $query->where('users.id', $userId));
-    }
 
     public function shop()
     {

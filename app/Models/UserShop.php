@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserShop extends Model
 {
-    // use HasShopScope;
+    use HasShopScope;
     //
     protected $fillable = [
         'user_id',

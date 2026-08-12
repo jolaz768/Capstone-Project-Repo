@@ -3,10 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\HasShopScope;
 
 class Booking extends Model
 {
-    // use HasShopScope;
+    use HasShopScope;
     protected $fillable = [
         'user_id',
         'shop_id',
