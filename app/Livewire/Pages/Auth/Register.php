@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Spatie\Permission\Models\Role;
+use Livewire\Attributes\Layout;
 
 class Register extends Component
 {
@@ -97,7 +98,7 @@ class Register extends Component
         return redirect()->route('login.page');
     }
 
-
+       #[Layout('components.layouts.app')]
     public function render()
     {
         return view('livewire.pages.auth.register');

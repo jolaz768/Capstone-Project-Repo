@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-         // Create Admin Role if not exists
+        // Create Admin Role if not exists
         $role = Role::firstOrCreate(['name' => 'admin']);
 
         // Get all permissions
@@ -43,9 +43,9 @@ class DatabaseSeeder extends Seeder
                 'password' => Hash::make('123123123'),
             ]
         );
-         $user->assignRole($role);
+        $user->assignRole($role);
 
-          $role = Role::firstOrCreate(['name' => 'owner']);
+        $role = Role::firstOrCreate(['name' => 'owner']);
 
         // Get all permissions
         $permissions = Permission::wherein('name', ['can-view', 'can-create', 'can-update', 'can-delete'])->get();
@@ -61,11 +61,11 @@ class DatabaseSeeder extends Seeder
                 'password' => Hash::make('123123123'),
             ]
         );
-         $user->assignRole($role);
-         
+        $user->assignRole($role);
 
 
-                  $role = Role::firstOrCreate(['name' => 'customer']);
+
+        $role = Role::firstOrCreate(['name' => 'customer']);
 
         // Get all permissions
         $permissions = Permission::wherein('name', ['can-view', 'can-create', 'can-update', 'can-delete'])->get();
@@ -81,15 +81,14 @@ class DatabaseSeeder extends Seeder
                 'password' => Hash::make('123123123'),
             ]
         );
-         $user->assignRole($role);
+        $user->assignRole($role);
 
 
         $this->call([
             PermissionSeeder::class,
             RoleSeeder::class,
-            ColorSeeder::class,
-            // FabricSeeder::class,
-            DashboardDummySeeder::class
+            // DashboardDummySeeder::class
+
         ]);
     }
 }
