@@ -109,8 +109,8 @@ Route::prefix('public')
     });
 
 
-    //profile
-    Route::get('/profile', Profile::class)->name('profile');
+//profile
+Route::get('/profile', Profile::class)->name('profile');
 //super admin
 Route::prefix('/admin')
     ->middleware(['auth', 'role:admin'])
@@ -138,7 +138,7 @@ Route::prefix('/admin')
         Route::get('/shop/edit/{id}', EditShopList::class)->name('super-admin.shop.edit');
 
         //profile
-        Route::get('/admin/profile',SuperAdminProfile::class)->name('super-admin.profile');
+        Route::get('/admin/profile', SuperAdminProfile::class)->name('super-admin.profile');
     });
 
 //admin
@@ -152,19 +152,6 @@ Route::prefix('/tenant') //shop owner
         //booking
         Route::get('/booking/view', ViewBooking::class)->name('admin.booking.view');
         Route::get('/booking/create', CreateBooking::class)->name('admin.booking.create');
-     
-        // //fabric and colors
-        // Route::get('/fabric/view', ViewFabric::class)->name('admin.fabric.view');
-        // Route::get('/fabric/create', CreateFabric::class)->name('admin.fabric.create');
-        // Route::get('/fabric/edit/{id}', EditFabric::class)->name('admin.fabric.edit');
-
-        // Route::get('/color/view', ViewColor::class)->name('admin.color.view');
-        // Route::get('/color/create', CreateColor::class)->name('admin.color.create');
-        // Route::get('/color/edit/{color}', EditColor::class)->name('admin.color.edit');
-
-        // Route::get('/fabric/color/create', CreateFabricColor::class)->name('admin.fabric.color.create');
-        // Route::get('/fabric/color/edit/{fabric_id}', EditFabricColor::class)->name('admin.fabric.color.edit');
-        // Route::get('/fabric/color/view', ViewFabricColor::class)->name('admin.fabric.color.view');
 
 
 

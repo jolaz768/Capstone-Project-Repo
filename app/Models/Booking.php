@@ -12,14 +12,18 @@ class Booking extends Model
         'user_id',
         'shop_id',
         'service_id',
+        'customer_id',
         'status',
         'booking_date',
-        'rental_start_date',
-        'rental_end_date',
         'require_date',
-        'total_price',
+        'total_amount',
+        'final_amount',
+        'payment_method',
+        'status',
+        'serve_by',
+        'tax'
     ];
-    
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -43,9 +47,4 @@ class Booking extends Model
     {
         return $this->hasOne(Payment::class);
     }
-
-    public function customerMeasurements()
-{
-    return $this->hasMany(CustomerMesurement::class, 'booking_id');
-}
 }

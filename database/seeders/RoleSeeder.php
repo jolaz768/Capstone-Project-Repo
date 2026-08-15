@@ -10,7 +10,7 @@ use Spatie\Permission\Models\Role;
 
 class RoleSeeder extends Seeder
 {
-    
+
     /**
      * Run the database seeds.
      */
@@ -18,7 +18,7 @@ class RoleSeeder extends Seeder
     {
         $admin = Role::firstOrCreate(['name' => 'admin']);
         $owner = Role::firstOrCreate(['name' => 'owner']);
-        $customer= Role::firstOrCreate(['name' => 'customer']);
+        $customer = Role::firstOrCreate(['name' => 'customer']);
 
         // get all permissions
         $permissions = Permission::all();

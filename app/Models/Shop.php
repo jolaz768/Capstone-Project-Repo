@@ -16,16 +16,7 @@ class Shop extends Model
         'is_active',
         'address',
     ];
- 
-    // public function user()
-    // {
-    //     return $this->belongsTo(User::class);
-    // }
 
-    public function scopeForOwner($query, int $userId)
-    {
-        return $query->whereHas('users', fn ($query) => $query->where('users.id', $userId));
-    }
 
     public function users()
     {

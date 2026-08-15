@@ -3,16 +3,17 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use app\Traits\HasShopScope;
+use App\Traits\HasShopScope;
 
-class Size extends Model
+class ShopRole extends Model
 {
     //
     use HasShopScope;
+
     protected $fillable = [
-        'name',
-        'measurement',
         'shop_id',
+        'role_name',
+        'position',
     ];
     public function shop()
     {

@@ -14,21 +14,19 @@ class BookingItem extends Model
         'garment_id',
         'quantity',
         'sub_total',
+        'shop_id',
+        'price',
+        'status',
+        'serve_by',
     ];
 
     public  function booking()
     {
         return $this->belongsTo(Booking::class);
     }
-    
+
     public function garment()
     {
         return $this->belongsTo(Garment::class);
     }
-    public function customerMeasurements()
-    {
-        return $this->hasMany(CustomerMesurement::class);
-    }
-
-    
 }
